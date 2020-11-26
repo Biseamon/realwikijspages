@@ -2,7 +2,7 @@
 title: Remote Working
 description: 
 published: true
-date: 2020-11-26T16:00:13.676Z
+date: 2020-11-26T16:13:16.766Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T15:43:39.501Z
@@ -271,71 +271,108 @@ This document supersedes all previous documents containing terms and conditions 
 **2.1 Your Role**
 
 **2.1.1** Blueberry is employing you in the role and from the start date that has been separately agreed with you.
-**2.1.2** For day to day project work, you will report to the Project Manager (hereafter PM) of the project. However, any unresolved issues can be referred further to the Managing Director or/and the HR Department.
-**2.1.3** You are expected to carry out your work diligently using due care and attention and to conduct yourself in a professional manner.
-**2.1.4** You must communicate well and responsively with Managers by e-mail and Skype. In general, you are expected to respond to e-mail within two working hours and respond to a message in Skype within 15 minutes during your working hours. In the event you need to concentrate on a complex task with minimum distraction you must notify your manager immediately and be available in Skype for urgent requests or use the PTS feature to send SMS notifications for urgent messages.
-**2.1.5** Throughout your working hours you must be always online in Skype.
-**2.1.6** You are required to use Blueberry systems and processes for carrying out your work and managing your tasks, including PTS (Project Tracking System) and Subversion.
-**2.1.7** You are strictly required to use only your Blueberry e-mail account for all work-related communications.
-**2.1.8** You are required to have a Blueberry Skype account showing your Blueberry name in the following format: name.surname.blueberry, where name and surname are your English aliases, if you have one.
 
+**2.1.2** For day to day project work, you will report to the Project Manager (hereafter PM) of the project. However, any unresolved issues can be referred further to the Managing Director or/and the HR Department.
+
+**2.1.3** You are expected to carry out your work diligently using due care and attention and to conduct yourself in a professional manner.
+
+**2.1.4** You must communicate well and responsively with Managers by e-mail and Skype. In general, you are expected to respond to e-mail within two working hours and respond to a message in Skype within 15 minutes during your working hours. In the event you need to concentrate on a complex task with minimum distraction you must notify your manager immediately and be available in Skype for urgent requests or use the PTS feature to send SMS notifications for urgent messages.
+
+**2.1.5** Throughout your working hours you must be always online in Skype.
+
+**2.1.6** You are required to use Blueberry systems and processes for carrying out your work and managing your tasks, including PTS (Project Tracking System) and Subversion.
+
+**2.1.7** You are strictly required to use only your Blueberry e-mail account for all work-related communications.
+
+**2.1.8** You are required to have a Blueberry Skype account showing your Blueberry name in the following format: name.surname.blueberry, where name and surname are your English aliases, if you have one.
 
 **2.2 Working Hours**
 
 **2.2.1** You are employed on either a full-time or part-time basis. Unless part-time working has been explicitly agreed you are deemed to be employed full-time.
+
 **2.2.2** Working hours for full-time staff must average 40 hours per week, unless a different amount of hours has been agreed with you.
+
 **2.2.3** If you are employed on a part-time basis, Blueberry does not guarantee the number of hours you are required to work and the amount of work requested of you may vary from day to day or week to week.
+
 **2.2.4** You can work more or less than 40 hours in a week as long as the average is 40 hours and the number of hours ahead/behind is never more than 16. For part-time staff this clause applies pro rata.
+
 **2.2.5** We expect you to organise your working time so that you are online for at least two hours during the UK working hours of 8am to 5pm.
+
 **2.2.6** You may occasionally be asked to work outside UK working hours in order to support a critical operation, e.g. a release. Any overtime or extra hours must be agreed with the PM.
 
 
 **2.3 Work Location**
 
-**2.3.1** You may work at your own preferred location so long as you have a suitable computer and broadband internet connection and the location is conducive to productive work.
+**2.3.1** You may work at your own preferred location so long as you have a suitable computer and 
+broadband internet connection and the location is conducive to productive work.
+
 **2.3.2** You must notify your PM, the Managing Director and the HR Department before you change location, so that we can be sure that you are likely to have a good Internet connection.
 
 
 **2.4 Remuneration**
 
 **2.4.1** You will be paid on an hourly rate (stated in GBP) which will have been separately agreed with you.
+
 **2.4.2** You must submit a timesheet once a week via PTS.
-**2.4.3** You must submit an invoice at the end of each month to the Finance Manager at Blueberry showing the hours you have worked. The invoice is subject to the PM's approval prior to submission.
+
+**2.4.3** You must submit an invoice at the end of each month to the Finance Manager at Blueberry 
+showing the hours you have worked. The invoice is subject to the PM's approval prior to submission.
+
 **2.4.4** Subject to an accurate timesheet being received by the last working day of the month and in the required format, you will be paid on or before the last working day of the following week.
+
 **2.4.5** Payments are made in GBP so the amount received will vary depending on the current exchange rate.
+
 **2.4.6** Blueberry may deduct from your pay the cost of the payment transaction, depending on the method used. However, if you use Skrill at the current moment there is no cost.
+
 **2.4.7** Your pay rate will be reviewed annually in February. Any pay increase is discretionary to the Managing Director.
+
 **2.4.8** Blueberry has no responsibility to pay any governmental or social taxes regarding your employment or on your behalf.
 
 
 **2.5 Holidays and Leave of Absence**
 
 **2.5.1** You are entitled to 15 days paid annual leave (in addition to paid state holidays) each full year.
+
 **2.5.2** Annual leave must be booked in PTS and approved by your PM in advance.
+
 **2.5.3** If you wish to take holiday of up to a week, you must ask your PM's approval at least two weeks in advance. If you wish to take more than one week’s holiday, you must notify your PM and seek his/her approval at least one month before. In special circumstances time off work can be allowed at short notice and is at the discretion of the Project Manager and Managing Director.
+
 **2.5.4** If you have any annual leave outstanding at the end of the year, it can only be carried over to the following year with the agreement of the PM, who will try to limit this to a maximum of 5 days. Carried over holidays should be used before the end of February in agreement with the PM or they will be forfeit.
+
 **2.5.5** If you work part-time or on a temporary basis or if you stop working for Blueberry, your annual leave allowance will be calculated pro rata.
+
 **2.5.6** You are also entitled to the state and public holidays in your region as paid holidays. If you choose to work during a state holiday you will be given the option of either taking a day's extra holiday later in the year or, alternatively, being paid as if you had worked an additional day that month.
+
 **2.5.7** State holidays must also be booked in PTS. Failure to do so may result in delays to your invoice submission and payment.
+
 **2.5.8** You may take up to 5 days paid sick leave per year if you are unable to work due to illness or incapacity. If you are unable to work you should notify your PM and the HR Department at your earliest opportunity. You may be required to produce evidence from a qualified doctor that you are unable to work. 
+
 **2.5.9** You may take unpaid leave by agreement with your PM. The same approval process/notice period as described in 2.5.3 applies. 
+
 **2.5.10** Paid parental leave is available subject to qualifying conditions, available on request.
 
 
 **2.6 Leaving Blueberry**
 
 **2.6.1** If you want to stop working for Blueberry you must give us at least two weeks’ notice and continue working during your notice period.
+
 **2.6.2** Blueberry may terminate your employment by providing two weeks’ notice at any time.
+
 **2.6.3** Holiday may not be taken during a notice period unless agreed by the Managing Director, but any outstanding holiday will be paid.
+
 **2.6.4** Before you leave Blueberry you must return or destroy (as instructed by Blueberry) all confidential information and materials belonging to Blueberry including those in electronic format.
 
 
 **2.7 Equipment**
 
 **2.7.1** We offer a one-off fixed £380 allowance per year for you to buy a PC and/or to upgrade your computer/internet connectivity, to ensure that you have an efficient computing environment for your Blueberry work. Equipment purchased with this allowance is your property and Blueberry will not ask for it to be returned when you leave.
+
 **2.7.2** Subject to approval by Blueberry, you may claim up to £30 per month to cover the cost of your internet usage.
+
 **2.7.3** If you need any other equipment or software to carry out your work, you should seek approval from your Manager.
+
 **2.7.4** All approved purchases/expenses should be claimed on your monthly timesheet.
+
 **2.7.5** If such other equipment or software is bought for you by Blueberry, the company may ask for it to be returned when you leave Blueberry.
 
 
@@ -347,20 +384,30 @@ This document supersedes all previous documents containing terms and conditions 
 **2.9 Confidentiality and Intellectual Property**
 
 **2.9.1** You are strictly required to keep all information about Blueberry confidential during your employment and afterwards, with the exception of information that has been published publicly by Blueberry.
+
 **2.9.2** You must only access systems and information, including reports and paper documents to which you are authorised as well as use systems and information only for the purposes for which you have been authorised.
+
 **2.9.3** You are strictly required to keep your login details and passwords secret and secure at all times. You must not allow anyone else to use your account to gain access to any company system or information.
+
 **2.9.4** You must not disclose confidential or sensitive information, including personal and corporate data to anyone without the permission of the information owner. You must ensure that sensitive information is protected from view by unauthorised individuals, including your colleagues or coworkers.
+
 **2.9.5** You must protect information from unauthorised access, disclosure, modification, destruction or interference.
+
 **2.9.6** When/If working from home ensure that adequate physical and other security measures are in place in your home to prevent any unauthorised access to company (Blueberry) equipment or information.
+
 **2.9.7** Do not attempt to disable or bypass any security features which have been implemented.
+
 **2.9.8** All the developers must have cameras and headsets for Skype video calls for security and identity verification purposes.
+
 **2.9.9** Blueberry offers a one-off payment of £25 to reimburse the cost of the equipment purchased in accordance with the requirement of the paragraph 2.9.8.
+
 **2.9.10** All employees of Blueberry are responsible for reporting any actual or suspected information security incidents or problems and assisting with their resolution.
 
 
 **2.10 Intellectual Property**
 
 **2.10.1** The Intellectual Property Rights (IPR) and copyright in any material, including software, that Blueberry asks you to produce, belongs exclusively to Blueberry and/or Blueberry's customers. You may not use this Blueberry material for any other purpose at any time or disclose its nature to anyone outside Blueberry. For the avoidance of doubt, this clause applies to work you produce for Blueberry Consultants Ltd, Blueberry Software Ltd, Blueberry Systems Ltd or any other Blueberry company, venture or joint venture.
+
 **2.10.2** If you carry out other work which is not for Blueberry outside your Blueberry working hours but during the period of your employment you may retain IPR and copyright in any such material or invention.
 
 
@@ -435,6 +482,7 @@ The following is our advice to developers who are new to working remotely:
 **Rapid Replies**. If we are discussing a problem, and each reply takes 4 hours, it will take days to resolve the problem. So ideally we like developers to reply quickly to mails.
 **Tell us about problems**. Most developers assume that we will be angry if there is some problem – e.g. power cut or personal issue. This is wrong: we cannot help you resolve a problem if we do not know about it! We are reasonable people – if you need time off for a problem that is OK. But we need you to be reasonable too – if there is a power cut, try to find another place to work.
 **Answer all questions**. If someone writes an email with three questions, answer them all in one e-mail. Many people fail this – they answer, say, two questions out of three, leaving the sender to ask the third question again.
+
 These rules are not fixed – if you have a big piece of work to do, then it is often fine for you to be working on it without replying to email quickly. Just let us know. And we do not expect you to be online all the time.
 
 But we have clear experience: the people, our managers most like to work with, are the best communicators.
