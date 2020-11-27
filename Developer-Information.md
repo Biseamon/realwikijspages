@@ -2,7 +2,7 @@
 title: Developer Information
 description: 
 published: true
-date: 2020-11-27T14:32:14.807Z
+date: 2020-11-27T15:38:55.202Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-27T13:53:16.589Z
@@ -176,7 +176,124 @@ You are free to write your tests however you see fit, as long as they abide by t
 Pytest provides coverage support through the **pytest-cov** package. Execute your tests using the -**-cov=my_module** parameter where **my_module** is the module name, and a coverage report will be emitted.
 
 ## Editor
+
+It is recommended to use Visual Studio Code for Python development. However, if you are already entrenched in a particular text editor then continue using it. You may wish to make some Python specific changes to your environment, which will be covered below. Other recommended editors include:
+
+Atom
+Notepad++ (Windows only)
+
+> This article will strongly favour Visual Studio Code over Atom, and will have more information for the former. As such, the advice for Atom may not be up to date.
+{.is-success}
+
+
+**Visual Studio Code**
+Python support is included out of the box in new VSCode installations. If you don't have it installed hit **CTRL+SHIFT+P**, type **ext install Python**, and hit **Enter**.
+
+When you open your Python project folder in vscode, your virtual environment should automatically be detected. If not, you can set the interpreter using CTRL+SHIFT+P, type "select interpreter" and hit **Enter** and then select the virtual environment.
+
+Your VSCode environment is now setup. Hit **CTRL+SHIFT+P** and select **Developer: Reload Window**.
+
+**Atom**
+
+Atom is another choice for Python development. You will need to install the **linter-pylint** and **autocomplete-python** packages to enable automatic linting and autocomplete for your code. The autocomplete-python package will automatically use your virtual environment, while the linter-pylint requires configuration, as shown in the image. Open **File > Settings > Packages** and click on **linter-pylint**, and configure it as below:
+
+![image2016-7-7_15_33_31.png](/image2016-7-7_15_33_31.png)
+
+Assuming you installed **pylint** into your virtual environment, Atom will now begin linting your code as you type, and will perform autocompletions using the libraries installed in your virtual environment.
+
 ## Style
+
+In terms of style guide, follow PEP 8 wherever possible. If you can't find what you're looking for in PEP 8, refer to this document. When updating old code, don't feel as though you need to be strict when it comes to applying coding styles. If there are one or two instances of poor coding style, then go ahead and update it. If it's consistent throughout the module or package, consider whether it's worth your time restyling everything to conform to PEP8 or if your changes would break the program or its compatibility with an older version of Python.
+You may even want to consider using an automated style guide enforcer such as black to assist you in the process. If the module has a test suite, it should be quite easy to test whether your changes break anything. If the module does not have a test suite, consider writing one and then applying your changes if you have the time.
+
+**The Zen of Python**
+
+Run this in an interpreter:
+
+> import this
+
+Study the output:
+
+> The Zen of Python, by Tim Peters
+> Beautiful is better than ugly.
+> Explicit is better than implicit.
+> Simple is better than complex.
+> Complex is better than complicated.
+> Flat is better than nested.
+> Sparse is better than dense.
+> Readability counts.
+> Special cases aren't special enough to break the rules.
+> Although practicality beats purity.
+> Errors should never pass silently.
+> Unless explicitly silenced.
+> In the face of ambiguity, refuse the temptation to guess.
+> There should be one-- and preferably only one --obvious way to do it.
+> Although that way may not be obvious at first unless you're Dutch.
+> Now is better than never.
+> Although never is often better than *right* now.
+> If the implementation is hard to explain, it's a bad idea.
+> If the implementation is easy to explain, it may be a good idea.
+> Namespaces are one honking great idea -- let's do more of those!
+
+Python is about readability and simplicity. When you write code, ask yourself if what you're doing is needlessly complex, and if there's a better, simpler way of expressing what it is you're trying to accomplish.
+
+**Docstrings**
+
+Docstring styling follows the PEP8 guideline above, but with the addition of documenting the parameters taken by a function, and any return values. As docstrings are free form, stick with the existing style when working on an existing codebase.
+
+Here is an example written in the reStructuredText format:
+
+> def generate_spam(flavour=0):
+>     """Generate some spam
+>      
+>     :param flavour: The flavour to specify, defaults to 0
+>     :type flavour: int
+>     :returns: A string with the specified spam flavour
+>     :rtype: str
+>     """
+
+Here's the same example written using PEP 257:
+
+> def generate_spam(flavour=0):
+>     """Generate some spam
+>      
+>     Keyword arguments:
+>     flavour -- the flavour of spam to use (default 0)
+>     """
+
+Here is the example written using Google's PEP 257 compatible style:
+
+> def generate_spam(flavour=0):
+>     """Generate some spam
+>      
+>     This function takes will generate a text string based on a flavour input.
+>     Args:
+>         flavour (int) the flavour of spam to use. Defaults to 0.
+>     Returns:
+>         str: A spam text string
+>     """
+
+Finally, an example written to numpy/scipy's documentation standard (a PEP 257 superset):
+
+> def generate_spam(flavour=0):
+>     """
+>     Generate some spam
+>      
+>     This function takes will generate a text string based on a flavour input.
+>  
+>     Parameters
+>     ----------
+>     flavour : int, optional
+>         The flavour of spam to use (default 0)
+>  
+>     Returns
+>     -------
+>     spam_text : str
+>         A spam text string
+>     """
+
+There is no official recommendation either way regarding which convention to use, however make sure to pick one and stick to it. These are all widely supported by automatic documentation generation tools, such as Sphinx.
+
 ## Type Annotations
 ## Module Files
 ## Logging
