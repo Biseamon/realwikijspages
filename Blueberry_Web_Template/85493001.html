@@ -1,69 +1,138 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : BBWT3 - Environments/Server Instances</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<!--
+title: BBWT3 - Environments/Server Instances
+description: 
+published: true
+date: 2020-11-27T15:52:01.150Z
+tags: 
+editor: ckeditor
+dateCreated: 2020-11-27T11:00:37.508Z
+-->
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : BBWT3 - Environments/Server Instances
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>We currently run three environments for BBWT3 on AWS:</p><div class="table-wrap"><table class="confluenceTable"><colgroup><col/><col/><col/><col/><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><p>Environment name</p></th><th class="confluenceTh"><p>Platform</p></th><th colspan="1" class="confluenceTh"><p>Database</p></th><th class="confluenceTh"><p>Purpose</p></th><th colspan="1" class="confluenceTh"><p>Domain</p></th><th colspan="1" class="confluenceTh"><p>Schedule (UTC)</p></th><th colspan="1" class="confluenceTh"><p>Region</p></th></tr></thead><tbody><tr><td class="confluenceTd">test-linux-aurora</td><td class="confluenceTd">Linux</td><td colspan="1" class="confluenceTd">Aurora MySQL</td><td class="confluenceTd">For testing BBWT3 on Linux.</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p><a class="external-link" href="https://bbwt3-test-linux.blueberrytest.com/" rel="nofollow">https://bbwt3-test-linux.blueberrytest.com</a></p></div></td><td colspan="1" class="confluenceTd"><p>Weekdays: 01:00-17:00</p><p>Weekends: Off</p></td><td colspan="1" class="confluenceTd">eu-west-1</td></tr><tr><td class="confluenceTd">test-windows-aurora</td><td class="confluenceTd">Windows</td><td colspan="1" class="confluenceTd">Aurora MySQL</td><td class="confluenceTd">For testing BBWT3 on Windows.</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p><a class="external-link" href="https://bbwt3-test-windows.blueberrytest.com/" rel="nofollow">https://bbwt3-test-windows.blueberrytest.com</a></p></div></td><td colspan="1" class="confluenceTd"><p>Weekdays: 01:00-17:00</p><p>Weekends: Off</p></td><td colspan="1" class="confluenceTd">eu-west-1</td></tr><tr><td class="confluenceTd">demo-windows-aurora</td><td class="confluenceTd">Windows</td><td colspan="1" class="confluenceTd">Aurora MySQL</td><td class="confluenceTd">To provide a stable version of BBWT3 for customer demos.</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p><a class="external-link" href="https://bbwt3-demo-windows.blueberrytest.com/" rel="nofollow">https://bbwt3-demo-windows.blueberrytest.com</a></p></div></td><td colspan="1" class="confluenceTd">On 24/7</td><td colspan="1" class="confluenceTd">eu-west-1</td></tr></tbody></table></div><p>There is also a link to these environments from <a class="external-link" href="https://bbwt3.blueberrytest.com/" rel="nofollow">https://bbwt3.blueberrytest.com/</a></p><p>To help reduce costs, the above environments use spot capacity and are scheduled to run during work hours.</p><p>The administration portal for the above environments can be accessed using <a class="external-link" href="https://eu-west-1.console.aws.amazon.com/elasticbeanstalk/home?region=eu-west-1#/application/overview?applicationName=Blueberry%20Web%20Template%203" rel="nofollow">this link</a> (ask a sysadmin for access).</p><p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" height="400" src="attachments/85493001/85493002.png" data-image-src="attachments/85493001/85493002.png" data-unresolved-comment-count="0" data-linked-resource-id="85493002" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="BBWT3 Environments.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493001" data-linked-resource-container-version="1"></span></span></p><h2 id="BBWT3-Environments/ServerInstances-Loadbalancer">Load balancer</h2><p>In order to provide HTTPS service to the above instances, a single load balancer is used to route traffic between elastic beanstalk environments via target groups. This load balancer and target groups are not part of the elastic beanstalk configurations, so must be managed separately.</p><div class="table-wrap"><table class="confluenceTable"><colgroup><col/><col/><col/><col/></colgroup><thead><tr><th class="confluenceTh"><p>Listener</p></th><th class="confluenceTh"><p>Port</p></th><th colspan="1" class="confluenceTh"><p>Certificate</p></th><th class="confluenceTh"><p>Rules</p></th></tr></thead><tbody><tr><td class="confluenceTd">HTTP</td><td class="confluenceTd">80</td><td colspan="1" class="confluenceTd">N/A</td><td class="confluenceTd"><p><a class="external-link" href="http://bbwt3-test-windows-aurora.blueberrytest.com" rel="nofollow">bbwt3-test-windows-aurora.blueberrytest.com</a> → tg-bbwt3-test-windows-aurora</p><p><a class="external-link" href="http://bbwt3-demo-windows-aurora.blueberrytest.com" rel="nofollow">bbwt3-demo-windows-aurora.blueberrytest.com</a> → tg-bbwt3-demo-windows-aurora</p><p>Default → <a class="external-link" href="http://tg-bbwt3-test-linux-aurora.blueberrytest.com" rel="nofollow">tg-bbwt3-test-linux-aurora.blueberrytest.com</a></p></td></tr><tr><td class="confluenceTd">HTTPS</td><td class="confluenceTd">443</td><td colspan="1" class="confluenceTd">*.<a class="external-link" href="http://blueberrytest.com" rel="nofollow">blueberrytest.com</a> (imported into ACM)</td><td class="confluenceTd"><p><a class="external-link" href="http://bbwt3-test-windows-aurora.blueberrytest.com" rel="nofollow">bbwt3-test-windows-aurora.blueberrytest.com</a> → tg-bbwt3-test-windows-aurora</p><p><a class="external-link" href="http://bbwt3-demo-windows-aurora.blueberrytest.com" rel="nofollow">bbwt3-demo-windows-aurora.blueberrytest.com</a> → tg-bbwt3-demo-windows-aurora</p><p>Default → <a class="external-link" href="http://tg-bbwt3-test-linux-aurora.blueberrytest.com" rel="nofollow">tg-bbwt3-test-linux-aurora.blueberrytest.com</a></p></td></tr></tbody></table></div><p>The target groups are added to the appropriate auto-scaling group, which then automatically registers instances to the target group and the load balancer so that traffic is routed appropriately.</p><p>Target groups are configured to check the <strong>/api/health</strong> endpoint for a 200 response to indicate a healthy target.</p><p>Stickiness is not enabled on the load balancer.</p><p>HTTP → HTTPS redirects are handled within the Kestrel web server via the <strong>ENABLE_HTTPS_REDIRECT</strong> environment variable.</p><p>For each environment, a Route 53 ALIAS A record is used to map the DNS names to the load balancer.</p><h2 id="BBWT3-Environments/ServerInstances-Knownissues">Known issues</h2><h3 id="BBWT3-Environments/ServerInstances-test-linux-aurora">test-linux-aurora</h3><p>Occasionally, the hosting instance will run out of disk space as it does not clear out older deployed versions from the same instance.</p><p>This is normally not an issue as the instances are recreated every day due to their scheduled nature.</p><p>To remedy this, simply terminate the current running instance for that environment and Elastic Beanstalk will replace it.</p><h2 id="BBWT3-Environments/ServerInstances-Troubleshooting">Troubleshooting</h2><h3 id="BBWT3-Environments/ServerInstances-Linux">Linux</h3><p>Application logs from stdout can be fetched using the Elastic Beanstalk logs tab.</p><h3 id="BBWT3-Environments/ServerInstances-Windows">Windows</h3><p>System logs (event viewer etc.) can be fetched using the Elastic Beanstalk logs tab.</p><p>Additionally, you can connect to the instance using the appropriate keypair stored in BitWarden.</p><p>For the Windows demo system, use the BitWarden note 'BBWT3 Elastic Beanstalk Demo Windows Keypair'.</p><p>For the Windows test system, use the BitWarden note 'BBWT3 Elastic Beanstalk Test Windows Keypair'.</p><p>To connect, find the current running instance using the AWS console and note the current IP address. Right click the instance and click 'get windows password' and select the keypair taken from BitWarden when prompted. Now use these details in your RDP client to connect to the running instance.</p><p>Once connected, you can examine the logs in the logs directory relative to the application root (C:\inetpub\AspNetCoreWebApps\bbwt3). You can also attempt to start the application in a terminal window using a Powershell window in the application root:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="powershell value">$env</code><code class="powershell plain">:ASPNETCORE_ENVIRONMENT=</code><code class="powershell string">&quot;test-windows-aurora&quot;</code> <code class="powershell comments"># Substitute as appropriate</code><br/><code class="powershell value">$env</code><code class="powershell plain">:Serilog__MinimumLevel__Default=</code><code class="powershell string">&quot;Error&quot;</code> <code class="powershell comments"># Restrict logging to errors only</code><br/><code class="powershell plain">dotnet BBWT.Web.dll</code></p></td></tr></tbody></table></div><p>You can see the errors in the terminal window, or check the logs directory.</p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/85493001/85493002.png">BBWT3 Environments.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>BBWT3 - Environments/Server Instances&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<p>We currently run three environments for BBWT3 on AWS:</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Environment name</th>
+        <th>Platform</th>
+        <th colspan="1">Database</th>
+        <th>Purpose</th>
+        <th colspan="1">Domain</th>
+        <th colspan="1">Schedule (UTC)</th>
+        <th colspan="1">Region</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>test-linux-aurora</td>
+        <td>Linux</td>
+        <td colspan="1">Aurora MySQL</td>
+        <td>For testing BBWT3 on Linux.</td>
+        <td colspan="1"><a href="https://bbwt3-test-linux.blueberrytest.com/">https://bbwt3-test-linux.blueberrytest.com</a></td>
+        <td colspan="1">
+          <p>Weekdays: 01:00-17:00</p>
+          <p>Weekends: Off</p>
+        </td>
+        <td colspan="1">eu-west-1</td>
+      </tr>
+      <tr>
+        <td>test-windows-aurora</td>
+        <td>Windows</td>
+        <td colspan="1">Aurora MySQL</td>
+        <td>For testing BBWT3 on Windows.</td>
+        <td colspan="1"><a href="https://bbwt3-test-windows.blueberrytest.com/">https://bbwt3-test-windows.blueberrytest.com</a></td>
+        <td colspan="1">
+          <p>Weekdays: 01:00-17:00</p>
+          <p>Weekends: Off</p>
+        </td>
+        <td colspan="1">eu-west-1</td>
+      </tr>
+      <tr>
+        <td>demo-windows-aurora</td>
+        <td>Windows</td>
+        <td colspan="1">Aurora MySQL</td>
+        <td>To provide a stable version of BBWT3 for customer demos.</td>
+        <td colspan="1"><a href="https://bbwt3-demo-windows.blueberrytest.com/">https://bbwt3-demo-windows.blueberrytest.com</a></td>
+        <td colspan="1">On 24/7</td>
+        <td colspan="1">eu-west-1</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>There is also a link to these environments from&nbsp;<a href="https://bbwt3.blueberrytest.com/">https://bbwt3.blueberrytest.com/</a></p>
+<p>To help reduce costs, the above environments use spot capacity and are scheduled to run during work hours.</p>
+<p>The administration portal for the above environments can be accessed using&nbsp;<a href="https://eu-west-1.console.aws.amazon.com/elasticbeanstalk/home?region=eu-west-1#/application/overview?applicationName=Blueberry%20Web%20Template%203">this link</a>&nbsp;(ask a sysadmin for access).</p>
+<figure class="image"><img src="attachments/85493001/85493002.png"></figure>
+<h2>Load balancer</h2>
+<p>In order to provide HTTPS service to the above instances, a single load balancer is used to route traffic between elastic beanstalk environments via target groups. This load balancer and target groups are not part of the elastic beanstalk configurations, so must be managed separately.</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Listener</th>
+        <th>Port</th>
+        <th colspan="1">Certificate</th>
+        <th>Rules</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>HTTP</td>
+        <td>80</td>
+        <td colspan="1">N/A</td>
+        <td>
+          <p><a href="http://bbwt3-test-windows-aurora.blueberrytest.com">bbwt3-test-windows-aurora.blueberrytest.com</a> → tg-bbwt3-test-windows-aurora</p>
+          <p><a href="http://bbwt3-demo-windows-aurora.blueberrytest.com">bbwt3-demo-windows-aurora.blueberrytest.com</a> → tg-bbwt3-demo-windows-aurora</p>
+          <p>Default → <a href="http://tg-bbwt3-test-linux-aurora.blueberrytest.com">tg-bbwt3-test-linux-aurora.blueberrytest.com</a></p>
+        </td>
+      </tr>
+      <tr>
+        <td>HTTPS</td>
+        <td>443</td>
+        <td colspan="1">*.<a href="http://blueberrytest.com">blueberrytest.com</a> (imported into ACM)</td>
+        <td>
+          <p><a href="http://bbwt3-test-windows-aurora.blueberrytest.com">bbwt3-test-windows-aurora.blueberrytest.com</a> → tg-bbwt3-test-windows-aurora</p>
+          <p><a href="http://bbwt3-demo-windows-aurora.blueberrytest.com">bbwt3-demo-windows-aurora.blueberrytest.com</a> → tg-bbwt3-demo-windows-aurora</p>
+          <p>Default → <a href="http://tg-bbwt3-test-linux-aurora.blueberrytest.com">tg-bbwt3-test-linux-aurora.blueberrytest.com</a></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>The target groups are added to the appropriate auto-scaling group, which then automatically registers instances to the target group and the load balancer so that traffic is routed appropriately.</p>
+<p>Target groups are configured to check the&nbsp;<strong>/api/health</strong>&nbsp;endpoint for a 200 response to indicate a healthy target.</p>
+<p>Stickiness is not enabled on the load balancer.</p>
+<p>HTTP&nbsp;→ HTTPS redirects are handled within the Kestrel web server via the&nbsp;<strong>ENABLE_HTTPS_REDIRECT</strong>&nbsp;environment variable.</p>
+<p>For each environment, a Route 53 ALIAS A record is used to map the DNS names to the load balancer.</p>
+<h2>Known issues</h2>
+<h3>test-linux-aurora</h3>
+<p>Occasionally, the hosting instance will run out of disk space as it does not clear out older deployed versions from the same instance.</p>
+<p>This is normally not an issue as the instances are recreated every day due to their scheduled nature.</p>
+<p>To remedy this, simply terminate the current running instance for that environment and Elastic Beanstalk will replace it.</p>
+<h2>Troubleshooting</h2>
+<h3>Linux</h3>
+<p>Application logs from stdout can be fetched using the Elastic Beanstalk logs tab.</p>
+<h3>Windows</h3>
+<p>System logs (event viewer etc.) can be fetched using the Elastic Beanstalk logs tab.</p>
+<p>Additionally, you can connect to the instance using the appropriate keypair stored in BitWarden.</p>
+<p>For the Windows demo system, use the BitWarden note 'BBWT3 Elastic Beanstalk Demo Windows Keypair'.</p>
+<p>For the Windows test system, use the BitWarden note 'BBWT3 Elastic Beanstalk Test Windows Keypair'.</p>
+<p>To connect, find the current running instance using the AWS console and note the current IP address. Right click the instance and click 'get windows password' and select the keypair taken from BitWarden when prompted. Now use these details in your RDP client to connect to the running instance.</p>
+<p>Once connected, you can examine the logs in the logs directory relative to the application root (C:\inetpub\AspNetCoreWebApps\bbwt3). You can also attempt to start the application in a terminal window using a Powershell window in the application root:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>$env:ASPNETCORE_ENVIRONMENT="test-windows-aurora"</code>&nbsp;<code>#&nbsp;Substitute as appropriate</code><br><code>$env:Serilog__MinimumLevel__Default="Error"</code>&nbsp;<code>#&nbsp;Restrict logging to errors only</code><br><code>dotnet BBWT.Web.dll</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>You can see the errors in the terminal window, or check the logs directory.</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493001/85493002.png">BBWT3 Environments.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
