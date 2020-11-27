@@ -2,7 +2,7 @@
 title: Remote Working
 description: 
 published: true
-date: 2020-11-27T12:20:25.290Z
+date: 2020-11-27T12:24:46.782Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T15:43:39.501Z
@@ -207,9 +207,9 @@ Unused annual leave, which has accrued but has not been taken, will be paid with
 > Next Review is due in April, 2021
 >{.is-danger}
 
-## Payment
+# Payment
 
-**Payment Systems**
+## Payment Systems
 When working for Blueberry your pay will be calculated one of two ways - These are called "Scheme" and "Flat".
 
 Flat payment is simple - you get £X per hour but no holiday or other money (you can take holiday, but you will not be paid for those days).  This payment system is normally used for employees who are on an initial Trial or do a very small amount of part time work for us.
@@ -226,14 +226,14 @@ Note:  equipment allowance is NOT salary.  To qualify for equipment allowance, y
 
 As it suggests, we expect a certain amount of loyalty and a level of professionalism from people who are paid using the "Scheme" system. If you are deemed to be under performing, or abusing the system, we reserve the right to return you to the Flat payment system.
 
-**Arranging Payment**
+## Arranging Payment
 Blueberry pays remote employees based on a monthly timesheet submitted via our PTS. This timesheet is used to generate an invoice for the developer which is then entered into our accounts.
 
 This timesheet and invoice submission system is part of the PTS Client application. Information on how use this to create timesheets and submit your invoices can be found here.
 
 Blueberry pays invoices during the first week of the month so any invoice received before the end of the previous month will be included in this payment run.
 
-**The Transfer**
+## The Transfer
 Blueberry’s preferred transfer method is via a system called Moneybookers or Skrill.
 
 Using this service allows us to transfer in Pounds Sterling, the same currency that we calculate your invoice in, while also allowing you to receive the transfer in your own base currency. Also, because the transfer fee for Moneybookers is low, Blueberry pays this fee on your behalf. These funds can then be transferred directly to your bank account from your Moneybookers account.
@@ -245,17 +245,17 @@ We also offer a Payoneer service, you will have to arrange a GBP Card to be sent
 We can also arrange direct bank transfers, but this is an expensive to do internationally and Blueberry will not pay for any charges that are incurred. This can only be arranged with prior discussion and agreement with Accounts.
 
 
-## Sick Leave
+# Sick Leave
 Remote Employees may take up to 5 days paid sick leave per year if you are unable to work due to illness or incapacity.
 
 If you are unable to work you should notify your Manager, Liubov Green and Accounts as soon as you can. You will be required to produce evidence from a qualified doctor that you are unable to work, which you should send to Liubov Green.
 
-## Terms and Conditions
+# Terms and Conditions
 To view Blueberry's Terms and Conditions for Remote Employees, download the PDF here (includes Russian translation) or read below.
 
 Note:  All Remote Employees are required to agree these terms by pressing the 'Accept' button in PTS
 
-**1. Introduction**
+## 1. Introduction
 Blueberry is a software development Group based in the UK.
 
 As well as its UK-based team, Blueberry utilises the services of developers living in other countries. The terms and conditions contained in this document are standard and mandatory for all non-UK/non-EU staff.
@@ -264,7 +264,7 @@ There are three sister Blueberry companies, Blueberry Consultants Limited and Bl
 
 This document supersedes all previous documents containing terms and conditions of employment. By commencing work for Blueberry it is deemed that you have accepted all of the terms and conditions stated in this document.
 
-**2 Terms and Conditions of Employment**
+## 2 Terms and Conditions of Employment
 
 **2.1 Your Role**
 
@@ -417,8 +417,8 @@ An acceptable document for identity confirmation is an internal passport or an i
 
 If your passport does not show your current address then please contact the HR Department to discuss alternative identity documents.
 
-## Trial Project Process
-**Introduction**
+# Trial Project Process
+## Introduction
 Blueberry is a UK based software development company. There are three companies in our group:
 
 Blueberry Consultants - http://bbconsult.co.uk
@@ -439,7 +439,7 @@ Blueberry's mission is simple: we exist to develop good software, and (ideally) 
 
 Blueberry is financially stable – we have good customers, and reserves. However, we are not (yet) Google – we must work to earn money to pay salaries, of course – and we do not have much spare money.
 
-**Trial Process**
+## Trial Process
 
 Blueberry has been working with remote developers for many years and welcomes developers who are interested in a long-term full-time remote employment. However, we can only offer one a permanent position at Blueberry after a successful trial. During this period we assign a trial project for 3-4 weeks, to see if we can work together.
 
@@ -456,7 +456,7 @@ There are resources on the web listing English names, or we can help you with th
 We also need your middle/patronymic name initial, because we use three-letter user names for internal systems. So, for instance, Ivan Petrovich Sidorov will become ips on our systems.
 We currently use Subversion as our source control system. We require all code – even trial project code – to be checked into source control so that we definitely have a copy.
 
-**Questions?**
+## Questions?
 
 In general, the trial process is usually run by Duncan Forsyth, Quality Assurance Manager or by one of the Project Managers. All the queries related to your trial should be directed to your trial manager as your first point of reference.
 
