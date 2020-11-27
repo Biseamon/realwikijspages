@@ -2,28 +2,26 @@
 title: Remote Working
 description: 
 published: true
-date: 2020-11-26T17:17:42.118Z
+date: 2020-11-27T12:20:25.290Z
 tags: 
-editor: undefined
+editor: markdown
 dateCreated: 2020-11-26T15:43:39.501Z
 ---
 
-# Information for Remote Workers
-
 Here you will find all of the information needed to help Remote Workers.
 
-## English Language Aid
+# English Language Aid
 Blueberry offers financial support of £30 a month to remote members of staff who want to improve their English language skills for better productivity and effective communication.
 
 This support is only available to members of staff who have successfully completed their trial or probation period and meet eligibility criteria. There is no automatic entitlement to this aid, and it remains at company’s discretion.
 
-**Eligibility criteria:**
+## Eligibility criteria:
 
 Successful completion of trial/probation period;
 Permanent worker status (this aid is not available to short-term contractors or freelancers);
 Initial English language competence level is not above upper intermediate (to qualify for financial aid with English lessons you will need to be between elementary and upper intermediate level of competence).
 
-**Application process:**
+## Application process:
 
 All requests must be submitted to HR prior to the start of the course with at least 2 weeks’ notice, providing the following details:
 
@@ -49,12 +47,12 @@ Intermediate level - up to 1 year;
 Upper intermediate – up to 6 months;
 Anyone above upper intermediate – will not be eligible for financial support in connection with improving English skills.
  
-**Claim process:**
+## Claim process:
 
 Once eligibility for financial aid has been confirmed by HR you can claim £30 a month by adding this amount to your monthly invoice as a manual adjustment. We will contact your course provider/tutor for the detailed feedback on the progress of your study every 6 months and review your eligibility for further financial support.
 
 
-## Equipment Allowance
+# Equipment Allowance
 Blueberry offers a one-off fixed £380 allowance per year for you to buy a PC and/or to upgrade your computer/internet connectivity, to ensure that you have an efficient computing environment for your Blueberry work.
 
 Blueberry can only offer this allowance to people who have successfully completed their trial period. It is not an entitlement. What can be claimed for rests ultimately with the MD, he may ask for proof of purchase or say that only part of an item qualifies for the allowance. His decision is final.
@@ -96,27 +94,27 @@ And in cases where new equipment is requested within 1 year of the previous requ
 > Just remember - the goal is to improve productivity, NOT to make best gaming PC.
 {.is-warning}
 
-## Holidays
+# Holidays
 
-**1. Purpose**
+## 1. Purpose
 The purpose of this policy is to ensure that annual leave is managed fairly and consistently throughout Blueberry (UK and non-UK), and to inform all members of staff of the procedure that must be followed when requesting annual leave.
 
-**2. Scope**
+## 2. Scope
 This policy applies to all UK staff working under a contract of employment on a permanent or fixed-term appointment with Blueberry and remote staff working under Blueberry Remote staff Terms and Conditions. The policy does not apply to ‘trialists’, freelance workers and independent contractors.
 
-**3. Entitlement**
+## 3. Entitlement
 Entitlement to annual leave is stated in the schedule of the contract of employment for the UK-based staff and in Terms and Conditions for remote workers.
 
 Blueberry’s annual leave year runs from January to December inclusive. All annual leave for the year should be taken within this period (except as described in section 7).  Any payment in lieu of any unused annual leave, where permitted by local laws, is at the company’s discretion. Please contact Human Resources (hereinafter HR) for advice.
 
-**4. Accrual System: how does it work?**
+## 4. Accrual System: how does it work?
 For all full-time staff, annual leave is calculated based on the staff members' annual leave allowance and set contractual hours. This will be recorded in “My Holidays Statements” in PTS as an accrued amount at the end of each month.
 
 If you join Blueberry part-way through the annual leave year, your entitlement to annual leave will be proportionate to the amount of time left in the annual leave year.
 
 Part-time and variable hours workers accrue annual leave at a % of their annual holiday allowance pro-rata the hours worked. Annual leave accrues on a daily basis and may show variable amount of earned anneal leave at the end of each month.  It is important to note that annual leave accrual is limited to 40 hours a week. (For example, a developer has worked 45 hours a week for 4 weeks due to the project needs, s/he will get paid for an additional 20 hours at his/her standard hourly rate, but the annual leave will be earned on 40 hours a week only, extra hours will not accrue any holidays or any other company benefits).
 
-**Nota bene!**
+## Nota bene!
 
 **Local state holidays and annual leave allowance are merged into one personal annual leave allowance** that will constitute the baseline for accrual calculations.  (For example, in the UK there are 8 public holidays that would be added to a personal annual leave allowance of 20 days a year, totaling to 28 days of paid holidays per annum and this will constitute a worker’s personal holidays allowance, the same rule will apply to all other locations).
 
@@ -130,7 +128,7 @@ You can delete a pre-booked state holiday in your calendar (this can be done on 
 
 So called “short days” preceding a state holiday in the countries where this rule applies is no longer honoured by Blueberry.
 
-**5. Taking leave in advance of accrual**
+## 5. Taking leave in advance of accrual
 Leave accrues monthly in advance, at the rate of one twelfth of your annual leave entitlement. It is for your Manager, with the support of HR, to decide whether to authorise a request for leave in advance of accrual. A request of this nature should not exceed 10 working days (either in the current year or in the following leave year). If the leave is taken in advance of accrual, the net annual leave balance can go negative until more leave has been earned. 
 
 If you leave Blueberry with a negative balance, a deduction will be made from your final salary to compensate for overused annual leave as per paragraph 10.
@@ -143,7 +141,7 @@ The status of annual leave balance can be checked in PTS, on “My Holidays Stat
 
 Every case will be considered on its own merits. For any questions please contact HR. 
 
-**6. Leave Request Procedure**
+## 6. Leave Request Procedure
 Notice is required for booking annual leave. The minimum notice for annual leave up to 5 working days is 2 weeks; annual leave over 5 working days requires one month’s notice. Emergency or ad-hoc situations can be considered on the basis of individual circumstances.
 
 Holiday requests submitted at short notice will be reviewed and considered based on individual circumstances by your Manager, but the Manager reserves the right to reject a request on the grounds of short notice.
@@ -164,7 +162,7 @@ Where there are conflicting annual leave requirements, priority will be given to
 
 Should you take unauthorised annual leave you may be subject to disciplinary action, including dismissal.
 
-**7. Carrying forward annual leave**
+## 7. Carrying forward annual leave
 All Blueberry workers are allowed to carry forward up to 5 days of annual leave to the following year.  If you have more than 5 days left at the end of December, a payment in lieu of the excess days (above the unused 5) may be considered in exceptional circumstances, **where permitted by local laws**, and 5 days can be carried forward. All payments are at the company’s discretion and will be considered on a case by case basis. Please contact HR for advice. 
 
 Carried forward annual leave must be used by the end of the following February after the end of the annual leave year to which the unused holiday relates, or it will be automatically forfeited.  Payment in lieu of holidays may be considered in exceptional circumstances, **where permitted by local laws**, but it is at the company’s discretion and will be considered on a case by case basis. Please contact HR for advice. 
@@ -175,7 +173,7 @@ A negative annual leave balance can be carried forward to the following annual l
 
 To reduce the risk of losing carried over annual leave, all the January and February state holidays will be automatically substituted with the days carried over from the previous year and the state holidays will be automatically added to the annual leave allowance for the current year so that they can be used later in the year.
 
-**8. Sickness during Annual Leave**
+## 8. Sickness during Annual Leave
 Annual leave may only be reclaimed by staff where their sickness is confirmed by receipt of a GP or hospital medical certificate.
 
 If you are ill during a period of annual leave you may be able to reclaim the time as sick leave if you:
@@ -183,10 +181,10 @@ If you are ill during a period of annual leave you may be able to reclaim the ti
 - notify your Manager and HR on the first day of sickness (by following company process on reporting sickness) and
 - provide a medical certificate (regardless of the length of absence).
  
-**9. Late Return from Annual Leave**
+## 9. Late Return from Annual Leave
 If for any reason, you know that you will be late returning from annual leave you must notify your Manager and HR of the late return as soon as possible and discuss and agree revised arrangements i.e. additional annual leave, unpaid leave or other arrangements. Failure to do so will render you liable to disciplinary action for unauthorised absence.
 
-**10. Leaving Blueberry**
+## 10. Leaving Blueberry
 If you are serving your notice period, you will only be guaranteed annual leave during that time if either:
 
 - the annual leave was booked prior to the start of the notice period; or
