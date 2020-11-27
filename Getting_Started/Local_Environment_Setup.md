@@ -2,7 +2,7 @@
 title: Local Environment Setup
 description: 
 published: true
-date: 2020-11-27T09:46:43.309Z
+date: 2020-11-27T09:49:58.364Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-27T09:43:01.871Z
@@ -30,7 +30,7 @@ When your details are reviewed in 3 months time, you may need to update them - f
 - You are using the same version of the same anti-virus - click the 'Reviewed today' button to indicate that your anti-virus details have been reviewed and no changes are needed.
 - You are using a different anti-virus - click 'Add AV Product' and enter the details of your new anti-virus. Then click  for the old anti-virus to remove it. 
 
-## Webroot
+# Webroot
 Blueberry is trying to improve our security all the time.  As part of this, we have introduced a centrally managed and controlled anti-virus solution – WebRoot.  
 
 
@@ -40,12 +40,12 @@ If you’re happy to go ahead, please just install WebRoot from this link. The i
 
 To find the Webroot version when doing a anti-virus review, open Webroot from your System Tray and then click the My Account option. The version number will be displayed on the right side of the window.
 
-## PC Name
+# PC Name
 WebRoot links to our central console.  If it sees a virus, we can see this on the console.  But it only tells us the PC name – it doesn’t know who owns the PC.  Ideally, we’d like anyone using Webroot to change their Windows machine name to be their LDAP ID plus the PC type. For example, it would ideally be something like “DXF-PC” or “DXF-LAPTOP”. Then if we see an issue, we know who to contact.
 
 If you don’t want to make a PC name change then we’ll need you to send details of your PC name to the sysadmins at sysadmins@bbconsult.co.uk so that we still have a way to know who the PC belongs to.
 
-## BitWarden
+# BitWarden
 
 BitWarden is an open source password management tool used extensively throughout Blueberry, it contains Collections and Users.
 
@@ -54,11 +54,11 @@ Passwords are added to Collections which are then shared with the relevant Users
 > Credentials for any billed accounts should be shared with the Credit Control collection so that Accounts can access the invoices during monthly credit card reconciliations.
 {.is-danger}
 
-### Collections
+## Collections
 
 There are several types of Collections based on Role, Company and Customer
 
-**Role:**
+### Role:
 These contain passwords that should only be available to employees with a certain role within Blueberry. For example, the Accounts collection is specific for the Accounts team and the HR collection is only for the HR team.
 The current Role Collections are:
 Accounts
@@ -72,7 +72,7 @@ SysAdmins
 Role collections will simply be named after the role.
 For some roles, there may be a need for multiple permission levels, for example Accounts and Account Senior. The base collection is the most permissive and sub-collections are used for the high permission levels
 
-**Company:**
+### Company:
 These contain passwords that are for a specific Blueberry company. i.e. Consultants or Systems. Often they will be a role that is specific for that company but they can also be based on being at a specific location (office).
 The company roles / locations are:
 Dev - For any developer regardless of location
@@ -88,7 +88,7 @@ Testers - For all testers
 UK - For all UK staff
 Company collection names will begin with either "BB Consult/", "BB Software/" or "BB Systems/" depending on which company they relate to. In some very general cases we also use "BB Group/" for when the collection is relevant to everyone.
 
-**Customer:**
+### Customer:
 These contain passwords that are for that specific customer and can be further divided into 3 types:
 Dev - Details for the dev / test systems, typically accessible by anyone working on that project, all UK staff and SysAdmins
 Live - Details for live systems, typically accessible by UK staff and sysAdmins
@@ -99,7 +99,7 @@ Next is the customer's short name from PTS.
 End with either "-Dev", "-Live" or "-Support"
 Customer collections for old or dead customers will have "~Archive/" added at the start of the name until we decide to remove them completely. (When a customer is archived, unshare it from all users)
 
-**Ad-hoc:**
+### Ad-hoc:
 Occasionally there will be the need for ad-hoc Collections
 Amazon Servers - Credentials for non-customer Amazon servers
 BBWT test sites
@@ -170,7 +170,7 @@ The common default collections for BB users are as follows:
 **SysAdmin trialist:**
 - Sysadmin/trial, BB Consult/Tech, BB Systems/Tech, BB Group, BB Group/Trial, BB Group/BBWT2, BB Group/BBWT3 and Wiki Admin
 
-## Wire
+# Wire
 Wire is a secure instant messenger which is easy to use and setup. It has web, mobile clients and is free.
 
 Wire is attractive because the 'timed messages' feature can be used to send secure information, such as passwords, because the messages are removed when the given expiry time is reached.
@@ -179,7 +179,7 @@ Wire is attractive because the 'timed messages' feature can be used to send secu
 {.is-danger}
 
 
-### How to Setup
+## How to Setup
 Either download the desktop client from https://wire.com/en/download/ or log into the web app at https://app.wire.com/auth/#
 
 Choose to "Create account"
@@ -190,12 +190,12 @@ Email address
 
 A verification email should be sent - click the link when it arrives to confirm your account
 
-### Timed Messages
+## Timed Messages
 To send timed messages, use the icon to set the expiry time for the message before you send it.
 
 If you forget to set an expiry time, you can manually delete the message by clicking the icon for that particular message and using the delete options (Delete for Everyone)
 
-## Google Drive
+# Google Drive
 
 Blueberry uses Google Drive for storage and sharing of files. All Blueberry employees get access to their own drive space using their BB email address and password.
 
@@ -212,7 +212,7 @@ The sharing aspect of Google Drive also allows Blueberry to have several BB comp
 
 
 
-### Sharing
+## Sharing
 You can share Google Drive files and folders with people and choose whether they can view, edit, or comment on them.
 
 Can edit: Others can make changes and share a file with others. The default for sharing with specific people.
@@ -232,7 +232,7 @@ At the top, click Get shareable link .
 In the corner, make sure the switch is green and to the right. A file link will be copied to your clipboard.
 Paste the link in an email or anyplace you want to share it.
 
-### Shared with me
+## Shared with me
 The 'Shared with me' view lets you see the files and folders that other people have shared with you, beginning with the most recent. 'Shared with me' lists only files and folders that include your email address in their share settings. You won’t see files with share settings set to "Anyone with the link" or "Public."
 
 However, files / folders in 'Shared with me' are not actually on your drive. To add them to your drive, they must be right click on the file / folder and select "Add to My Drive".
@@ -240,7 +240,7 @@ However, files / folders in 'Shared with me' are not actually on your drive. To 
 > When you join Blueberry, the shared BB company folders that are relevant to you will appear in the Shared with me view so don't forget to add them to your drive.
 {.is-success}
 
-### Google Sync and Insync
+## Google Sync and Insync
 Google Drive Sync allows you to maintain a local copy of all or some of the contents of your Google Drive in a Google Drive folder on your PC.
 
 By default, everything in 'My Drive' will sync to your Google Drive folder, unless you choose to sync only some folders or subfolders.
@@ -277,8 +277,8 @@ Select whether you want to sync with an existing Google Drive folder or a new or
 if you are reusing an old Google Drive or Inysnc folder, Insync will automatically use file compare to compare your local files to your cloud files.
 If you are syncing a new folder, you can choose the location of your Insync folder, use selective sync to choose which files to sync, and convert Google Drive files.
 
-## Setting up Email Access
+# Setting up Email Access
 TODO
 
-## Links to Software to Install
+# Links to Software to Install
 TODO
