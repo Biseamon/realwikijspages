@@ -2,7 +2,7 @@
 title: Developer Information
 description: 
 published: true
-date: 2020-11-27T15:38:55.202Z
+date: 2020-11-27T16:06:11.166Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-27T13:53:16.589Z
@@ -295,15 +295,251 @@ Finally, an example written to numpy/scipy's documentation standard (a PEP 257 s
 There is no official recommendation either way regarding which convention to use, however make sure to pick one and stick to it. These are all widely supported by automatic documentation generation tools, such as Sphinx.
 
 ## Type Annotations
+
+> Some tools will generate type documentation from your annotations.
+{.is-info}
+
+Type annotations are a fairly recent addition to Python. You can annotate variables using a colon separator in function declarations, and throughout your code. For example:
+
+> def list_to_uppercase(l: list) -> list:
+>     return list(map(lambda x: x.upper(), l))
+>  
+> if __name__ == "__main__":
+>     example = ["foo", "bar", "baz"]
+>     upper = list_to_uppercase(example)
+>     print(upper)
+
+When using mypy, whether on the command line or through integration with your editor, the above will not throw any warnings about incompatible types. If we change the return type of the function to dict, the following happens:
+
+> $ mypy example.py
+> example.py:2: error: Incompatible return value type (got "List[Any]", expected "Dict[Any, Any]")
+> 
+
+If your editor is set up correctly, then type warnings like the above will automatically be underlined allowing you to catch errors early.
+
+**Advanced typing**
+
+You can use the typing module to import advanced types and create your own type aliases. Here's an example:
+> 
+> from typing import Any, Dict, Union
+>  
+>  
+> MyStrictDict = Dict[str, int]  # e.g. {"foo": 2}
+>  
+> MyNotSoStrictDict = Dict[str, Any]  # Key must be str but val can be anything, even None
+>  
+>  
+> def x(y: Union[str, int]) -> Union[str, int]:
+>     """Take a str or int y and return either a str or int.
+>  
+>     Just an example of type flexibility, don't actually coerce between int/str when doing math.
+>     """
+>     _ = int(y) + 1
+>     if isinstance(y, str):
+>         return str(_)
+>     return _
+>  
+>  
+> if __name__ == "__main__":
+>     foo = x(20)
+>     bar = x("41")
+>     print(f"Type: {type(foo)}: {foo}")
+>     print(f"Type: {type(bar)}: {bar}")
+
+Note how we have defined our own custom dictionary aliases. Aliases are synonymous with the type to which they are defined, so instead of repeating Dict[str, int], you can simply use MyStrictDict.
+
+When the above is run, it produces:
+
+> $ python example.py
+> Type: <class 'int'>: 21
+> Type: <class 'str'>: 42
+> 
+
+**String formatting**
+
+With Python, there are three ways to format a string.
+
+***'Old' style***
+
+> print("%s is yummy" % ("spam"))
+> = spam is yummy
+>  
+>  
+> print("%(food)s is %(flavour)s" % ({"food": "dark chocolate", "flavour": "bitter"}))
+> = dark chocolate is bitter
+
+***New' style***
+
+> print("{0} is yummy".format("spam"))
+> = spam is yummy
+>  
+>  
+> print("{food} is {flavour}".format(food="dark chocolate", flavour="bitter"))
+> = dark chocolate is bitter
+> 
+
+***f-String style***
+> Introduced in Python 3.6
+> 
+{.is-info}
+
+> print(f"{'spam'} is yummy")
+> = spam is yummy
+>  
+>  
+> food = "dark chocolate"
+> flavour = "bitter"
+> print(f"{food.title()} is {flavour.upper()}")
+> = Dark Chocolate is BITTER
+
+Anything within the brackets is evaluated at runtime, so any valid Python expression can be placed inside them. For more information, see this article.
+
 ## Module Files
+
+This is the basic skeleton for a module which is expected to be run from the command line:
+
+> #/usr/bin/env python
+> #Short description of module
+> #Author <firstname.lastname@bbconsult.co.uk> 
+>  
+> import stuff
+>  
+> def main():
+>     """Description of function"""
+>     #Main program logic
+>  
+> if ___name _ == "___main _":
+>     main()
+
+The if __name__... section is known as a code guard and in this instance prevents the program from being executed when being imported.
+
+
 ## Logging
+
+Logging is a solved problem in the Python world. Use loguru for painless logging with sensible defaults.
+
+Logging is now as simple as:
+
+> from loguru import logger
+>  
+> logger.debug("Hello from the logger!")
+> 
+
+Follow the examples on the GitHub page for instructions on how to use loguru.
+
+If you'd prefer to only use the standard library, here's a recipe for setting up logging within your module or package:
+
+> import logging
+>   
+> log = logging.getLogger("app")
+> log_level = logging.INFO # https://docs.python.org/3.5/library/logging.html#levels
+> log.setLevel(log_level)
+> f_handler = logging.FileHandler("app.log")
+> f_handler.setLevel(log_level)
+> c_handler = logging.StreamHandler()
+> c_handler.setLevel(log_level)
+> formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s : %(message)s") # https://docs.python.org/3.5/library/logging.html#logrecord-attributes
+> f_handler.setFormatter(formatter)
+> c_handler.setFormatter(formatter)
+> log.addHandler(f_handler)
+> log.addHandler(c_handler)
+
+
+Note that logging.getLogger returns a singleton - that is, if a given logging object has already been set up once, the same object reference will always be returned in future invocations. If your code executes some function in a different module which runs logging.getLogger("app"), then the same logger will be used, it will not be re-instantiated. In this example, two handlers are set up for the logger - a file handler (f_handler), and a stream handler which writes to stdout by default (c_handler). A formatter is also set up to give the desired logging output, and is used for both handlers so that output is identical in the console and file output. The end result is that the logger will emit messages in this format to both the console and to the "app.log" file:
+
+> 2016-07-07 12:53:58,821 app INFO : This is a log message!
+> 2016-07-07 12:54:11,418 app CRITICAL : Something went wrong!
+
 ## Live reloading with Flask
+
+To have Flask reload when you make code changes, run your app using the following:
+
+> FLASK_APP=main.py FLASK_DEBUG=1 python -m flask run
+
+This is useful during development when you may be rapidly iterating on an idea.
+
 ## Storing Configuration
 
-> This document will assume you are using Python 3
-{.is-success}
+At some point, your module or project will need to store some information on disk. The pattern to use will depend entirely on the scale of your project, and exactly how you expect the data to be accessed on disk. Do you intend for users to modify the config file? Is it intended to be human readable, or purely for machine consumption? There are several options to use, as demonstrated below.
+
+***Simple Python file import***
+It's possible to store configuration values in a secondary file which is then imported by the main module during run-time. The main advantage here is that it's very quick to get this pattern implemented.
+
+> **config.py**
+> breakfast = {
+>     "eggs": "scrambled",
+>     "bacon": "crispy"
+> }
+>   
+> SPAM_API_KEY = "123456789"
+
+Any Python data structure can be stored this way, just as if you had written it directly into the module itself. It would then be referenced in the following manner:
+
+> import config
+>   
+> print("I like my eggs %s and my bacon %s" % (config.breakfast["eggs"], config.breakfast["bacon"]))
+
+The disadvantages to this method are:
+
+- Config may change state during run-time, and this won't be reflected if you're performing some long running process which makes references to the config.
+- There's no standard interface to rewrite a formatted Python file, so you'd be reinventing a wheel.
+- The python file is executed during import, so a malicious actor could hijack this file and inject code into your module.
+
+***JSON file***
+A step up from directly storing Python objects, Python includes the json library which makes it easy to read and write JSON files.
+
+> **config.json**
+> {
+>     "breakfast": {
+>         "eggs": "scrambled",
+>         "bacon": "crispy"
+>     }
+> }
+
+JSON supports various datatypes which are mapped to their Python equivalents when using the json.load method. The following example demonstrates this, and how to write the data back to disk.
+ 
+
+> REPL
+> \>>> import json
+> \>>> with open("config.json") as json_file:
+> ...     config = json.load(json_file)
+> ...
+> \>>> print(config)
+> {u'breakfast': {u'eggs': u'scrambled', u'bacon': u'crispy'}}
+> \>>> type(config)
+> <type 'dict'>
+> \>>>
+> \>>> config["breakfast"]["eggs"] = "boiled"
+> \>>> with open("config.json", "w") as json_file:
+> ...  json.dump(config, json_file, sort_keys=True, indent=4)
+> ...
+> \>>>
+> 
+This pattern can be wrapped in a function, which can then be called as a function during a long running process if the config file needs to be updated or read from during runtime.
+
+***Configuration location***
+It is sensible to read configuration from a well-known location, so consider the appdirs package for obtaining the user's platform-specific configuration directory.
 
 # UI Design Conventions
+
+1. Fonts should be the same everywhere, as much as possible. Don’t have a different size font in the prompt and in a drop-down for example
+
+2. Prompts should have consistent capitalisation and consistent colons – either present or missing.
+
+3. Baseline alignment – text in control prompt and edit boxes should be on same Y pixel.
+
+4. Tab order should work.
+
+5. There should always be some whitespace between box edges and any text within the boxes – don’t push the text right up to the box edge.
+
+6. If a button is disabled because the user hasn’t done something, then the button must be clearly gray or similar.
+
+7. If you need an embedded link like “click here” then I suggest it’s lower case, but it must be consistent across all such links.  Don’t have some upper case, some lower.
+
+8. All screens should have a consistent left, top margin.  Don’t start the topmost control in different places on different screens.
+
+9. Find a way to use a spell checker.   Note that we wrote a spell checker plugin for JIM.
+
 # Web Site Security Checklist
 # Libraries used by Blueberry
 # Useful Tools
