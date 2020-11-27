@@ -2,13 +2,13 @@
 title: PTS Overview
 description: 
 published: true
-date: 2020-11-27T09:56:13.407Z
+date: 2020-11-27T10:21:48.502Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-27T09:56:13.407Z
 ---
 
-# PTS Overview
+# Introduction
 
 PTS is the project management system used by Blueberry and can be found here.
 
@@ -38,14 +38,14 @@ and PTS provides the reporting needed to support this. It is therefore vitally i
 
 One of the most important benefits from PTS is that more than one manager/BB staff member can log in to PTS and see task/issue statuses. This is especially important if the main project manager is unavailable. We do not have to worry if there might be information sitting in emails or skype sessions that we can’t access.
 
-## Personal Details
+# Personal Details
 Your Personal Details can be found by going to My Details -> Personal Details and this will allow you to update your personal details. You can enter the following:
 
 Personal information, such as your birthdays and your interests
 Your location - this will be used to determine which State Holidays you are eligible for
 Your qualifications and skills - you can indicate how good your skills are and which skills you prefer using
 
-## You can also view:
+# You can also view:
 
 A history of projects that you have worked on;
 Your current working items;
