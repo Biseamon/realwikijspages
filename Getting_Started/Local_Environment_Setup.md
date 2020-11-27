@@ -2,22 +2,20 @@
 title: Local Environment Setup
 description: 
 published: true
-date: 2020-11-27T09:43:01.871Z
+date: 2020-11-27T09:46:43.309Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-27T09:43:01.871Z
 ---
 
-# Local Environment Setup
-
-## Anti Virus
+# Anti Virus
 
 > It is a requirement that everyone at Blueberry has anti-virus installed and updated once a day.
 {.is-info}
 
 This is particularly important for Blueberry because most developers have passwords for Blueberry or customer systems on their PCs in one way or another.
 
-**Anti-Virus Review**
+## Anti-Virus Review
 To ensure that everyone is using anti-virus and that it is kept up to date, there is an anti-virus page in PTS where you can provide the details of your anti-virus. These details will need to be reviewed every 3 months.
 
 To add your anti-virus, just click the 'Add AV Product' and enter the details on the dialog that appears:
@@ -32,7 +30,7 @@ When your details are reviewed in 3 months time, you may need to update them - f
 - You are using the same version of the same anti-virus - click the 'Reviewed today' button to indicate that your anti-virus details have been reviewed and no changes are needed.
 - You are using a different anti-virus - click 'Add AV Product' and enter the details of your new anti-virus. Then click  for the old anti-virus to remove it. 
 
-**Webroot**
+## Webroot
 Blueberry is trying to improve our security all the time.  As part of this, we have introduced a centrally managed and controlled anti-virus solution – WebRoot.  
 
 
@@ -42,7 +40,7 @@ If you’re happy to go ahead, please just install WebRoot from this link. The i
 
 To find the Webroot version when doing a anti-virus review, open Webroot from your System Tray and then click the My Account option. The version number will be displayed on the right side of the window.
 
-**PC Name**
+## PC Name
 WebRoot links to our central console.  If it sees a virus, we can see this on the console.  But it only tells us the PC name – it doesn’t know who owns the PC.  Ideally, we’d like anyone using Webroot to change their Windows machine name to be their LDAP ID plus the PC type. For example, it would ideally be something like “DXF-PC” or “DXF-LAPTOP”. Then if we see an issue, we know who to contact.
 
 If you don’t want to make a PC name change then we’ll need you to send details of your PC name to the sysadmins at sysadmins@bbconsult.co.uk so that we still have a way to know who the PC belongs to.
@@ -181,7 +179,7 @@ Wire is attractive because the 'timed messages' feature can be used to send secu
 {.is-danger}
 
 
-**How to Setup**
+### How to Setup
 Either download the desktop client from https://wire.com/en/download/ or log into the web app at https://app.wire.com/auth/#
 
 Choose to "Create account"
@@ -192,7 +190,7 @@ Email address
 
 A verification email should be sent - click the link when it arrives to confirm your account
 
-**Timed Messages**
+### Timed Messages
 To send timed messages, use the icon to set the expiry time for the message before you send it.
 
 If you forget to set an expiry time, you can manually delete the message by clicking the icon for that particular message and using the delete options (Delete for Everyone)
@@ -214,7 +212,7 @@ The sharing aspect of Google Drive also allows Blueberry to have several BB comp
 
 
 
-**Sharing**
+### Sharing
 You can share Google Drive files and folders with people and choose whether they can view, edit, or comment on them.
 
 Can edit: Others can make changes and share a file with others. The default for sharing with specific people.
@@ -234,7 +232,7 @@ At the top, click Get shareable link .
 In the corner, make sure the switch is green and to the right. A file link will be copied to your clipboard.
 Paste the link in an email or anyplace you want to share it.
 
-**Shared with me**
+### Shared with me
 The 'Shared with me' view lets you see the files and folders that other people have shared with you, beginning with the most recent. 'Shared with me' lists only files and folders that include your email address in their share settings. You won’t see files with share settings set to "Anyone with the link" or "Public."
 
 However, files / folders in 'Shared with me' are not actually on your drive. To add them to your drive, they must be right click on the file / folder and select "Add to My Drive".
@@ -242,7 +240,7 @@ However, files / folders in 'Shared with me' are not actually on your drive. To 
 > When you join Blueberry, the shared BB company folders that are relevant to you will appear in the Shared with me view so don't forget to add them to your drive.
 {.is-success}
 
-**Google Sync and Insync**
+### Google Sync and Insync
 Google Drive Sync allows you to maintain a local copy of all or some of the contents of your Google Drive in a Google Drive folder on your PC.
 
 By default, everything in 'My Drive' will sync to your Google Drive folder, unless you choose to sync only some folders or subfolders.
