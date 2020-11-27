@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Docker Compose</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Technical-Notes_85493335.html">BBWT3 - Technical Notes</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Docker Compose
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 22, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="BBWT3-DockerCompose-Overview">Overview</h1><p>This page deals with using docker containers for DB's.</p><p><br/></p><p>The project can also be run with Docker using the supplied docker-compose.yml file, which composes the app and the database together.</p><p>First, create the project/BBWT.Server/appsettings.Development.json file with contents:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">{</code><br/><code class="csharp spaces">    </code><code class="csharp string">&quot;DatabaseConnectionSettings&quot;</code><code class="csharp plain">: {</code><br/><code class="csharp spaces">        </code><code class="csharp string">&quot;DatabaseType&quot;</code><code class="csharp plain">: </code><code class="csharp string">&quot;MySql&quot;</code>     <br/><code class="csharp spaces">    </code><code class="csharp plain">},</code><br/><code class="csharp spaces">    </code><code class="csharp string">&quot;ConnectionStrings&quot;</code><code class="csharp plain">: {</code><br/><code class="csharp spaces">      </code><code class="csharp string">&quot;MySqlConnection&quot;</code><code class="csharp plain">: </code><code class="csharp string">&quot;server=bbwt3-db;port=3306;database=app;Uid=root;Pwd=replace_me&quot;</code><code class="csharp plain">,</code><br/><code class="csharp spaces">      </code><code class="csharp string">&quot;AuditSqlConnection&quot;</code><code class="csharp plain">: </code><code class="csharp string">&quot;server=bbwt3-db;port=3306;database=audit;Uid=root;Pwd=replace_me&quot;</code><code class="csharp plain">,</code><br/><code class="csharp spaces">      </code><code class="csharp string">&quot;HangfireMySqlConnection&quot;</code><code class="csharp plain">: </code><code class="csharp string">&quot;server=bbwt3-db;port=3306;database=hangfire;Uid=root;Pwd=replace_me&quot;</code><br/><code class="csharp spaces">    </code><code class="csharp plain">}</code><br/><code class="csharp plain">}</code></p></td></tr></tbody></table></div><p>Change replace_me to your own password.</p><p>Then in the solution root run:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">export MYSQL_ROOT_PASSWORD=replace_me</code><br/><code class="csharp plain">dotnet restore project/BBWT.Server/BBWT.Server.csproj</code><br/><code class="csharp plain">docker-compose up</code></p></td></tr></tbody></table></div><p>Again, use the password you entered into the appsettings file before.</p><p>Once the app is ready, browse to <a class="external-link" href="http://127.0.0.1:5000/" rel="nofollow">http://127.0.0.1:5000</a>.</p><p><strong>Note:</strong> The app container will mount the current directory into the /app directory in the container, so it's important to run docker-compose from the solution root.<br/>This means that changes you make in your IDE will apply within the container. As the app is running in development mode, front-end changes will be hot-reloaded using Webpack.</p><p>If code changes are made, you can rebuild and restart just the app container using the following command:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">docker-compose restart app</code></p></td></tr></tbody></table></div><p>Use the -d switch to run the containers detached from the terminal. Use docker-compose stop if running detached. You can query the logs using docker logs &lt;container_name&gt;. Use docker ps to view the status of the containers.</p><p>To reset the database, use the following command while the containers are stopped:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">docker-compose rm -v db</code></p></td></tr></tbody></table></div><p>To connect to the database container's database port, use your favourite MySQL client to connect to 127.0.0.1:5001 with<br/>the credentials specified above.</p><h1 id="BBWT3-DockerCompose-Runningmigrationsagainstthedocker-composeMySQLdatabase">Running migrations against the docker-compose MySQL database</h1><p>If you're running the application with docker-compose, you'll need to run migrations from within the container.</p><p>Run the following command once the composition is up:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">docker exec bbwt3-app dotnet ef database update --no-build -c DataContext</code></p></td></tr></tbody></table></div><h1 id="BBWT3-DockerCompose-Connectingtothedocker-composeMySQLdatabase">Connecting to the docker-compose MySQL database</h1><p>Using your MySQL client, connect with the following parameters:<br/><br/></p><ul><li>Hostname: 127.0.0.1</li><li>Port: 5001</li></ul>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

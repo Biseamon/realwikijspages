@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Maintenance Mode</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Maintenance Mode
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="BBWT3-MaintenanceMode-Overview">Overview</h1><p>This is a feature that allows the system to become unavailable to users whilst maintenance is done.</p><p>This would normally be used for system updates but could be used for anything else that requires zero access from users.</p><p>In order to use it, a time period for the maintenance needs to be configured. This should be agreed with all the customer and admin users. There is a section of the system configuration page where you can define the start time and end time, a message/warning text plus a check-box to enable/disable the feature. This information is stored in the database.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="210" src="attachments/85493265/85493266.png" data-image-src="attachments/85493265/85493266.png" data-unresolved-comment-count="0" data-linked-resource-id="85493266" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-6-21_11-0-3.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493265" data-linked-resource-container-version="1"></span></span></p><p>There are two modes – Basic and External</p><p>For Basic mode, the web service is NOT stopped so the user can be redirected to a holding page with a suitable message.</p><p>External mode (not implemented yet) is used when the web site needs to be updates. In this instance, the user cannot be redirected to a local page so we would redirect to an external site/page.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="135" src="attachments/85493265/85493267.png" data-image-src="attachments/85493265/85493267.png" data-unresolved-comment-count="0" data-linked-resource-id="85493267" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-6-21_11-0-22.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493265" data-linked-resource-container-version="1"></span></span></p><p>External mode does not have a time period – it is effective immediately</p><h2 style="margin-left: 30.0px;" id="BBWT3-MaintenanceMode-Howitworks">How it works</h2><p style="margin-left: 30.0px;">The client needs to know when the maintenance window starts and ends. If it is enabled, then each of the following actions will include the maintenance window info in the returned message;</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>Page Load/change – each new page change</li><li>API call – each dbase access from the client</li><li>Scheduled API call – every 10 mins a call</li></ul></li></ul><p style="margin-left: 30.0px;">Once the client knows that the maintenance window it needs to take action.</p><p style="margin-left: 30.0px;">If we’re within 10 mins of the start of the time period then a message should be displayed across the top of the screen to warn the user. <em>This feature has not yet been implemented.</em></p><p style="margin-left: 30.0px;">At the star of the time period, the client will show a DIV over the page with the pre-configured message and an indication of when the time period will end (this updates dynamically every minute).</p><p style="margin-left: 30.0px;">Being a DIV, the user is unable to access any controls on the page but it should still be visible.</p><p style="margin-left: 30.0px;"> <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/85493265/85493268.png" data-image-src="attachments/85493265/85493268.png" data-unresolved-comment-count="0" data-linked-resource-id="85493268" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-6-21_11-0-34.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493265" data-linked-resource-container-version="1"></span></span></p><p style="margin-left: 30.0px;">When the time period ends, the user is logged out and redirected to the login page.</p><p> </p><p style="margin-left: 30.0px;">If a user opens the site during maintenance mode the above panel should be displayed automatically and therefore prevent any access.</p><p style="margin-left: 30.0px;"><em>BUT – at the moment there is a problem where the user is allowed to login and navigate a little bit. So, it looks like we don’t do the check on page load.</em></p><h2 style="margin-left: 30.0px;" id="BBWT3-MaintenanceMode-API">API</h2><p style="margin-left: 30.0px;">The API used for the 10 minute check is - /api/settings/maintenancesettings </p><h1 id="BBWT3-MaintenanceMode-TestCase">Test Case</h1><ol><li>A planned update is to take place.</li><li>The admin/dev can place the website in &quot;Maintenance Mode&quot; so that users are informed when service resumes.</li><li>The admin/dev updates the web application as necessary.</li><li>Admin/dev takes the site out of &quot;Maintenance Mode&quot; and normal function resumes on the updated application.</li></ol><h1 id="BBWT3-MaintenanceMode-ForTesters">For Testers</h1><ol><li>From the main menu click on &quot;Operational Admin&quot;.</li><li>Click on &quot;System Configuration&quot; from the drop down menu.</li><li>Click on &quot;Maintenance Settings&quot;.</li><li>Either select &quot;Basic&quot; or &quot;External&quot; and fill out the details as necessary.</li><li>Click the checkbox &quot;Enabled&quot;.</li><li>Go to the bottom of the page and click &quot;Save&quot;.</li></ol><h1 id="BBWT3-MaintenanceMode-ForProjectManagers">For Project Managers</h1><ul><li>In built maintenance mode.</li><li>Ability to lock out users while an update is being applied or issue sorted out.</li><li>Ability to display information on estimated down time for users.</li></ul><h1 id="BBWT3-MaintenanceMode-ForMarketing">For Marketing</h1><ul><li>Lock out users when necessary update are being carried out.</li><li>Have an external page be displayed while updates are taking place on main server.</li></ul>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493265/85493266.png">image2018-6-21_11-0-3.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493265/85493267.png">image2018-6-21_11-0-22.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493265/85493268.png">image2018-6-21_11-0-34.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

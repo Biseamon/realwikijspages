@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - HangFire</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - HangFire
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="BBWT3-HangFire-Overview">Overview</h1><p>Hangfire is an open-source framework for running background operations (<a class="external-link" href="https://www.hangfire.io/" rel="nofollow">https://www.hangfire.io/</a>).  It supports a range of scheduling configurations and also runs in a load balanced environment. The implementation in BBWT3 consists of a separate database to store the jobs. Hangfire has its own dashboard to show the status of its jobs, this can be accessed from <s><a class="external-link" href="https://bbwt3-test-1.blueberrycf.com/jobs" rel="nofollow">https://bbwt3-test-1.blueberrycf.com\jobs</a></s> Not available as of (05-02-19).</p><ul><li>Manually perform jobs.</li><li>Run scheduled jobs.</li><li>Retry functionality on failed job.</li><li>View scheduled jobs.</li><li>View past jobs.</li><li>Search Hangfire database jobs past and present.</li></ul><h1 id="BBWT3-HangFire-TestCase">Test Case</h1><ol><li>Admin needs to make backup's of database.</li><li>Admin can schedule an export of the database with Hangfire.</li><li>Users will not be affected by performance hit as the schedule can be done at night.</li><li>Nightly backups can be performed autonomously and be completed by the start of the working day.</li></ol><h1 id="BBWT3-HangFire-ForTesters">For Testers</h1><ol><li>Go to the BBWT3 menu and click on &quot;Operational Admin&quot;.</li><li>Click on &quot;System Configuration&quot; from the drop down menu.</li><li>Go down to and click on &quot;Hangfire Job List&quot;.</li><li>From here you can:<ol><li>View the Schedule (last and next run times).</li><li>Enable/Disable the job.</li><li>Edit the Schedule.</li></ol></li></ol><p><br/></p><p><strong>Note that the schedule periods are set using Cron format  (See: <a class="external-link" href="http://www.nncron.ru/help/EN/working/cron-format.htm" rel="nofollow">Cron</a>)</strong></p><h1 id="BBWT3-HangFire-DeveloperNotes">Developer Notes</h1><p>Hangfire jobs are created in the database during startup.cs, which needs to have a default schedule defined, there is an example in the BBWT3 code base. However once set up the interval can be overridden using the system configuration menu.</p><p>In practice we found that the number of Hangfire connections to the database was disproportionately large to what it was actually doing.  The out of the box default for the number of workers is high; so we have reduced it, this is particularly so in multi-container systems where each container has a full set of workers. So the number of workers you need is less if on one server.  The connections used by Hangfire is about 8-10 with one worker. This seems a lot, but if you  have a full-size DB, the permitted connections is 1000. So the 8-10 is only a problem IF you’re on a micro server.</p><h1 class="western" id="BBWT3-HangFire-ForProjectManagers">For Project Managers</h1><ul><li>Having jobs handled in the background saves time and money. Send out mass notifications such as news letters easily; with in built retry mechanism, if there is a failure to complete it will retry after an increasing amount of time.</li><li>Generate graphs and recurring automated reports.</li><li>Hangfire helps with database maintenance by performing routine checks such as pruning old users from the database.</li><li>Has the ability to enqueue - &quot;fire and forget&quot;.</li></ul><h1 class="western" id="BBWT3-HangFire-ForMarketing">For Marketing</h1><ul><li>Hangfire works on both Linux and Microsoft platforms utilising either MySQL or MS SQL.</li></ul>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

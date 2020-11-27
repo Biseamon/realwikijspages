@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Reporting Details</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT2_85492528.html">BBWT2</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT2---Development-Notes_85492953.html">BBWT2 - Development Notes</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Reporting Details
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>This report receives the parameters below which in turn receive an array of values for each parameter:</p><p> </p><p><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492964/85492965.png" data-image-src="attachments/85492964/85492965.png" data-unresolved-comment-count="0" data-linked-resource-id="85492965" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2016-8-16 21:48:56.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85492964" data-linked-resource-container-version="1"></span></span></p><p> </p><p>All parameters are passed to the stored procedure named <strong>sp_getGroupReportData </strong>at the very beginning  I used dynamic SQL (Ad-hoc queries) by using within the SSRS report a dataset with <strong>Query Type = Text</strong>,  but later I changed my mind and changed the report logic to use <strong>Stored Procedures</strong>  because of once the report was deployed ,  the customer asked for more changes making the  query more complex and finally SQL Server complained about this, After googling a bit I found out that SQL Server query optimizer it doesn't like complex queries which in turn receives too many parameters as  array of values.</p><p> </p><p>The workaround to fix this issue  was to use temporary table to process the big query into several steps by using temporary tables</p><p>See below how the online version of this report look like, Additionally you can see attached<strong> </strong>the<strong> Excel/PDF</strong> version of this report along with the <strong>RDL</strong> files named <strong>GroupTrainingReport.rdl</strong>, <strong>GroupTrainingReport_EXCEL.rdl</strong> , <strong>GroupTrainingReport_PDF.rdll, </strong>you will also will find out the file named<strong> TSQL_GroupReport.SQL</strong> with the stored procedures required to be able to execute this report</p><p> </p><p><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492964/85492966.jpg" data-image-src="attachments/85492964/85492966.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85492966" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Group Report - online.jpg" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85492964" data-linked-resource-container-version="1"></span></span></p><p> </p><p> </p><p> </p><h2 id="ReportingDetails-IndividualProfileReport">Individual Profile Report</h2><p>This report receives the parameters below, these are parameter are NOT array of values:</p><p>As for PhotoFileUriScheme it contain a path that will let the report know where to get the photo from filesystem.<br/>It is important to mention that this report use the SubReport approach this was very useful to render different columns across the different sections  like it is showed in the Mandatory Card (it uses 3 columns) and Mandatory Training (it use 2 columns)</p><p> <br/>Attached you can  see the files <strong>IndividualTrainingProfileReport.pdf</strong>, <strong>IndividualTrainingProfileReport.xls</strong> to see how the report will be rendered in<strong> PDF/Excel</strong> format, additionally you can see the files <strong>IndividualTrainingProfileReport.rdl , MandatoryCardSubReport.rdl, MandatoryTrainingSubReport<strong>.rdl,</strong> NoneEmployeesFirstGroupSubReport<strong>.rdl and </strong>NoneEmployeesSecondGroupSubReport<strong>.rdl</strong></strong></p><p> </p><h2 id="ReportingDetails-"><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492964/85492967.jpg" data-image-src="attachments/85492964/85492967.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85492967" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Individual Profile Report Online Version.jpg" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85492964" data-linked-resource-container-version="1"></span></span></h2><h2 id="ReportingDetails-HeadCountReport">HeadCount Report</h2><p> </p><p>This is <span>one of the complex report, all columns are dynamically generated, including the totals columns  which are higlighted in blue color (see screenshot below), this report DOES NOT use subreport approach there is not need for this because of all section require the same amount of columns with the same size.</span></p><p><span><br/></span></p><p><span> </span></p><p>This report receives the parameter below.</p><p> </p><p><span> </span></p><p><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492964/85492968.png" data-image-src="attachments/85492964/85492968.png" data-unresolved-comment-count="0" data-linked-resource-id="85492968" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2016-8-17 8:28:9.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85492964" data-linked-resource-container-version="1"></span></span></p><p><span><br/></span></p><p><span><br/></span></p><p>Attached you can see the files <strong>HeadcountReport_excel</strong> , <strong>HeadcountReport_pdf</strong> to see how the report will be rendered in<strong> PDF/Excel</strong> format, additionally you can see the file RDL file <strong>HeadcountReport.dll</strong></p><p><span><br/></span></p><h2 id="ReportingDetails-.1"><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492964/85492969.jpg" data-image-src="attachments/85492964/85492969.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85492969" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Headcount Report online.jpg" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85492964" data-linked-resource-container-version="1"></span></span></h2><p> </p><ul><li>This report were implemented by using the feature named <strong>Multiple Group in a Single Column</strong> if you want to deep dive into this please take a look to the following video <a class="external-link" href="https://www.youtube.com/watch?v=keBOCdMfelU" rel="nofollow">https://www.youtube.com/watch?v=keBOCdMfelU</a></li><li>If you want to know how to create a Matrix then take a look to the URL <a class="external-link" href="https://www.youtube.com/watch?v=vgtVJf21EXU" rel="nofollow">https://www.youtube.com/watch?v=vgtVJf21EXU</a></li></ul><p> </p><h2 id="ReportingDetails-SchoolAnalysisbyGender"><br/>School Analysis by Gender</h2><p> </p><p>This is a simple report that shows 2 tables and 1 chart along with a background graphic at the right side</p><p> </p><p>This report receives the parameter below.</p><p> </p><p><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492964/85492970.png" data-image-src="attachments/85492964/85492970.png" data-unresolved-comment-count="0" data-linked-resource-id="85492970" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2016-8-17 9:44:43.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85492964" data-linked-resource-container-version="1"></span></span></p><p> </p><p>Attached you can see the file <strong>School Analysis by Gender.pdf</strong> to see how the report will be rendered in<strong> PDF</strong> format, you can also get the report code (RDL file) by downloading the file named <strong>School Analysis by Gender.rdl</strong></p><p> </p><p><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492964/85492971.jpg" data-image-src="attachments/85492964/85492971.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85492971" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Analysis by Gender Online.jpg" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85492964" data-linked-resource-container-version="1"></span></span></p><p> </p><ul><li>Gender report use the <strong>Cascading Parameter Feature</strong>, this will make that the dropdown year, group class to change every time you choose a new school, if you want to deep dive into this please take a look to the following video <a class="external-link" href="https://www.youtube.com/watch?v=1oSg96XhHEI" rel="nofollow">https://www.youtube.com/watch?v=1oSg96XhHEI</a></li><li>If want to know how to implement the right graphic as a background image then take a look to the following page <a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=5768033" rel="nofollow">Important note to Add a background Image on Reports (SSRS)</a></li></ul><p> </p><p> </p><h2 id="ReportingDetails-StudentImprovementReportbySchool">Student Improvement Report by School</h2><p> </p><p>This is a simple report that shows 2 tables and 1 chart along with a background graphic at the right side</p><p>This report receives the parameter below</p><p> </p><p><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492964/85492972.png" data-image-src="attachments/85492964/85492972.png" data-unresolved-comment-count="0" data-linked-resource-id="85492972" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2016-8-17 12:47:13.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85492964" data-linked-resource-container-version="1"></span></span></p><p> </p><p> </p><p>Attached you can see the file <strong>Student Improvement Report by School</strong><strong>.pdf</strong> to see how the report will be rendered in<strong> PDF</strong> format, you can also get the report code (RDL file) by downloading the file named <strong>Student Improvement Report by Schoolrdl</strong></p><p> </p><p> </p><p>.<span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492964/85492973.jpg" data-image-src="attachments/85492964/85492973.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85492973" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Student Improvement Report Online.jpg" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85492964" data-linked-resource-container-version="1"></span></span></p><p> </p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85492964/85492965.png">image2016-8-16 21:48:56.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85492964/85492966.jpg">Group Report - online.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85492964/85492967.jpg">Individual Profile Report Online Version.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85492964/85492968.png">image2016-8-17 8:28:9.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85492964/85492969.jpg">Headcount Report online.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85492964/85492970.png">image2016-8-17 9:44:43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85492964/85492971.jpg">Analysis by Gender Online.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85492964/85492972.png">image2016-8-17 12:47:13.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85492964/85492973.jpg">Student Improvement Report Online.jpg</a> (image/jpeg)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

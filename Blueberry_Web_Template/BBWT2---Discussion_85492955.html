@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT2 - Discussion</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT2_85492528.html">BBWT2</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT2---Development-Notes_85492953.html">BBWT2 - Development Notes</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT2 - Discussion
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><br/></p><p>This page is intended to be used as a area where developers can add and discuss information that they are learning about BBWT2 technologies.</p><p>Please feel free to add your own notes, documentation and comments below.</p><p>PLEASE DO MAKE USE OF THE <strong>NOTIFY ME OF CHANGES LINK</strong> AT THE BOTTOM OF THE PAGE.</p><p><span>Custom HTML elements</span></p><p>Angular-kendo templates won’t work with custom html elements like &lt;pts-entity-lookup&gt;… &lt;/pts-entity-lookup&gt;) but will work with attributes like &lt;div pts-entity-lookup&gt;…&lt;/div&gt;.</p><p><span>Entity framework</span></p><p>Entity Framework throws an exception if you try to select a result into a class which has database mapping. So more classes are needed just to select results, because anonymous classes can’t be used with AutoMapper. </p><p>Calling stored procedures is inconvenient in case of Fluent API use: <a class="external-link" href="http://www.c-sharpcorner.com/UploadFile/ff2f08/call-store-procedure-from-entity-framework/" rel="nofollow">http://www.c-sharpcorner.com/UploadFile/ff2f08/call-store-procedure-from-entity-framework/</a></p><p><span>Cross-domain</span></p><p>Custom header Access-Control-Allow-Credentials must be set in configuration together  with using Microsoft.AspNet.Cors package from NuGet. More on CORS in Asp.NET here <a class="external-link" href="http://msdn.microsoft.com/en-us/magazine/dn532203.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/magazine/dn532203.aspx</a>. jQuery doesn’t send cookies for cross-domain requests by default, so one need to set ‘withCredentials’ flag for xhrFields manually (appropriate section here <a class="external-link" href="http://api.jquery.com/jQuery.ajax/" rel="nofollow">http://api.jquery.com/jQuery.ajax/</a>).</p><p><span>Changing ODATA routing</span></p><p>Use WebAPI 2.2  <a class="external-link" href="http://www.asp.net/web-api/overview/releases/whats-new-in-aspnet-web-api-22" rel="nofollow">http://www.asp.net/web-api/overview/releases/whats-new-in-aspnet-web-api-22</a>. New OData doesn’t support DateTime structure (<a class="external-link" href="http://aspnetwebstack.codeplex.com/workitem/1753" rel="nofollow">http://aspnetwebstack.codeplex.com/workitem/1753</a>) and one needs to convert it to DateTimeOffset.</p><p><span>Add a new menu item</span></p><p>1. Make changes in app.ts<br/>2. Make changes in Configuration.cs<br/>3. Log in as an admin, go to Admin -&gt; System Configuration -&gt; Menu Settings, press Reset button.</p><p><span>To configure debugging *.ts files</span></p><p>1. Set IE as a default browser<br/>2. Open the browser, go to Tools -&gt; Internet Options -&gt; General -&gt; Check ‘Delete browsing history on exit’ option, then go to ‘Browsing history’ -&gt; Settings -&gt; Check for newer versions of stored pages – Every time I visit the webpage’.</p><p><span>Problems with LESS in VS 2012</span></p><p>When you working with LESS in Visual Studio 2012 you may faced with compiler error of * .less files – “less: Unrecognised input” (see. more <a class="external-link" href="http://stackoverflow.com/questions/18180160/less-unrecognised-input" rel="nofollow">http://stackoverflow.com/questions/18180160/less-unrecognised-input</a>). In addition, we observed problems at compile, unless we explicitly specify the encoding. To fix this, do the following:</p><p>1. Make sure you have the latest updates Web Essentials 2012: <a class="external-link" href="http://vswebessentials.com/download" rel="nofollow">http://vswebessentials.com/download</a></p><p>2. Added in headers on every * .less file the next code:</p><p>#fix {}<br/>charset “utf-8”;</p><p>In VS 2012 you should also make next:</p><p>1. In VS menu – Tools -&gt; Options -&gt; WebEssentials -&gt; LESS -&gt; Compile on Build = true</p><p>2. Restart Visual Studio</p><p><span>Sql server reporting services (SSRS) IE bug..</span></p><p>Long running reports are not well rendered in IE (Any version) because a lot of white space is rendered at the top, but they works fine on Chrome and Firefox to duplicate this issue just create a new report, add a label  followed by a tablix linked to a dataset that retrieve more than 2000 records.</p><p><span>Sql server reporting services (SSRS) Sub-reports</span></p><p>For long running reports the  subreports approach should be avoided, the main reason is that SSRS open a new database connection per every subreport and submit a new query. So If the main report iterate over 1000 records and the sub report have 2 dataset then SSRS will submit 1 query for the main report plus 2000 queries for the subreport</p><p><u>Migrations</u></p><p>For BBWT2 projects we typically use “migrations” to keep the C# model and the SQL Server schema co-ordinated. This can be done manually or automatically.</p><p>We can lose useful development time when we use manual migrations  - because they are time consuming to write. But we can also lose useful development time when we use automatic migrations – because there are merge issues when multiple people are committing schema changes. Please read <a class="external-link" href="https://msdn.microsoft.com/en-us/data/dn481501.aspx" rel="nofollow">https://msdn.microsoft.com/en-us/data/dn481501.aspx</a> . It details the merge problems and how to quickly work around them. </p><h3 id="BBWT2-Discussion-SubWikis">Sub Wikis</h3><ul><li><a class="incsub_wiki_crumbs" href="https://wiki.bbconsult.co.uk/wiki/bbwt2-discussion/important-note-to-add-a-background-image-on-reports-ssrs/" rel="nofollow">Important note to Add a background Image on Reports (SSRS)</a></li></ul>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

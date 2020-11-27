@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Anonymisation</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Build-Process-and-CI_85493059.html">BBWT3 - Build Process and CI</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Anonymisation
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 class="western" id="BBWT3-Anonymisation-Overview">Overview</h1><p class="western">With GDPR, there is often a requirement to generate an anonymised version of a live system for testing purposes. Blueberry makes use of a tool called Anonimatron to assist with this, see <a class="external-link" href="https://realrolfje.github.io/anonimatron/" rel="nofollow">here</a> for more information. Anonymisation is currently being integrated into BBWT3. Currently the implementation that BBWT3 uses is extracting the data through the DB Browser with certain rules and then sending it through the Anonimatron tool. In future, we’ll have the option to do this as part of our build systems, so every time we release a new version to live, we can automatically copy an anonymised backup to the test system.</p><ul><li class="western">Runs on Java.</li><li class="western">Can automatically generate fake; email addresses, Roman names, UUID's.</li><li class="western">Customisable: allows you to set rules for different columns within a data set.</li></ul><h1 class="western" id="BBWT3-Anonymisation-TestCase">Test Case</h1><ol><li>A web application is set to be rolled out soon.</li><li>There needs to have been rigorous testing with real data on staging server.</li><li>Client is GDPR sensitive.</li><li>Blueberry is able to test web application by anonymising the data before putting it on staging server.</li><li>Specific data fields are randomly renamed, data is still intact but is now anonymised.</li><li>Testers can continue to work on staging server with real world scenario's.</li></ol><h1 class="western" id="BBWT3-Anonymisation-ForTesters">For Testers</h1><ol><li>From the BBWT3 main menu, click on &quot;Technical Admin&quot;.</li><li>Go down to and click on &quot;Database Types&quot;.</li><li>Click on &quot;Add&quot;</li><li>Enter in a name and group type (e.g. Email and string) then click &quot;Create&quot;.</li><li>Click on the newly created row and enter the &quot;Anon Rule&quot; (e.g. EMAIL_ADDRESS).</li><li>On the main menu click on &quot;Database Browser&quot;.</li><li>Select &quot;Employees&quot;, then &quot;Email&quot;.</li><li>In &quot;Item Type&quot; select the name of the group you created (e.g. Email)</li><li>Click on  &quot;Save&quot;</li><li>Click on &quot;Export XML&quot;.</li><li>Open the XML File in a text editor and fill in the database settings.</li><li>Run Anonimatron with the configured XML file.</li></ol><h1 class="western" id="BBWT3-Anonymisation-ForProjectManagers">For Project Managers</h1><ul><li class="western">We are working to integrate this tool into BBWT3.</li><li class="western">The database explorer module includes support for labelling fields with a “type” – e.g. email, DOB, Name. This type is used to specify the anonymization rules that should apply to the field.</li><li class="western">The system then generates an XML which Anonimatron can use to make an anonymised copy of the live system database.</li><li class="western">Suitable for GDPR sensitive clients.</li><li class="western"><p>Will be used in applicable projects rather than implemented by default. Grabs data anonymises it and puts on test or staging server enabling tester to test, while being GDPR friendly.</p></li><li class="western"><p>DB browser has options on how to export anonymously. CURRENTLY: Generate XML file, download, enter in DB details then throw it through Anonimatron to receive anonymised data (31-01-19).</p></li></ul><h1 class="western" id="BBWT3-Anonymisation-ForMarketing">For Marketing</h1><ul><li>GDPR compliant.</li><li>When rolling out often as part of the test processes a database is needed, your users data is protected as it is anonymised before it is extracted and placed on a staging server.</li></ul>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Search</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---GUI-and-Layout_85493125.html">BBWT3 - GUI and Layout</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---GUI-Guidelines_85493133.html">BBWT3 - GUI Guidelines</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Search
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="BBWT3-Search-Overview">Overview</h1><p>This page documents how to insert a search field within your code.</p><p><br/></p><p>The preferred search control performs auto-completion.</p><p>Many Search controls will be found in grid filters (see below). When in a grid filter we use a different labelling technique to save space.</p><p>Example:</p><p><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85493176/85493177.png" data-image-src="attachments/85493176/85493177.png" data-unresolved-comment-count="0" data-linked-resource-id="85493177" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-1-14_16-24-18.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493176" data-linked-resource-container-version="1"></span></span></p><p>Example HTML:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">&lt;div </code><code class="csharp keyword">class</code><code class="csharp plain">=</code><code class="csharp string">&quot;ui-g&quot;</code><code class="csharp plain">&gt;</code><br/><code class="csharp spaces">    </code><code class="csharp plain">&lt;div </code><code class="csharp keyword">class</code><code class="csharp plain">=</code><code class="csharp string">&quot;fixed-label&quot;</code><code class="csharp plain">&gt;</code><br/><code class="csharp spaces">        </code><code class="csharp plain">&lt;label </code><code class="csharp keyword">for</code><code class="csharp plain">=</code><code class="csharp string">&quot;autocomplete&quot;</code><code class="csharp plain">&gt;Label&lt;/label&gt;</code><br/><code class="csharp spaces">    </code><code class="csharp plain">&lt;/div&gt;</code><br/> <br/><code class="csharp spaces">    </code><code class="csharp plain">&lt;div </code><code class="csharp keyword">class</code><code class="csharp plain">=</code><code class="csharp string">&quot;ui-g-12&quot;</code><code class="csharp plain">&gt;</code><br/><code class="csharp spaces">        </code><code class="csharp plain">&lt;p-autoComplete id=</code><code class="csharp string">&quot;autocomplete&quot;</code> <code class="csharp plain">[(ngModel)]=</code><code class="csharp string">&quot;brand&quot;</code> <code class="csharp plain">[suggestions]=</code><code class="csharp string">&quot;filteredBrands&quot;</code><br/><code class="csharp spaces">                        </code><code class="csharp plain">(completeMethod)=</code><code class="csharp string">&quot;filterBrands($event)&quot;</code> <code class="csharp plain">placeholder=</code><code class="csharp string">&quot;Brands...&quot;</code><br/><code class="csharp spaces">                        </code><code class="csharp plain">[size]=</code><code class="csharp string">&quot;30&quot;</code> <code class="csharp plain">[minLength]=</code><code class="csharp string">&quot;1&quot;</code><code class="csharp plain">&gt;&lt;/p-autoComplete&gt;</code><br/><code class="csharp spaces">    </code><code class="csharp plain">&lt;/div&gt;</code><br/><code class="csharp plain">&lt;/div&gt;</code></p></td></tr></tbody></table></div><p><br/></p><p>Example Typescript:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp spaces">    </code><code class="csharp plain">export </code><code class="csharp keyword">class</code> <code class="csharp plain">SearchComponent implements OnInit {</code><br/> <br/><code class="csharp spaces">    </code><code class="csharp plain">brands: </code><code class="csharp keyword">string</code><code class="csharp plain">[] = [</code><code class="csharp string">'Audi'</code><code class="csharp plain">, </code><code class="csharp string">'BMW'</code><code class="csharp plain">, </code><code class="csharp string">'Fiat'</code><code class="csharp plain">, </code><code class="csharp string">'Ford'</code><code class="csharp plain">, </code><code class="csharp string">'Honda'</code><code class="csharp plain">,</code><br/><code class="csharp spaces">        </code><code class="csharp string">'Jaguar'</code><code class="csharp plain">, </code><code class="csharp string">'Mercedes'</code><code class="csharp plain">, </code><code class="csharp string">'Mazda'</code><code class="csharp plain">, </code><code class="csharp string">'Mustang'</code><code class="csharp plain">, </code><code class="csharp string">'Renault'</code><code class="csharp plain">, </code><code class="csharp string">'Volvo'</code><code class="csharp plain">, </code><code class="csharp string">'VW'</code><code class="csharp plain">];</code><br/><code class="csharp spaces">    </code><code class="csharp plain">filteredBrands: any[];</code><br/><code class="csharp spaces">    </code><code class="csharp plain">brand: </code><code class="csharp keyword">string</code><code class="csharp plain">;</code><br/> <br/><code class="csharp spaces">    </code><code class="csharp plain">constructor() { }</code><br/> <br/><code class="csharp spaces">    </code><code class="csharp plain">ngOnInit() {</code><br/> <br/><code class="csharp spaces">    </code><code class="csharp plain">}</code><br/> <br/><code class="csharp spaces">    </code><code class="csharp plain">filterBrands(</code><code class="csharp keyword">event</code><code class="csharp plain">) {</code><br/><code class="csharp spaces">        </code><code class="csharp keyword">this</code><code class="csharp plain">.filteredBrands = [];</code><br/><code class="csharp spaces">        </code><code class="csharp keyword">for</code> <code class="csharp plain">(let i = 0; i &lt; </code><code class="csharp keyword">this</code><code class="csharp plain">.brands.length; i++) {</code><br/><code class="csharp spaces">            </code><code class="csharp plain">let brand = </code><code class="csharp keyword">this</code><code class="csharp plain">.brands[i];</code><br/><code class="csharp spaces">            </code><code class="csharp keyword">if</code> <code class="csharp plain">(brand.toLowerCase().indexOf(</code><code class="csharp keyword">event</code><code class="csharp plain">.query.toLowerCase()) == 0) {</code><br/><code class="csharp spaces">                </code><code class="csharp keyword">this</code><code class="csharp plain">.filteredBrands.push(brand);</code><br/><code class="csharp spaces">            </code><code class="csharp plain">}</code><br/><code class="csharp spaces">        </code><code class="csharp plain">}</code><br/><code class="csharp spaces">    </code><code class="csharp plain">}</code><br/><code class="csharp plain">}</code></p></td></tr></tbody></table></div>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493176/85493177.png">image2019-1-14_16-24-18.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

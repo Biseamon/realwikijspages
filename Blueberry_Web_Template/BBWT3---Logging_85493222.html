@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Logging</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="85493216.html">BBWT3 - Diagnostic Tools / Developer Support</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Logging
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 class="western" id="BBWT3-Logging-Overview">Overview</h1><p>Logging system uses the 3rd party software called Graylog.</p><ul><li>Logs current user ID.</li><li>Logs any impersonation currently in place.</li><li>Logs any &quot;real user name&quot; defined on current user.</li></ul><p>There are 3 logging destinations available by BBWT3:</p><ul><li>Log error file. </li><li>Greylog.</li><li>Database.</li></ul><p>File logging should not typically be used in live or test environments, and should be considered for development machines only. BBWT3 principles discourage writing to files on the webserver, and discourage developers connecting to the webserver to read files.</p><p>Greylog should be the preferred solution as it can accept application logging in addition to logging from other sources, e.g. database, OS, IIS.</p><h1 class="western" id="BBWT3-Logging-TestCase">Test Case</h1><ol><li>Web application is being actively tested by QA team.</li><li>A tester causes an error.</li><li>This error can be diagnosed due to the logging from Graylog.</li></ol><h1 id="BBWT3-Logging-DeveloperNotes">Developer Notes</h1><p>During development dbdoc should not need audit logging in addition to the repository. Any work that goes through the metadata table is already being tracked in the source code repository.<br/>Within Serilog you are able to set the minimum level of logging per source. Within the configuration you need to have the section “Override” inside the “MinimumLevel”. For more information and an example see <a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?spaceKey=BLUEB&amp;title=Configuration#Configuration-Serilog" rel="nofollow">here</a>.</p><h1 id="BBWT3-Logging-ForTesters">For Testers</h1><ol><li><p>Go to <a class="external-link" href="https://graylog.bbconsult.co.uk/" rel="nofollow">https://graylog.bbconsult.co.uk</a>.</p></li><li>Enter in LDAP username and password.</li></ol><h1 class="western" id="BBWT3-Logging-ForProjectManagers">For Project Managers</h1><ul><li>Able to quickly identify issues. Allowing you to respond to incidents quickly.</li><li>Can set automatic reporting daily/weekly/monthly.</li><li>Cost effective storing of logs, useful for keeping in with best practise policies in case of an audit.</li><li>Automatic alerts in case of attack, can set firewalls to automatically block IP ranges.</li><li>Cloud support for scalability and security.</li></ul><h1 class="western" id="BBWT3-Logging-ForMarketing">For Marketing</h1><ul><li>Cloud support and integration - secure and cost effective.</li><li>Automatic alerts in case of attack.</li><li>Cost effective and in keeping with best practise policies in case of an audit.</li></ul>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

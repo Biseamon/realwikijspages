@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Session Handling</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Web-Browser-and-Session_85493104.html">BBWT3 - Web Browser and Session</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Session Handling
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 class="western" id="BBWT3-SessionHandling-Overview">Overview</h1><p>Sessions are synchronised across open tabs and windows. This  makes the user experience consistent in day to day usage and when troubleshooting user issues, with the added benefit of increased security. This is achieved by a  <span class="module__title__link">TypeScript</span> module named CurrentUserWatchService (app/services/current-user-watch.service.ts. This checks every second to see if the login email has changed, it is stored locally and is then overwritten when a new email is used, resulting in a refresh of pages across the different tabs and windows.</p><ul><li>Will only allow one account to be active in one browser at a time.</li><li>Logging out on one window or tab will log out and reload the pages on all of them.</li><li>Attempting to login with more than one account will refresh the pages across tabs/windows with the latest user to login.</li></ul><h1 id="BBWT3-SessionHandling-TestCase">Test Case</h1><ol><li>User is logged in and has an issue with the web application.</li><li>Admin goes to user with issue and opens a new tab.</li><li>Admin logs in with their credentials.</li><li>Admin starts exploring pages and opening tabs.</li><li>Admin clicks on previous tab which was originally logged in by the user.</li><li>As page has refreshed with latest permissions there is no inconsistency or confusion.</li></ol><h1 class="western" id="BBWT3-SessionHandling-ForTesters">For Testers</h1><ol><li>Click on the &quot;Operational Admin&quot; drop down box from the BBWT3 menu.</li><li>Click on &quot;System Configuration&quot;.</li><li>Go down to and click on &quot;User Session Settings&quot;.</li><li>Click &quot;Is Enabled&quot; (if not already enabled).</li><li>Set the time in &quot;Idle time (in minutes)&quot; to desired length.</li><li>Click &quot;Save&quot; at the bottom of the page.</li></ol><h1 class="western" id="BBWT3-SessionHandling-ForProjectManagers">For Project Managers</h1><ul><li class="western">BBWT3 ensures that only 1 account can be active on a single users web browsing session. Preventing confusion when attempting to complete a task, while not being aware of being logged in simultaneously to more than one account across multiple tabs and windows. Such a case could arise with two different login accounts with differing privileges.</li><li class="western">This can also cause issue when attempting to troubleshoot, for example with a particular group that is having trouble. If the user is not paying sufficient attention to which account with the particular set of privileges they are investigating, this could cause increased delays in resolving the issue.</li><li class="western">Provides an additional layer of security in situations where more than one user has access to a particular computer. By having sessions update to the latest user that logged in, it forces a refresh of the pages open across all session instances. Preventing a user with a lower set of privileges gaining access to more restricted information. This coupled with customisable session time outs can be used to improve security in environments where a user has the potential to leave their devices unattended.</li><li class="western">Limitation: Not being able to be logged into multiple accounts may be frustrating for system admins, who are attempting to troubleshoot user accounts. This can however be bypassed if so desired by using 2 different browsers for the separate accounts.</li><li class="western">Limitation: Session time out may be frustrating to end users. If it is set too short, it can become tiresome to keep logging in repeatedly. However if it is not enabled or sessions are set too long it can become a security issue. It is up to the individual company and their threat model to determine the acceptable idle session length.</li></ul><h1 id="BBWT3-SessionHandling-ForMarketing">For Marketing</h1><ul><li>Remove confusion when using multiple tabs / windows and diagnosing problems.</li><li>Improved security in environments where computers are used by multiple users - automatically refreshes pages when new user logs in, preventing unauthorised access to privileged pages.</li><li>Improved security in environments where computers are left unattended - automatically logs out a user after designated amount of time. This limits the amount of time an attacker would have to gain access to the machine.</li></ul>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

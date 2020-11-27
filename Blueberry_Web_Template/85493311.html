@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : A1:2017- Injection</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Security_85493287.html">BBWT3 - Security</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="85493303.html">BBWT3 - Application Security / Monitoring</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Security-Items_85493309.html">BBWT3 - Security Items</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : A1:2017- Injection
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 22, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="A1:2017-Injection-Overview">Overview</h1><p>The number 1 threat identified by the OWASP (Open Web Application Security Project) is injection of arbitrary code. If your application is able to receive user input that goes into a back-end database, command, or call, your app is able to fall to the face of code injection attacks. Injection flaws are a set of security vulnerabilities which occur when suspicious data is inserted into an app as a command or query. Known injection attacks include SQL, OS, XXE, and LDAP.</p><p>The most common of the code injection attacks are SQL Injections, also known as SQLi. An SQLi attack is done when malformed code is sent to the database server, thus leading to the exposure of your data. And this attack style is so simple and easy, anyone with access to the internet can do it – SQLi scripts are available for download and can be acquired easily. As one of the most common vulnerabilities, we seem to know a lot about it and yet, new SQLi attacks are always popping up – just take a quick look at the <a class="external-link" href="http://codecurmudgeon.com/wp/sql-injection-hall-of-shame/" rel="nofollow">SQLi Hall-of-Shame</a> and see for yourself.</p><h1 id="A1:2017-Injection-Example">Example</h1><p>Using a simple page, which displays an article with given ID as the parameter, the attacker may perform a couple of simple tests to determine if the page is vulnerable to SQL Injection attacks.</p><p>Example URL:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">http:</code><code class="csharp comments">//<a class="external-link" href="http://newspaper.com/items.php?id=2" rel="nofollow">newspaper.com/items.php?id=2</a></code></p></td></tr></tbody></table></div><p>The above sends the following query to the database:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">SELECT title, description, body FROM items WHERE ID = 2</code></p></td></tr></tbody></table></div><p>The attacker may then try to inject a query that returns 'false':</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">http:</code><code class="csharp comments">//<a class="external-link" href="http://newspaper.com/items.php?id=2" rel="nofollow">newspaper.com/items.php?id=2</a> and 1=2</code></p></td></tr></tbody></table></div><p>If the application is vulnerable to the attack, (a) it won't notice that it received a string rather than an id, (b) it might create the SQL query by simply substituting the string. The SQL query could end up looking like this:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">SELECT title, description, body FROM items WHERE ID = 2 and 1=2</code></p></td></tr></tbody></table></div><p>If the web application is vulnerable to SQL Injection, then it probably will not return anything. To make sure, the attacker will inject a query that will return 'true':</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">http:</code><code class="csharp comments">//<a class="external-link" href="http://newspaper.com/items.php?id=2" rel="nofollow">newspaper.com/items.php?id=2</a> and 1=1</code></p></td></tr></tbody></table></div><p>If the content of the page that returns 'true' is different than that of the page that returns 'false', then the attacker is able to distinguish when the executed query returns true or false.</p><p>Once this has been verified, the only limitations are privileges set up by the database administrator, different SQL syntax, and the attacker's imagination.</p><h1 id="A1:2017-Injection-HowBBWT3MitigatesThisVulnerability">How BBWT3 Mitigates This Vulnerability</h1><p>BBWT3 does not use SQL directly, but uses LINQ (Language-Integrated Query) for input. By doing this it makes it much harder for an attacker. This is because it is harder to parse some of the input string as a parameter, and parse another part of it as executable code. LINQ uses named parameters which are prepared statements, a mapping is kept between the parameter names and their indices - the brackets containing values. This mapping is referred to when the parameters are injected, clearly stating the name of each parameter within the function call. Meaning that the web application won't execute any SQL code that it isn't expecting, thus removing the ability of an attacker to inject and run arbitrary code.</p><div class="table-wrap"><table class="confluenceTable"><colgroup><col/></colgroup><tbody><tr><td class="confluenceTd"><p><code class="sql comments">-- Example of LINQ-generated SQL code, below.</code><br/><code class="sql comments">-- This is a parameterised query.</code><br/><code class="sql keyword">SELECT</code> <code class="sql plain">[t0].[title], [t0].[description], [t0].[body] </code><code class="sql keyword">FROM</code> <code class="sql plain">[dbo].[items] </code><code class="sql keyword">AS</code> <code class="sql plain">[t0]</code><br/><code class="sql keyword">WHERE</code> <code class="sql plain">[t0].[id] = @p0</code><br/> <br/> <br/><code class="sql comments">-- Parameterized queries treat input as a literal value when executed as part of the SQL statement</code><br/><code class="sql comments">-- So, under attack, this effectively becomes the query below, making it impossible for the server to confuse input parameter with code.</code><br/> <br/> <br/><code class="sql keyword">SELECT</code> <code class="sql plain">[t0].[title], [t0].[description], [t0].[body] </code><code class="sql keyword">FROM</code> <code class="sql plain">[dbo].[items] </code><code class="sql keyword">AS</code> <code class="sql plain">[t0]</code><br/><code class="sql keyword">WHERE</code> <code class="sql plain">[t0].[id] = </code><code class="sql string">'2 and 1=2'</code><br/> <br/> <br/><code class="sql comments">-- Definitely not the below:</code><br/> <br/> <br/><code class="sql keyword">SELECT</code> <code class="sql plain">[t0].[title], [t0].[description], [t0].[body] </code><code class="sql keyword">FROM</code> <code class="sql plain">[dbo].[items] </code><code class="sql keyword">AS</code> <code class="sql plain">[t0]</code><br/><code class="sql keyword">WHERE</code> <code class="sql plain">[t0].[id] = 2 </code><code class="sql color1">and</code> <code class="sql plain">1=2</code></p></td></tr></tbody></table></div><p>Be wary where developers are using the method &quot;FromSQL&quot; - this means they've handcrafted the SQL string rather than relied on LINQ to craft it for them.</p><h1 id="A1:2017-Injection-OtherResources">Other Resources</h1><p>OWASP 2017 full details -  page 7 of <a class="external-link" href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf" rel="nofollow">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a> </p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

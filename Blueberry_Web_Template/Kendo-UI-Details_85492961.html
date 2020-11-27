@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Kendo UI Details</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT2_85492528.html">BBWT2</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT2---Development-Notes_85492953.html">BBWT2 - Development Notes</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Kendo UI Details
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span>, last modified on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><br/></p><p>The good thing about kendo widgets is that they are completely styleable, while many native html controls are not. One of such a cases is dropdown list (select tag). But the problem is that migrating to kendo dropdown has many obstackles which are very hard to discover. And can lead to rejection of the kendo with very unpleasant consequences. Here are the problems I solved in order to be able to use it:</p><h4 id="KendoUIDetails-Kendodrop-downlistcontrol">Kendo drop-down list control</h4><ul><li>use kendo.data.ObservableArray as datasource, otherwise you will see your data sporadically. And do not reassign it (otherwise the binding gets lost) - use 'splice' to apply any changes.</li></ul><ul><li>use k-option-label like “‘label’” - two quotes, otherwise it doesn’t work</li></ul><ul><li>use input tag instead of select (can't remember why)</li><li>to hide placeholder from the dropdown list use k-on-open=”onDdOpen(kendoEvent) . Define the handler in root scope like:<em>$scope['onDdOpen'] = (event) =&gt; {</em><em>               $(event.sender.ul[0]).addClass('hide-default-option');</em><em>           }</em>Then use css:<em>ul.hide-default-option{</em><em>   li:first-child {</em><em>       display: none;</em><br/><em>   }</em><br/><br/><em>}</em><br/><br/>This is very useful technique in general to style any kendo widgets which use animation containers (dropdown, menu, popup window)</li></ul><p><br/>As result we have html for dropdown like this:</p><blockquote><em>&lt;input kendo-drop-down-list</em><br/><em>                                   k-data-text-field=&quot;'CompanyName'&quot;</em><br/><em>                                   k-data-value-field=&quot;'Id'&quot;</em><br/><em>                                   k-data-source=&quot;viewModel.Clients&quot;</em><br/><em>                                   ng-model=&quot;viewModel.SelectedClientId&quot;</em><br/><em>                                   k-option-label=&quot;'select a value'&quot;</em><br/><em>                                   class=&quot;form-control&quot;</em><br/><em>                                   k-on-open=&quot;onDdOpen(kendoEvent)&quot;&gt;</em><br/><em> &lt;/input&gt;</em></blockquote><p><br/>It's worth to mention that any angularjs binding should contain &quot;.&quot;, otherwise bindings may stop working in some cases. It's well know rule.</p><h4 id="KendoUIDetails-Generalnotes">General notes</h4><p>Generally, kendo data binding is not compatible with angularjs bindings (<a class="external-link" href="http://kendo-labs.github.io/angular-kendo/#/datasource" rel="nofollow">http://kendo-labs.github.io/angular-kendo/#/datasource</a>). It's better to use kendo widgets from the beginning, because the migration is not easy and it leads to wasting a lot of time: first time you use native html controls and spend a lot of time debugging and fixing various bugs most of them related to angularjs bindings; then you discover that you need styles and kendo and fix similar problems again. I've used the angularjs in second project already, and kendo data binding and MVVM implementation looks much more reliable and much less error prone than angularjs data binding.</p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

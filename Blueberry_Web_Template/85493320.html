@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : A3:2017 - Sensitive Data Exposure</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Security_85493287.html">BBWT3 - Security</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="85493303.html">BBWT3 - Application Security / Monitoring</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Security-Items_85493309.html">BBWT3 - Security Items</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : A3:2017 - Sensitive Data Exposure
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 22, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="A3:2017-SensitiveDataExposure-Overview"><span style="color: rgb(60,66,81);">Overview<br/></span></h1><p>Sensitive data exposures may occur when security controls – such as HTTPS – are not implemented correctly, thus leaving a hole for attackers to steal sensitive information such as passwords, payment information, IDs, addresses, and anything else you may have stored which can be of value. Applications should ensure that access be authenticated and data be encrypted. A failure of such may lead to a major privacy violation.</p><h1 id="A3:2017-SensitiveDataExposure-Example">Example</h1><p>A user in a public place attempts to login to the web application via a login form.</p><p>The web page is not secured via HTTPS protocol.</p><p>A malicious user on the same network as the user is sniffing for passwords and usernames.</p><p>Because the connection to the web application is not secured with HTTPS, the details are sent over the network in clear text.</p><p>The malicious user has successfully captured the users login details and can now use them to sign in.</p><h1 id="A3:2017-SensitiveDataExposure-HowBBWT3MitigatesThisVulnerability">How BBWT3 Mitigates This Vulnerability</h1><ul><li>HTTPS connection.</li><li>Stores passwords as salted hashes with PBKDF2 encryption.</li><li>Uses industry standard modern encryption methods.</li><li>No verbose error messages<br/><br/></li></ul><p>Connections to and from a web application made from BBWT3 are secured over HTTPS using the TLS protocol. This ensures that any packets set to and from the server are encrypted. This means that even if an attacker is able to intercept these packets, they are useless to them as they are encrypted with the strong encryption offered by TLS.</p><p>Passwords are stored securely using the PBKDF2 algorithm to hash passwords instead of storing them in plain text or using obsolete hashing algorithms such as MD5. The passwords before hashing are individually salted - the use of a pseudo-random number is generated and added to the password prior to hashing it - defeating an attackers use of rainbow tables (pre-compiled password hashes).</p><p>By doing these things sensitive data is kept secure, significantly limiting the risk of a data breach.</p><p>Consider also, the option of encrypting the database files. &quot;Encryption at rest&quot; protects from circumstances where an attacker gains access to the database files without necessarily knowing the database login credentials. </p><p>BBWT3 has the option to limit 'useful messages' to non registered users. By enabling this option we prevent potential attackers from gathering information such as who is registered on the database. This can be done for example when a user enters in a username and incorrect password, instead of saying that the user does or does not exist, a generic message is displayed saying the combination of username and password is invalid.</p><h1 id="A3:2017-SensitiveDataExposure-OtherResources">Other Resources</h1><p>OWASP 2017 full details -  page 11 of <a class="external-link" href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf" rel="nofollow">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a></p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

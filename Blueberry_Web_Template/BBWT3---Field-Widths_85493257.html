@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Field Widths</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Runtime-Configuration_85493247.html">BBWT3 - Runtime Configuration</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Field Widths
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 class="western" id="BBWT3-FieldWidths-Overview">Overview</h1><p>Field widths can be defined through the use of the &quot;metadata&quot; option - there are multiple kinds of metadata planned however currently field width is the only one functioning. Metadata can be associated with a BBWT3 type (e.g. phone numbers) or a table field (eg. Persons.WorkPhone). A BBWT3 type is a form of supplementary description that goes beyond how the database stores the data. The database may say “this column is variable width of unicode characters, up to 254”. A BBWT3 type may add: it’s an email address, reserve a minimum of 30 characters space in the UI for it, and when accepting new data in the UI apply validation using <em>this</em> regular expression, and showing <em>that</em> helpful message if the validation fails. Metadata can be associated with a type at /app/db-column-types . The character allowance does take into account font-sizes used for display. If a page needs to override the metadata, rather than coding it directly on the page, dbdoc supports <em>keyed</em> metadata that will override the default. The key used is the route for the page e.g “/app/rental”. Internally, this is all achieved by:</p><ul><li>Re-using the automapper element between the DTOs and Model classes, so that any DTO arriving at a page can be traced back to the database fields that supported its creation.</li><li>The client browser loading this map and associated metadata on initial load of the site.</li><li>Front-end components refer to this map by … (currently being worked out - 31-01-19)</li><li>The Type editor and DB Documenter tool use a mechanism whereby changes saved here are turned into GitLab changes. This allows the project manager to merge them into whichever branch they feel is relevant. They’re then no different from any other work performed by developers and subject to the same release processes.</li><li>The algorithm for how grids make use of the field width metadata is listed in task <a class="external-link" href="https://pts.bbconsult.co.uk/taskEditor?id=176533" rel="nofollow">https://pts.bbconsult.co.uk/taskEditor?id=176533</a></li></ul><p>There’s further work ongoing on how to best display the grid in cases where there is simply insufficient screen-space to meet the metadata requirements.</p><h1 class="western" id="BBWT3-FieldWidths-TestCase">Test Case</h1><ol><li>The grid view on one of the pages is too wide.</li><li>The admin can change this so that the whole table can easily be displayed.</li><li>The admin after entering in min and max values is now able to view the whole table on screen.</li></ol><h1 class="western" id="BBWT3-FieldWidths-ForTesters">For Testers</h1><ol><li>Go to and click on &quot;Technical Admin&quot; from the main menu.</li><li>From the drop down menu click on &quot;Database Browser&quot;.</li><li>Go down to and click on &quot;Cars&quot; in the tree of the page that is displayed.</li><li>Click on &quot;Brand&quot; from the drop down menu.</li><li>Under &quot;View&quot; click on &quot;Default Metadata&quot;</li><li>Enter in the min / max character values.</li></ol><h1 class="western" id="BBWT3-FieldWidths-ForProjectManagers">For Project Managers</h1><ul><li>To be implemented: A table field can be associated with a type.</li></ul><h1 class="western" id="BBWT3-FieldWidths-ForMarketing">For Marketing</h1><ul><li>Have fields be displayed sensibly as defined through the use of metadata.</li></ul>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

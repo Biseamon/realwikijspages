@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Data Upload</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---GUI-and-Layout_85493125.html">BBWT3 - GUI and Layout</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Data Upload
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="BBWT3-DataUpload-Overview">Overview</h1><p>Implementing a polished and reliable CSV import can be challenging – we might need to handle files with millions of rows, and we also need strong consistent error handling.</p><p>BBWT3 includes a strong CSV Import module which meets these goals. The CSV Import module can import CSV files as well as Excel (both XLS and XLSX) files. The number of errors allowed is editable by the developer, and is on a per row basis - meaning multiple errors on a single row count as only 1.</p><ul><li>Automatically detects errors in the file according to the rule-set devised by the developer.</li><li>BBWT3 will not import any data if an error is detected at any point within the file.</li><li>A file will be returned to the user with errors highlighted.</li><li><p class="auto-cursor-target">The amount of errors it highlights is user definable.</p></li></ul><h1 id="BBWT3-DataUpload-TestCase">Test Case</h1><ol><li>Developer wishes to upload a database of clients to the web app.</li><li>Developer goes into Data Importer.</li><li>Developer uploads CSV or Excel file.</li><li>It is checked for any errors, if found the developer is given a file with the errors highlighted.</li><li>Developer is able to amend errors such as missing data.</li><li>Developer uploads CSV/Excel file again and is informed through the use of a progress bar how far along file is processed.</li><li>Developer now has a complete database imported onto the web app for use.</li></ol><h1 id="BBWT3-DataUpload-ForTesters">For Testers</h1><ol><li>Go to the BBWT3 menu and click on &quot;Feature Demo Pages&quot;.</li><li>From the drop down menu click on &quot;Data Import&quot;.</li><li>On the &quot;Employees&quot; tab you can select &quot;Import&quot; to import a file, or on the &quot;Configuration&quot; tab to download a sample file.</li></ol><h1 id="BBWT3-DataUpload-ForProjectManagers">For Project Managers</h1><ul><li>Importing large data sets accurately is important.</li><li>When there is a missing entry and the software you are using to import isn't set up to deal with this, you can end up with completely unusable tables.</li><li>BBWT3 handles errors the right way, it is set up to have a checking system in place to ensure that the data will not be corrupted and will even report back to you with where errors lie.</li><li>You have the ability to select how many errors are acceptable before stopping the processing of the file. This will allow you to determine if there is a pattern with the errors, and gives you the opportunity to correct them.</li><li>You have the ability to start your import from which ever row you choose.</li><li>There is a strong validation element built into the web application, which can be customised by the developer on an &quot;as needed&quot; basis, but cannot be done by the end user.</li><li>There is a progress bar that displays how far along the import is and if there are more errors it will cancel itself and give you a pop up message stating that.</li><li>You have the ability to cancel the import at any time during the processing of the file.</li><li>Included are sample files so you can understand what will happen if there is a problem and why.</li><li>Limitation: On importing Excel files you cannot import a file with more than one data sheet.</li><li><p>To be implemented: A pop up message to confirm that the processing of the file has been cancelled (31-01-19).</p></li></ul><h1 id="BBWT3-DataUpload-ForMarketing">For Marketing</h1><ul><li>Protects database from having duplicate entries and errors, by first screening the data before importing.</li><li>Detect patterns of errors within your dataset that are reported back to you.</li><li>With a progress bar you can visually see your data being processed, so you can have peace of mind that the upload is working even with large datasets.</li><li>Customise from which row you want to begin importing from. Save time by not having to manually delete rows after an import.</li><li>Comes with sample files to help understand what issues may arise, and what they look like.</li></ul>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Page Load Timer</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="85493216.html">BBWT3 - Diagnostic Tools / Developer Support</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Page Load Timer
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="BBWT3-PageLoadTimer-Overview">Overview</h1><p>Page load timer is a feature that displays how long it took in seconds to load a particular page. It displays this value in the top right corner when enabled.</p><ul><li><p class="auto-cursor-target">When enabled displays stopwatch icon, with the load time in seconds for currently displayed page.</p></li></ul><h1 id="BBWT3-PageLoadTimer-TestCase">Test Case</h1><ol><li>Prior to deployment of web app an admin may wish to check for consistency across the site.</li><li>Admin wishes for all pages to be responsive for the user.</li><li>Admin goes through links of web app and reviews loading time.</li><li>Any pages with longer load times can be tracked down and investigated.</li><li>Admin can then make changes such as resizing images.</li></ol><h1 id="BBWT3-PageLoadTimer-ForTesters">For Testers</h1><ol><li>On each loading in the app, there is an icon in the top bar with the loading time:<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="71" width="100" src="attachments/85493224/85493225.jpg" data-image-src="attachments/85493224/85493225.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85493225" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="record.JPG" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85493224" data-linked-resource-container-version="1"></span></span><br/><br/></li><li>This time is saved in DB, There is a page accessible only for admin to show all loading times:<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="205" width="166" src="attachments/85493224/85493226.jpg" data-image-src="attachments/85493224/85493226.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85493226" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="menu.jpg" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85493224" data-linked-resource-container-version="1"></span></span><br/><br/></li><li>On this page, you are able to filter loading times by Account and page. There is an average time according to these filters:<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-content-image-border" height="209" width="519" src="attachments/85493224/85493227.jpg" data-image-src="attachments/85493224/85493227.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85493227" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="grid.jpg" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85493224" data-linked-resource-container-version="1"></span></span><br/><br/></li><li>We can deactivate this feature from settings, and from the loading times page:<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-content-image-border" height="118" width="337" src="attachments/85493224/85493228.jpg" data-image-src="attachments/85493224/85493228.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85493228" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="settings.jpg" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85493224" data-linked-resource-container-version="1"></span></span><br/><br/></li><li>If the user is a “tester”, he can deactivate this feature in menu when he does a right click on the top bar:<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="91" width="219" src="attachments/85493224/85493229.jpg" data-image-src="attachments/85493224/85493229.jpg" data-unresolved-comment-count="0" data-linked-resource-id="85493229" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="menutester.jpg" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/jpeg" data-linked-resource-container-id="85493224" data-linked-resource-container-version="1"></span></span></li></ol><h1 id="BBWT3-PageLoadTimer-ForProjectManagers">For Project Managers</h1><ul><li>Having page loading times easily accessible gives a quantifiable value of site responsiveness.</li><li>You will be able to identify any problem pages, and then be able to attempt to fix issues, to make the user experience more responsive.</li><li>Having the ability to store all load times within a database that you are able to search and sort through, helps in identifying problems.</li><li>There is a log of the user and path to which the site was loading on display within the database. This way you can identify who had the issue, as well as what page they were attempting to access.</li><li>Limitation: Only provides basic search and filtering capability (31-01-19).</li><li>Limitation: Does not update the load time when filtering search or sorting tables (31-01-19).</li></ul><h1 id="BBWT3-PageLoadTimer-ForMarketing">For Marketing</h1><ul><li>Able to search for problem pages prior to roll out - enabling a smooth user experience throughout the site.</li><li>Able to identify through logs with who and where an issue occurred.</li></ul><p><br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493224/85493225.jpg">record.JPG</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493224/85493226.jpg">menu.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493224/85493227.jpg">grid.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493224/85493228.jpg">settings.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493224/85493229.jpg">menutester.jpg</a> (image/jpeg)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

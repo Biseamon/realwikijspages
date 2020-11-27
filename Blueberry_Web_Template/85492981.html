@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT2 - FAQ&#39;s</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT2_85492528.html">BBWT2</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT2 - FAQ&#39;s
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h2 id="BBWT2-FAQ&#39;s-Whatsupportdowehaveforlogging?">What support do we have for logging?</h2><p>We log both client-side and server-side. We send the logs server side and use log4net as a log events processor.<br/><br/>Log4net can persist its logging information to any of a wide range of options including files, databases, or email.<br/><br/>But by default it logs only to a network port. Developers are intended to RDP to the server and use Log2Console or Sentinel to view the logging information.<br/><br/>To configure different targets use the log4net web.config section. The file writer configuration is there already but commented out. You can see configuration examples for standard log4net listeners here: <a class="external-link" href="http://logging.apache.org/log4net/release/config-examples.html" rel="nofollow">http://logging.apache.org/log4net/release/config-examples.html</a><br/><br/>A short list of available targets is here: <a class="external-link" href="http://logging.apache.org/log4net/release/features.html" rel="nofollow">http://logging.apache.org/log4net/release/features.html</a></p><p>By default, <em>for a live environment</em>, you should use file-based log storage and a logging level of &quot;error” or “fail” – if you log all trace messages you will soon run out of file space. Log2Console should not be run continuously in the live environment either - it has been observed using a Gigabyte of memory. </p><h2 id="BBWT2-FAQ&#39;s-WhicholderversionsofInternetExplorerareyousupporting?">Which older versions of Internet Explorer are you supporting?</h2><p>Market share in brackets below. Support information correct as of January 12th 2016. If IE is no longer supported by MS, there will be no security patches. For internal sites, please strongly advise customers against using these browsers. For internet sites, please advise customers not to expend money in supporting these small and shrinking user-base. </p><p>IE10 (4%) - MS no longer support IE10 at the desktop.</p><p>IE9 (7%) - MS only support IE9 at the desktop for Windows Vista with SP2. BBWT2 solutions will cost an additional 7.5% for compatibility workarounds.</p><p>IE8 (9%) - MS no longer support IE8 at the desktop. Support for IE8 is not built in to BBWT2, but it may be coerced into working - </p><p style="margin-left: 30.0px;">James Peel tried this:</p><p style="margin-left: 30.0px;">1) Changed all angular libraries to 1.2 version; <br/>2) Removed angular-uploader (need to fix or change it on another uploader, now is used on Trust details screen and not worked on ie8 branch); <br/>3) Changed all entries through project reserved words such as 'default', 'catch', 'finally'; <br/>4) Changed all entries through project for using native JS .forEach method (not supported ES5 in IE8); <br/>5) Changed few directives to using as attribute instead element, and views for that; <br/>6) Added names of HTML5 element to initial page; <br/>7) Added few methods for supporting ES5 such as .map, .filter, .indexOf, .trim etc.  </p><p style="margin-left: 30.0px;">Plus:</p><ol><li style="list-style-type: none;background-image: none;"><ol><li>We also had to split the CSS into multiple files since there is a size limit.</li><li>We had to add to add a server side mechanism for rendering graphs in IE8 and replace the canvas tags (we retained chart.js for other browsers)</li><li>We managed to get the EvoPDF library to work after some fixes</li></ol></li></ol><p style="margin-left: 30.0px;">Ballpark on that particular project: 14 man-days.</p><p>IE7 or below (1%) - MS no longer support these at the desktop. Not suitable for use with BBWT2.</p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

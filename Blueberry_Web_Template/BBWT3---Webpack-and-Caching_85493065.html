@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : BBWT3 - Webpack and Caching</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BBWT3---Build-Process-and-CI_85493059.html">BBWT3 - Build Process and CI</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : BBWT3 - Webpack and Caching
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="BBWT3-WebpackandCaching-Overview">Overview</h1><p>This page describes how Webpack and caching are used in BBWT3 along with useful links to find out more.</p><p class="title">Webpack no longer used</p><p>Webpack has been superseded by <a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=68354084" rel="nofollow">Angular CLI</a></p><h1 id="BBWT3-WebpackandCaching-Webpack">Webpack</h1><p>Webpack is a build tool as well as code manager. Usually ordering within files is important to run properly - otherwise you could end up with errors such as not having a defined variable, if code is called out of order. Webpack takes care of this for you by scanning files for imports, and the imports of those imports ad infinitum. It will then merge the files into a single bundle. It has the ability to &quot;minify&quot; files by effectively removing white space. This makes files smaller and thus quicker for the end user to download via their browser.</p><ul><li>Webpack combines multiple server-side files into a single file for delivery to the client.</li><li>Webpack changes references in the web-application code to the archive to include an ?v=&lt;hash&gt; parameter on the URL.</li><li>Browsers consider this part of the file name.  So, if the content of an archive changes, it gets a new name and is treated as a new file for caching purposes. </li><li>Effectively Webpack makes server-side archives immutable - they can't change, because they become a new file to the browser.  This turns off a large part of the caching strategy - there's no point asking the server if the file is changed - if the name is the same, it hasn't.</li></ul><h1 id="BBWT3-WebpackandCaching-Caching">Caching</h1><ul><li>Webpack effectively defeats a large part of browser caching - if it is used correctly, the browser only sees files that don't change on the server.</li><li>At the ASP.NET Core Server, we don't have files that correspond to application pages.  Instead the application provides a handler function which returns HTML.  The server will serve the web-pack files referenced by the main URL too.</li><li>For the main top level content (<a class="external-link" href="http://www.bbwt3.com%29/" rel="nofollow">www.bbwt3.com)</a> I think we should cache &quot;never&quot;.<ul><li>This content will not be re-requested during user interaction with the site, but only when:<br/><ul><li>The user closes and restarts the browser - it's useful to check for a new version at this point.</li><li>If the user hits F5.</li><li>If the site itself forces a reload.</li></ul></li></ul></li><li>For all web-pack content, return &quot;cache always, without checking on the server for new versions, and both private and public&quot;.<ul><li>This is because Webpack ensures that files are unique, there is no point to check on the server.</li><li>Moreover, if we do not specify cache control headers, we are relying on default browser behaviour - which may result in less caching than is desirable.</li></ul></li></ul><p><br/></p><h1 id="BBWT3-WebpackandCaching-UsefulResources">Useful Resources</h1><p><a class="external-link" href="https://scotch.io/tutorials/whats-new-in-webpack-4" rel="nofollow">https://scotch.io/tutorials/whats-new-in-webpack-4</a></p><p><a class="external-link" href="https://www.valentinog.com/blog/webpack-tutorial/" rel="nofollow">https://www.valentinog.com/blog/webpack-tutorial/</a></p><p><a class="external-link" href="https://www.sitepoint.com/beginners-guide-webpack-module-bundling/" rel="nofollow">https://www.sitepoint.com/beginners-guide-webpack-module-bundling/</a></p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
