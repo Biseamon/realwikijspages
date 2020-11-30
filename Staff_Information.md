@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-11-30T09:54:36.817Z
+date: 2020-11-30T09:57:55.562Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -65,6 +65,54 @@ If an account does not belong to any of these groups, that account will not have
 # Company Processes
 
 # 3CX Phone System
+
+## Blueberry uses a phone system named 3CX.
+
+There are multiple ways to access your extension. If you have a physical phone, it's likely already been set up for you. If you require assistance in setting up a physical phone, for example for your home office, then please contact the system administrators.
+
+## Desktop app
+The Windows version of the desktop app can be downloaded here.
+
+The Mac version of the desktop app can be downloaded here.
+
+The email you received from 3CX includes the configuration necessary to get the app connected to your extension. If you require the email to be sent again, please contact the system administrators.
+
+## Web portal
+3CX offers a convenient web portal for accessing your extension. Click here to access it.
+
+Your login details were sent to you in the 3CX welcome email. If you need them to be sent again, please contact the systems administrators.
+
+Once logged in, you will be presented with the following interface:
+
+![screenshot_2018-12-10_at_20.57.12.png](/screenshot_2018-12-10_at_20.57.12.png)
+
+From here, you can modify your contacts, check on the availability of others, and generally manage your extension. You can also schedule conferences with other people, and take and place calls.
+
+To supplement the web portal, you can also use extensions for Chrome and Firefox to place calls from any web page.
+
+## Mobile app
+The 3CX mobile app allows you to use your extension from your iOS or Android device.
+
+The Android version can be downloaded Google Play Store.
+
+The iOS version can be downloaded from the App Store.
+
+![3cx_app_image.png](/3cx_app_image.png)
+
+
+Browse to Settings → Scan QR Code in the web portal to configure the mobile app. The welcome email also contains the same QR code.
+
+## Creating a conference between extensions
+To create a three-way conference between extensions, start by calling the first extension. When they pick up, press the conference button on the front of your phone. Then, dial the extension you want to add, then press send. For full instructions, click here.
+
+## Transferring a call
+### Blind transfer
+A blind transfer is one where the call is forwarded to the destination without first initiating a call and talking to the recipient. To do this, first answer a call, then enter the number you want to transfer to, then select the transfer button.
+
+### Attended transfer
+An attended transfer is one where the existing call is placed on hold while you talk to the intended recipient to inform them of the transfer. When you've answered a call, press the hold button, then dial the number you intend to transfer to and press send. Once the new call is connected, you can at any time press the transfer button and select the call which is on hold to connect the calls.
+
+
 
 # Software Licenses
 
