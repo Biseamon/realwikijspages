@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-11-30T09:49:51.266Z
+date: 2020-11-30T09:54:36.817Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -48,3 +48,26 @@ Confluence-administrators: contains the accounts of Wiki admins
 Membership of any of these groups is setup by Sysadmins using LDAP.
 
 If an account does not belong to any of these groups, that account will not have Wiki access.
+
+# Blueberry Organisation Chart
+
+![bb_org_chart_-_june_2020.png](/bb_org_chart_-_june_2020.png)
+
+# Company Policies
+
+## Business Policies
+## HR Policies
+## Security Policies
+## Server Policies
+
+# Company Procedures
+
+# Company Processes
+
+# 3CX Phone System
+
+# Software Licenses
+
+# Subscriptions
+
+# Asset Management
