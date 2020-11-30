@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-11-30T09:57:55.562Z
+date: 2020-11-30T10:00:13.214Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -66,7 +66,7 @@ If an account does not belong to any of these groups, that account will not have
 
 # 3CX Phone System
 
-## Blueberry uses a phone system named 3CX.
+Blueberry uses a phone system named 3CX.
 
 There are multiple ways to access your extension. If you have a physical phone, it's likely already been set up for you. If you require assistance in setting up a physical phone, for example for your home office, then please contact the system administrators.
 
@@ -99,17 +99,16 @@ The iOS version can be downloaded from the App Store.
 
 ![3cx_app_image.png](/3cx_app_image.png)
 
-
 Browse to Settings → Scan QR Code in the web portal to configure the mobile app. The welcome email also contains the same QR code.
 
 ## Creating a conference between extensions
 To create a three-way conference between extensions, start by calling the first extension. When they pick up, press the conference button on the front of your phone. Then, dial the extension you want to add, then press send. For full instructions, click here.
 
 ## Transferring a call
-### Blind transfer
+**Blind transfer**
 A blind transfer is one where the call is forwarded to the destination without first initiating a call and talking to the recipient. To do this, first answer a call, then enter the number you want to transfer to, then select the transfer button.
 
-### Attended transfer
+**Attended transfer**
 An attended transfer is one where the existing call is placed on hold while you talk to the intended recipient to inform them of the transfer. When you've answered a call, press the hold button, then dial the number you intend to transfer to and press send. Once the new call is connected, you can at any time press the transfer button and select the call which is on hold to connect the calls.
 
 
