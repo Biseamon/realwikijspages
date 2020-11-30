@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-11-30T11:34:33.121Z
+date: 2020-11-30T11:42:24.054Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -233,7 +233,27 @@ If none can answer a phone call from this group as well, they get transferred to
 - Call gets answered
 - None answered, call goes to the voicemail.
 
+## How to Pick Up a Ringing Extension
+f you hear a particular extension ringing, and you know that the owner of that extension is not able to take the call, you can take the call by using the “Call Pickup” feature.
+
+You can do this by typing the dial code *20* followed by the extension number.
+
+For example, to pick up the call for the extension 127, dial *20*127.
+
+If you have the extension in question on your hot keys / BLFs you can just use the dial code *20* and then press the key in question.
+
+You can also retrieve a call from a ringing extension without specifying the extension number. To do this, type *20* followed by the send key. This will redirect the longest ringing call to your extension.
+
+> You can create a speed dial on your extension which does this i.e. create a speed dial with the value *20*.
+{.is-success}
+
+
+
 # Software Licenses
+
+The billing / subscription details of Blueberry's licences are shown in the Subscriptions section.
+
+
 
 # Subscriptions
 
