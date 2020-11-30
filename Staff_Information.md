@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-11-30T10:00:13.214Z
+date: 2020-11-30T10:03:57.233Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -111,7 +111,7 @@ A blind transfer is one where the call is forwarded to the destination without f
 **Attended transfer**
 An attended transfer is one where the existing call is placed on hold while you talk to the intended recipient to inform them of the transfer. When you've answered a call, press the hold button, then dial the number you intend to transfer to and press send. Once the new call is connected, you can at any time press the transfer button and select the call which is on hold to connect the calls.
 
-
+[Link to 3CX License Information](/3cx/3cx_license_information)
 
 # Software Licenses
 
