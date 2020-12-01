@@ -2,9 +2,9 @@
 title: Remote Working
 description: 
 published: true
-date: 2020-11-27T12:24:46.782Z
+date: 2020-12-01T15:58:39.311Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-11-26T15:43:39.501Z
 ---
 
