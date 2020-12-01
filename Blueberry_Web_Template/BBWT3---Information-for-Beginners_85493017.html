@@ -2,63 +2,12 @@
 title: Blueberry Group : BBWT3 - Information for Beginners 
 description: 
 published: true
-date: 2020-12-01T11:00:22.181Z
+date: 2020-12-01T14:12:57.120Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-11-27T11:04:56.507Z
 -->
 
-<h1>Information for Beginners&nbsp;</h1>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-Introduction">Introduction</a></li>
-  <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-Architecture">Architecture</a>
-    <ul>
-      <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-TechnicalArchitecture">Technical Architecture</a></li>
-      <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-CallSequenceofaClientRequest">Call Sequence of a Client Request</a></li>
-    </ul>
-  </li>
-  <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-Addinganewfeature">Adding a new feature</a>
-    <ul>
-      <li>Back-end's changes<ul>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-1.Addamodelclasstoproject/BBWT.Data/Model">1. Add a model class to project/BBWT.Data/Model</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-2.AddaDbSetforyourmodeltoproject/BBWT.Data">2. Add a DbSet for your model to project/BBWT.Data</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-3.Addadatabasemigrationformodelschanges">3. Add a database migration for models changes</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-4.AddaDTOtoproject/BBWT.Data/DTO">4. Add a DTO to project/BBWT.Data/DTO</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-5.AddamappingbetweenyourmodelandDTO">5.&nbsp;Add a mapping between your model and DTO</a>
-            <ul>
-              <li>Approach 1. Add a special mapping method into the model's class</li>
-              <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-Approach2.Createanewmappingprofileclass">Approach 2. Create a new mapping profile class</a></li>
-            </ul>
-          </li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-6.Addaserviceinterfacetoproject/BBWT.Services">6.&nbsp;Add a service interface to project/BBWT.Services</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-7.AddaserviceclasstoBBWT.Services">7. Add a service class to BBWT.Services</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-8.Registeryourserviceinproject/BBWT.Services/ServiceCollectionExtension.cs">8. Register your service in&nbsp;project/BBWT.Services/ServiceCollectionExtension.cs</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-step99.Addacontrollertoproject/BBWT.Server/Api">9.&nbsp;Add a controller to project/BBWT.Server/Api</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-10.Addinitialdatatodatabaseinproject/BBWT.InitialData/ProjectInitialData.cs">10. Add initial data to database in&nbsp;project/BBWT.InitialData/ProjectInitialData.cs</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-11.Addrouterolesinproject/BBWT.InitialData/RouteRolesDataService.cs">11. Add route roles in&nbsp;project/BBWT.InitialData/RouteRolesDataService.cs</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-12.Addaunittesttotest/BBWT.Services.Test">12. Add a unit test to test/BBWT.Services.Test</a></li>
-        </ul>
-      </li>
-      <li>Front-end's changes<ul>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-Featureorientedstructure">Feature oriented structure&nbsp;</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-1.Addanentityinterface">1.&nbsp;Add an entity interface</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-2.Addaserviceclass">2.&nbsp;Add a service class</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-3.AddanAngularcomponent">3.&nbsp;Add an Angular component</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-4.AddanAngularmodule">4.&nbsp;Add an Angular module</a></li>
-          <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-5.Registeryourmoduleinmodulesrouting">5.&nbsp;Register your module in&nbsp;modules routing</a></li>
-        </ul>
-      </li>
-      <li><a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners#BBWT3ExplainedtoBeginners-Applicationrun-time">Application run-time</a>
-        <ul>
-          <li>1.&nbsp;Add feature's page to menu</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h1>Introduction</h1>
 <p>This document explains how to use BBWT3 to create a basic code for a new feature step by step.</p>
 <p>It requires a basic knowledge of C# and Typescript (interfaces, annotations, generics, etc.). It is not needed to be experienced in ASP.NET Core or EF Core to follow this document.</p>
