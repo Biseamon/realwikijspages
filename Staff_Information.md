@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-01T09:57:07.467Z
+date: 2020-12-01T09:58:22.214Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -234,7 +234,7 @@ If none can answer a phone call from this group as well, they get transferred to
 - None answered, call goes to the voicemail.
 
 ## How to Pick Up a Ringing Extension
-f you hear a particular extension ringing, and you know that the owner of that extension is not able to take the call, you can take the call by using the “Call Pickup” feature.
+If you hear a particular extension ringing, and you know that the owner of that extension is not able to take the call, you can take the call by using the “Call Pickup” feature.
 
 You can do this by typing the dial code *20* followed by the extension number.
 
