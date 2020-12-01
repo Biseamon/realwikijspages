@@ -1,58 +1,50 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : BBWT3 - Security</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<!--
+title: Blueberry Group : BBWT3 - Security
+description: 
+published: true
+date: 2020-11-27T16:24:01.275Z
+tags: 
+editor: ckeditor
+dateCreated: 2020-11-27T11:06:33.548Z
+-->
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : BBWT3 - Security
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <h1 id="BBWT3-Security-Overview">Overview</h1><p><strong>Note</strong>: “Real” security is about API calls. The “appearance” of security is about (a) page accessibility, (b) menu item visibility. All three are required for a happy customer.</p><p>In short, you can think of the &quot;real&quot; part of the BBWT3 security <em>rules</em> as:</p><ul><li><strong>Which logged-in users </strong>can have <strong>unrestricted</strong> access to this API method? This is <strong>roles</strong> security. We group those users into sets called roles, e.g. Manager, Administrator, Editor. This is a very simple form of security that is enough for 70% of the security work.</li><li>If a user is restricted from receiving api/documents/1 but may receive api/documents/2 then this is <strong>resource</strong> security. This covers the next 29% of security work. It's necessary for all business-to-business sites. It's common for an intranet site for a large business. </li><li>If a user is <em>sometimes</em> restricted from receiving api/documents/1, but at other times is allowed, then this also requires kind of resource security, which we call <strong>state-based</strong> security<strong>.</strong></li></ul><p>You will often choose to combine security elements such that you have a test “<em>Is the user in the role ‘Administrator’, failing that, is the user merely trying to access their own data</em>”.</p><p>You can see the applied roles security when logged-in as admin at <a class="external-link" href="http://bbwt3-test-windows-aurora.blueberrytest.com/app/routes" rel="nofollow">http://bbwt3-test-windows-aurora.blueberrytest.com/app/routes</a> . This is achieved by reflection, i.e. the application is reading its own code to find out what roles security has been applied. It would be nice if we could also see the resource-based security there too (31-01-19 <a class="external-link" href="https://pts.bbconsult.co.uk/taskEditor?id=158253" rel="nofollow">#158253</a>).</p><h1 id="BBWT3-Security-Terminology"><span style="color: rgb(0,51,102);">Terminology</span></h1><ul><li>Sessions – when a user logs in, they begin a session. A secure cookie is given to the browser that contains information about the user. When that cookie expires by time-out or is otherwise deleted (e.g. by logout), the user needs to log in again to start a new session. The cookie is sent to the server on every call, and the server trust its contents. This is useful because we enter “claims” about the user into the cookie. The cookie can be trusted because it is encrypted so that only the server can read its contents or write to it. If we didn't store the claims in the cookie, then the server would have to check the user's current privileges with the database on every call, which would be a significant performance hit. (Or in the server's memory, which would be faster but would be a break with the RESTful architecture)</li><li>Claims – The database holds claims that are loaded into the cookie when a user logs in. These claims may be “I am an Administrator” or “I am part of the North West region” or “I am part of Gary’s team” or “I am an employee of Acme Ltd” or “I can run faster than 2,000 mph” – anything. Most claims are “I belong to a particular set of users”, most notably “I belong to the particular set of users that have ‘role’ X”, “I belong to the particular set of users that belong to ‘tenant’ Y”, “I belong to the particular set of users that belong to ‘group’ Z”.<ul><li>A claim is expected to <em>typically</em> last for the whole session (31-01-19 <a class="external-link" href="https://pts.bbconsult.co.uk/taskEditor?id=158251" rel="nofollow">#158251</a>).</li><li>Note: Not all security requirements can be expressed in a session-spanning claim. See, for instance state-based security. But almost all of them can. The ones that <em>don’t</em> will <em>often</em> have slower security performance.</li></ul></li><li>Roles – A role is the simplest kind of security. Roles protect an API function with a simple rule: if your role claim is <em>not</em> listed then you are not permitted to access <strong><em>any</em></strong><em> data through that function</em>. You may have resource security on top of the same function.</li><li>Resources – An example of the most common form of resource security rule is: &quot;Sales notes created by Gary's team can only be read/edited/deleted by Gary's team; when a user in Gary's team generates a list of Sales notes, only show them the sales notes that were created by Gary's team&quot;.</li><li>Groups - For resource-based security, the test is usually “is my groupId claim equal to the &lt;entity&gt;.groupId of the thing”. The specific test can be more complex. There’s no restriction on tests that the groupIds must be on the table/entity of interest – you can navigate your data model to find the group.</li><li>State-based security - Rarely, you may have other resource-based requirements that aren’t specifically about group membership e.g. “if entity Y <strong><em>currently</em></strong> passes a test with respect to the calling user Z”.</li><li><p>Tenants – A lot of the literature references multi-tenant systems. Tenants are just another kind of group. What makes “tenants” interesting is that we should often be particularly careful to include tenant id within uniqueness constraints (task 158252). This is so that we don’t leak information between tenants with error messages such as: &quot;Car with registration plate “GCP 225Y” cannot be entered into the system because it is already in the database&quot;.</p></li><li>Permissions – BBWT2 cared a lot about ‘permissions’, BBWT3 does not. BBWT2 Permissions were effectively an extra layer between a role and an API function that allowed you to say “with the ‘edit Car’ permission you may call APIs: UpdateCar, CreateCar, DeleteCar; and the roles ‘CarEditor’, 'SiteAdmin' have the ‘edit Car’ permission; ”. BBWT3 instead says: “permission to call APIs: UpdateCar, CreateCar, DeleteCar is restricted to the roles ‘CarEditor’, 'SiteAdmin'&quot;. </li></ul><h1 id="BBWT3-Security-ImplementationDetails">Implementation Details</h1><p><br/></p><p><ul class='childpages-macro'><li><a href="BBWT3---Acutenix-Testing_85493291.html">BBWT3 - Acutenix Testing</a></li><li><a href="85493303.html">BBWT3 - Application Security / Monitoring</a></li><li><a href="BBWT3---How-Security-Works_85493289.html">BBWT3 - How Security Works</a></li></ul></p>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Security&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p><strong>Note</strong>: “Real” security is about API calls. The “appearance” of security is about (a) page accessibility, (b) menu item visibility. All three are required for a happy customer.</p>
+<p>In short, you can think of the "real" part of the BBWT3 security&nbsp;<i>rules</i>&nbsp;as:</p>
+<ul>
+  <li><strong>Which logged-in users&nbsp;</strong>can have&nbsp;<strong>unrestricted</strong>&nbsp;access to this API method? This is&nbsp;<strong>roles</strong>&nbsp;security. We group those users into sets called roles, e.g. Manager, Administrator, Editor. This is a very simple form of security that is enough for 70% of the security work.</li>
+  <li>If a user is restricted from receiving api/documents/1 but may receive api/documents/2 then this is&nbsp;<strong>resource</strong>&nbsp;security. This covers the next 29% of security work. It's necessary for all business-to-business sites. It's common for an intranet site for a large business.</li>
+  <li>If a user is&nbsp;<i>sometimes</i>&nbsp;restricted from&nbsp;receiving api/documents/1, but at other times is allowed, then this also requires kind of resource security, which we call&nbsp;<strong>state-based</strong>&nbsp;security<strong>.</strong></li>
+</ul>
+<p>You will often choose to combine security elements such that you have a test “<i>Is the user in the role ‘Administrator’, failing that, is the user merely trying to access their own data</i>”.</p>
+<p>You can see the applied roles security when&nbsp;logged-in as admin at&nbsp;<a href="http://bbwt3-test-windows-aurora.blueberrytest.com/app/routes">http://bbwt3-test-windows-aurora.blueberrytest.com/app/routes</a>&nbsp;. This is achieved by reflection, i.e. the application is reading its own code to find out what roles security has been applied.&nbsp;It would be nice if we could also see the resource-based security there too (31-01-19&nbsp;<a href="https://pts.bbconsult.co.uk/taskEditor?id=158253">#158253</a>).</p>
+<h1>Terminology</h1>
+<ul>
+  <li>Sessions – when a user logs in, they begin a session. A secure cookie is given to the browser that contains information about the user. When that cookie expires by time-out or is otherwise deleted (e.g. by logout), the user needs to log in again to start a new session. The cookie is sent to the server on every call, and the server trust its contents. This is useful because we enter “claims” about the user into the cookie. The cookie can be trusted because it is encrypted so that only the server can read its contents or write to it. If we didn't store the claims in the cookie, then the server would have to check the user's current privileges with the database on every call, which would be a significant performance hit. (Or in the server's memory, which would be faster but would be a break with the RESTful architecture)</li>
+  <li>Claims – The database holds claims that are loaded into the cookie when a user logs in. These claims may be “I am an Administrator” or “I am part of the North West region” or “I am part of Gary’s team” or “I am an employee of Acme Ltd” or “I can run faster than 2,000 mph” – anything. Most claims are “I belong to a particular set of users”, most notably “I belong to the particular set of users that have ‘role’ X”, “I belong to the particular set of users that belong to ‘tenant’ Y”, “I belong to the particular set of users that belong to ‘group’ Z”.<ul>
+      <li>A claim is expected to&nbsp;<i>typically</i>&nbsp;last for the whole session (31-01-19&nbsp;<a href="https://pts.bbconsult.co.uk/taskEditor?id=158251">#158251</a>).</li>
+      <li>Note: Not all security requirements can be expressed in a session-spanning claim. See, for instance state-based security. But almost all of them can. The ones that&nbsp;<i>don’t</i>&nbsp;will&nbsp;<i>often</i>&nbsp;have slower security performance.</li>
+    </ul>
+  </li>
+  <li>Roles – A role is the simplest kind of security. Roles protect an API function with a simple rule: if your role claim is&nbsp;<i>not</i>&nbsp;listed then you are not permitted to access&nbsp;<i><strong>any</strong>&nbsp;data through that function</i>. You may have resource security on top of the same function.</li>
+  <li>Resources – An example of the most common form of resource security rule is: "Sales notes created by Gary's team can only be read/edited/deleted by Gary's team; when a user in Gary's team generates a list of Sales notes, only show them the sales notes that were created by Gary's team".</li>
+  <li>Groups - For resource-based security, the test is usually “is my groupId claim equal to the &lt;entity&gt;.groupId of the thing”. The specific test can be more complex. There’s no restriction on tests that the groupIds must be on the table/entity of interest – you can navigate your data model to find the group.</li>
+  <li>State-based security - Rarely, you may have other resource-based requirements that aren’t specifically about group membership e.g. “if entity Y&nbsp;<i><strong>currently</strong></i>&nbsp;passes a test with respect to the calling user Z”.</li>
+</ul>
+<p>Tenants – A lot of the literature references multi-tenant systems. Tenants are just another kind of group. What makes “tenants” interesting is that&nbsp;we should&nbsp;often&nbsp;be particularly careful to include tenant id within uniqueness constraints (task 158252). This is so that we don’t leak information between tenants with error messages such as: "Car with registration plate “GCP 225Y” cannot be entered into the system because it is already in the database".</p>
+<ul>
+  <li>Permissions – BBWT2 cared a lot about ‘permissions’, BBWT3 does not. BBWT2 Permissions were effectively an extra layer between a role and an API function that allowed you to say “with the ‘edit Car’ permission you may call APIs: UpdateCar, CreateCar, DeleteCar; and the roles ‘CarEditor’, 'SiteAdmin' have the ‘edit Car’ permission;&nbsp;”. BBWT3 instead says: “permission to call APIs: UpdateCar, CreateCar, DeleteCar is restricted to the roles ‘CarEditor’, 'SiteAdmin'".</li>
+</ul>
+<h1>Implementation Details</h1>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="BBWT3---Acutenix-Testing_85493291.html">BBWT3 - Acutenix Testing</a></li>
+  <li><a href="85493303.html">BBWT3 - Application Security / Monitoring</a></li>
+  <li><a href="BBWT3---How-Security-Works_85493289.html">BBWT3 - How Security Works</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
