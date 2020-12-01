@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-01T09:46:57.699Z
+date: 2020-12-01T09:57:07.467Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -2489,4 +2489,29 @@ The billing / subscription details of Blueberry's licences are shown in the Subs
 
 # Subscriptions
 
+**TODO
+
 # Asset Management
+
+We use SnipeIT as our Asset Management Tool, you can access it [here](http://assets.bbconsult.co.uk).
+
+You can use this software to register some products from Blueberry like mouse, keyboard and/or Windows licenses
+
+### Recent modifications
+
+**Location from LDAP server**
+
+Snipe IT can set a location for users (consult or systems), however before snipe IT was connected to the official LDAP server and wasn't able to find the location of each users from the LDAP server.
+
+This is the configurations before the modifications:
+
+![ldap_snipeit.png](/ldap_snipeit.png)
+
+![screenshot_from_2020-07-28_16-16-28.png](/screenshot_from_2020-07-28_16-16-28.png)
+After the modifications, we created a DC in the LDAP with a OU for systems and a OU for consult and we made some settings to check systems and consult in a differents ways.
+
+This is the configurations after the modifications:
+
+![settings.png](/settings.png)
+
+We need to create a script to sync the DC BBconsult.co.uk and the DC blueberrystems to the DC BlueberrySnipeIT
