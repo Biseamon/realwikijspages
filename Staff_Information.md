@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-11-30T11:42:24.054Z
+date: 2020-12-01T09:05:15.410Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -253,7 +253,18 @@ You can also retrieve a call from a ringing extension without specifying the ext
 
 The billing / subscription details of Blueberry's licences are shown in the Subscriptions section.
 
+# Tabs {.tabset}
+## First Tab
 
+Any content here will go into the first tab...
+
+## Second Tab
+
+Any content here will go into the second tab...
+
+## Third Tab
+
+Any content here will go into the third tab...
 
 # Subscriptions
 
