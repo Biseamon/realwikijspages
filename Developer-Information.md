@@ -2,9 +2,9 @@
 title: Developer Information
 description: 
 published: true
-date: 2020-11-27T16:06:11.166Z
+date: 2020-12-01T15:58:29.655Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-11-27T13:53:16.589Z
 ---
 

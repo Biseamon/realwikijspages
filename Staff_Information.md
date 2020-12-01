@@ -2,9 +2,9 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-01T09:46:57.699Z
+date: 2020-12-01T15:58:43.156Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-11-26T12:15:46.742Z
 ---
 
@@ -234,7 +234,7 @@ If none can answer a phone call from this group as well, they get transferred to
 - None answered, call goes to the voicemail.
 
 ## How to Pick Up a Ringing Extension
-f you hear a particular extension ringing, and you know that the owner of that extension is not able to take the call, you can take the call by using the “Call Pickup” feature.
+If you hear a particular extension ringing, and you know that the owner of that extension is not able to take the call, you can take the call by using the “Call Pickup” feature.
 
 You can do this by typing the dial code *20* followed by the extension number.
 
@@ -2489,4 +2489,29 @@ The billing / subscription details of Blueberry's licences are shown in the Subs
 
 # Subscriptions
 
+**TODO
+
 # Asset Management
+
+We use SnipeIT as our Asset Management Tool, you can access it [here](http://assets.bbconsult.co.uk).
+
+You can use this software to register some products from Blueberry like mouse, keyboard and/or Windows licenses
+
+### Recent modifications
+
+**Location from LDAP server**
+
+Snipe IT can set a location for users (consult or systems), however before snipe IT was connected to the official LDAP server and wasn't able to find the location of each users from the LDAP server.
+
+This is the configurations before the modifications:
+
+![ldap_snipeit.png](/ldap_snipeit.png)
+
+![screenshot_from_2020-07-28_16-16-28.png](/screenshot_from_2020-07-28_16-16-28.png)
+After the modifications, we created a DC in the LDAP with a OU for systems and a OU for consult and we made some settings to check systems and consult in a differents ways.
+
+This is the configurations after the modifications:
+
+![settings.png](/settings.png)
+
+We need to create a script to sync the DC BBconsult.co.uk and the DC blueberrystems to the DC BlueberrySnipeIT

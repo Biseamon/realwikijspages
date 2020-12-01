@@ -2,18 +2,248 @@
 title: BBWT3 - Releases
 description: 
 published: true
-date: 2020-11-27T16:23:25.301Z
+date: 2020-12-01T16:02:42.763Z
 tags: 
-editor: ckeditor
+editor: undefined
 dateCreated: 2020-11-27T11:06:07.621Z
 -->
 
-<h1>Releases&nbsp;</h1>
+<h1>Blueberry Group : BBWT3 - Release v3.4.0&nbsp;</h1>
 <p>Created by Jason Cozza on Sep 21, 2020</p>
+<p>We are pleased to announce that we have released a new version of BBWT3!</p>
 <p>&nbsp;</p>
+<p><strong><u>Git location</u></strong></p>
+<p>This version can be forked from&nbsp;<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/releases/stable-august20-v3.4.0">this release in GitLab</a>.</p>
+<p>&nbsp;</p>
+<p>However, the most recent stable release which may include patches is always kept up to date in the&nbsp;<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/tree/master">master branch</a>.</p>
+<p>&nbsp;</p>
+<p>Note: from&nbsp;now on, the master branch doesn't contain the demo module. Several incomplete modules removed as well. So, you don't need to clean it up anymore.</p>
+<p>&nbsp;</p>
+<p>Full code of stable version with all the code including the demo module is placed to a new&nbsp;<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/tree/demo">demo branch</a>.</p>
+<p>The demo branch is deployed to&nbsp;<a href="https://bbwt3-demo-windows.blueberrytest.com/">the demo site</a>.</p>
+<p>&nbsp;</p>
+<p><strong><u>Versioning&nbsp;</u></strong></p>
+<p>This release has a version number v3.4.0.</p>
+<p>The version format is [<strong>major version</strong>&nbsp;(“3” – because of BBWT3),&nbsp;<strong>minor version</strong>&nbsp;(4 – release counter),&nbsp;<strong>patch number</strong>&nbsp;(0)].</p>
+<p>The version is stored in BBWT.Web.csproj file: &lt;Version&gt;3.4.0&lt;/Version&gt;</p>
+<p>&nbsp;</p>
+<p><strong><u>Release summary</u></strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>BBWT3 Demo Links Site</strong></p>
+<p>We've got a new site to manage testing/demo sites of the BBWT3 project:&nbsp;<a href="https://bbwt3.blueberrytest.com/">https://bbwt3.blueberrytest.com</a></p>
+<p>&nbsp;</p>
+<p><strong>CRUD</strong></p>
+<p>See full description of new server-side CRUD services design in&nbsp;<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/blob/develop/modules/BBWM.Core.Crud/Readme.md">readme.md</a>.</p>
+<p>Key changes:</p>
 <ul>
-  <li><a href="BBWT3---Release-v3.4.0_85493297.html">BBWT3 - Release v3.4.0</a></li>
+  <li>Internal classes/interfaces for CRUD/paging are significantly extended. Interfaces have become more fine-grained which gives flexibility to change CRUD services behaviour in separate parts: paging/data reader/data writer/data remover/data provider(DB context/AWS etc.). For example, for a custom service, we can use our out-of-the-box CRUD service and replace its data removing part to a safe-removing provider.&nbsp;<i>For a downstream project that means we can do less code rewriting/duplications on behaviour overriding.</i></li>
+  <li>Interfaces/classes are extended with a wider list of generic DTO types, which allows us, for example, use one DTO type for listed items and second DTO type for picking up a single record.</li>
+</ul>
+<p><i>For a downstream project, It's useful for grid pages when we need plain DTO's to be shown in a grid and detailed DTOs to be shown on master-page.&nbsp;We won't write extra code now to implement this separation but just will use a proper generic interface!</i></p>
+<ul>
+  <li>CRUD now is presented by a separate module BBWM.Core.Crud as it's a separate feature which can be versioned.</li>
+  <li>We removed the term "Grid" from Crud classes because Grid is associated with controls, that was a confusing mix-up. We use term Paged instead.</li>
+  <li>Base CRUD controllers classes' list extended with PagedDataControllerBase which implements paging + reading without writing data.</li>
+</ul>
+<p><i>For a downstream project, it means avoiding potential security issues because you don't need to control access to write API methods. For example, we applied to out DB changes audit API and logins audit API where we just provide data as read-only.</i></p>
+<ul>
+  <li>We got rid of GetAll and DeleteAll API methods to be provided by default to avoid potential security issues. For example, you could inherit CRUD API functionality and forget to restrict access to GetAll/DeleteAll which could end up with revealing/loosing of sensitive data.</li>
+</ul>
+<p><i>An API controller in a downstream project must manually add those methods and set correct access rights.</i></p>
+<ul>
+  <li>Added an option to use CRUD service to perform mapping on the SQL side. Usually, we do the mapping&nbsp;<strong>after</strong>&nbsp;data fetching from SQL. In some cases, the option can significantly reduce a server overloading because only a required number of fields get fetched.</li>
+  <li>All DTOs now inherit DTO base interfaces (IDto&lt;id&gt;, IBaseDto) to be:<ul>
+      <li>§ tracked</li>
+      <li>§ explicitly defined in CRUD services as an object with an ID</li>
+    </ul>
+  </li>
+  <li>Added SafeDataRemover, SafeCrudService and SafePagedCrudService services implementing safe removing. It's useful for services like users management that should simply inherit SafeCrudService so the records not deleted from the table but marked with IsRemoved flag.</li>
+  <li>Added front(ChildPagedCrudService) &amp; back(ChildCrudControllerBase, ChildPagedCrudControllerBase) services&nbsp; to provide paging/CRUD functional for linked records.</li>
+</ul>
+<p><i>Example: an admin, on the customers listing page, opens customer details, works with the customer's orders in the grid. Then new CRUD services do paging+CRUD for the customer's orders only.</i></p>
+<p>&nbsp;</p>
+<p>(It's planned to add a separate demo page to demonstrate all the CRUD flexibility)</p>
+<p>&nbsp;</p>
+<p><strong>Customization</strong></p>
+<ul>
+  <li>Created front folder for all the project-specific front code (<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/tree/develop/src%2FBBWT.Web%2FClientApp%2Fapp%2Fproject">/ClientApp/app/project</a>). Now we won't mix up most of the front project code with core code. Project-specific page routes are placed into separate&nbsp;<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/blob/develop/src/BBWT.Web/ClientApp/app/project/project-routing.ts">routing file</a>.</li>
+</ul>
+<p>In particular,&nbsp;<i>the benefit</i>&nbsp;is that front core updates shouldn't break project-specific code on merges.</p>
+<p>&nbsp;</p>
+<p><strong>Database</strong></p>
+<ul>
+  <li>DB context supports retries (set up in app settings, there is a new section: DatabaseConnectSettings {} instead of BBWT {} section).</li>
+  <li>Critical fix for MySQL migrations - avoid charsets added to migration script.</li>
 </ul>
 <p>&nbsp;</p>
-<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-<p><a href="http://www.atlassian.com/">Atlassian</a></p>
+<p><strong>DB Document feature</strong></p>
+<ul>
+  <li>Vast DbDoc refactoring done. Its code has become readable.</li>
+  <li>Now supports and shows tables from multiple DB contexts/databases</li>
+  <li>Added UT tests (quite comprehensive) that test real (not fake) database schemas</li>
+  <li>Multiple fixes in UI.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Demo Module</strong></p>
+<ul>
+  <li>Both front &amp; back code restructured to feature-oriented structure (excepting the Northwind models functionality in the back-side code).</li>
+  <li>The demo menu is now more structured to demonstrate a separate feature on each page. We've almost sorted out the mess we had.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Front Core</strong></p>
+<ul>
+  <li>Upgraded to Angular 9.1.7</li>
+  <li>Upgraded to PrimeNG 9.1.3</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Grid</strong></p>
+<ul>
+  <li>Fixed local data source (grid [data]="..") for the grid to work with CRUD operations</li>
+  <li>Added demo page for a grid using a local source (demo/local-grid)</li>
+  <li>Added an option to hide and disable fields in the creating/editing modal window</li>
+  <li>Added methods for showing/hiding action links per row</li>
+  <li>Added flexibility to customize filters set applied to the grid in front code.<i>&nbsp;For example, you may need to additionally filter the grid by a property that is not placed into the filter&nbsp;panel</i></li>
+  <li>Added ClassName field to customize the column's styling</li>
+  <li>Added CurrencyCode to set custom currency. (it was USD only)</li>
+  <li>Fixed: now default date format of a grid's column is displayed as a short date using the site's locale (unless it's explicitly set a custom way for a column). Before the change, a default format was "DD/MM/YYYY".</li>
+  <li>Fixed: avoid submitting by Add button of the grid being placed into a form container</li>
+  <li>Added flexibility to customize filters set applied to the grid in front code.<i>&nbsp;For example, you may need to additionally filter the grid by a property that is not placed into the filter panel.</i></li>
+</ul>
+<p><strong>Grid Filter</strong></p>
+<ul>
+  <li>There is a new page to demonstrate the grid filters: /app/demo/grid-filter. It will be extended with other filter types and will incapsulate and demonstrate all the filtration options and practices.</li>
+  <li>default values in filter inputs now supported</li>
+  <li>Added a missed Boolean filter. Now if a DB model has a flag-field then it can be mapped to the Boolean filter of front-end.</li>
+  <li>Now it's possible to use a custom UI for a filter. UI is defined in an angular component and linked to the filter.</li>
+</ul>
+<p>Example on /app/demo/grid-filter page (Customer Code filter)</p>
+<ul>
+  <li>Added new input types: number and currency. Previously we allowed a text input only, but now we use PrimeNG's new pInputNumber control for number/currency values with flexible formatting options (see /app/demo/grid-filter page)</li>
+  <li>Fixed: we had wrong records fetched after 100th page because of moment() data conversion</li>
+  <li>Fixed: we had a hidden long-term bug with date filter handling on a server (related to time-zone)</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>GUI</strong></p>
+<ul>
+  <li>Re-designed the cookie banner. Now shown in the footer.</li>
+</ul>
+<p>&nbsp;</p>
+<figure class="image"><img src="attachments/85493297/85493298.jpg"></figure>
+<p>&nbsp;</p>
+<ul>
+  <li>Added an option to show/hide a password in the password input. Added as an Angular directive &lt;input … showPassword … /&gt;</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+  <li>New combobox control(&lt;bb-combobox&gt;) with lazy data loading.</li>
+</ul>
+<p>A combo box is a combination of a drop-down list or list box and a single-line editable textbox, allowing the user to either type a value directly or select a value from the list. This UI-control is used when you need to specify a value from a huge list of data.</p>
+<p>Now we can directly bind an API point to a dropdown component.</p>
+<p>Detailed instructions added to the demo page Demo &gt; Guidelines &gt; Search. Additionally, the page is improved to show usage cases for three types of listing controls: Combobox, AutoComplete and Dropdown</p>
+<ul>
+  <li>Asterisk added for all fields that validated as required. In particular, asterisks are automatically added for auto-generated Add/Edit dialogue of the grid component.</li>
+  <li>Fixed: reset password &amp; Confirm Email had different styling.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>ID Hashing</strong>:&nbsp;</p>
+<ul>
+  <li>Vast refactoring of model hashing feature.</li>
+  <li>Filtering by hashed id - added new filter type: ObjectReference. So we get rid of the issue when needed to explicitly use id_original in server filtration</li>
+  <li>[IdBinder] for action parameters.</li>
+  <li>The Persons demo page now changed to demonstrate ID hashing options.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Menu:</strong></p>
+<ul>
+  <li>Redundant "[x] For authorized users only" menu item's option removed</li>
+  <li>"[x] Visible" menu item's option added. Allows hiding a menu item overriding visibility determined by access rules.&nbsp;<i>For example, can be useful to hide a broken page for a while</i>.</li>
+  <li>Menu item's router link is changed from text input to dropdown with search option. The dropdown contains a full list of routes. So we avoid redundant typing as we had before, avoid making typo mistakes.</li>
+  <li>Items in JSON sorted the same order as the menu looks. Also, new sorting should fix possible merging conflicts that we had in JSON.</li>
+  <li>Fixed: opening master-details pages hid the menu item (e.g. Opening User Details page hid Users page menu item)</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>OData</strong></p>
+<ul>
+  <li>Required NuGet packages installed, OData is set up in app's startup section (allowed $select, $expand, $filter etc. options)</li>
+  <li>Old Odata demo page is replaced with a new one containing two tabs. On the first, you can try out several presets of OData queries (to be extended). On the second one, a data fetching grid is placed.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>PWA</strong></p>
+<ul>
+  <li>Existent basic PWA code refactored to a separate Angular module</li>
+  <li>Added an option to notify when new app version is available with a dialogue to reload page</li>
+  <li>Added on option to install the web app on a user's device with dialogue:</li>
+</ul>
+<figure class="image"><img src="attachments/85493297/85493299.jpg"></figure>
+<ul>
+  <li>Added an option to notify when the app goes offline:<br>&nbsp;</li>
+</ul>
+<figure class="image"><img src="attachments/85493297/85493300.jpg"></figure>
+<ul>
+  <li>Added an offline indicator with a hint on mouseover</li>
+</ul>
+<figure class="image"><img src="attachments/85493297/85493301.jpg"></figure>
+<ul>
+  <li>Added PWA tab to the system configuration page. Options: Prompt install app (mobile/desktop), show offline indicator (mobile/desktop)</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Roles &amp; Permissions</strong></p>
+<ul>
+  <li>Added Angular directives ([role]="...", [permission]="...") allowing to hide page controls depending on logged user roles/permissions. You simply add e.g. &lt;tabPanel *role="SuperAdmin" &gt; to show the panel for SuperAdmin only.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>SonarQube</strong></p>
+<ul>
+  <li>Fix: Now SQ project key is automatically set in CI script to avoid key duplication in downstream projects.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>SSO</strong></p>
+<p>Added SSO support for Facebook/LinkedIn/google (placed in BBWM.SsoProviders server module)</p>
+<ul>
+  <li>Added SSO settings for all the providers to the system configuration page &gt; Login tab</li>
+  <li>Added icons for SSO providers (Google/Facebook/LinkedIn) to the login page</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>System Configuration</strong></p>
+<ul>
+  <li>Now we separate tabs shown for system admin and super admin. This change ends up with reducing the number of tabs shown for an admin. Super admin sees his tabs only, as well as a system admin.</li>
+  <li>System config settings are loaded with angular resolvers (set in routes), not in components.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Tests</strong></p>
+<ul>
+  <li>Refactored test libraries so each library corresponds to its BBWM module</li>
+  <li>ID Hashing tests added</li>
+  <li>Extended users service with new tests</li>
+  <li>Added tests for email templates</li>
+  <li>Added tests for static pages</li>
+  <li>Added tests for DB Document feature</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong><u>After forking&nbsp;</u></strong></p>
+<p>To consider when forking BBWT3 code for a new project:</p>
+<ul>
+  <li>Although this release is considered stable, it may contain bugs. Improving the quality of BBWT3 code is an ongoing process.</li>
+  <li>Permissions in BBWT3 are currently quite liberal since it is used as a customer demo. You may need to tighten these up for your customer project.</li>
+  <li>User management includes functionality for self-registration. You should remove it if your project does not need this feature.</li>
+</ul>
+<p>&nbsp;&nbsp;</p>
+<p><strong><u>Documentation&nbsp;</u></strong></p>
+<p>The BBWT3 team will make efforts to have the wiki documentation keep up with the code changes. Anyway, use a wiki (<a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3">https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3</a>) in order to make your code consistent with BBWT3 principles.</p>
+<p>Details on how to get started and set up the environment are here:&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Development+Environment">https://wiki.bbconsult.co.uk/display/BLUEB/Development+Environment</a></p>
+<p>&nbsp;</p>
+<p>The guidance that covers a feature creation steps through all the app layers and also describes some code practices is here:&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners">https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners</a>. I do recommend to review it after each release, it should help you keep up with the latest BBWT3 code approaches and practices.</p>
+<p>&nbsp;</p>
+<p>A&nbsp;<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/blob/develop/README.md#coding-tips">Coding Tips</a>&nbsp;section in repo's readme with a rule about incomplete code which comes from precedents. It's planned to put there, as ongoing amends, most critical things related to better code understanding/quality.</p>
+<p>&nbsp;</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493297/85493298.jpg">bbwt3gui.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493297/85493299.jpg">bbwt32.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493297/85493300.jpg">bbwt33.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493297/85493301.jpg">bbwt34.jpg</a> (image/jpeg)&nbsp;</p>
+<p>&nbsp;</p>

@@ -2,22 +2,733 @@
 title: BBWT3 - Technical Notes
 description: 
 published: true
-date: 2020-11-27T16:25:35.116Z
+date: 2020-12-01T16:03:27.370Z
 tags: 
-editor: ckeditor
+editor: undefined
 dateCreated: 2020-11-27T11:07:08.479Z
 -->
 
-<h1>Technical Notes&nbsp;</h1>
+<h1>Blueberry Group : BBWT3 - Docker Compose&nbsp;</h1>
 <p>Created by Jason Cozza on Sep 22, 2020</p>
+<h1>Overview</h1>
+<p>This page deals with using docker containers for DB's.</p>
 <p>&nbsp;</p>
+<p>The project can also be run with Docker using the supplied docker-compose.yml file, which composes the app and the database together.</p>
+<p>First, create the project/BBWT.Server/appsettings.Development.json file with contents:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "DatabaseConnectionSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "DatabaseType":&nbsp;"MySql"</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><code>&nbsp;&nbsp;&nbsp; },</code><br><code>&nbsp;&nbsp;&nbsp; "ConnectionStrings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "MySqlConnection":&nbsp;"server=bbwt3-db;port=3306;database=app;Uid=root;Pwd=replace_me",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "AuditSqlConnection":&nbsp;"server=bbwt3-db;port=3306;database=audit;Uid=root;Pwd=replace_me",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "HangfireMySqlConnection":&nbsp;"server=bbwt3-db;port=3306;database=hangfire;Uid=root;Pwd=replace_me"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Change replace_me to your own password.</p>
+<p>Then in the solution root run:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export MYSQL_ROOT_PASSWORD=replace_me</code><br><code>dotnet restore project/BBWT.Server/BBWT.Server.csproj</code><br><code>docker-compose up</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Again, use the password you entered into the appsettings file before.</p>
+<p>Once the app is ready, browse to&nbsp;<a href="http://127.0.0.1:5000/">http://127.0.0.1:5000</a>.</p>
+<p><strong>Note:</strong>&nbsp;The app container will mount the current directory into the /app directory in the container, so it's important to run docker-compose from the solution root.<br>This means that changes you make in your IDE will apply within the container. As the app is running in development mode, front-end changes will be hot-reloaded using Webpack.</p>
+<p>If code changes are made, you can rebuild and restart just the app container using the following command:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>docker-compose restart app</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Use the -d switch to run the containers detached from the terminal. Use docker-compose stop if running detached. You can query the logs using docker logs &lt;container_name&gt;. Use docker ps to view the status of the containers.</p>
+<p>To reset the database, use the following command while the containers are stopped:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>docker-compose rm -v db</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>To connect to the database container's database port, use your favourite MySQL client to connect to 127.0.0.1:5001 with<br>the credentials specified above.</p>
+<h1>Running migrations against the docker-compose MySQL database</h1>
+<p>If you're running the application with docker-compose, you'll need to run migrations from within the container.</p>
+<p>Run the following command once the composition is up:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>docker exec bbwt3-app dotnet ef database update --no-build -c DataContext</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>Connecting to the docker-compose MySQL database</h1>
+<p>Using your MySQL client, connect with the following parameters:<br><br>&nbsp;</p>
 <ul>
-  <li><a href="BBWT3---Docker-Compose_85493339.html">BBWT3 - Docker Compose</a></li>
-  <li><a href="BBWT3---Hosting-and-Database-Comparison_85493341.html">BBWT3 - Hosting and Database Comparison</a></li>
-  <li><a href="BBWT3---HTTP-Handling_85493337.html">BBWT3 - HTTP Handling</a></li>
-  <li><a href="BBWT3---Sending-Data-back-to-GitLab_85493343.html">BBWT3 - Sending Data back to GitLab</a></li>
-  <li><a href="BBWT3---Sending-Data-back-to-GitLab-new_85493346.html">BBWT3 - Sending Data back to GitLab new</a></li>
+  <li>Hostname: 127.0.0.1</li>
+  <li>Port: 5001</li>
+</ul>
+<h1>Blueberry Group : BBWT3 - Hosting and Database Comparison&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 22, 2020</p>
+<h1>Overview</h1>
+<p>This page shows a comparison of Amazon (Aurora) vs Microsoft (Azure) hosting options for MySQL as well as ProstgreSQL databases.</p>
+<h1>MySQL Hosting</h1>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td colspan="3">
+          <h2>Aurora MySQL</h2>
+        </td>
+        <td>&nbsp;</td>
+        <td colspan="3">
+          <h2>Azure MySQL</h2>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>Standard Instances</strong></td>
+        <td>&nbsp;</td>
+        <td colspan="3"><strong>Basic</strong></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><strong>Instance Type</strong></td>
+        <td><strong>Price Per Hour</strong></td>
+        <td><strong>Price for 30 days</strong></td>
+        <td>&nbsp;</td>
+        <td><strong>vCore</strong></td>
+        <td><strong>Price Per Hour</strong></td>
+        <td><strong>Price for 30 Days</strong></td>
+        <td><strong>Difference</strong></td>
+      </tr>
+      <tr>
+        <td>db.t2.small</td>
+        <td>$0.047</td>
+        <td>$33.84</td>
+        <td>&nbsp;</td>
+        <td>1</td>
+        <td>$0.039</td>
+        <td>$28.08</td>
+        <td>$5.76</td>
+      </tr>
+      <tr>
+        <td>db.t2.medium</td>
+        <td>$0.090</td>
+        <td>$64.80</td>
+        <td>&nbsp;</td>
+        <td>2</td>
+        <td>$0.077</td>
+        <td>$55.44</td>
+        <td>$9.36</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>Memory Optimized Instances</strong></td>
+        <td>&nbsp;</td>
+        <td colspan="3"><strong>Memory Optimized Instances</strong></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><strong>Instance Type</strong></td>
+        <td><strong>Price Per Hour</strong></td>
+        <td><strong>Price for 30 Days</strong></td>
+        <td>&nbsp;</td>
+        <td><strong>vCore</strong></td>
+        <td><strong>Price Per Hour</strong></td>
+        <td><strong>Price for 30 Days</strong></td>
+        <td><strong>Difference</strong></td>
+      </tr>
+      <tr>
+        <td>db.r4.large</td>
+        <td>$0.34</td>
+        <td>$244.80</td>
+        <td>&nbsp;</td>
+        <td>2</td>
+        <td>$0.26</td>
+        <td>$187.20</td>
+        <td>$57.60</td>
+      </tr>
+      <tr>
+        <td>db.r4.xlarge</td>
+        <td>$0.68</td>
+        <td>$489.00</td>
+        <td>&nbsp;</td>
+        <td>4</td>
+        <td>$0.52</td>
+        <td>$374.40</td>
+        <td>$114.60</td>
+      </tr>
+      <tr>
+        <td>db.r4.2xlarge</td>
+        <td>$1.36</td>
+        <td>$979.20</td>
+        <td>&nbsp;</td>
+        <td>8</td>
+        <td>$1.04</td>
+        <td>$748.80</td>
+        <td>$230.40</td>
+      </tr>
+      <tr>
+        <td>db.r4.4xlarge</td>
+        <td>$2.72</td>
+        <td>$1,958.40</td>
+        <td>&nbsp;</td>
+        <td>16</td>
+        <td>$2.08</td>
+        <td>$1,497.60</td>
+        <td>$460.80</td>
+      </tr>
+      <tr>
+        <td>db.r4.8xlarge</td>
+        <td>$5.44</td>
+        <td>$3,916.80</td>
+        <td>&nbsp;</td>
+        <td>32</td>
+        <td>$4.16</td>
+        <td>$2,995.20</td>
+        <td>$921.60</td>
+      </tr>
+      <tr>
+        <td>db.r4.16xlarge</td>
+        <td>$10.88</td>
+        <td>$7,833.60</td>
+        <td>&nbsp;</td>
+        <td style="text-align:center;" colspan="4">There is no counterpart for RDS db.r4.16xlarge on Azure</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>PostgreSQL Hosting</h1>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td colspan="3">
+          <h2>Aurora PostgreSQL</h2>
+        </td>
+        <td>&nbsp;</td>
+        <td colspan="3">
+          <h2>Azure PostgreSQL</h2>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>Standard Instances</strong></td>
+        <td>&nbsp;</td>
+        <td colspan="3"><strong>Basic</strong></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><strong>Instance Type</strong></td>
+        <td><strong>Price Per Hour</strong></td>
+        <td><strong>Price for 30 Days</strong></td>
+        <td>&nbsp;</td>
+        <td><strong>vCore</strong></td>
+        <td><strong>Price Per Hour</strong></td>
+        <td><strong>Price for 30 Days</strong></td>
+        <td><strong>Difference</strong></td>
+      </tr>
+      <tr>
+        <td style="text-align:center;" colspan="3" rowspan="2">Aurora for PostgreSQL is not offering standard instances</td>
+        <td>&nbsp;</td>
+        <td>1</td>
+        <td>$0.039</td>
+        <td>$28.08</td>
+        <td>N/a</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>2</td>
+        <td>$0.077</td>
+        <td>$55.44</td>
+        <td>N/a</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>Memory Optimized Instances</strong></td>
+        <td>&nbsp;</td>
+        <td colspan="3"><strong>Memory Optimized Instances</strong></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><strong>Instance Type</strong></td>
+        <td><strong>Price Per Hour</strong></td>
+        <td><strong>Price for 30 Days</strong></td>
+        <td>&nbsp;</td>
+        <td><strong>vCore</strong></td>
+        <td><strong>Price Per Hour</strong></td>
+        <td><strong>Price for 30 Days</strong></td>
+        <td><strong>Difference</strong></td>
+      </tr>
+      <tr>
+        <td>db.r4.large</td>
+        <td>$0.34</td>
+        <td>$244.80</td>
+        <td>&nbsp;</td>
+        <td>2</td>
+        <td>$0.204</td>
+        <td>$146.88</td>
+        <td>$97.92</td>
+      </tr>
+      <tr>
+        <td>db.r4.xlarge</td>
+        <td>$0.68</td>
+        <td>$489.60</td>
+        <td>&nbsp;</td>
+        <td>4</td>
+        <td>$0.407</td>
+        <td>$293.04</td>
+        <td>$196.56</td>
+      </tr>
+      <tr>
+        <td>db.r4.2xlarge</td>
+        <td>$1.36</td>
+        <td>$979.20</td>
+        <td>&nbsp;</td>
+        <td>8</td>
+        <td>$0.813</td>
+        <td>$585.36</td>
+        <td>$393.84</td>
+      </tr>
+      <tr>
+        <td>db.r4.4xlarge</td>
+        <td>$2.72</td>
+        <td>$1,958.40</td>
+        <td>&nbsp;</td>
+        <td>16</td>
+        <td>$1.626</td>
+        <td>$1,170.72</td>
+        <td>$787.68</td>
+      </tr>
+      <tr>
+        <td>db.r4.8xlarge</td>
+        <td>$5.44</td>
+        <td>$3,916.80</td>
+        <td>&nbsp;</td>
+        <td>32</td>
+        <td>$3.252</td>
+        <td>$2,341.44</td>
+        <td>$1,575.36</td>
+      </tr>
+      <tr>
+        <td>db.r4.16xlarge</td>
+        <td>$10.88</td>
+        <td>$7,833.60</td>
+        <td>&nbsp;</td>
+        <td>64</td>
+        <td>$6.503</td>
+        <td>$4,682.16</td>
+        <td>$3,151.44</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>For Consideration</h1>
+<p>On Azure there is an additional named pricing tier called “General Purpose”, they are less powerful compared to “Memory Optimized” ones but there is no direct alternative from Aurora:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td colspan="3">Azure PostgreSQL</td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>General Purpose</strong></td>
+      </tr>
+      <tr>
+        <td><strong>vCore</strong></td>
+        <td><strong>Price Per Hour</strong></td>
+        <td><strong>Price for 30 Days</strong></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>$0.131</td>
+        <td>$94.32</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>$0.262</td>
+        <td>$188.64</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>$0.523</td>
+        <td>$376.56</td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>$1.045</td>
+        <td>$752.40</td>
+      </tr>
+      <tr>
+        <td>32</td>
+        <td>$2.090</td>
+        <td>$1,504.80</td>
+      </tr>
+      <tr>
+        <td>64</td>
+        <td>$4.179</td>
+        <td>$3,008.88</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Azure instances can provide more memory than the ones provided for by Aurora e.g db.r4.2xlarge has 61GB while its Azure counter part Vcore 8 has 80GB.</p>
+<ul>
+  <li>Storage consumed by Amazon Aurora database is billed in per GB/month increments as well as IO's billed in per million request increments.<br>
+    <ul>
+      <li>Provisioned storage for each instance: $0.116 GB/month.</li>
+      <li>IO's consumed: $0.232 per 1 million requests.</li>
+      <li>Backup storage: $0.022 GB/month.</li>
+    </ul>
+  </li>
+  <li>Azure's system is similar:<ul>
+      <li>Provisioned storage for each instance: $0.134 GB/month.</li>
+      <li>Backup storage: $0.116 GB/month.</li>
+    </ul>
+  </li>
 </ul>
 <p>&nbsp;</p>
-<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-<p><a href="http://www.atlassian.com/">Atlassian</a></p>
+<h1>Blueberry Group : BBWT3 - HTTP Handling&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 22, 2020</p>
+<h1>Overview</h1>
+<p>This page deals with how HTTP is handled.</p>
+<h1>Back-end Details</h1>
+<p><i>For more detailed&nbsp;requirements&nbsp;description for the HTTP requests&nbsp;handling&nbsp;on the back-end side, see here:</i><a href="https://ptsa.bbconsult.co.uk/#/taskEditor?type=3&amp;id=153264">&nbsp;https://ptsa.bbconsult.co.uk/#/taskEditor?type=3&amp;id=153264</a></p>
+<h2>CRUD</h2>
+<p>To make it easier to work with CRUD,&nbsp;was added an abstract class called&nbsp;<strong>CrudControllerBase</strong>, which is already inherited from ControllerBase.</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>public</code>&nbsp;<code>abstract</code>&nbsp;<code>class</code>&nbsp;<code>CrudControllerBase&lt;TEntityDTO, TKey&gt; : BBWM.Core.Web.ControllerBase</code><br>&nbsp;<br>&nbsp;<br><code>public</code>&nbsp;<code>abstract</code>&nbsp;<code>class</code>&nbsp;<code>CrudControllerBase&lt;TEntityDTO&gt; : CrudControllerBase&lt;TEntityDTO,&nbsp;int&gt;&nbsp;//(for the entities with the int type of id)</code><br><code>&nbsp;&nbsp;&nbsp; where TEntityDTO :&nbsp;class, IDTO</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>It includes these methods:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>// gets entity by ID</code><br><code>[HttpGet, Route("{id}")]</code><br><code>public</code>&nbsp;<code>virtual</code>&nbsp;<code>async Task&lt;IActionResult&gt; Get([IdBinder] TKey id, CancellationToken cancellationToken =&nbsp;default)</code><br>&nbsp;<br>&nbsp;<br><code>// Creates entity</code><br><code>[HttpPost]</code><br><code>public</code>&nbsp;<code>virtual</code>&nbsp;<code>async Task&lt;IActionResult&gt; Create([FromBody] TEntityDTO dto, [FromServices] IModelHashingService modelHashingService, CancellationToken cancellationToken =&nbsp;default)</code><br>&nbsp;<br><code>// Updates entity</code><br><code>[HttpPut, Route("{id}")]</code><br><code>public</code>&nbsp;<code>virtual</code>&nbsp;<code>async Task&lt;IActionResult&gt; Update([FromBody] TEntityDTO dto, [IdBinder] TKey id, CancellationToken cancellationToken =&nbsp;default)</code><br>&nbsp;<br><code>// Deletes entity</code><br><code>[HttpDelete, Route("{id}")]</code><br><code>public</code>&nbsp;<code>virtual</code>&nbsp;<code>async Task&lt;IActionResult&gt; Delete([IdBinder] TKey id, CancellationToken cancellationToken =&nbsp;default)</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>This allows us to create controllers like this one:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>[Route("api/demo/organization")]</code><br><code>public</code>&nbsp;<code>class</code>&nbsp;<code>OrganizationController : CrudControllerBase&lt;OrganizationDTO&gt;</code><br><code>{</code><br><code>&nbsp;&nbsp;&nbsp; public</code>&nbsp;<code>OrganizationController(</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ICrudService&lt;OrganizationDTO&gt; service,</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ILogger&lt;OrganizationController&gt; logger) :&nbsp;base(service, logger)</code><br><code>&nbsp;&nbsp;&nbsp; {</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; [HttpGet]</code><br><code>&nbsp;&nbsp;&nbsp; public</code>&nbsp;<code>async Task&lt;IActionResult&gt; GetAll([FromQuery] Filter filter, CancellationToken cancellationToken =&nbsp;default) =&gt;</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ok(await CrudService.GetAll(cancellationToken));</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>Front-end Details</h1>
+<p><i>For more detailed&nbsp;requirements&nbsp;description for the HTTP responses&nbsp;handling&nbsp;on the front-end side, see here:&nbsp;</i><a href="https://ptsa.bbconsult.co.uk/#/taskEditor?type=3&amp;id=153360"><i>https://ptsa.bbconsult.co.uk/#/taskEditor?type=3&amp;id=153360</i></a></p>
+<h2>Basics</h2>
+<p>Just as with the back-end side, was added a basic abstract class, called&nbsp;<strong>BaseDataService</strong>, with a template handling method.&nbsp;All services that work with the back-end API must be inherited from it.<br><strong>project/BBWT.Client/src/app/bbwt/modules/data-service/base.data.service.ts</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export&nbsp;abstract</code>&nbsp;<code>class</code>&nbsp;<code>BaseDataService {</code><br><code>&nbsp;&nbsp;&nbsp; protected</code>&nbsp;<code>constructor(</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; protected</code>&nbsp;<code>http: HttpClient,</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; protected</code>&nbsp;<code>handlersFactory: HttpResponsesHandlersFactory) {}</code><br>&nbsp;<br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; protected</code>&nbsp;<code>handleRequest&lt;TResult&gt;(</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; request: Observable&lt;TResult&gt;,</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; responseHandler?: IHttpResponsesHandler): Promise&lt;TResult&gt; {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; protected</code>&nbsp;<code>constructHttpParams(obj: any): HttpParams {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...&nbsp;&nbsp;&nbsp;</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>The template method here is&nbsp;<strong>handleRequest</strong>:</p>
+<p>protected handleRequest&lt;TResult&gt;(request: Observable&lt;TResult&gt;, reponseHandler: IHttpResponsesHandler) : Promise&lt;TResult&gt;</p>
+<p>It accepts the following parameters:</p>
+<p>request:&nbsp;Observable&lt;TResult&gt; - request to the server via HttpClient. For example:&nbsp;http.get ('some_url', params)</p>
+<p>reponseHandler:&nbsp;IHttpResponsesHandler&nbsp;- a handlerObject.&nbsp;Depending on the request itself, we can process the server responses in different ways. More details about this below in this article.</p>
+<p>The typical example of using (about of using handlersFactory see below in this article):<br><strong>project/BBWT.Client/src/app/bbwt/modules/data-service/base.data.service.ts</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export&nbsp;class</code>&nbsp;<code>EmailService extends BaseDataService {</code><br><code>&nbsp;&nbsp;&nbsp; private</code>&nbsp;<code>readonly</code>&nbsp;<code>url:&nbsp;string</code>&nbsp;<code>=&nbsp;"api/send-email";</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; constructor(http: HttpClient, handlersFactory: HttpResponsesHandlersFactory) {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(http, handlersFactory);</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; public</code>&nbsp;<code>sendEmail(email: Email, attachments: File[]) {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const</code>&nbsp;<code>formData: FormData =&nbsp;new</code>&nbsp;<code>FormData();</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for</code>&nbsp;<code>(let i = 0; i &lt; attachments.length; i++) {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; formData.append(i.toString(), attachments[i], attachments[i].name);</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Object.keys(email).forEach(key =&gt; {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; formData.append(key, email[key]);</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return</code>&nbsp;<code>this.handleRequest(this.http.post(this.url, formData),&nbsp;null);</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h3><br>IHttpResponsesHandler</h3>
+<p>Depending of the request's context&nbsp;(Get by id, Get page) or HTTP method (GET, POST), we can handle results differently.&nbsp;To do this, we pass the IHttpResponsesHandler object to the template method.</p>
+<p>This interface already implements a set of classes that are on the path:&nbsp;<strong>project/BBWT.Client/src/app/bbwt/modules/logging/global-error-handler.ts</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export&nbsp;interface</code>&nbsp;<code>IHttpResponsesHandler {</code><br><code>&nbsp;&nbsp;&nbsp; handleSuccess?():&nbsp;void;</code><br><code>&nbsp;&nbsp;&nbsp; handleError?(errorResponse: HttpErrorResponse):&nbsp;void;</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>There is a base class implementing this interface. It is worth it to inherit from your custom handlers.&nbsp;Also all standard classes of handlers are inherited from it.</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export&nbsp;class</code>&nbsp;<code>BaseHttpResponsesHandler implements IHttpResponsesHandler {</code><br><code>&nbsp;&nbsp;&nbsp; constructor(protected</code>&nbsp;<code>injector: Injector,&nbsp;protected</code>&nbsp;<code>settings?: IHttpResponseHandlerSettings) { }</code><br>&nbsp;<br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; public</code>&nbsp;<code>handleSuccess():&nbsp;void</code>&nbsp;<code>{</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if</code>&nbsp;<code>(this.settings &amp;&amp;&nbsp;this.settings.showSuccessMessage) {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.showMessage(Message.Success(this.settings.successMessage ?&nbsp;this.settings.successMessage :&nbsp;"Operation succeed."));</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; public</code>&nbsp;<code>handleError(errorResponse: HttpErrorResponse):&nbsp;void</code>&nbsp;<code>{</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if</code>&nbsp;<code>(this.settings &amp;&amp;&nbsp;this.settings.showErrorMessage ==&nbsp;false)&nbsp;return;</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if</code>&nbsp;<code>(this.settings &amp;&amp;&nbsp;this.settings.errorStatusesMessages &amp;&amp;&nbsp;this.settings.errorStatusesMessages[errorResponse.status] !=&nbsp;null) {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.showMessage(Message.Error(this.settings.errorStatusesMessages[errorResponse.status]));</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.handleErrorHttpStatusCode(errorResponse);</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; protected</code>&nbsp;<code>handleErrorHttpStatusCode(errorResponse: HttpErrorResponse):&nbsp;void</code>&nbsp;<code>{</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // app is in Offline mode</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const</code>&nbsp;<code>appOnlineService =&nbsp;this.injector.get(AppOnlineStateService,&nbsp;null);</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if</code>&nbsp;<code>(appOnlineService &amp;&amp; !appOnlineService.isAppOnline) {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.handleOfflineModeError();</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch</code>&nbsp;<code>(errorResponse.status) {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case</code>&nbsp;<code>HttpStatusCodes.Status400BadRequest:</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.handleStatus400BadRequest(errorResponse);</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case</code>&nbsp;<code>HttpStatusCodes.Status403Forbidden:</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.handleStatus403Forbidden(errorResponse);</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case</code>&nbsp;<code>HttpStatusCodes.Status401Unauthorized:</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.handleOtherError(errorResponse);</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; ...</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>As can be seen from the error handling method, this class defines a set of helper methods for handling the various "bad" HTTP statuses that are of interest to us.&nbsp;</p>
+<p>In this class, these methods have a different implementation by default, but you can override them in your inheritance classes.</p>
+<h3>HttpResponsesHandlersFactory</h3>
+<p>For the convenience of creating standard handlers, the factory class&nbsp;<strong>HttpResponsesHandlersFactory</strong>&nbsp;was created:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export&nbsp;class</code>&nbsp;<code>HttpResponsesHandlersFactory {</code><br><code>&nbsp;&nbsp;&nbsp; constructor(private</code>&nbsp;<code>injector: Injector) {</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; getDefault(settings?: IHttpResponseHandlerSettings): IHttpResponsesHandler {...}</code><br><code>&nbsp;&nbsp;&nbsp; getForReadById(entityTitle:&nbsp;string, settings?: IHttpResponseHandlerSettings): IHttpResponsesHandler {...}</code><br><code>&nbsp;&nbsp;&nbsp; getForReadByFilter(settings?: IHttpResponseHandlerSettings): IHttpResponsesHandler {...}</code><br><code>&nbsp;&nbsp;&nbsp; getForReadAll(settings?: IHttpResponseHandlerSettings): IHttpResponsesHandler {...}</code><br><code>&nbsp;&nbsp;&nbsp; getForCreate(entityTitle:&nbsp;string, settings?: IHttpResponseHandlerSettings): IHttpResponsesHandler {...}</code><br><code>&nbsp;&nbsp;&nbsp; getForUpdate(entityTitle:&nbsp;string, settings?: IHttpResponseHandlerSettings): IHttpResponsesHandler {...}</code><br><code>&nbsp;&nbsp;&nbsp; getForDelete(entityTitle:&nbsp;string, settings?: IHttpResponseHandlerSettings): IHttpResponsesHandler {...}</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>As you can see, it has many methods for creating and initializing various&nbsp;IHttpResponsesHandler classes.</p>
+<h2>CRUD</h2>
+<p>Similarly to the back-end side, there is a class similar to&nbsp;<strong>CrudControllerBase&nbsp;</strong>which are inherited from&nbsp;<strong>BaseDataService</strong>:<br><strong>project/BBWT.Client/src/app/bbwt/modules/data-service/crud.service.ts</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export&nbsp;abstract</code>&nbsp;<code>class</code>&nbsp;<code>CrudService&lt;TEntity&gt; extends BaseDataService {...}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Implements all standard methods of CRUD queries. Since it is inherited from&nbsp;<strong>BaseDataService</strong>, all its methods use the functionality of the template&nbsp;<strong>handleRequest</strong>&nbsp;method.</p>
+<p>After that, a typical CRUD class would look like this:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export&nbsp;class</code>&nbsp;<code>OrganizationService extends CrudService&lt;Organization&gt; {</code><br><code>&nbsp;&nbsp;&nbsp; public</code>&nbsp;<code>readonly</code>&nbsp;<code>url =&nbsp;"api/demo/organization";</code><br><code>&nbsp;&nbsp;&nbsp; public</code>&nbsp;<code>readonly</code>&nbsp;<code>entityTitle =&nbsp;"Organization";</code><br>&nbsp;<br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; constructor(http: HttpClient, handlersFactory: HttpResponsesHandlersFactory) {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(http, handlersFactory);</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>It implements all CRUD methods, All of them are connected to the mechanism of HTTP responses processing.</p>
+<p>&nbsp;</p>
+<p>We just don't bother.&nbsp; If only one person is editing, they can check it on their own PC.&nbsp; Other users can wait for rebuild.</p>
+<p>We build a CI hook so that if we change the JSON file, it automatically triggers a rebuild</p>
+<p>We build a CI hook that just re-runs web-pack on any change - we don't recompile the code, but we update the web-pack zip, so clients will re-download it</p>
+<p>We don't put in the DB, but we allow a JS client to put it in the DB.&nbsp; Clients get their main copy from web-pack, but if there is a new version in the DB they take it.&nbsp; On&nbsp;rebuild we clear the DB</p>
+<h2>Infrastructure</h2>
+<p>In order to allow a BBWT3 site to send data back into GitLab&nbsp;securely, without needing to include in the site source the Gitlab keys,&nbsp;we are going to create the following infrastructure:</p>
+<figure class="image"><img src="attachments/85493343/85493344.png"></figure>
+<h2>Functions Supported</h2>
+<p>At present the following features have been implemented using this push to GitLab mechanism:</p>
+<ul>
+  <li>TOOLTIP</li>
+  <li>DBDOCUMENT</li>
+  <li>Static Pages (e.g. privacy policy)</li>
+  <li>Menu Structure</li>
+  <li>Email Templates</li>
+</ul>
+<p>We are also looking at:</p>
+<ul>
+  <li>VALIDATION&nbsp;<br>Control validation rules - this is more complicated and requires more thought, it will require more stringent validation rules and will probably need different storage mechanisms.&nbsp; In principle it will work the same way as tooltips, but will require more security checks</li>
+</ul>
+<p>&nbsp;</p>
+<h2>JSON File</h2>
+<p>The changes the user makes will be stored in a JSON file.&nbsp; This JSON file contains all the information i.e. it is not incremental but contains all the information in one file.</p>
+<p>The file will be versioned in GitLab as a project file.&nbsp; When the site is started, the contents of that file will be written to the&nbsp;BBWT3 server database.</p>
+<p>As the user makes changes to the data (e.g. edits a tool-tip) the data will be stored in the browser until the user is ready to submit their changes.&nbsp; There is some concern that if the user makes a lot of changes they could loose data if a browser crash occurs, to mitigate against that tool-tip edits will only be allowed for a single page at a time before submitting to the server is required.&nbsp; Future enhancements could be to:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>Save the data in browser local storage in case of a browser cache (we do this already for order creation in VME)</li>
+  <li>Save the data in a holding table in the database.</li>
+</ul>
+<p>&nbsp;</p>
+<p>The JSON file will include a header of who made the last change and the datetime stamp of when the file was updated.&nbsp; When the file is written to the database (table metadata in the BBWT3 database), it will also compare the datetime stamp to the LastUpdated field.&nbsp;</p>
+<p>If the LastUpdated field is later than or equal to the current datetime then it will:</p>
+<ul>
+  <li>Update the LastUpdated to be the value in the JSON file</li>
+  <li>Update the JSON file to be the latest</li>
+  <li>Set the IsLocked field on the record= false</li>
+</ul>
+<p>If the value in the JSON file is earlier than the last updated value then it will:</p>
+<ul>
+  <li>Set the IsLocked field on the record = true</li>
+</ul>
+<p>The individual BBWT3 pages will check the value of the IsLocked field to see if more edits can be made.&nbsp; If it is true then the pages will show a message saying there are pending changes and not allow the user to edit.</p>
+<p>&nbsp;</p>
+<h2>Multi-User Issues</h2>
+<p>Because changes are being recorded in a single JSON file, there is an issue when more than one person is editing the data at the same time (last person to save would overwrite all changes).&nbsp; We are not going to block this from happening but will warn a user that other people are in admin mode.&nbsp; So for example, with tool-tips, if one person clicks on tool-tip admin mode, we will record their username in a BBWT3 database table and warn anyone else who clicks on the tool-tip admin mode checkbox if other people are also in admin mode and that data might be lost.</p>
+<h2>GitLab</h2>
+<p>The GitLab service will take the function passed to it and call GitLab to get the name of the branch to create or update.</p>
+<p>Once the user has edited the data and committed to the server, the process will create a merge request for the PM to accept.&nbsp; If Blueberry staff edit the data themselves then they will need to submit the changes for merging using the same branch name convention.&nbsp; If this does not happen, then merge conflicts may occur and there is a danger that changes could be overwritten.&nbsp; If a developer deletes a control off a page, then there is a danger that a merge request could end up adding the information back into the JSON File, but this should be safe - will just add not used information.&nbsp; The PM will control the merging so will be aware of changes being made.</p>
+<p>Each project in GitLab has a project ID.&nbsp; We will change the CI so that this value gets compiled into the project in the same way we currently use the build pipeline for the build version number.</p>
+<p>&nbsp;</p>
+<h2>Process Components</h2>
+<h3>Client Angular Page</h3>
+<p>Every function will require a page in BBWT3 to allow users to administer the functionality.&nbsp; The data edited will need to be sent to GitLab and so the page will need to work with a JSON file locally until the user is ready to submit their changes.&nbsp; Clicking on the submit button will call a C# controller class as per normal MVC models.</p>
+<p>&nbsp;</p>
+<h3>Function Controller</h3>
+<p>There will be a controller class for the data being edited.&nbsp; This will receive the JSON file from the Angular page and pass it on to C# Service code to validate and process it.&nbsp; The service code will send the data to the local BBWT3&nbsp; database (either as JSON blob, e.g. for tool-tip, or as field data e.g. for DBSchema) and also send the JSON file to the&nbsp;BBWT3_Gitlab AWS Gateway service</p>
+<p>&nbsp;</p>
+<p>To call the BBWT3_Gitlab Service, the BBWT3 service code will read the:</p>
+<ul>
+  <li>Project Name, Version and ID from the project fields (compiled in by GitLAb CI)</li>
+  <li>Username of logged in user (will be added to check-in comment)&nbsp; Note that this is always tricky, as most customers and testers use "admin@".&nbsp; I'll email on a solution later.</li>
+  <li>Gitlab&nbsp;Access key from Environment Variable on server</li>
+  <li>Hard coded Function Name (e.g. TOOLTIP)</li>
+</ul>
+<p>&nbsp;</p>
+<h3>BBWT3_Gitlab Amazon Gateway Service</h3>
+<p>We will need a Amazon Gateway service and associated Lambda function to be written.&nbsp; This will need to:</p>
+<ul>
+  <li>Create the branch name from the project name and the Function<ul>
+      <li>Function: TOOLTIP&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Branch Path: Feature/TOOLTIP</li>
+      <li>Function:&nbsp;DBDOCUMENT&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Branch Path: Feature/DBDOCUMENT</li>
+    </ul>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+  <li>Call GitLab&nbsp;Branches API (<a href="https://docs.gitlab.com/ee/api/branches.html">https://docs.gitlab.com/ee/api/branches.html</a>) using the Project ID to see if the branch already exists</li>
+  <li>If the branch already exists, the update that branch (GitLab will overlay the new changes on the file in the branch)</li>
+  <li>If the branch does not exist, create a new branch using received branch path (make it temporary so that it is automatically deleted after merge is accepted)</li>
+  <li>CallGitLab Commits API (<a href="https://docs.gitlab.com/ee/api/commits.html">https://docs.gitlab.com/ee/api/commits.html</a>) to commit file. The checkin comments will detail the DateTime - username of the person making the change.</li>
+  <li>Call GitLab Merge requests API (<a href="https://docs.gitlab.com/ee/api/merge_requests.html">https://docs.gitlab.com/ee/api/merge_requests.html</a>) to create a new merge request for created branch.</li>
+</ul>
+<p>&nbsp;</p>
+<p>The code will need to validate the JSON object passed to it.&nbsp; It should ensure it does not contain HTML tags or Script tags.</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493343/85493344.png">GitLab WebService.PNG</a> (image/png)&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Sending Data back to GitLab new&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 22, 2020</p>
+<h2>Introduction</h2>
+<p>One of the visions for BBWT3 is to enable customers or PMs / Testers&nbsp;to make changes to a number of areas of the website without having to go back to developers to update the code.&nbsp; In general, these changes will be made by the customer during the testing phase of development and so need to find themselves back into source control for when the site goes live.&nbsp; The changes will be submitted to GitLab as a merge request which a PM will need to accept.</p>
+<p>An example of where this would be required is for the tool-tip functionality.&nbsp; We want users to be able to edit the tool-tips themselves and for those changes to be updated in the source control.</p>
+<p>The updates made will be recorded in a JSON file.&nbsp; This file will need to be updated in the BBWT3 local database (so that other users can immediately see their changes), and also sent to GitLab so that source control is updated.</p>
+<p>The JSON file lives in source control and is versioned, but we also want to have a copy in the DB&nbsp;so that IF someone edits the JSON, then other browser clients can get that JSON without needing to wait for the app to be rebuilt.&nbsp; For the cases where we have used this feature to date, we have just been concerned about data and not code.&nbsp; In the future we might need to look at rebuilding the code, in this case there will be other options:</p>
+<p>We just don't bother.&nbsp; If only one person is editing, they can check it on their own PC.&nbsp; Other users can wait for rebuild.</p>
+<p>We build a CI hook so that if we change the JSON file, it automatically triggers a rebuild</p>
+<p>We build a CI hook that just re-runs web-pack on any change - we don't recompile the code, but we update the web-pack zip, so clients will re-download it</p>
+<p>We don't put in the DB, but we allow a JS client to put it in the DB.&nbsp; Clients get their main copy from web-pack, but if there is a new version in the DB they take it.&nbsp; On&nbsp;rebuild we clear the DB</p>
+<h2>Infrastructure</h2>
+<p>In order to allow a BBWT3 site to send data back into GitLab&nbsp;securely, without needing to include in the site source the Gitlab keys,&nbsp;we are going to create the following infrastructure:</p>
+<figure class="image"><img src="attachments/85493346/85493347.png"></figure>
+<h2>Functions Supported</h2>
+<p>At present the following features have been implemented using this push to GitLab mechanism:</p>
+<ul>
+  <li>TOOLTIP</li>
+  <li>DBDOCUMENT</li>
+  <li>Static Pages (e.g. privacy policy)</li>
+  <li>Menu Structure</li>
+  <li>Email Templates</li>
+</ul>
+<p>We are also looking at:</p>
+<ul>
+  <li>VALIDATION&nbsp;<br>Control validation rules - this is more complicated and requires more thought, it will require more stringent validation rules and will probably need different storage mechanisms.&nbsp; In principle it will work the same way as tooltips, but will require more security checks</li>
+</ul>
+<p>&nbsp;</p>
+<h2>JSON File</h2>
+<p>The changes the user makes will be stored in a JSON file.&nbsp; This JSON file contains all the information i.e. it is not incremental but contains all the information in one file.</p>
+<p>The file will be versioned in GitLab as a project file.&nbsp; When the site is started, the contents of that file will be written to the&nbsp;BBWT3 server database.</p>
+<p>As the user makes changes to the data (e.g. edits a tool-tip) the data will be stored in the browser until the user is ready to submit their changes.&nbsp; There is some concern that if the user makes a lot of changes they could loose data if a browser crash occurs, to mitigate against that tool-tip edits will only be allowed for a single page at a time before submitting to the server is required.&nbsp; Future enhancements could be to:</p>
+<p>&nbsp;</p>
+<ul>
+  <li>Save the data in browser local storage in case of a browser cache (we do this already for order creation in VME)</li>
+  <li>Save the data in a holding table in the database.</li>
+</ul>
+<p>&nbsp;</p>
+<p>The JSON file will include a header of who made the last change and the datetime stamp of when the file was updated.&nbsp; When the file is written to the database (table metadata in the BBWT3 database), it will also compare the datetime stamp to the LastUpdated field.&nbsp;</p>
+<p>If the LastUpdated field is later than or equal to the current datetime then it will:</p>
+<ul>
+  <li>Update the LastUpdated to be the value in the JSON file</li>
+  <li>Update the JSON file to be the latest</li>
+  <li>Set the IsLocked field on the record= false</li>
+</ul>
+<p>If the value in the JSON file is earlier than the last updated value then it will:</p>
+<ul>
+  <li>Set the IsLocked field on the record = true</li>
+</ul>
+<p>The individual BBWT3 pages will check the value of the IsLocked field to see if more edits can be made.&nbsp; If it is true then the pages will show a message saying there are pending changes and not allow the user to edit.</p>
+<p>&nbsp;</p>
+<h2>Multi-User Issues</h2>
+<p>Because changes are being recorded in a single JSON file, there is an issue when more than one person is editing the data at the same time (last person to save would overwrite all changes).&nbsp; We are not going to block this from happening but will warn a user that other people are in admin mode.&nbsp; So for example, with tool-tips, if one person clicks on tool-tip admin mode, we will record their username in a BBWT3 database table and warn anyone else who clicks on the tool-tip admin mode checkbox if other people are also in admin mode and that data might be lost.</p>
+<h2>GitLab</h2>
+<p>The GitLab service will take the function passed to it and call GitLab to get the name of the branch to create or update.</p>
+<p>Once the user has edited the data and committed to the server, the process will create a merge request for the PM to accept.&nbsp; If Blueberry staff edit the data themselves then they will need to submit the changes for merging using the same branch name convention.&nbsp; If this does not happen, then merge conflicts may occur and there is a danger that changes could be overwritten.&nbsp; If a developer deletes a control off a page, then there is a danger that a merge request could end up adding the information back into the JSON File, but this should be safe - will just add not used information.&nbsp; The PM will control the merging so will be aware of changes being made.</p>
+<p>Each project in GitLab has a project ID.&nbsp; We will change the CI so that this value gets compiled into the project in the same way we currently use the build pipeline for the build version number.</p>
+<p>&nbsp;</p>
+<h2>Process Components</h2>
+<h3>Client Angular Page</h3>
+<p>Every function will require a page in BBWT3 to allow users to administer the functionality.&nbsp; The data edited will need to be sent to GitLab and so the page will need to work with a JSON file locally until the user is ready to submit their changes.&nbsp; Clicking on the submit button will call a C# controller class as per normal MVC models.</p>
+<p>&nbsp;</p>
+<h3>Function Controller</h3>
+<p>There will be a controller class for the data being edited.&nbsp; This will receive the JSON file from the Angular page and pass it on to C# Service code to validate and process it.&nbsp; The service code will send the data to the local BBWT3&nbsp; database (either as JSON blob, e.g. for tool-tip, or as field data e.g. for DBSchema) and also send the JSON file to the&nbsp;BBWT3_Gitlab AWS Gateway service</p>
+<p>&nbsp;</p>
+<p>To call the BBWT3_Gitlab Service, the BBWT3 service code will read the:</p>
+<ul>
+  <li>Project Name, Version and ID from the project fields (compiled in by GitLAb CI)</li>
+  <li>Username of logged in user (will be added to check-in comment)&nbsp; Note that this is always tricky, as most customers and testers use "admin@".&nbsp; I'll email on a solution later.</li>
+  <li>Gitlab&nbsp;Access key from Environment Variable on server</li>
+  <li>Hard coded Function Name (e.g. TOOLTIP)</li>
+</ul>
+<p>&nbsp;</p>
+<h3>BBWT3_Gitlab Amazon Gateway Service</h3>
+<p>We will need a Amazon Gateway service and associated Lambda function to be written.&nbsp; This will need to:</p>
+<ul>
+  <li>Create the branch name from the project name and the Function<ul>
+      <li>Function: TOOLTIP&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Branch Path: Feature/TOOLTIP</li>
+      <li>Function:&nbsp;DBDOCUMENT&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Branch Path: Feature/DBDOCUMENT</li>
+    </ul>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+  <li>Call GitLab&nbsp;Branches API (<a href="https://docs.gitlab.com/ee/api/branches.html">https://docs.gitlab.com/ee/api/branches.html</a>) using the Project ID to see if the branch already exists</li>
+  <li>If the branch already exists, the update that branch (GitLab will overlay the new changes on the file in the branch)</li>
+  <li>If the branch does not exist, create a new branch using received branch path (make it temporary so that it is automatically deleted after merge is accepted)</li>
+  <li>CallGitLab Commits API (<a href="https://docs.gitlab.com/ee/api/commits.html">https://docs.gitlab.com/ee/api/commits.html</a>) to commit file.&nbsp; Location will be&nbsp;src\BBWT.Web\Filename.&nbsp;&nbsp;&nbsp; The checkin comments will detail the DateTime - username of the person making the change.</li>
+  <li>Call GitLab Merge requests API (<a href="https://docs.gitlab.com/ee/api/merge_requests.html">https://docs.gitlab.com/ee/api/merge_requests.html</a>) to create a new merge request for created branch.</li>
+</ul>
+<p>&nbsp;</p>
+<p>The code will need to validate the JSON object passed to it.&nbsp; It should ensure it does not contain HTML tags or Script tags.</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493346/85493347.png">GitLab WebService.PNG</a> (image/png)&nbsp;</p>
+<p>&nbsp;</p>

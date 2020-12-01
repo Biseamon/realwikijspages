@@ -2,27 +2,1480 @@
 title: Blueberry Group : BBWT3 - Development Environment 
 description: 
 published: true
-date: 2020-11-27T16:19:13.062Z
+date: 2020-12-01T12:01:07.247Z
 tags: 
-editor: ckeditor
+editor: undefined
 dateCreated: 2020-11-27T11:03:49.037Z
 -->
 
-<h1>Development Environment&nbsp;</h1>
+<h1>Blueberry Group : BBWT3 - Angular CLI&nbsp;</h1>
 <p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>Angular CLI is a powerful tool that can quickly generate configuration files required for bootstrapping an angular application instantly. It has the advantage of automatically installing and configuring all dependencies required. It is apart of the MEAN framework; MongoDB (noSQL non-relational database), Express (back-end middleware), Angular (front-end framework), Node.js (runtime environment). Although apart of this framework it can be used with other technologies.</p>
+<p>Recent changes (03-01-19)</p>
+<p>Angular CLI server was previously configured to start when ASP.NET Core app starts in development mode. However due to the fact that each change in code requires the ASP.NET Core to restart, it wastes time waiting for Angular CLI server to initiate. For this reason Angular CLI server now runs independently.&nbsp;You need to manually start Angular CLI server&nbsp;before debugging BBWT.Server&nbsp;by typing:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>npm run start</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>For more information go&nbsp;<a href="https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-2.2&amp;tabs=visual-studio#run-ng-serve-independently">here</a>.</p>
+<h1>Advantages</h1>
+<ul>
+  <li>Benefits from having a standard way to create/build angular projects.</li>
+  <li>Helps to quickly generate new components, directives, services etc.</li>
+  <li>Hides Webpack configuration - makes developer life simpler, no need to manage Webpack configuration.</li>
+  <li>Wraps additional tools&nbsp; - e.g a linter, or test runner.</li>
+  <li>Automatically pulls dependencies.</li>
+  <li>Centralized configuration via an Angular CLI config file.</li>
+  <li>Most support assumes that you are using Angular CLI.</li>
+</ul>
+<h1>Disadvantages</h1>
+<ul>
+  <li>Less advanced configuration - cannot change advanced Webpackconfig etc.</li>
+  <li>More rigid configuration structure - harder to move config files to desired locations (they’re more strewn about inside of various different directories).</li>
+  <li>Less or no support for various addons -&nbsp; HTML template engines like PugJS etc.</li>
+</ul>
+<h1>Installation and Usage</h1>
+<p>From your IDE open a terminal and type:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>npm install - g @angular/cli</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>To generate a new project type:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>ng&nbsp;new</code>&nbsp;<code>ProjectName</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Once that is done, Angular will take up to 1 minute to create the Angular app and install all the dependencies required. Next to run the application, switch to the "ProjectName" directory that angular has created and use the following command to run the application:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>ng serve</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>You can change the default port of 4200 to which ever you like, e.g to port 3000:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>ng serve - port 3000</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>To view, in your web browser go to:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>localhost:3000</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>Building Blocks Available to Create from the CLI</h1>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Scaffold</th>
+        <th>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Scaffold</th>
+        <th>Usage</th>
+      </tr>
+      <tr>
+        <th>Component</th>
+        <th>ng g component my-new-component</th>
+      </tr>
+      <tr>
+        <th>Directive</th>
+        <th>ng g directive my-new-directive</th>
+      </tr>
+      <tr>
+        <th>Pipe</th>
+        <th>ng g pipe my-new-pipe</th>
+      </tr>
+      <tr>
+        <th>Service</th>
+        <th>ng g service my-new-service</th>
+      </tr>
+      <tr>
+        <th>Class</th>
+        <th>ng g class my-new-class</th>
+      </tr>
+      <tr>
+        <th>Guard</th>
+        <th>ng g guard my-new-guard</th>
+      </tr>
+      <tr>
+        <th>Interface</th>
+        <th>ng g interface my-new-interface</th>
+      </tr>
+      <tr>
+        <th>Enum</th>
+        <th>ng g enum my-new-enum</th>
+      </tr>
+      <tr>
+        <th>Module</th>
+        <th>ng g module my-module</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br><br>the "g" in "ng g" is an abbreviation of "generate"</p>
+<h1>CPU Profiling</h1>
+<p>In order to investigate performance issues, CPU profiling is often useful.</p>
+<p>To capture a CPU profiling, you can:</p>
+<ol>
+  <li>install the v8-profiler-node8 dependency:&nbsp;<code>npm install v8-profiler-node8 --no-save</code></li>
+  <li>set the NG_CLI_PROFILING Environment variable to the file name you want:<br><br>&nbsp;</li>
+</ol>
+<p>Then, just run the ng command on which you want to capture a CPU profile. You will then obtain a&nbsp;<code>my-profile.cpuprofile</code>&nbsp;file in the folder from which you ran the ng command.</p>
+<p>You can use the Chrome Devtools to process it. To do so:</p>
+<ol>
+  <li>Open&nbsp;<a href="chrome://inspect/#devices"><code>chrome://inspect/#devices</code></a>&nbsp;in Chrome.</li>
+  <li>Click on "Open dedicated DevTools for Node".</li>
+  <li>Go to the "Profiler" tab.</li>
+  <li>Click on the "Load" button and select the generated .cpuprofile file.</li>
+  <li>On the left panel, select the associated file.</li>
+</ol>
+<p>In addition to this one, another, more elaborated way to capture a CPU profile using the Chrome Devtools is detailed&nbsp;<a href="https://github.com/angular/angular-cli/issues/8259#issue-269908550">here</a>.</p>
+<h1>Useful Resources</h1>
+<p><a href="https://angular.io/cli">https://angular.io/cli</a></p>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Configuration&nbsp;</h1>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="BBWT3---Angular-CLI_85493043.html">BBWT3 - Angular CLI</a></li>
-  <li><a href="85493030.html">BBWT3 - Building, Running and Publishing</a></li>
-  <li><a href="BBWT3---Configuration_85493040.html">BBWT3 - Configuration</a></li>
-  <li><a href="BBWT3---Databases-and-Migrations_85493033.html">BBWT3 - Databases and Migrations</a></li>
-  <li><a href="BBWT3---Forking-for-a-new-Project_85493045.html">BBWT3 - Forking for a new Project</a></li>
-  <li><a href="BBWT3---Getting-Started-with-your-Development-Environment_85493026.html">BBWT3 - Getting Started with your Development Environment</a></li>
-  <li><a href="85493055.html">BBWT3 - Setting up a Local Email/SMTP</a></li>
-  <li><a href="85493057.html">BBWT3 - Setting Up a Local S3 Mock/Compatible Object Store</a></li>
-  <li><a href="BBWT3---Setting-up-your-Development-Environment_85493028.html">BBWT3 - Setting up your Development Environment</a></li>
-  <li><a href="BBWT3---Unit-Testing_85493035.html">BBWT3 - Unit Testing</a></li>
+  <li><a href="#BBWT3-Configuration-Overview">Overview</a></li>
+  <li><a href="#BBWT3-Configuration-ConnectionStrings">ConnectionStrings</a></li>
+  <li><a href="#BBWT3-Configuration-DatabaseConnectionSettings">DatabaseConnectionSettings</a></li>
+  <li><a href="#BBWT3-Configuration-EmailSettings">EmailSettings</a></li>
+  <li><a href="#BBWT3-Configuration-StorageSettings">StorageSettings</a></li>
+  <li><a href="#BBWT3-Configuration-MembershipSettings">MembershipSettings</a></li>
+  <li><a href="#BBWT3-Configuration-DBDocSettings">DBDocSettings</a></li>
+  <li><a href="#BBWT3-Configuration-MenuSettings">MenuSettings</a></li>
+  <li><a href="#BBWT3-Configuration-FooterMenuSettings">FooterMenuSettings</a></li>
+  <li><a href="#BBWT3-Configuration-GitLabSettings">GitLabSettings</a></li>
+  <li><a href="#BBWT3-Configuration-RecaptchaSettings">RecaptchaSettings</a></li>
+  <li><a href="#BBWT3-Configuration-AwsSettings">AwsSettings</a></li>
+  <li><a href="#BBWT3-Configuration-SupportSettings">SupportSettings</a></li>
+  <li><a href="#BBWT3-Configuration-RaygunSettings">RaygunSettings</a></li>
+  <li><a href="#BBWT3-Configuration-Serilog">Serilog</a></li>
+  <li><a href="#BBWT3-Configuration-EnvironmentVariables">Environment Variables</a></li>
 </ul>
 <p>&nbsp;</p>
-<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-<p><a href="http://www.atlassian.com/">Atlassian</a></p>
+<h1>Overview</h1>
+<p>This page details the different configuration keys that are available to use, along with a description and example for each.</p>
+<p><br>&nbsp;</p>
+<p>These settings can be specified in an&nbsp;<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/blob/develop/project/BBWT.Server/appsettings.json">appsettings.json</a>&nbsp;file or specified as their full path in an environment variable, e.g. DatabaseConnectionSettings:DatabaseType<strong>&nbsp;</strong>or DatabaseConnectionSettings__DatabaseType. For example, in bash we can set variables so:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export</code>&nbsp;<code>ENABLEGREYLOG="True"</code><br><code>dotnet run</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Setting nested configuration keys:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export</code>&nbsp;<code>DatabaseConnectionSettings__DatabaseType="MySql"</code><br><code>dotnet run</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>These are top-level keys:</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ENABLEGREYLOG</td>
+        <td>Boolean</td>
+        <td>Whether to push logs to GrayLog.</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td colspan="1">ENABLE_HTTPS_REDIRECT</td>
+        <td colspan="1">Boolean</td>
+        <td colspan="1">Whether Kestrel performs HTTP to HTTPS redirects.</td>
+        <td colspan="1">false</td>
+      </tr>
+      <tr>
+        <td colspan="1">LOGENTRIES_KEY</td>
+        <td colspan="1">String</td>
+        <td colspan="1">LogEntries API key.</td>
+        <td colspan="1">ABCDEF123456</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "ENABLEGREYLOG":&nbsp;false,</code><br><code>&nbsp;&nbsp;&nbsp; "ENABLE_HTTPS_REDIRECT":&nbsp;false,</code><br><code>&nbsp;&nbsp;&nbsp; "LOGENTRIES_KEY":&nbsp;"ABCDEF123456"</code>&nbsp;&nbsp;<br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>ConnectionStrings</h1>
+<p>The keys set used by the database initialization code depends on the value of&nbsp;<strong>DatabaseConnectionSettings:DatabaseType</strong>.</p>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>DefaultConnection</td>
+        <td>String</td>
+        <td>SQL Server connection string for application database.</td>
+        <td>Data Source=.;Initial Catalog=bbwt3;Integrated Security=true;</td>
+      </tr>
+      <tr>
+        <td>AuditConnection</td>
+        <td>String</td>
+        <td>SQL Server connection string for audit database.</td>
+        <td>Data Source=.;Initial Catalog=bbwt3_logs;Integrated Security=true;</td>
+      </tr>
+      <tr>
+        <td>HangfireConnection</td>
+        <td>String</td>
+        <td>SQL Server connection string for Hangfire database.</td>
+        <td>Data Source=.;Initial Catalog=bbwt3_hangfire;Integrated Security=true;</td>
+      </tr>
+      <tr>
+        <td colspan="1">DemoConnection</td>
+        <td colspan="1">String</td>
+        <td colspan="1">SQL Server connection string for Demo database.</td>
+        <td colspan="1">Data Source=.;Initial Catalog=bbwt3_demo;Integrated Security=true;</td>
+      </tr>
+      <tr>
+        <td>MySqlConnection</td>
+        <td>String</td>
+        <td>MySQL connection string for application database.</td>
+        <td>server=localhost;port=3306;database=bbwt3;Uid=root;Pwd=<code>P@ssword1</code></td>
+      </tr>
+      <tr>
+        <td>AuditMySqlConnection</td>
+        <td>String</td>
+        <td>MySQL connection string for audit database.</td>
+        <td>server=localhost;port=3306;database=bbwt3_logs;Uid=root;Pwd=<code>P@ssword1</code></td>
+      </tr>
+      <tr>
+        <td colspan="1">HangfireMySqlConnection</td>
+        <td colspan="1">String</td>
+        <td colspan="1">MySQL connection string for Hangfire database.</td>
+        <td colspan="1">server=localhost;port=3306;database=bbwt3_hangfire;Uid=root;Pwd=<code>P@ssword1</code></td>
+      </tr>
+      <tr>
+        <td colspan="1">DemoMySqlConnection</td>
+        <td colspan="1">String</td>
+        <td colspan="1">MySQL connection string for Demo database.</td>
+        <td colspan="1">server=localhost;port=3306;database=bbwt3_demo;Uid=root;Pwd=<code>P@ssword1</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>See&nbsp;<strong>DatabaseConnectionSettings&nbsp;</strong>section&nbsp;below for examples.</p>
+<h1>DatabaseConnectionSettings</h1>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th colspan="1">Description</th>
+        <th colspan="1">Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>DatabaseType</td>
+        <td>String</td>
+        <td colspan="1">The database type to use. Either 'MySql' or 'MsSql'</td>
+        <td colspan="1">MySql</td>
+      </tr>
+      <tr>
+        <td>MaxRetryCount</td>
+        <td>Integer</td>
+        <td colspan="1">aximum number of retry attempts to connect</td>
+        <td colspan="1">10</td>
+      </tr>
+      <tr>
+        <td colspan="1">MaxRetryDelay</td>
+        <td colspan="1">Integer</td>
+        <td colspan="1">aximum delay between retries</td>
+        <td colspan="1">30</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Examples:<br><strong>MySQL Example</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp; "DatabaseConnectionSettings": {</code><br><code>&nbsp;&nbsp;&nbsp; "DatabaseType":&nbsp;"MySql",</code><br><code>&nbsp;&nbsp;&nbsp; "MaxRetryCount": 10,</code><br><code>&nbsp;&nbsp;&nbsp; "MaxRetryDelay": 30</code><br><code>&nbsp; },</code><br><code>&nbsp; "ConnectionStrings": {</code><br><code>&nbsp;&nbsp;&nbsp; "MySqlConnection":&nbsp;"server=127.0.0.1;port=5001;database=app;Uid=root;Pwd=P@ssword1",</code><br><code>&nbsp;&nbsp;&nbsp; "DemoMySqlConnection":&nbsp;"server=127.0.0.1;port=5001;database=demo;Uid=root;Pwd=P@ssword1",</code><br><code>&nbsp;&nbsp;&nbsp; "AuditMySqlConnection":&nbsp;"server=127.0.0.1;port=5001;database=audit;Uid=root;Pwd=P@ssword1",</code><br><code>&nbsp;&nbsp;&nbsp; "HangfireMySqlConnection":&nbsp;"server=127.0.0.1;port=5001;database=hangfire;Uid=root;Pwd=P@ssword1"</code><br><code>&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br><br><strong>MSSQL Example</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp; "DatabaseConnectionSettings": {</code><br><code>&nbsp;&nbsp;&nbsp; "DatabaseType":&nbsp;"MsSql",</code><br><code>&nbsp;&nbsp;&nbsp; "MaxRetryCount": 10,</code><br><code>&nbsp;&nbsp;&nbsp; "MaxRetryDelay": 30</code><br><code>&nbsp; },</code><br><code>&nbsp; "ConnectionStrings": {</code><br><code>&nbsp;&nbsp;&nbsp; "DefaultConnection":&nbsp;"Data Source=localhost,1433;Initial Catalog=app;Persist Security Info=True;User ID=sa; Password=P@ssword1; Encrypt=False",</code><br><code>&nbsp;&nbsp;&nbsp; "DemoConnection":&nbsp;"Data Source=localhost,1433;Initial Catalog=demo;Integrated Security=true;User ID=sa; Password=P@ssword1; Encrypt=False",</code><br><code>&nbsp;&nbsp;&nbsp; "AuditConnection":&nbsp;"Data Source=localhost,1433;Initial Catalog=audit;Persist Security Info=True;User ID=sa; Password=P@ssword1; Encrypt=False",</code><br><code>&nbsp;&nbsp;&nbsp; "HangfireConnection":&nbsp;"Data Source=localhost,1433;Initial Catalog=hangfire;Persist Security Info=True;User ID=sa; Password=P@ssword1; Encrypt=False"</code><br><code>&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>EmailSettings</h1>
+<p>Use TLS (SSL) and either port 465 or 587 when using AWS SES.</p>
+<p>In general, try to avoid sending unencrypted email. On AWS, traffic over port 25 is throttled to prevent abuse.</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th colspan="1">Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SMTP</td>
+        <td>String</td>
+        <td colspan="1">Email server hostname.</td>
+        <td><a href="http://smtp.example.com">smtp.example.com</a></td>
+      </tr>
+      <tr>
+        <td>UserName</td>
+        <td>String</td>
+        <td colspan="1">Username, if required.</td>
+        <td>user</td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td>String</td>
+        <td colspan="1">Password, if required.</td>
+        <td>password</td>
+      </tr>
+      <tr>
+        <td>Port</td>
+        <td>Integer</td>
+        <td colspan="1">Email server port.</td>
+        <td>465</td>
+      </tr>
+      <tr>
+        <td>EnableSsl</td>
+        <td>Boolean</td>
+        <td colspan="1">Whether to use TLS when connecting to the email server.</td>
+        <td>True</td>
+      </tr>
+      <tr>
+        <td colspan="1">FromAddress</td>
+        <td colspan="1">String</td>
+        <td colspan="1">From address when sending email.</td>
+        <td colspan="1"><a href="mailto:noreply@app.example.com">noreply@app.example.com</a></td>
+      </tr>
+      <tr>
+        <td colspan="1">AdminAddress</td>
+        <td colspan="1">String</td>
+        <td colspan="1">Administrator's email address.</td>
+        <td colspan="1"><a href="mailto:admin@app.example.com">admin@app.example.com</a></td>
+      </tr>
+      <tr>
+        <td colspan="1">TestEmailAddress</td>
+        <td colspan="1">String</td>
+        <td colspan="1">Email address to use in test mode.</td>
+        <td colspan="1"><a href="mailto:test-address@app.example.com">test-address@app.example.com</a></td>
+      </tr>
+      <tr>
+        <td colspan="1">UseDefaultCredentials</td>
+        <td colspan="1">Boolean</td>
+        <td colspan="1">Whether to use the default email credentials.</td>
+        <td colspan="1">False</td>
+      </tr>
+      <tr>
+        <td colspan="1">UseTestCredentials</td>
+        <td colspan="1">Boolean</td>
+        <td colspan="1">Whether to use the test email credentials.</td>
+        <td colspan="1">False</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "EmailSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "SMTP":&nbsp;"</code><a href="http://smtp.example.com"><code>smtp.example.com</code></a><code>",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "UserName":&nbsp;"username",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Password":&nbsp;"password",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Port": 465,</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "EnableSsl":&nbsp;true,</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "FromAddress":&nbsp;"noreply@</code><a href="http://app.example.com"><code>app.example.com</code></a><code>",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "AdminAddress":&nbsp;"admin@</code><a href="http://app.example.com"><code>app.example.com</code></a><code>",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "TestEmailAddress":&nbsp;"test@</code><a href="http://app.example.com"><code>app.example.com</code></a><code>",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "UseDefaultCredentials":&nbsp;false,</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "UseTestCredentials":&nbsp;false</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>StorageSettings</h1>
+<p>File storage provider settings.&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th colspan="1">Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ProviderName</td>
+        <td>String</td>
+        <td colspan="1">Provider that used for files and configuration storing (AWS/Azure/DiskSpace)</td>
+        <td>AWS</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Use 'DiskSpace' storage provider for a&nbsp;<i>local deployment</i>&nbsp;only, for development and testing purposes.</p>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "StorageSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ProviderName":&nbsp;"AWS"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>MembershipSettings</h1>
+<p>Settings of the Core Membership module.&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th colspan="1">Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>RolesFilePath</td>
+        <td>String</td>
+        <td colspan="1">Path to roles.json which contains BBWT roles and permissions</td>
+        <td>/data/roles/roles.json</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "MembershipSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "RolesFilePath":&nbsp;"/data/roles/roles.json"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1><br>DBDocSettings</h1>
+<p>Settings related to the DB Documenter.</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FilePath</td>
+        <td>String</td>
+        <td>Path to dbdoc.json.</td>
+        <td>/data/dbdoc/dbdoc.json</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "DBDocSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "FilePath":&nbsp;"/data/dbdoc/dbdoc.json"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>MenuSettings</h1>
+<p>The main menu settings.</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Path</td>
+        <td>String</td>
+        <td>Path to main-menu.json.</td>
+        <td>/data/menu/main-menu.json</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "MenuSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Path":&nbsp;"/data/menu/main-menu.json"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>FooterMenuSettings</h1>
+<p>The footer menu settings.</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Path</td>
+        <td>String</td>
+        <td>Path to footer-menu.json.</td>
+        <td>/data/menu/footer-menu.json</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "FooterMenuSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Path":&nbsp;"/data/menu/footer-menu.json"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>GitLabSettings</h1>
+<p>Settings for the GitLab module to interact with Gitlab via AWS lambda.</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ProjectId</td>
+        <td>String</td>
+        <td>GitLab project path to commit to.</td>
+        <td>namespace/project</td>
+      </tr>
+      <tr>
+        <td colspan="1">AwsApiUrl</td>
+        <td colspan="1">String</td>
+        <td colspan="1">AWS API Gateway endpoint for bbwt3 GitLab commit service.</td>
+        <td colspan="1"><a href="https://gateway-id.execute-api.eu-west-1.amazonaws.com/beta/gitpush">https://gateway-id.execute-api.eu-west-1.amazonaws.com/beta/gitpush</a></td>
+      </tr>
+      <tr>
+        <td colspan="1">AwsApiToken</td>
+        <td colspan="1">String</td>
+        <td colspan="1">GitLab AWS API Token</td>
+        <td colspan="1">ABCDEF123456</td>
+      </tr>
+      <tr>
+        <td colspan="1">Branch</td>
+        <td colspan="1">String</td>
+        <td colspan="1">Branch to commit to via bbwt3 GitLab commit service.</td>
+        <td colspan="1">Development</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "GitLabSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ProjectId":&nbsp;"blueberry/bbwt3",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "AwsApiUrl":&nbsp;"</code><a href="https://90ebkemw8g.execute-api.eu-west-1.amazonaws.com/beta/gitpush"><code>https://90ebkemw8g.execute-api.eu-west-1.amazonaws.com/beta/gitpush"</code></a><code>,</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "AwsApiToken":&nbsp;"ABCDEF123456",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Branch":&nbsp;"develop"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>RecaptchaSettings</h1>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="1">ApiLink</td>
+        <td colspan="1">String</td>
+        <td colspan="1">ReCAPTCHA API URL</td>
+        <td colspan="1"><a href="https://www.google.com/recaptcha/api/siteverify">https://www.google.com/recaptcha/api/siteverify</a></td>
+      </tr>
+      <tr>
+        <td>SecretKey</td>
+        <td>String</td>
+        <td>ReCAPTCHA secret API key</td>
+        <td>ABCDEF123456</td>
+      </tr>
+      <tr>
+        <td colspan="1">SiteKey</td>
+        <td colspan="1">String</td>
+        <td colspan="1">ReCAPTCHA site API key</td>
+        <td colspan="1">ABCDEF123456</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>AwsSettings</h1>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AwsRegion</td>
+        <td>String</td>
+        <td>AWS region</td>
+        <td>eu-west-1</td>
+      </tr>
+      <tr>
+        <td colspan="1">AccessKeyID</td>
+        <td colspan="1">String</td>
+        <td colspan="1">AWS access key ID</td>
+        <td colspan="1">ABCDEFGHI123456789</td>
+      </tr>
+      <tr>
+        <td colspan="1">SecretAccessKey</td>
+        <td colspan="1">String</td>
+        <td colspan="1">AWS secret access key</td>
+        <td colspan="1">ABCDEFGHI123456789</td>
+      </tr>
+      <tr>
+        <td colspan="1">BucketName</td>
+        <td colspan="1">String</td>
+        <td colspan="1">AWS S3 Bucket for files storage</td>
+        <td colspan="1">bucket.app.env</td>
+      </tr>
+      <tr>
+        <td colspan="1">ParametersPath</td>
+        <td colspan="1">String</td>
+        <td colspan="1">Prefix that defines section related to the project</td>
+        <td colspan="1">/bbwt3-linux-test</td>
+      </tr>
+      <tr>
+        <td colspan="1">ParametersReloadingInterval</td>
+        <td colspan="1">Number</td>
+        <td colspan="1">
+          <p>An interval in seconds for the configuration reloading period.</p>
+          <p>If not specified then the configuration won't be reloaded.</p>
+        </td>
+        <td colspan="1">10</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "AwsSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "AwsRegion":&nbsp;"eu-west-1",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "AccessKeyID":&nbsp;"ABCDEFGHI123456789",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "SecretAccessKey":&nbsp;"ABCDEFGHI123456789",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "BucketName":&nbsp;"bucket.app.env",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ParametersPath":&nbsp;"/bbwt3-linux-test",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ParametersReloadingInterval":&nbsp;"10"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>SupportSettings</h1>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>EmailAddress1</td>
+        <td>String</td>
+        <td>Email to send problem reports to.</td>
+        <td><a href="mailto:user1@example.com">user1@example.com</a></td>
+      </tr>
+      <tr>
+        <td>EmailAddress2</td>
+        <td>String</td>
+        <td>Email to send problem reports to.</td>
+        <td><a href="mailto:user2@example.com">user2@example.com</a></td>
+      </tr>
+      <tr>
+        <td>EmailAddress3</td>
+        <td>String</td>
+        <td>Email to send problem reports to.</td>
+        <td><a href="mailto:user3@example.com">user3@example.com</a></td>
+      </tr>
+      <tr>
+        <td>EmailAddress4</td>
+        <td>String</td>
+        <td>Email to send problem reports to.</td>
+        <td><a href="mailto:user4@example.com">user4@example.com</a></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "SupportSettings": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "EmailAddress1":&nbsp;"user1@</code><a href="http://example.com"><code>example.com</code></a><code>",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "EmailAddress2":&nbsp;"user2@</code><a href="http://example.com"><code>example.com</code></a><code>",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "EmailAddress3":&nbsp;"user3@</code><a href="http://example.com"><code>example.com</code></a><code>",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "EmailAddress4":&nbsp;"user4@</code><a href="http://example.com"><code>example.com</code></a><code>"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Third party packages also use the Asp.Net Core configuration interface and may have their configuration specified along with ours. For example, we use the following:</p>
+<h1>RaygunSettings</h1>
+<p><br>RayGun settings are normally set automatically as part of the deployment process and shouldn't be used during local development.</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Example Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ApiKey</td>
+        <td>String</td>
+        <td>RayGun API key.</td>
+        <td>ABCDEF123456</td>
+      </tr>
+      <tr>
+        <td>ApplicationVersion</td>
+        <td>String</td>
+        <td>Application version to link to in RayGun.</td>
+        <td>a409c7ccb8971754a2a9ec01b72b1d8645825aff</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "RayGun": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ApiKey":&nbsp;"ABCDEF123456",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ApplicationVersion":&nbsp;"a409c7ccb8971754a2a9ec01b72b1d8645825aff"</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>Serilog</h1>
+<p>For a full breakdown of Serilog configuration options, check the documentation&nbsp;<a href="https://github.com/serilog/serilog-settings-configuration">here</a>&nbsp;and&nbsp;<a href="https://github.com/serilog/serilog-aspnetcore">here</a>.</p>
+<p>Remember to set the ProjectName property in your Serilog configuration to be able to distinguish logs within GrayLog. This can be set in code, or in the application configuration as in the example below.</p>
+<p>An Example Configuration:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp;&nbsp;&nbsp; "Serilog": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "MinimumLevel": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Default":&nbsp;"Debug",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Override": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Microsoft":&nbsp;"Information",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "System":&nbsp;"Warning"</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Using": [</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Serilog.Sinks.Console"</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ],</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Enrich": [</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "FromLogContext",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "WithDockerContainerID"</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ],</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "WriteTo": [</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Console"</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ],</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Destructure": [</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Name":&nbsp;"UsingAttributes",</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Args":&nbsp;""</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ],</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Properties": {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ProjectName":&nbsp;"BBWT3"</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>When translating JSON arrays, you need to pay attention to the order and address by index.&nbsp;The above JSON example would translate to the following environment variables:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>Serilog__MinimumLevel__Default="Debug"</code><br><code>Serilog__MinimumLevel__Override__Microsoft="Information"</code><br><code>Serilog__MinimumLevel__Override__System="Warning"</code><br><code>Serilog__Using__0="Serilog.Sinks.Console"</code><br><code>Serilog__Enrich__0="FromLogContext"</code><br><code>Serilog__Enrich__1="WithDockerContainerID"</code><br><code>Serilog__WriteTo__0="Console"</code><br><code>Serilog__Destructure__0__Name="UsingAttributes"</code><br><code>Serilog__Destructure__0__Args=""</code><br><code>Serilog__Properties__ProjectName="BBWT3"</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>Environment Variables</h1>
+<p>These configuration items can only be specified as environment variables.</p>
+<ul>
+  <li>ASPNETCORE_ENVIRONMENT<br>
+    <ul>
+      <li>Description: specifies the environment under which the application runs (defaults to "Development").</li>
+      <li>Type: string.</li>
+    </ul>
+  </li>
+</ul>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export</code>&nbsp;<code>ASPNETCORE_ENVIRONMENT="Production"</code><br><code>dotnet run</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<ul>
+  <li>ASPNETCORE_URLS<ul>
+      <li>Description: comma-separated bindings for Kestrel to use.</li>
+      <li>Type: string.</li>
+    </ul>
+  </li>
+</ul>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export ASPNETCORE_URLS="</code><a href="http://0.0.0.0/"><code>http://0.0.0.0:80"</code></a><br><code>dotnet run</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Databases and Migrations&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>This page shows how to perform migrations with examples and explanations for each of the commands.</p>
+<h1>Migrating the Database</h1>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>An explanation of each command segment follows.</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Segment</th>
+        <th>Explanation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>dotnet ef</td>
+        <td>Invokes the dotnet entity framework cli tools.</td>
+      </tr>
+      <tr>
+        <td>-p / --project</td>
+        <td>Specifies the database project to use.</td>
+      </tr>
+      <tr>
+        <td>-s / --startup-project</td>
+        <td>Specifies the start-up project, in this case the current directory (the server app project).</td>
+      </tr>
+      <tr>
+        <td>-c / --context</td>
+        <td>Specifies the DbContext to use.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>You can obtain a list of database contexts using&nbsp;<strong>dotnet ef migrations list.</strong><br><strong>dotnet ef</strong>&nbsp;will use the environment specified in ASPNETCORE_ENVIRONMENT (<strong>Development</strong>&nbsp;if not specified), so make sure the appsettings file is filled out correctly.<br>If you've built the project recently, you can speed up&nbsp;<strong>dotnet ef</strong>&nbsp;by including&nbsp;<strong>--no-build</strong>&nbsp;on the command line, as&nbsp;<strong>dotnet ef</strong>&nbsp;likes to build the project every time you run it by default.</p>
+<h1>Listing Migrations</h1>
+<p><br><strong>For MySQL</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet ef --project ../BBWT.Data.MySQL migrations list -c DataContext</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br><strong>For MS SQL</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet ef --project ../BBWT.Data.SqlServer migrations list -c DataContext</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>Adding a Migration</h1>
+<p>To add an Entity Framework Migration, use the following commands:</p>
+<p><br><br><strong>For MySQL</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>cd project/BBWT.Server</code><br>&nbsp;<br><code>dotnet ef --project ../BBWT.Data.MySQL -s ./ migrations add replace_me</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br><strong>For MS SQL</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>cd project/BBWT.Server</code><br>&nbsp;<br><code>dotnet ef --project ../BBWT.Data.SqlServer -s ./ migrations add replace_me</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Forking for a new Project&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>This page documents how to fork from the latest state of BBWT3 for a new project. The recommended way of doing this is to fork the project to your local account, rename it and change the URL, remove the relationship to the main BBWT3 source, then transfer it back to the Blueberry group.<br>At the bottom of this page you will find important information about modules, and a link to the instructions of how to correctly set up the email settings.</p>
+<h1>Directions</h1>
+<ol>
+  <li>First you will have to login to&nbsp;<a href="https://gitlab.bbconsult.co.uk/">GitLab</a>&nbsp;using your LDAP login username and password.</li>
+  <li>Enter in your 2FA code.</li>
+  <li>Go to the BBWT3 project.</li>
+  <li>At the top you will see the button called "Fork" click on this:<br><br><br><br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493045/85493046.png"></figure>
+<ol>
+  <li>Select a "namespace" (your name):<br><br><br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493045/85493047.png"></figure>
+<p>GitLab will now fork the project and will give a confirmation message when it is complete.</p>
+<p>On the left of your screen, in the menu go down to and click on "Settings" then across to "General":<br>&nbsp;</p>
+<figure class="image"><img src="attachments/85493045/85493048.png"></figure>
+<p>&nbsp;</p>
+<p>In the "Advanced" section click on "Expand":<br>&nbsp;</p>
+<figure class="image"><img src="attachments/85493045/85493049.png"></figure>
+<p><br><br>&nbsp;</p>
+<p>Under "Rename repository" rename the project, and change the "Path", then click "Rename project":</p>
+<figure class="image"><img src="attachments/85493045/85493050.png"></figure>
+<p>&nbsp;</p>
+<p>Go back down to "Advanced" section and click on "Remove fork relationship":</p>
+<figure class="image"><img src="attachments/85493045/85493051.png"></figure>
+<p>&nbsp;</p>
+<p>A confirmation box will appear, type in the name of the project and click "Confirm":</p>
+<figure class="image"><img src="attachments/85493045/85493052.png"></figure>
+<p>&nbsp;</p>
+<p>Go back down to "Advanced" section and go to "Transfer project", then from the drop down menu select "Blueberry Consultants Ltd" from the "Group" heading:</p>
+<figure class="image"><img src="attachments/85493045/85493053.png"></figure>
+<p>&nbsp;</p>
+<p>It is most likely that you won't have enough permissions to transfer the project to&nbsp;<strong>Blueberry</strong>&nbsp;group.</p>
+<p>This used to be working when we started using Gitlab and everyone had "Developer" permissions for that group, but it has changed at some point.</p>
+<p>If you have problems with this, ask sysadmins for help.</p>
+<p><br><br>&nbsp;</p>
+<p>You are now ready to start your new project based off of the latest BBWT3.</p>
+<h1>Modules</h1>
+<p>The code BBWT3 codebase has modules located in "bbwt3/modules". These are a mixture of third party modules and Blueberry code. When adding third party libraries to a forked BBWT3 project, they must not be put in "bbwt3/modules" they must be kept separate. We recommend "bbwt3/thirdparty".</p>
+<p>Why? This is to help with code audits and specifically to allow automated tools such as SonarQube to be implemented correctly.</p>
+<h1>Email Settings</h1>
+<p>To correctly set up the email functionality within BBWT3 please refer to&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Configuration#Configuration-EmailSettings">this section of the configuration document</a>.</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493045/85493046.png">image2019-1-22_15-31-17.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493045/85493047.png">image2019-1-22_15-52-20.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493045/85493048.png">image2019-1-22_15-54-27.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493045/85493049.png">image2019-1-22_15-56-0.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493045/85493050.png">image2019-1-22_15-57-32.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493045/85493051.png">image2019-1-22_15-58-25.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493045/85493052.png">image2019-1-22_16-0-2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493045/85493053.png">image2019-1-22_16-15-48.png</a> (image/png)&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Getting Started with your Development Environment&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>A quick look at what you will need to start coding for BBWT3 and some of the technologies used.</p>
+<h1>Editors</h1>
+<p>Install one of&nbsp;<a href="https://visualstudio.microsoft.com/ru/vs/community/">Visual Studio 2019</a>,&nbsp;<a href="https://code.visualstudio.com/">Visual Studio Code</a>&nbsp;or&nbsp;<a href="https://www.jetbrains.com/rider/">JetBrains Rider</a>&nbsp;for your development environment.</p>
+<p>Recommended plugins for use with VSCode:</p>
+<ul>
+  <li>C#.</li>
+  <li>GitLens.</li>
+  <li>Indent-rainbow.</li>
+  <li>Npm.</li>
+  <li>Bracket Pair Colorizer.</li>
+</ul>
+<p>Code Spell Checker.</p>
+<p>Recommended plugins for Visual Studio 2019:</p>
+<ul>
+  <li>Visual Studio Spell Checker.</li>
+</ul>
+<h1>Technologies Used</h1>
+<h3>When Developing</h3>
+<ul>
+  <li>.NET Core 3.1.</li>
+  <li>Angular 9.1.</li>
+  <li>Typescript 3.8.3.</li>
+  <li>SonarQube.</li>
+  <li>Docker.</li>
+</ul>
+<h3>When Deploying</h3>
+<ul>
+  <li>Docker.</li>
+  <li>AWS ECS.</li>
+  <li>GitLab CI.</li>
+  <li>Terraform.</li>
+</ul>
+<h1>Git</h1>
+<p>Familiarise yourself with Git first, either by reading&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Using+Git">Blueberry's guide</a>&nbsp;or&nbsp;<a href="http://www.atlassian.com/git/tutorials/setting-up-a-repository">one of the many tutorial series on the web</a>.<br>NOTE: Make sure you've set your name and email using:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>git config --local </code><a href="http://user.name"><code>user.name</code></a><code>&nbsp;"Firstname Lastname"</code><br><code>git config --local user.email "firstname.lastname@</code><a href="http://bbconsult.co.uk"><code>bbconsult.co.uk</code></a></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Setting up your Development Environment&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>This page details how to correctly set up your system for coding BBWT3. It has links to the relevant information and files. If you leave this page to complete a section e.g. to install Git, ensure that you return here and follow from where you left off - especially if you get stuck.</p>
+<p>&nbsp;</p>
+<p><strong>1. Install&nbsp;</strong><a href="https://nodejs.org/en/download/package-manager/"><strong>Node.js</strong></a><strong>&nbsp;and&nbsp;</strong><a href="https://dotnet.microsoft.com/download/dotnet-core/3.1"><strong>.NET Core SDK 3.1</strong></a><br>&nbsp;</p>
+<p>Node.js provides the&nbsp;<code>npm</code>&nbsp;command used to fetch the JavaScript libraries and tools such as Angular and TypeScript compiler.</p>
+<p>.NET Core SDK provides the runtime and compiler for ASP.NET Core alongside the command used to fetch packages from the NuGet repository. Verify the installation succeeded by running:</p>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet --info.</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p><strong>2.&nbsp;Generate a Public/Private SSH Key and Setup GitLab</strong></p>
+<p>Follow the instructions in this&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Using+Git">section</a>.</p>
+<p>TortoiseGit users: TortoiseGit uses keys in PuTTY format (.ppk) and you will need to convert your public key to a .ppk format. For additional info about this please see&nbsp;<a href="https://stackoverflow.com/questions/27129904/pageant-refuses-to-load-ssh-2-key-generated-with-gitbash">here</a>.</p>
+<p><strong>3. Install&nbsp;</strong><a href="https://wiki.bbconsult.co.uk/display/BLUEB/Using+Git"><strong>Git</strong></a></p>
+<p>If you're using Windows, chances are that you don't have Git installed.</p>
+<p><strong>4.&nbsp;Clone the Repository</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>git clone&nbsp;</code><a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3"><code>https://gitlab.bbconsult.co.uk/blueberry/bbwt3</code></a></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br>&nbsp;</p>
+<p><strong>6. Checkout the 'develop' Branch</strong></p>
+<p>First change directory to the Git repository you just cloned:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>cd bbwt3</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br>Now change to the 'develop' branch:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>git checkout develop</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>The main branch (<code>master</code>) is generally intended to contain stable code. The latest changes are available on the development branches, starting at&nbsp;<code>develop</code>.</p>
+<p><br>&nbsp;</p>
+<p><strong>7.&nbsp;Install NPM Dependencies</strong></p>
+<p>Change directory to the BBWT.Client project:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>cd project/BBWT.Client</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Note, if you use Windows then you may have issues with the node-sass package installation, to avoid that you should run this command before installing NPM dependencies:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>npm install --global --production windows-build-tools</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Now install NPM dependencies:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>npm install</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br>&nbsp;</p>
+<p><strong>8. Install NuGet Dependencies</strong></p>
+<p>Change directory to the&nbsp;BBWT.Server project:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>cd project/BBWT.Server</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Now restore dependencies:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet restore</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p><strong>9. Setting up a database server</strong></p>
+<p>Before you continue you need to install an SQL server, either follow instructions for<strong>&nbsp;MySQL</strong>&nbsp;or&nbsp;<strong>MS SQL</strong>.<br>Do not use&nbsp;MariaDB as this will cause issues later on when changing the encoding.</p>
+<p>If you don't have one, it can be done by installing it locally. Follow the set up guide for either Linux or Windows.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>10. Connecting the Application to the Database</strong></p>
+<p>Now you will need to specify how to connect BBWT3 to the database. To do that in Development mode, you will need to create a specific app settings file.</p>
+<ol>
+  <li>From the BBWT3 directory, copy the&nbsp;<i>project/BBWT.Server/appsettings.development.json.template</i>&nbsp;file and rename it&nbsp;<i>appsettings.development.json</i></li>
+  <li>In&nbsp;the file&nbsp;project/BBWT.Server/appsettings.development.json, set your connection string as in the below examples.</li>
+</ol>
+<p><br>&nbsp;</p>
+<p><strong>MySQL Example</strong></p>
+<p>This is an example of an app settings file for a MySQL server running in Docker, being exposed to the host over port 5001.</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp; "DatabaseConnectionSettings": {</code><br><code>&nbsp;&nbsp;&nbsp; "DatabaseType":&nbsp;"MySql",</code><br><code>&nbsp;&nbsp;&nbsp; "MaxRetryCount": 10,</code><br><code>&nbsp;&nbsp;&nbsp; "MaxRetryDelay": 30</code><br><code>&nbsp; },</code><br><code>&nbsp; "ConnectionStrings": {</code><br><code>&nbsp;&nbsp;&nbsp; "MySqlConnection":&nbsp;"server=127.0.0.1;port=5001;database=app;Uid=root;Pwd=P@ssword1",</code><br><code>&nbsp;&nbsp;&nbsp; "DemoMySqlConnection":&nbsp;"server=127.0.0.1;port=5001;database=demo;Uid=root;Pwd=P@ssword1",</code><br><code>&nbsp;&nbsp;&nbsp; "AuditMySqlConnection":&nbsp;"server=127.0.0.1;port=5001;database=audit;Uid=root;Pwd=P@ssword1",</code><br><code>&nbsp;&nbsp;&nbsp; "HangfireMySqlConnection":&nbsp;"server=127.0.0.1;port=5001;database=hangfire;Uid=root;Pwd=P@ssword1"</code><br><code>&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p><strong>MS SQL Example</strong></p>
+<p>This is an example of an app settings file for an MS SQL server running in Docker, being exposed to the host over port 1433.</p>
+<p>Change of Username in Example</p>
+<ul>
+  <li>For windows users, change "sa" to "root", or the user you created with admin privileges when installing MS SQL.</li>
+  <li>If you used Docker to install MSSQL Server, user id will be "sa" and the password will be the one provided in the launch command.</li>
+  <li>If your password is too weak then MSSQL will not initialise on Linux.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>{</code><br><code>&nbsp; "DatabaseConnectionSettings": {</code><br><code>&nbsp;&nbsp;&nbsp; "DatabaseType":&nbsp;"MsSql",</code><br><code>&nbsp;&nbsp;&nbsp; "MaxRetryCount": 10,</code><br><code>&nbsp;&nbsp;&nbsp; "MaxRetryDelay": 30</code><br><code>&nbsp; },</code><br><code>&nbsp; "ConnectionStrings": {</code><br><code>&nbsp;&nbsp;&nbsp; "DefaultConnection":&nbsp;"Data Source=localhost,1433;Initial Catalog=app;Persist Security Info=True;User ID=sa; Password=P@ssword1; Encrypt=False",</code><br><code>&nbsp;&nbsp;&nbsp; "DemoConnection":&nbsp;"Data Source=localhost,1433;Initial Catalog=demo;Integrated Security=true;User ID=sa; Password=P@ssword1; Encrypt=False",</code><br><code>&nbsp;&nbsp;&nbsp; "AuditConnection":&nbsp;"Data Source=localhost,1433;Initial Catalog=audit;Persist Security Info=True;User ID=sa; Password=P@ssword1; Encrypt=False",</code><br><code>&nbsp;&nbsp;&nbsp; "HangfireConnection":&nbsp;"Data Source=localhost,1433;Initial Catalog=hangfire;Persist Security Info=True;User ID=sa; Password=P@ssword1; Encrypt=False"</code><br><code>&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><strong>11.&nbsp;Update the Database to the Latest Migration</strong></p>
+<p>In a console from&nbsp;<i>project/BBWT.Server</i>&nbsp;enter this command to apply all database migrations:<br><strong>For MySQL Databases</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet ef --project ../BBWT.Data.MySQL -s ./ database update -c DataContext</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br><strong>For MS SQL Databases</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet ef --project ../BBWT.Data.SqlServer -s ./ database update -c DataContext</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><strong>Note:</strong></p>
+<p>If you get an error - "Could not execute because the specified command or file was not found.", that is likely because:</p>
+<p>The dotnet ef tool is no longer a part of the .Net Core SDK</p>
+<p>This change allows us to ship&nbsp;<code>dotnet ef</code>&nbsp;as a regular .NET CLI tool that can be installed as either a global or local tool.</p>
+<p>For example, to be able to manage migrations or scaffold a&nbsp;<code>DbContext</code>, install&nbsp;<code>dotnet ef</code>&nbsp;as a global tool typing the following command:<br><strong>Install dotnet ef tool</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet tool install --global dotnet-ef</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>For a specific version add the flag --version in the end, e.g. "--version&nbsp;3.1.4"</p>
+<p><br>&nbsp;</p>
+<p><br>&nbsp;</p>
+<p><br>&nbsp;</p>
+<p><strong>12. Obtain list</strong></p>
+<p>In order to display a list of database contexts, you first need to copy the&nbsp;<strong>appsettings.json</strong>&nbsp;and&nbsp;<strong>appsettings.development.json</strong><i>&nbsp;</i>from the&nbsp;project<i>/BBWT.Server</i>&nbsp;folder into the&nbsp;project<i>/BBWT.Data.&lt;your-database-provider&gt;&nbsp;</i>folder.&nbsp;<i>(BBWT.Data.MySQL&nbsp;</i><u>or</u><i>&nbsp;BBWT.Data.SqlServer)</i></p>
+<p>In a console from&nbsp;<i>project/BBWT.Data.&lt;your-database-provider&gt;</i>&nbsp;enter this command to apply all database migrations:<br><strong>Obtain list of database contexts</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet ef migrations list</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Dotnet EF will use the environment specified in ASPNETCORE_ENVIRONMENT (Development if not specified), so make sure the app settings file is filled out correctly.</p>
+<p>If you've built the project recently, you can speed up dotnet ef by including --no-build on the command line, as dotnet ef likes to build the project every time you run it by default.<br><strong>Obtain list of migrations</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet ef migrations list -c DataContext</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>If the build succeeds, then your local copy of the project should be ready to run.</p>
+<p>&nbsp;</p>
+<p><strong>If You Get the Error Message:</strong>&nbsp;More than one DbContext was found.</p>
+<p>&nbsp;</p>
+<p>For Linux</p>
+<p>There is a bug on Linux where it creates threads but does not kill them. Confirmed on Debian based systems.</p>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Unit Testing&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>Here we look at how to perform both front and back-end test with examples. For more information please refer to the useful resources section on this page.</p>
+<h1>Backend Unit Tests</h1>
+<p>For backend testing we use xUnit. Tests can be found within the bbwt3/test/BBWT.Services.Test folder.</p>
+<h2>Useful Resources</h2>
+<p>You can learn more about this tool with an example&nbsp;<a href="https://xunit.github.io/docs/getting-started-dotnet-core">here</a>.</p>
+<h2>Creating Tests</h2>
+<p>To create a test for a service, first of all it is necessary to add to Tests project a new class. For example if we want to test RoleService, we create class RoleServiceTest.</p>
+<p>After this, it is necessary to select a method which we want to test. For example RoleService.Save. For this method we create our test method which will have&nbsp;[Fact] attribute.</p>
+<p>In BBWT3 we use AAA unit test pattern:</p>
+<ul>
+  <li>&nbsp;<ul>
+      <li><strong>Arrange:&nbsp;</strong>Setup everything needed for the running the tested code. This includes any initialization of dependencies, mocks and data needed for the test to run.</li>
+      <li><strong>Act:&nbsp;</strong>Invoke the code under test.</li>
+      <li><strong>Assert:</strong>&nbsp;Specify the pass criteria for the test, which it fails if not met.</li>
+    </ul>
+  </li>
+</ul>
+<p>In Arrange section of code we create an instance of the service object which we want to test from BBWT.Services project - in our example it is RoleService.</p>
+<p>Dependent Injection is not working here because test project is separate from BBWT.Server (where we use ASP.NET Core IServiceCollection object to register dependencies).</p>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>[Fact]</code><br><code>public</code>&nbsp;<code>async Task Save_New_User()</code><br><code>{</code><br><code>&nbsp;&nbsp;&nbsp; using</code>&nbsp;<code>(var ctx = GetSutContext())</code><br><code>&nbsp;&nbsp;&nbsp; {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Arrange</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var userDto = GetEntity();</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var sut = GetSutService(ctx);</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Act</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; userDto.Id = GetId(await sut.Save(userDto, CancellationToken.None));</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var user = ctx.Set&lt;User&gt;().FirstOrDefault(u =&gt; u.Email == userDto.Email);</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Assert</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Assert.NotNull(user);</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Assert.Equal(user.Id, userDto.Id);</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Assert.Equal(user.Email, userDto.Email);</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>There Are Two Ways of Running Back-End Tests</h1>
+<h2>Using Console</h2>
+<p>There is some additional requirements - it is necessary to modify the BBWT.Services.Test.csproj file and add a reference to dotnet-xunit CLI tool (according to xunit.gitlab reference above):</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>&lt;DotNetCliToolReference Include="dotnet-xunit"</code>&nbsp;<code>Version="2.3.0-beta2-build3683"</code>&nbsp;<code>/&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Switch to test folder, choose a test project and use dotnet test to run xUnit tests:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>cd tests/BBWT.Services.Test</code><br>&nbsp;<br><code>dotnet test</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h2>Using Visual Studio</h2>
+<p>Use the Tests &gt; Run &gt; All tests main menu item or press Ctrl+R, A to run all tests.</p>
+<figure class="image"><img src="attachments/85493035/85493036.png"></figure>
+<h1>Frontend Unit Tests - Jasmine/Karma</h1>
+<h2>Writing Frontend Tests</h2>
+<p>Please locate your test nearby components/services being covered with it and use *.spec.ts suffix as follows:</p>
+<figure class="image"><img src="attachments/85493035/85493037.png"></figure>
+<p>&nbsp;</p>
+<p>For a new test it is necessary to add a new typescript file to src/tests folder. Name convention is &lt;component_name&gt;.component.spec.ts.</p>
+<p>Word&nbsp;"spec" is important because in boot-tests.ts there is a certain file pattern for tests:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>const</code>&nbsp;<code>context = require.context('../',&nbsp;true, /\.spec\.ts$/);</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>This means that the file with tests must contain the word "spec".</p>
+<p>&nbsp;</p>
+<p>Test file must contain code which performs the test. The simplest test is:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>describe('Sample Test', () =&gt; {</code><br><code>it('true is true', () =&gt; expect(true).toBe(true));</code><br><code>});</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Here's what we expect, and here's what actually happened. To test services or components, it's necessary to inject them into the test code.</p>
+<h2>Running Frontend Tests</h2>
+<p><br>GitLab will automatically test the project on new commits, if the branch is either "develop", or prefixed with "feature/" or "fix/". It does this via a headless version of Chrome.</p>
+<p>&nbsp;</p>
+<p>Frontend tests require that Chrome is installed.</p>
+<p>Switch to project/BBWT.Client folder and run npm test command:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>cd project/BBWT.Client</code><br>&nbsp;<br><code>npm test</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>If this does not work, then make sure that the karma start src/test/karma.conf.js command is declared in package.json file under scripts section with corresponding test key value:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>"scripts": {</code><br><code>&nbsp;&nbsp; "test":&nbsp;"karma start src/test/karma.conf.js"</code><br><code>},</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Or run karma test-runner with parameters and config you need:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>karma start src/test/karma.conf.js</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>At the end of the process we can see in CMD the result of the tests.</p>
+<figure class="image"><img src="attachments/85493035/85493038.png"></figure>
+<p>&nbsp;</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493035/85493036.png">vs2017-testing.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493035/85493037.png">spec-file-correct-location.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493035/85493038.png">image2017-6-9_20-18-24.png</a> (image/png)&nbsp;</p>

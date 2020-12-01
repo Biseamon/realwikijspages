@@ -2,26 +2,455 @@
 title: Blueberry Group : BBWT3 - Build Process and CI 
 description: 
 published: true
-date: 2020-11-27T16:17:42.649Z
+date: 2020-12-01T11:47:45.504Z
 tags: 
-editor: ckeditor
+editor: undefined
 dateCreated: 2020-11-27T11:03:02.155Z
 -->
 
-<h1>Build Process and CI&nbsp;</h1>
+<h1>Blueberry Group : BBWT3 - Angular Budgets&nbsp;</h1>
 <p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>Angular CLI can be configured to warn and/or fail the build process if specific files or bundles within the application grow too large.</p>
+<p>This feature can be used to control the potential amount of resources clients need to download to use the Angular application. It can also be used to prevent developers from accidentally importing entire libraries into the project and bloating the output.</p>
+<h1>Configuring Budgets</h1>
+<p>Angular documentation has up-to-date information on&nbsp;<a href="https://angular.io/guide/build#configure-size-budgets">configuring budgets</a>.</p>
+<h1>Diagnosing Budget Errors</h1>
+<p>The&nbsp;<a href="https://www.npmjs.com/package/webpack-bundle-analyzer">webpack-bundle-analyzer</a>&nbsp;tool can be used to inspect the bundles and their contents in the Angular build output.</p>
+<p>Firstly, build the project in production mode and collect the statistics to be used by webpack-bundle-analyzer later:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>npx ng build --prod --stats-json</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Once the project has built successfully, Angular will have written an extra file to&nbsp;<i>wwwroot/stats.json</i>.</p>
+<p>We can now use this file in webpack-bundle-analyzer to inspect the results:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>npx webpack-bundle-analyzer wwwroot/stats.json</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>This should start up a local webserver and open the URL in your browser. You can now inspect the packages in the Angular output. At the time of writing, the graph looks like this:</p>
+<figure class="image"><img src="attachments/85493067/85493068.png"></figure>
+<p>You are looking for any sections that look large compared to the others. For example, here&nbsp;<i>feedbacks.umd.min.js&nbsp;</i>and&nbsp;<i>quill.js&nbsp;</i>are quite large in comparison to other packages, however they are known to be good and thus there are no issues with package sizes here.</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493067/85493068.png">image2019-1-14_16-45-52.png</a> (image/png)&nbsp;</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Anonymisation&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>With GDPR, there is often a requirement to generate an anonymised version of a live system for testing purposes. Blueberry makes use of a tool called Anonimatron to assist with this, see&nbsp;<a href="https://realrolfje.github.io/anonimatron/">here</a>&nbsp;for more information. Anonymisation is currently being integrated into BBWT3. Currently the implementation that BBWT3 uses is extracting the data through the DB Browser with certain rules and then sending it through the Anonimatron tool.&nbsp;In future, we’ll have the option to do this as part of our build systems, so every time we release a new version to live, we can automatically copy an anonymised backup to the test system.</p>
 <ul>
-  <li><a href="BBWT3---Angular-Budgets_85493067.html">BBWT3 - Angular Budgets</a></li>
-  <li><a href="BBWT3---Anonymisation_85493076.html">BBWT3 - Anonymisation</a></li>
-  <li><a href="BBWT3---Deployment-and-Environment-Variables_85493078.html">BBWT3 - Deployment and Environment Variables</a></li>
-  <li><a href="BBWT3---Gitlab_85493061.html">BBWT3 - Gitlab</a></li>
-  <li><a href="BBWT3---Modularisation_85493074.html">BBWT3 - Modularisation</a></li>
-  <li><a href="BBWT3---SonarQube_85493070.html">BBWT3 - SonarQube</a></li>
-  <li><a href="BBWT3---Version-Numbering_85493072.html">BBWT3 - Version Numbering</a></li>
-  <li><a href="BBWT3---Webpack-and-Caching_85493065.html">BBWT3 - Webpack and Caching</a></li>
+  <li>Runs on Java.</li>
+  <li>Can automatically generate fake; email addresses, Roman names, UUID's.</li>
+  <li>Customisable: allows you to set rules for different columns within a data set.</li>
+</ul>
+<h1>Test Case</h1>
+<ol>
+  <li>A web application is set to be rolled out soon.</li>
+  <li>There needs to have been rigorous testing with real data on staging server.</li>
+  <li>Client is GDPR sensitive.</li>
+  <li>Blueberry is able to test web application by anonymising the data before putting it on staging server.</li>
+  <li>Specific data fields are randomly renamed, data is still intact but is now anonymised.</li>
+  <li>Testers can continue to work on staging server with real world scenario's.</li>
+</ol>
+<h1>For Testers</h1>
+<ol>
+  <li>From the BBWT3 main menu, click on "Technical Admin".</li>
+  <li>Go down to and click on "Database Types".</li>
+  <li>Click on "Add"</li>
+  <li>Enter in a name and group type (e.g. Email and string) then click "Create".</li>
+  <li>Click on the newly created row and enter the "Anon Rule" (e.g. EMAIL_ADDRESS).</li>
+  <li>On the main menu click on "Database Browser".</li>
+  <li>Select "Employees", then "Email".</li>
+  <li>In "Item Type" select the name of the group you created (e.g. Email)</li>
+  <li>Click on&nbsp; "Save"</li>
+  <li>Click on "Export XML".</li>
+  <li>Open the XML File in a text editor and fill in the database settings.</li>
+  <li>Run Anonimatron with the configured XML file.</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>We are working to integrate this tool into BBWT3.</li>
+  <li>The database explorer module includes support for labelling fields with a “type” – e.g. email, DOB, Name. This type is used to specify the anonymization rules that should apply to the field.</li>
+  <li>The system then generates an XML which Anonimatron can use to make an anonymised copy of the live system database.</li>
+  <li>Suitable for GDPR sensitive clients.</li>
+</ul>
+<p>Will be used in applicable projects rather than implemented by default. Grabs data anonymises it and puts on test or staging server enabling tester to test, while being GDPR friendly.</p>
+<p>DB browser has options on how to export anonymously. CURRENTLY: Generate XML file, download, enter in DB details then throw it through Anonimatron to receive anonymised data (31-01-19).</p>
+<h1>For Marketing</h1>
+<ul>
+  <li>GDPR compliant.</li>
+  <li>When rolling out often as part of the test processes a database is needed, your users data is protected as it is anonymised before it is extracted and placed on a staging server.</li>
+</ul>
+<h1>Blueberry Group : BBWT3 - Deployment and Environment Variables&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>In ASP.NET core you can have multiple configuration providers which take configuration from different sources including json files and environment variables. The primary json file that it takes base configuration data from is the&nbsp;<strong>appsettings.json</strong>&nbsp;file located in: ./src/BBWT3.Web. It doesn’t matter what values are defined in there but what does matter is the order of loading.</p>
+<p>During start-up, BBWT3 will look for specific files in a specific order. The first is&nbsp;<strong>appsettings.json</strong>&nbsp;in the application root. Then it will concatenate the current environment name with&nbsp;<strong>appsettings.json&nbsp;</strong>in the form&nbsp;<strong>appsettings.$Environment.json</strong>. The settings defined in this file will take priority over those defined in&nbsp;<strong>appsettings.json</strong>.</p>
+<p>ASP.NET core recognises three values for environment names:</p>
+<ul>
+  <li>Development.</li>
+  <li>Staging.</li>
+  <li>Production.</li>
+</ul>
+<p>These can be referenced as symbols in your code, see&nbsp;<a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.2">IHostingEnvironment</a>.</p>
+<p>When running locally, developers will want to create a copy of&nbsp;<strong>appsettings.Development.template.json&nbsp;</strong>as&nbsp;<strong>appsettings.Development.json</strong>.</p>
+<p>BBWT3 currently has three common ways of deployment which we will now look at.</p>
+<h1>Stand-alone Server Deployment</h1>
+<p>In production we would set it to production, or test1 or whatever were using at the time for that project. Then if we needed to we would create on the server a file with database settings etc. which is only accessible on that server. Depending on what the set up is we may update that file with different methods:</p>
+<p>We could remote connect to it and update the file manually.</p>
+<p>We could update it through Amazon SSM.</p>
+<p>Or update it through remote management tools - SSH/RDP.</p>
+<p>We don't want to store secrets in GitLab in the appsettings file. If we were to store secrets in GitLab we would generate an appsettings.production file as part of CI and bundle that into the app and then deploy it. This method has been used in the past.</p>
+<p>Things like database type, log levels, log level base, log providers, base log outputs, those wouldn't necessarily be a secret. You might always want to log to console, but not necessarily log to disk. You can inference that in the repository directly – if you want to set a base for the project, that's what we refer to as the appsettings.json file. It is the base template for the project that developers and deployer’s can build upon.</p>
+<h2>Keeping Things Hidden in GitLab</h2>
+<p>We do have ways of keeping things hidden in GitLab. Only maintainers (project managers) can access those, and the server projects have certain CI scripts which can generate a production JSON file to be deployed to the single server setup. GitLab has a mechanism for doing secrets, which has been used on single servers in the past, but it is a little bit more difficult to get to because it is inside GitLab.</p>
+<p>Maintainers have access to a script that can create JSON files from GitLab secrets – maintainers have access to a hidden page in GitLab for the project (in GitLab inside repository on the left hand side you will see settings, inside there is a subgroup called CI / CD. Inside that page is a secret variables drop down that you can expand, and input key value pairs and those are available at build time. Only the maintainer can update and see those values.</p>
+<p>That is part of the deployment through the GitLab CI&nbsp;<strong>OWEL(?)</strong>&nbsp;file which has the script to pull those values, transform them into a JSON structure, and write it to a file as part of the deployment. The issue with scaling is that for every key that you add to GitLab, you have to explicitly reference that key in GitLab CI, so you would need to make an update to that file.</p>
+<p>It is possible to do a “get *.*” you could get everything prefixed with “CI_” or a specific prefix we specify which we could do some pattern matching with to make it more scalable. This method is relatively secure based on the assumption that the GitLab secret has been saved in a secure way, with the additional security of that it is only accessible to maintainers.</p>
+<p>The primary use we have for doing this is for the database connection strings. So if a project manager wanted to change a database connection string for whatever reason, they could go into the GUI update it, and push it out and it will work.</p>
+<p>The variables are for the project and not for a particular deployment environment and so we have used a naming convention to get around that.</p>
+<p>There are two methods of doing it, the first would be just to put them straight into the source code. For very unsecure settings they can go straight into an appsettings.json file or an appsettings.production file in the source code and that will go through. The second is for secrets, you can put them into GitLab instead of into CI. These two methods are what we use combined for our single server case.</p>
+<h2>Branches</h2>
+<p>On a normal stand-alone server we would have a branch for live, and one for test. You would have the main development branch, that is then merged in to one for test, which would go to your test server, then a live one which would be the master branch. It was previously agreed that the master would be the live. The point about this is that you can put an appsettings.json file into each branch so that when they are deployed to one system such as test, it will get the test settings file, and if you deploy it somewhere else such as live, it will get the live appsettings.json file.</p>
+<h1>AWS Elastic Beanstalk Deployment</h1>
+<p>Elastic Beanstalk is a way for Amazon to take your deployment package and put it onto a server or a set of servers, it starts by putting it into an s3 bucket. Your deployment server polls that bucket and deploying is based on a certain strategy; e.g. all in one or release across servers etc.</p>
+<p>The important thing is that they take away all that machinery out of your hands and deploy it for you and give you a status report of the deployment. It also allows them to store key value pairs in Amazon encrypted, to then use in the environment of the application. The way they do this is by writing a file as part of the deployment to the disk which your app will then need to pick up.</p>
+<p>Historically these are normally injected into the environment process. In the case of dotnet core there is a long-standing bug where this doesn't happen (existed since 2016). So a work around has been implemented in BBWT3 where we manually read the file that they write to disk, and then we read it with a configuration provider and that adds it to a set of values and we have a middleware called “Elastic Beanstalk Provider” within the BBWT3 middleware which does this. The path is located in BBWT3’s provider, so you can find it quite easily.</p>
+<p>It only exists on the server and is rewritten on every release we do through Elastic Beanstalk, but it comes from the GUI you use on Amazon.<br>This however is simply an implementation detail, and a developer won’t really need to worry about this.</p>
+<p>The reason we do this is so we can take advantage of the GUI Amazon provides, which allows people a very user friendly way of defining these user variables without having to think about it. They just press a button to push it out and Elastic Beanstalk handles getting it on to the server.</p>
+<p>What you put into the Amazon variables is the same as what you would put in the GitLab secret variables as described in the above stand-alone server deployment section.</p>
+<h2>Advantages of Using Amazon Elastic Beanstalk Instead of GitLab</h2>
+<p>We use Elastic Beanstalk variables as it is easier to just update the configuration. If you were to use GitLab, you would have to do another deployment and plan your deployment so that it doesn't collide with anyone else's. If you change the variables in Amazon it reboots the process not the server, so it is quicker than GitLab; where you would have to do a whole deployment cycle.</p>
+<p>Another advantage of using Amazon is its IAM (Identity Access Management) approach. The advantage to doing changes through Amazon’s IAM over GitLab is that it has tracking – GitLab does not. Amazon IAM is accessible for project managers. We can create a new group in IAM which gives the project manager the requisite access to this page for their projects. Then they can go in and tinker with it. Tracking can be achieved with the use of CloudTrail, an admin can see if you made “x” change. But there is no revision history. However this is not usually an issue as secrets don’t usually change.</p>
+<p>The proper way is to use the Amazon parameter store and then having the application read in through Amazon’s API’s from parameter store which is Amazon's solution for it. So we could write a middleware wrapping around the parameter store and then we give a prefix for each application deployment – e.g. BBWT3-test1/key which would allow us to partition the parameter store for each application and gives a fully tracked managed way of doing it with revision history for each parameter.</p>
+<p>It is possible to make that as familiar as possible to the user by including it within BBWT3 itself, however you would need to make it able to write back to the correct application. If we push the configuration back into the Amazon parameter store, and we use the API’s of the Amazon parameter store, we can save them in there and it will be central and will work for every Amazon deployment that we do. However like this it will not work on Azure. It could be made to work on Azure however it would entail writing a middleware that talks to both. Which probably is the best way to do this.</p>
+<p>Currently we don’t have a mechanism for connecting the GitLab variables to the parameter store, we would need a separate application to sync those.</p>
+<h1>Elastic Container Service Deployment</h1>
+<p>Elastic container service is a proprietary Amazon service which is their way of doing container scheduling, with its own way of managing its secrets and environment variables. Its main advantage is that it gives improved security.</p>
+<p>The way it works is you have a container, ie. BBWT3 Then you create a task for that container, which specifies how it should run, how many resources It should take and more importantly the configuration/environment variables which should be attached to that container.</p>
+<p>You create a new task version every time you wish to update the container software with variables, then you push that out to a service running on your cluster. The way it was done in VME was you had a 1 to 1 relationship without multiple services, you had the 1 service on the 1 cluster with the 1 task. But it can be mixed up as much as needed but that's how it was done for simplicity.</p>
+<p>It is another user interface where you define environment variables, and those environment variables are made available to the process as environment variables without any middleware. It is injected correctly, unlike with Elastic Beanstalk.</p>
+<h1>The Preferred Method</h1>
+<p>The preferred method is to use the Amazon Parameter Store which will work across every case.</p>
+<p>Alternatively we can use Elastic Beanstalk.<br>Elastic beanstalk is now available for use on single servers,&nbsp; we could integrate Cloud Machine Manager (CMM) and this would give us an easier route for deployment.</p>
+<p>The load balancer is optional so the main benefit from this is the deployment strategy - you can upload a zip file, and it goes and deploys it. Which for Windows servers is a better alternative than having GitLab go and open ssh to drop the files off. It handles the Windows server use case very well.</p>
+<p>The work around for single server without using Elastic Beanstalk was that GitLab creates a zip file ssh connection to the server uploads the zip file, and write our own deployment scripts to replace the IIS folder. Using this method you would not be able to do a soft deployment (updating the code without taking the system down) as can be done with Elastic Beanstalk.</p>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Gitlab&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>GitLab is a service that gives access to git repositories. It allows for centralisation of source code and helps to manage the software development life cycle. It allows multiple developers to work on different aspects of the code, create and edit new projects and then merge it into existing ones. There are multiple hosting options, Blueberry consultants uses the free self-hosting community edition; to access you can click&nbsp;<a href="https://gitlab.bbconsult.co.uk/users/sign_in">here</a>.</p>
+<h1>Advantages</h1>
+<ul>
+  <li>Free and open source.</li>
+  <li>Different hosting options.</li>
+  <li>GUI interface.</li>
+  <li>Protected branches - meaning only users with high level permissions are able to push or delete code in a branch.</li>
+  <li>Different authentication levels.</li>
+  <li>Milestones for groups not just individual developers.</li>
+  <li>Issue tracking.</li>
+  <li>Work in progress labelling - letting other developers know that the code isn't completed, so that it doesn't end up getting merged into a branch.</li>
+</ul>
+<h1>Getting Started with GitLab</h1>
+<ol>
+  <li>First go&nbsp;<a href="https://gitlab.bbconsult.co.uk/users/sign_in">here</a>&nbsp;to access the GitLab login page.</li>
+  <li>Login using your LDAP credentials (this will usually be your initials along with your standard blueberry password) Note: if you are unable to login make sure you have been added to a GitLab project - contact a sysadmin in this instance.</li>
+  <li>In the top right hand corner you will see an icon, click on this.</li>
+  <li>In the drop down menu click on "Settings".</li>
+  <li>In the far left menu navigate to and click on "Account".</li>
+  <li>In the page that loads click on "Manage two-factor authentication" (this needs to be set in order to clone git repositories).</li>
+  <li>Enable two-factor authentication following the on screen instructions and using the Google "Authenticator" app (or similar).</li>
+  <li>You should now be ready to set up your<a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=65077466">&nbsp;Development Environment</a>&nbsp;and begin contributing.</li>
+</ol>
+<h1>How It Is Used in BBWT3</h1>
+<p>For BBWT3, we're using GitLab – an open-source version of GitHub which includes a strong auto-build / auto-deploy solution.</p>
+<p>Ideally, long-running BBWT2 projects should also move to GitLab too. We can’t easily move BBWT2 code to BBWT3, but we can take advantage&nbsp;<br>of the new auto-build and auto-deploy - and save time managing Jenkins.</p>
+<p>There’s a method to import SVN into GitLab source control. But we need to have an auto-build in place first so we can build/deploy</p>
+<p>Our first BBWT3 project was VME. This uses ASP.NET Core on Linux, Elastic Load Balancer, Docker within Elastic Container Service and&nbsp;<br>Aurora / MySQL. This is a technology stack which is intended for systems which we expect will scale to a large number of users. This&nbsp;<br>stack isn’t sensible for smaller projects.</p>
+<p><br>We need to be careful to avoid supporting too many different technology stacks – it just makes life complicated.</p>
+<p>This is our target list:</p>
+<p>&nbsp;</p>
+<figure class="table" style="width:1032.0px;">
+  <table>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Web</th>
+        <th>DB</th>
+        <th colspan="1">Notes</th>
+        <th colspan="1">CI Deployment Process</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Windows Small Server Standalone</strong></td>
+        <td>Windows 2016 Server</td>
+        <td>MS SQL Express 2017</td>
+        <td colspan="1">As BBWT2, Web and SQL on same machine mostly for testing.</td>
+        <td colspan="1">CI launches Docker Image to do the build, which creates ZIP which is then installed on target server.</td>
+      </tr>
+      <tr>
+        <td colspan="1"><strong>Linux Small Server Standalone</strong></td>
+        <td colspan="1">Linux Server</td>
+        <td colspan="1">MySQL on Web Server</td>
+        <td colspan="1">Keep it simple, and similar to Windows Small Server Standalone.</td>
+        <td colspan="1">CI launches Docker Image to do the build.</td>
+      </tr>
+      <tr>
+        <td><strong>Windows Load Balanced</strong></td>
+        <td>Elastic Beanstalk /<br>Multiple Windows 2016 Servers</td>
+        <td>MS SQL Server,<br>Separate Instance</td>
+        <td colspan="1">First one is HBS, allows availability/ redundancy by adding more Windows Servers.</td>
+        <td colspan="1">CI launches Docker Image to do the build, which creates ZIP which is then installed on target server by EB.</td>
+      </tr>
+      <tr>
+        <td colspan="1"><strong>Linux Load Balanced</strong></td>
+        <td colspan="1">ECS running Multiple Containers</td>
+        <td colspan="1">Aurora MySQL</td>
+        <td colspan="1">This is the same as VME.</td>
+        <td colspan="1">CI launches Docker Image to do the build, and image is then deployed to ECS.</td>
+      </tr>
+      <tr>
+        <td colspan="1"><strong>Windows Small Server Shared</strong><br>(mostly for testing)</td>
+        <td colspan="1">Windows 2016 Server</td>
+        <td colspan="1">MS SQL Server,<br>Separate Instance</td>
+        <td colspan="1">To save money, we put multiple test systems onto a single server. We did this for BBWT2, and should do it for BBWT3 when we have enough test systems.</td>
+        <td colspan="1">CI launches Docker Image to do the build, which creates ZIP which is then installed on target server - CI must put in right IIS folder.</td>
+      </tr>
+      <tr>
+        <td colspan="1"><strong>Linux Small Server Shared</strong>&nbsp;(mostly for testing)</td>
+        <td colspan="1">ECS running Multiple Containers</td>
+        <td colspan="1">Aurora MySQL</td>
+        <td colspan="1">To save money, we could use this for multiple test systems, each of which has just one container. We still need to have a load balancer to route connections.</td>
+        <td colspan="1">CI launches Docker Image to do the build, and image is then deployed to ECS.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Notes</p>
+<ol>
+  <li>In general, I'm expecting to use Linux for most of our deployments.</li>
+  <li>For now, we ignore the Small Server Shared configurations - we won't save money until we have multiple test system. Note that we could do Linux Shared in the same way as Windows<br>Shared - i.e. multiple systems on one server, and this is probably more efficient than using Docker, which requires xGB ram per container. Long term, we should be investing in Serverless<br>computing to reduce the overload of managing servers.</li>
+  <li>We're applying a rule that we use Windows and MS SQL, and Linux and MySQL - this isn't required, it just reduces the number of configurations. If someone really wants a mix, OK.</li>
+  <li>Aurora is only available for MySQL and PostgreSQL, not Linux. It has much better backup and redundancy support than stand-alone MySQL, and is probably faster. For stand-alone scenarios<br>above, I'm suggesting we keep local MySQL, but this could be changed. Local MySQL is a bit cheaper though, if web-server isn't loaded. Note that Aurora works in unit of a DB instance with&nbsp;<br>multiple DBs, and the unit of backup is the whole instance. This MAY make it less useful to share Aurora DB instances between projects.</li>
+  <li>We should have Terraform scripts for each of these, which can be used to create a new server as required.</li>
+</ol>
+<h1>Sending commit data to PTS</h1>
+<p>Repository event data can be sent back to PTS using a webhook. For now, we're just sending back push events. To set this up for your Web Template 3 project, navigate to&nbsp;<strong>Settings&nbsp;→ Integrations</strong>&nbsp;in the project, and add a new webhook with the following values:</p>
+<ul>
+  <li>URL:&nbsp;<a href="https://ptsb.bbconsult.co.uk/api/git/push">https://ptsb.bbconsult.co.uk/api/git/push</a></li>
+  <li>Trigger: Push events</li>
+</ul>
+<h1>Sending Data Back to GitLab</h1>
+<h2>Introduction</h2>
+<p>One of the visions for BBWT3 is to enable customers or PMs / Testers&nbsp;to make changes to a number of areas of the website without having to go back to developers to update the code.&nbsp; In general, these changes will be made by the customer during the testing phase of development and so need to find themselves back into source control for when the site goes live.&nbsp; The changes will be submitted to GitLab as a merge request which a PM will need to accept.</p>
+<p>An example of where this would be required is for the tool-tip functionality.&nbsp; We want users to be able to edit the tool-tips themselves and for those changes to be updated in the source control.</p>
+<p>The updates made will be recorded in a JSON file.&nbsp; This file will need to be updated in the BBWT3 local database (so that other users can immediately see their changes), and also sent to GitLab so that source control is updated.</p>
+<p>The JSON file lives in source control and is versioned, but we also want to have a copy in the DB&nbsp;so that IF someone edits the JSON, then other browser clients can get that JSON without needing to wait for the app to be rebuilt.&nbsp; For the cases where we have used this feature to date, we have just been concerned about data and not code.&nbsp; In the future we might need to look at rebuilding the code, in this case there will be other options:</p>
+<p>We just don't bother.&nbsp; If only one person is editing, they can check it on their own PC.&nbsp; Other users can wait for rebuild.</p>
+<p>We build a CI hook so that if we change the JSON file, it automatically triggers a rebuild.</p>
+<p>We build a CI hook that just re-runs web-pack on any change - we don't recompile the code, but we update the web-pack zip, so clients will re-download it.</p>
+<p>We don't put in the DB, but we allow a JS client to put it in the DB.&nbsp; Clients get their main copy from web-pack, but if there is a new version in the DB they take it.&nbsp; On&nbsp;rebuild we clear the DB.</p>
+<h2>Infrastructure</h2>
+<p>In order to allow a BBWT3 site to send data back into GitLab&nbsp;securely, without needing to include in the site source the GitLab keys,&nbsp;we are going to create the following infrastructure:</p>
+<figure class="image"><img src="attachments/85493061/85493062.png"></figure>
+<h2>Functions Supported</h2>
+<p>At present the following features have been implemented using this push to GitLab mechanism:</p>
+<ul>
+  <li>TOOLTIP.</li>
+  <li>DBDOCUMENT.</li>
+  <li>Static Pages (e.g. privacy policy).</li>
+  <li>Menu Structure.</li>
+  <li>Email Templates.</li>
+</ul>
+<p>We are also looking at:</p>
+<ul>
+  <li>VALIDATION:<br>Control validation rules - this is more complicated and requires more thought, it will require more stringent validation rules and will probably need different storage mechanisms.&nbsp; In principle it will work the same way as tooltips, but will require more security checks.</li>
+</ul>
+<h2>JSON File</h2>
+<p>The changes the user makes will be stored in a JSON file.&nbsp; This JSON file contains all the information i.e. it is not incremental but contains all the information in one file.</p>
+<p>The file will be versioned in GitLab as a project file.&nbsp; When the site is started, the contents of that file will be written to the&nbsp;BBWT3 server database.</p>
+<p>As the user makes changes to the data (e.g. edits a tool-tip) the data will be stored in the browser until the user is ready to submit their changes.&nbsp; There is some concern that if the user makes a lot of changes they could loose data if a browser crash occurs, to mitigate against that tool-tip edits will only be allowed for a single page at a time before submitting to the server is required.&nbsp; Future enhancements could be to:</p>
+<ul>
+  <li>Save the data in browser local storage in case of a browser cache (we do this already for order creation in VME).</li>
+  <li>Save the data in a holding table in the database.</li>
 </ul>
 <p>&nbsp;</p>
-<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-<p><a href="http://www.atlassian.com/">Atlassian</a></p>
+<p>The JSON file will include a header of who made the last change and the datetime stamp of when the file was updated.&nbsp; When the file is written to the database (table metadata in the BBWT3 database), it will also compare the datetime stamp to the LastUpdated field.&nbsp;</p>
+<p>If the LastUpdated field is later than or equal to the current datetime then it will:</p>
+<ul>
+  <li>Update the LastUpdated to be the value in the JSON file.</li>
+  <li>Update the JSON file to be the latest.</li>
+  <li>Set the IsLocked field on the record= false.</li>
+</ul>
+<p>If the value in the JSON file is earlier than the last updated value then it will:</p>
+<ul>
+  <li>Set the IsLocked field on the record = true.</li>
+</ul>
+<p>The individual BBWT3 pages will check the value of the IsLocked field to see if more edits can be made.&nbsp; If it is true then the pages will show a message saying there are pending changes and not allow the user to edit.</p>
+<h2>Multi-User Issues</h2>
+<p>Because changes are being recorded in a single JSON file, there is an issue when more than one person is editing the data at the same time (last person to save would overwrite all changes).&nbsp; We are not going to block this from happening but will warn a user that other people are in admin mode.&nbsp; So for example, with tool-tips, if one person clicks on tool-tip admin mode, we will record their username in a BBWT3 database table and warn anyone else who clicks on the tool-tip admin mode checkbox if other people are also in admin mode and that data might be lost.</p>
+<h2>GitLab</h2>
+<p>The GitLab service will take the function passed to it and call GitLab to get the name of the branch to create or update.</p>
+<p>Once the user has edited the data and committed to the server, the process will create a merge request for the PM to accept.&nbsp; If Blueberry staff edit the data themselves then they will need to submit the changes for merging using the same branch name convention.&nbsp; If this does not happen, then merge conflicts may occur and there is a danger that changes could be overwritten.&nbsp; If a developer deletes a control off a page, then there is a danger that a merge request could end up adding the information back into the JSON File, but this should be safe - will just add not used information.&nbsp; The PM will control the merging so will be aware of changes being made.</p>
+<p>Each project in GitLab has a project ID.&nbsp; We will change the CI so that this value gets compiled into the project in the same way we currently use the build pipeline for the build version number.</p>
+<h2>Process Components</h2>
+<h3>Client Angular Page</h3>
+<p>Every function will require a page in BBWT3 to allow users to administer the functionality.&nbsp; The data edited will need to be sent to GitLab and so the page will need to work with a JSON file locally until the user is ready to submit their changes.&nbsp; Clicking on the submit button will call a C# controller class as per normal MVC models.</p>
+<h3>Function Controller</h3>
+<p>There will be a controller class for the data being edited.&nbsp; This will receive the JSON file from the Angular page and pass it on to C# Service code to validate and process it.&nbsp; The service code will send the data to the local BBWT3&nbsp; database (either as JSON blob, e.g. for tool-tip, or as field data e.g. for DBSchema) and also send the JSON file to the&nbsp;BBWT3_Gitlab AWS Gateway service.</p>
+<p>&nbsp;</p>
+<p>To call the BBWT3_Gitlab Service, the BBWT3 service code will read the:</p>
+<ul>
+  <li>Project Name, Version and ID from the project fields (compiled in by GitLab CI).</li>
+  <li>Username of logged in user (will be added to check-in comment)&nbsp; Note that this is always tricky, as most customers and testers use "admin@".&nbsp; I'll email on a solution later.</li>
+  <li>GitLab&nbsp;Access key from Environment Variable on server.</li>
+  <li>Hard coded Function Name (e.g. TOOLTIP).</li>
+</ul>
+<h3>BBWT3_Gitlab Amazon Gateway Service</h3>
+<p>We will need an Amazon Gateway service and associated Lambda function to be written.&nbsp; This will need to:</p>
+<ul>
+  <li>Create the branch name from the project name and the Function<ul>
+      <li>Function: TOOLTIP&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Branch Path: Feature/TOOLTIP</li>
+      <li>Function:&nbsp;DBDOCUMENT&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Branch Path: Feature/DBDOCUMENT</li>
+    </ul>
+  </li>
+  <li>Call GitLab&nbsp;Branches API (<a href="https://docs.gitlab.com/ee/api/branches.html">https://docs.gitlab.com/ee/api/branches.html</a>) using the Project ID to see if the branch already exists.</li>
+  <li>If the branch already exists, then update that branch (GitLab will overlay the new changes on the file in the branch).</li>
+  <li>If the branch does not exist, create a new branch using received branch path (make it temporary so that it is automatically deleted after merge is accepted).</li>
+  <li>CallGitLab Commits API (<a href="https://docs.gitlab.com/ee/api/commits.html">https://docs.gitlab.com/ee/api/commits.html</a>) to commit file.&nbsp; Location will be&nbsp;src\BBWT.Web\Filename. The checkin comments will detail the DateTime - username of the person making the change.</li>
+  <li>Call GitLab Merge requests API (<a href="https://docs.gitlab.com/ee/api/merge_requests.html">https://docs.gitlab.com/ee/api/merge_requests.html</a>) to create a new merge request for created branch.</li>
+</ul>
+<p>&nbsp;</p>
+<p>The code will need to validate the JSON object passed to it.&nbsp; It should ensure it does not contain HTML tags or Script tags.</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493061/85493062.png">GitLab WebService.PNG</a> (image/png)&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Modularisation&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>Currently no commercial solution for modularisation. However it is something we aim to achieve, this is difficult to do because the source code is in a complex organisation. There are two development tree's, front end and back end, with migrations in a third place.</p>
+<ul>
+  <li>See also&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Scaffolding">Scaffolding</a>.</li>
+</ul>
+<h1>Blueberry Group : BBWT3 - SonarQube&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>SonarQube is a static code analysis tool which detects for; duplicate code, code smells, bugs, security vulnerabilities, and checks for best coding practices. It has support for multiple languages including; C#, CSS, Java, TypeScript as well as others.</p>
+<ul>
+  <li>Multiple language support.</li>
+  <li>Branch analysis - ensures that only clean code gets pushed.</li>
+  <li>On the fly linting plug-in for IDE's.</li>
+  <li>Detailed GUI.</li>
+</ul>
+<h1>Blueberry Login</h1>
+<p><a href="https://sonar.bbconsult.co.uk/projects">https://sonar.bbconsult.co.uk/projects</a></p>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Find bugs in code before deployment with SonarQubes powerful tool set.</li>
+  <li>Track where new bugs emerged.</li>
+  <li>Ability to ensure code is as best as it can be.</li>
+  <li>Automatically detects bugs and security vulnerabilities.</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>BBWT3 is checked via SonarQube, a code analysis tool which helps to reduce the amount of bugs and security vulnerabilities.</li>
+  <li>Code merged into the main repository is checked to be clean.</li>
+  <li>Detects sanitisation issues.</li>
+</ul>
+<h1>Blueberry Group : BBWT3 - Version Numbering&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Hard-coded version number</h1>
+<p>Main version number presents a release of the BB Web Template. It is hard-coded and placed into the main CI script (<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/blob/develop/.gitlab-ci.yml#L3">here</a>&nbsp;in GitLab).</p>
+<p>For example:&nbsp;<br><strong>.gitlab-ci.yml</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>variables:</code><br><code>&nbsp; BBWT_VERSION:&nbsp;'3.3.0'</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>The version format is [<strong>major version</strong>&nbsp;(“3” – because BBWT3)], [<strong>minor version</strong>&nbsp;(3 – because it’s a third release of May 2020 after July 2019 and October 2019)], [<strong>patch number</strong>&nbsp;(0)].</p>
+<p>&nbsp;</p>
+<h2>Accessing The Feature:</h2>
+<p>&nbsp;</p>
+<ol>
+  <li>Login to BBWT3.</li>
+  <li>In the bottom right hand corner click "i" icon.</li>
+  <li>In the dialog the main version number is shown:</li>
+</ol>
+<p>Version:&nbsp;<strong>3.3.0-52942-e876f888-3</strong></p>
+<p>which has a format&nbsp;[<strong>main version number</strong>&nbsp;(3.3.0)]-[<strong>version suffix</strong>&nbsp;(52942-e876f888-3)]</p>
+<p>where the version suffix has a format&nbsp;[<strong>pipeline ID</strong>&nbsp;(52942)]-[<strong>Git commit hash</strong>&nbsp;(e876f888)]-[<strong>Git project ID</strong>&nbsp;(3)].</p>
+<p><br>&nbsp;</p>
+<h1>GitLab generated version number</h1>
+<p>Ab additional version number (which is a part of the version suffix explained above) is generated by GitLab and will not increment with changes made locally. The version is GitLab's pipeline number which gets incremented every build. The pipeline number is shared across all projects, so wont necessarily increase by 1 every time for a particular project.</p>
+<h2>Accessing The Feature:</h2>
+<ol>
+  <li>Login to BBWT3.</li>
+  <li>In the bottom right hand corner will be displayed the version number.</li>
+</ol>
+<h2>For Project Managers:</h2>
+<ul>
+  <li>Displays the version number clearly in the bottom right corner - allows testers to track changes.</li>
+  <li>Testers can ensure they are on the latest build.</li>
+</ul>
+<h2>For Marketing:</h2>
+<ul>
+  <li>Save time by knowing whether the test build is the latest version for testing.</li>
+</ul>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Webpack and Caching&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>This page describes how Webpack and caching are used in BBWT3 along with useful links to find out more.</p>
+<p>Webpack no longer used</p>
+<p>Webpack has been superseded by&nbsp;<a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=68354084">Angular CLI</a></p>
+<h1>Webpack</h1>
+<p>Webpack is a build tool as well as code manager. Usually ordering within files is important to run properly - otherwise you could end up with errors such as not having a defined variable, if code is called out of order. Webpack takes care of this for you by scanning files for imports, and the imports of those imports ad infinitum. It will then merge the files into a single bundle. It has the ability to "minify" files by effectively removing white space. This makes files smaller and thus quicker for the end user to download via their browser.</p>
+<ul>
+  <li>Webpack combines multiple server-side files into a single file for delivery to the client.</li>
+  <li>Webpack changes references in the web-application code to the archive to include an ?v=&lt;hash&gt; parameter on the URL.</li>
+  <li>Browsers consider this part of the file name.&nbsp; So, if the content of an archive changes, it gets a new name and is treated as a new file for caching purposes.</li>
+  <li>Effectively Webpack makes server-side archives immutable - they can't change, because they become a new file to the browser.&nbsp; This turns off a large part of the caching strategy - there's no point asking the server if the file is changed - if the name is the same, it hasn't.</li>
+</ul>
+<h1>Caching</h1>
+<ul>
+  <li>Webpack effectively defeats a large part of browser caching - if it is used correctly, the browser only sees files that don't change on the server.</li>
+  <li>At the ASP.NET Core Server, we don't have files that correspond to application pages.&nbsp; Instead the application provides a handler function which returns HTML.&nbsp; The server will serve the web-pack files referenced by the main URL too.</li>
+  <li>For the main top level content (<a href="http://www.bbwt3.com%29/">www.bbwt3.com)</a>&nbsp;I think we should cache "never".<ul>
+      <li>This content will not be re-requested during user interaction with the site, but only when:<br>
+        <ul>
+          <li>The user closes and restarts the browser - it's useful to check for a new version at this point.</li>
+          <li>If the user hits F5.</li>
+          <li>If the site itself forces a reload.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>For all web-pack content, return "cache always, without checking on the server for new versions, and both private and public".<ul>
+      <li>This is because Webpack ensures that files are unique, there is no point to check on the server.</li>
+      <li>Moreover, if we do not specify cache control headers, we are relying on default browser behaviour - which may result in less caching than is desirable.</li>
+    </ul>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<h1>Useful Resources</h1>
+<p><a href="https://scotch.io/tutorials/whats-new-in-webpack-4">https://scotch.io/tutorials/whats-new-in-webpack-4</a></p>
+<p><a href="https://www.valentinog.com/blog/webpack-tutorial/">https://www.valentinog.com/blog/webpack-tutorial/</a></p>
+<p><a href="https://www.sitepoint.com/beginners-guide-webpack-module-bundling/">https://www.sitepoint.com/beginners-guide-webpack-module-bundling/</a></p>
