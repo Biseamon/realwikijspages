@@ -2,27 +2,440 @@
 title: Blueberry Group : BBWT3 - Features 
 description: 
 published: true
-date: 2020-12-01T10:59:41.170Z
+date: 2020-12-01T12:46:07.621Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-11-27T11:04:03.128Z
 -->
 
-<h1>Features&nbsp;</h1>
+<h1>Blueberry Group : BBWT3 - Company and Organisation&nbsp;</h1>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Company Brand Management&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>A logo for a company can be selected via the&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Company+Management">Company Management</a>&nbsp;page.</p>
+<p>For information on company branding guidelines and best practices, please refer to the articles on&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/BB+CSS+Styles">CSS Styles</a>&nbsp;and&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Themes">Themes</a>.</p>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Company Management&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>The Companies feature provides an organisation structure for system users. Users are associated with a company which dictates what features, content and branding are displayed to the user. Security permissions are set via&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Role+Management">Role Management</a>&nbsp;however and not through Company Management.</p>
+<ul>
+  <li>Company contains:<ul>
+      <li>Name.</li>
+      <li>Description.</li>
+      <li>Address.</li>
+      <li>Logo.</li>
+      <li>Offices.</li>
+    </ul>
+  </li>
+  <li>Office contains:<ul>
+      <li>Address.</li>
+    </ul>
+  </li>
+  <li>Ability to add, edit and remove companies.</li>
+  <li>Ability to add, edit and remove offices.</li>
+</ul>
+<h1>Test Case</h1>
+<ol>
+  <li>Company "X" has opened a new office.</li>
+  <li>Admin creates new office with relevant details.</li>
+  <li>Details of new office are available to users.</li>
+</ol>
+<h1>For Testers</h1>
+<ol>
+  <li>From BBWT3 menu click on "Operational Admin".</li>
+  <li>From the drop down menu click on "Companies".</li>
+  <li>Select a company from the "Manage Companies" window.</li>
+  <li>Offices of selected company will be displayed in the "Offices" window below.</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Offers the ability to have multiple companies on the same platform.</li>
+  <li>Depending on what company the user is associated with determines company branding, features and content that they can access.</li>
+  <li>You can easily edit who is associated with a particular company making administration quick and easy.</li>
+  <li>Done through CSS which is a very popular language.</li>
+  <li>To be implemented: Currently there is no ability to associate a user with an office (31-01-19).</li>
+  <li>Bug: Upon uploading a company logo it does not resize it.</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>Ability to have multiple companies on the same platform.</li>
+  <li>The branding a user sees, is easy to set up. Upload a logo for a specific company and alter the colour scheme of the theme used with your web app.</li>
+</ul>
 <p>&nbsp;</p>
 <ul>
-  <li><a href="BBWT3---Company-and-Organisation_85493119.html">BBWT3 - Company and Organisation</a></li>
-  <li><a href="85493216.html">BBWT3 - Diagnostic Tools / Developer Support</a></li>
-  <li><a href="BBWT3---GUI-and-Layout_85493125.html">BBWT3 - GUI and Layout</a></li>
-  <li><a href="BBWT3---HangFire_85493244.html">BBWT3 - HangFire</a></li>
-  <li><a href="BBWT3---Login-and-Authentication_85493083.html">BBWT3 - Login and Authentication</a></li>
-  <li><a href="BBWT3---Maintenance-Mode_85493265.html">BBWT3 - Maintenance Mode</a></li>
-  <li><a href="85493274.html">BBWT3 - Progressive Web App (PWA)</a></li>
-  <li><a href="BBWT3---Runtime-Configuration_85493247.html">BBWT3 - Runtime Configuration</a></li>
-  <li><a href="BBWT3---Scaffolding_85493270.html">BBWT3 - Scaffolding</a></li>
-  <li><a href="BBWT3---Supported-Browsers_85493272.html">BBWT3 - Supported Browsers</a></li>
-  <li><a href="BBWT3---User-and-Roles-Management_85493111.html">BBWT3 - User and Roles Management</a></li>
-  <li><a href="BBWT3---Web-Browser-and-Session_85493104.html">BBWT3 - Web Browser and Session</a></li>
+  <li>l time communication when multiple users are on the same page thanks to websockets.</li>
+</ul>
+<h1>Useful Resources</h1>
+<p>Please consult the&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Feedbacks+Module">Feedbacks Module</a>&nbsp;page for more detailed information and how to include this module within projects.</p>
+<h1>Test Case</h1>
+<ol>
+  <li>User has an issue with the web application.</li>
+  <li>User is able to take a screenshot of the issue and upload it directly without any 3rd party software.</li>
+  <li>User has the ability to use their voice and have it turned into text via an API instead of typing.</li>
+  <li>Admin receives the message and is able to investigate and fix the issue quickly.</li>
+</ol>
+<h1>For Testers</h1>
+<p>1a. For full screen mode click on the talking bubble with the explanation mark in the centre.</p>
+<p>1b. For tablet/mobile mode click on the 3 horizontal bars and click on "Feedbacks".</p>
+<p>2. A new windows will open with automatically selected filters.</p>
+<p>3. Click on "New" in this new window.</p>
+<p>4. On the main web application page enter in a title and description.</p>
+<p>5. If you wish you can accept the voice recording function and have your voice be the input.</p>
+<p>6. Click on "Save" to submit your issue.</p>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Quick and easy method of reporting issues.</li>
+  <li>Ability to describe the issue in detail due to the various media options available.</li>
+  <li>Can demonstrate issue in real time.</li>
+  <li>To be implemented: The version that is currently within BBWT3 is filled with bugs and is soon to be replaced (31-01-19).</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>Allows users to send issues to admin quickly.</li>
+  <li>Able to upload a screenshot of the issue without the use of 3rd party software.</li>
+  <li>Able to make notes through voice recognition.</li>
+  <li>Real time communication of issue can be achieved if more than one party is on the same page as the issue is being made.</li>
+</ul>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Logging&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>Logging system uses the 3rd party software called Graylog.</p>
+<ul>
+  <li>Logs current user ID.</li>
+  <li>Logs any impersonation currently in place.</li>
+  <li>Logs any "real user name" defined on current user.</li>
+</ul>
+<p>There are 3 logging destinations available by BBWT3:</p>
+<ul>
+  <li>Log error file.</li>
+  <li>Greylog.</li>
+  <li>Database.</li>
+</ul>
+<p>File logging should not typically be used in live or test environments, and should be considered for development machines only.&nbsp;BBWT3 principles discourage writing to files on the webserver, and discourage developers connecting to the webserver to read files.</p>
+<p>Greylog should be the preferred solution as it can accept application logging in addition to logging from other sources, e.g. database, OS, IIS.</p>
+<h1>Test Case</h1>
+<ol>
+  <li>Web application is being actively tested by QA team.</li>
+  <li>A tester causes an error.</li>
+  <li>This error can be diagnosed due to the logging from Graylog.</li>
+</ol>
+<h1>Developer Notes</h1>
+<p>During development dbdoc should not need audit logging in addition to the repository. Any work that goes through the metadata table is already being tracked in the source code repository.<br>Within&nbsp;Serilog&nbsp;you are able to set the minimum level of logging per source.&nbsp;Within the configuration you need to have the section “Override” inside the “MinimumLevel”. For more information and an example see&nbsp;<a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?spaceKey=BLUEB&amp;title=Configuration#Configuration-Serilog">here</a>.</p>
+<h1>For Testers</h1>
+<p>Go to&nbsp;<a href="https://graylog.bbconsult.co.uk/">https://graylog.bbconsult.co.uk</a>.</p>
+<ol>
+  <li>Enter in LDAP username and password.</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Able to quickly identify issues. Allowing you to respond to incidents quickly.</li>
+  <li>Can set automatic reporting daily/weekly/monthly.</li>
+  <li>Cost effective storing of logs, useful for keeping in with best practise policies in case of an audit.</li>
+  <li>Automatic alerts in case of attack, can set firewalls to automatically block IP ranges.</li>
+  <li>Cloud support for scalability and security.</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>Cloud support and integration - secure and cost effective.</li>
+  <li>Automatic alerts in case of attack.</li>
+  <li>Cost effective and in keeping with best practise policies in case of an audit.</li>
+</ul>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Page Load Timer&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>Page load timer is a feature that displays how long it took in seconds to load a particular page. It displays this value in the top right corner when enabled.</p>
+<p>When enabled displays stopwatch icon, with the load time in seconds for currently displayed page.</p>
+<h1>Test Case</h1>
+<ol>
+  <li>Prior to deployment of web app an admin may wish to check for consistency across the site.</li>
+  <li>Admin wishes for all pages to be responsive for the user.</li>
+  <li>Admin goes through links of web app and reviews loading time.</li>
+  <li>Any pages with longer load times can be tracked down and investigated.</li>
+  <li>Admin can then make changes such as resizing images.</li>
+</ol>
+<h1>For Testers</h1>
+<ol>
+  <li>On each loading in the app, there is an icon in the top bar with the loading time:<br><br><br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493224/85493225.jpg"></figure>
+<ol>
+  <li>This time is saved in DB, There is a page accessible only for admin to show all loading times:<br><br><br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493224/85493226.jpg"></figure>
+<ol>
+  <li>On this page, you are able to filter loading times by Account and page. There is an average time according to these filters:<br><br><br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493224/85493227.jpg"></figure>
+<ol>
+  <li>We can deactivate this feature from settings, and from the loading times page:<br><br><br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493224/85493228.jpg"></figure>
+<ol>
+  <li>If the user is a “tester”, he can deactivate this feature in menu when he does a right click on the top bar:<br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493224/85493229.jpg"></figure>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Having page loading times easily accessible gives a quantifiable value of site responsiveness.</li>
+  <li>You will be able to identify any problem pages, and then be able to attempt to fix issues, to make the user experience more responsive.</li>
+  <li>Having the ability to store all load times within a database that you are able to search and sort through, helps in identifying problems.</li>
+  <li>There is a log of the user and path to which the site was loading on display within the database. This way you can identify who had the issue, as well as what page they were attempting to access.</li>
+  <li>Limitation: Only provides basic search and filtering capability (31-01-19).</li>
+  <li>Limitation: Does not update the load time when filtering search or sorting tables (31-01-19).</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>Able to search for problem pages prior to roll out - enabling a smooth user experience throughout the site.</li>
+  <li>Able to identify through logs with who and where an issue occurred.</li>
+</ul>
+<p>&nbsp;</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493224/85493225.jpg">record.JPG</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493224/85493226.jpg">menu.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493224/85493227.jpg">grid.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493224/85493228.jpg">settings.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493224/85493229.jpg">menutester.jpg</a> (image/jpeg)&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - RayGun&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>&nbsp;Raygun is a front end (browser side) diagnostics library for errors.</p>
+<h1>Test Case</h1>
+<ol>
+  <li>Dev team is working on a web application.</li>
+  <li>Testers discover an issue and report back to Dev team.</li>
+  <li>Dev team check Raygun and are able to identify from which build the issue began to appear through the use of "Deployment tracking".</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>With breadcrumbs feature, replicate issues by retracing users exact actions.</li>
+  <li>Perform A/B tests.</li>
+  <li>Fix bottlenecks by being aware of what is slowing down your service.</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>Having a more reliable app through better testing and diagnosis of issues.</li>
+</ul>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Real User Names&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>When a tester or BB person logs into a BBWT3 test system, they often use a test account. For some future features, we need to know the real name / ID of the current user.</p>
+<ul>
+  <li>Upon successful login with a test/demo account user will be prompted to input real info.</li>
+</ul>
+<p>This information will be called upon when&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Report+a+Problem">Reporting a Problem</a>.</p>
+<h1>Test Case</h1>
+<ol>
+  <li>A tester account can have the role “BBTester”:<br><br><br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493233/85493234.png"></figure>
+<ol>
+  <li>When the tester logs in for the first time, we ask to fill out with their real data:<br><br><br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493233/85493235.jpg"></figure>
+<ol>
+  <li>This data is used when a tester reports a problem:<br><br><br>&nbsp;</li>
+</ol>
+<figure class="image"><img src="attachments/85493233/85493236.png"></figure>
+<ol>
+  <li>The form is filled with real data. We can change this data in the user’s profile.</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Be able to track down testers.</li>
+  <li>When a single account is used by multiple testers trying to find the one who reported an issue could be complex.</li>
+  <li>BBWT3 forces users on test accounts to fill out their real contact information.</li>
+  <li>However a tester must be made aware of the reasons behind this otherwise they may still fill out the details with unidentifiable information.</li>
+  <li>Limitation: Does not check for validation when entering in information (such as checking email address is in valid format).</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>If you have test accounts for multiple users tracking down who reported what can be difficult - with BBWT3 when a new test users logs into the account they will be prompted to enter their real details, resolving this issue.</li>
+</ul>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493233/85493234.png">Screenshot_2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493233/85493235.jpg">form.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493233/85493236.png">Screenshot_3.png</a> (image/png)&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Report a Problem&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>BBWT3 has an inbuilt Report a Problem feature, that can take the users logged on account details (such as username and email address) and fill them into the template form.</p>
+<ul>
+  <li>Auto fills out user's details (however they still remain editable).</li>
+</ul>
+<p><strong>Client side validation (31/01/19)</strong><br>*&nbsp;Currently does not seem to have any (does not check if email address conforms to standard).<br>*&nbsp;Unlimited char limit.</p>
+<ul>
+  <li>At request notifications can be setup to be sent via SMS.</li>
+  <li>Automatically generates a report within PTS.</li>
+</ul>
+<h1>Test Case</h1>
+<ol>
+  <li>User has an issue on the web application.</li>
+  <li>User finds the "Report a Problem" page.</li>
+  <li>Fills out form and sends to admin with severity.</li>
+  <li>Admin is able to address the issue quickly so that other users do not face the same problem.</li>
+</ol>
+<h1>For Testers</h1>
+<ol>
+  <li>Go to the very bottom of the page, in the footer click on "Report a Problem".</li>
+  <li>The username and email of the logged in account should automatically be filled in, enter the title of issue.</li>
+  <li>Write the description of the issue in the "Problem Description" box.</li>
+  <li>Select the severity of the issue encountered.</li>
+  <li>Click Submit.</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Being able to have feedback on your web application can be useful for many reasons, but primarily for reporting back user issues.</li>
+  <li>BBWT3 includes an easily identifiable Report a Problem feature, so if a user has an issue they can quickly report it.</li>
+  <li>An Admin can set to who the email notification will be sent to.</li>
+  <li>By automatically filling out the users details this saves time and gives the system admins all the information that they need straight away.</li>
+  <li>If a test user is logged in, the details will be that which was entered when they entered their real details at session login. This way you can be sure to be able to contact the original tester if needed, instead of having to ask who was using the account at a specific time or day.</li>
+  <li>There is the option to have a title and a description box to outlie the issue encountered, what is more useful to you will be the ability of the user to state the severity of the issue. Ranging from minor cosmetic issue such as formatting or spelling mistakes, all the way up to complete system failure for multiple users.</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>Decreases the amount of effort a user needs to employ to report back issues with the service - by decreasing the amount of steps to provide feedback, leading to a better experience for all users.</li>
+  <li>Improved user engagement.</li>
+  <li>Improved communication between a user who spots the issue and the person responsible for fixing it - even on test accounts, because of the inclusion of entering real information once logged on.</li>
+  <li>Ability to focus efforts - by having the option for a user to state the level of severity of an issue, this allows for quick and easy prioritisation.</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+  <li>Alternating shaded rows.</li>
+  <li>Ability to sort ascending/descending.</li>
+  <li>Filter search updates as you type.</li>
+  <li>Filter search allows for refined results through multiple search constraints.</li>
+</ul>
+<h1>Test Case</h1>
+<ol>
+  <li>Admin receives reports from users not being able to access a certain set of pages.</li>
+  <li>Admin can&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Impersonation">impersonate</a>&nbsp;a user to check.</li>
+  <li>Admin sees that the user cannot access page due to lack of permissions.</li>
+  <li>Admin can check via "View Route Access" and filter to the exact path.</li>
+  <li>Admin can then make adjustments to page permissions to resolve issue.</li>
+</ol>
+<h1>For Testers</h1>
+<ol>
+  <li>Go to BBWT3 menu and click on "Security Admin".</li>
+  <li>From the drop down menu click on "Routes Access".</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Be able to check prior to roll out which user groups have access to what.</li>
+  <li>Help identify restricted pages that are open, allowing you to lock down the web application sufficiently.</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>Be able to check prior to roll out which user groups have access to what.</li>
+  <li>Help identify restricted pages that are open, allowing you to lock down the web application sufficiently.</li>
+</ul>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Routes Review&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>Displays which groups have access to which pages of the web application.</p>
+<ul>
+  <li>Is presented in&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/BB+Grid+Component">BB Grid Component</a>&nbsp;format.</li>
+  <li>Header row.</li>
+  <li>Alternating shaded rows.</li>
+  <li>Ability to sort ascending/descending.</li>
+  <li>Filter search updates as you type.</li>
+  <li>Filter search allows for refined results through multiple search constraints.</li>
+</ul>
+<h1>Test Case</h1>
+<ol>
+  <li>Admin receives reports from users not being able to access a certain set of pages.</li>
+  <li>Admin can&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Impersonation">impersonate</a>&nbsp;a user to check.</li>
+  <li>Admin sees that the user cannot access page due to lack of permissions.</li>
+  <li>Admin can check via "View Route Access" and filter to the exact path.</li>
+  <li>Admin can then make adjustments to page permissions to resolve issue.</li>
+</ol>
+<h1>For Testers</h1>
+<ol>
+  <li>Go to BBWT3 menu and click on "Security Admin".</li>
+  <li>From the drop down menu click on "Routes Access".</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Be able to check prior to roll out which user groups have access to what.</li>
+  <li>Help identify restricted pages that are open, allowing you to lock down the web application sufficiently.</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>Be able to check prior to roll out which user groups have access to what.</li>
+  <li>Help identify restricted pages that are open, allowing you to lock down the web application sufficiently.</li>
+</ul>
+<p>&nbsp;</p>
+<h1>Blueberry Group : BBWT3 - Server Info Dialog&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>Generates static info of server data such as;</p>
+<ul>
+  <li>Server name.</li>
+  <li>Full build number.</li>
+  <li>Server and Client IP's.</li>
+  <li>Operating system.</li>
+</ul>
+<h1>Test Case</h1>
+<ol>
+  <li>Admin is receiving reports of broken functionality from users.</li>
+  <li>Admin tracks down that the issues are coming from one particular server.</li>
+  <li>Admin can quickly check which build version is running to see if it is of an old build.</li>
+</ol>
+<h1>For Testers</h1>
+<ol>
+  <li>Go to the bottom footer of the page and click on the (I) icon.</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Quickly see server information such as IP and name of server.</li>
+  <li>Able to see full build number.</li>
+  <li>Able to see full server OS build directly from browser.</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>BBWT3 displays valuable server information such as; IP address, operating system, server name, version number and server name.</li>
+  <li>All this can be a valuable asset when attempting to track down a problem.</li>
+  <li>For instance you may have multiple servers running the web application, and one of them is not performing correctly. BBWT3 can display the aforementioned data which may lead to resolving the issue.</li>
+</ul>
+<h1>Blueberry Group : BBWT3 - Version Number Display&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>Displays the build number in the bottom right corner of the footer.</p>
+<ul>
+  <li>Easily visually identifiable.</li>
+  <li>Full build can be seen by accessing&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Server+Info+Dialog">Server Info Dialog</a>.</li>
+</ul>
+<h1>Test Case</h1>
+<ol>
+  <li>User is in a development environment and discovers an issue with BBWT3.</li>
+  <li>User can check which version of BBWT3 is being used and report the issue.</li>
+  <li>Developer can then check whether the issue is due to an older build which has now be addressed, or if it is a new issue in a current build.</li>
+</ol>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Useful for keeping track of build's and bugs.</li>
+  <li>It is automatically generated by GitLab.</li>
+  <li>Can also be tracked in PTS.</li>
+</ul>
+<h1>For Marketing</h1>
+<ul>
+  <li>Allows for testers to track changes that have occurred and ensures that there is no confusion; for example, testing on an older build than the current one could lead to wasted time and in turn money.</li>
+  <li>Having the version number there allows for everyone to known if it is the latest build available.</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
