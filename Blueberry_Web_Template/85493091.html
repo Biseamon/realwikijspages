@@ -1,74 +1,65 @@
 <!--
-title: 85493091
+title: BBWT3 - Single Sign On (SSO), SAML & OAuth
 description: 
 published: true
-date: 2020-12-01T15:59:09.115Z
+date: 2020-12-02T15:01:34.657Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:00:54.818Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : BBWT3 - Single Sign On (SSO), SAML &amp; OAuth</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Login-and-Authentication_85493083.html">BBWT3 - Login and Authentication</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : BBWT3 - Single Sign On (SSO), SAML &amp; OAuth
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>Overview</p><p class="western">Security Assertion Markup Language (SAML) is an open standard for logging into accounts, where authentication in one context has already taken place and another is requested elsewhere. This means that you are able to login with account &quot;x&quot; on system &quot;y&quot;,&quot;z&quot; etc. The single sign-on login streamlines the process of logging in by only requesting the user to sign in once. In this fashion it saves time and improves security; having one strong account that is remembered, instead of multiple accounts with weaker and more memorable passwords.</p><p class="western">OAuth is an open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords. This mechanism is used by companies such as Amazon, Google, Facebook, Microsoft and Twitter to permit the users to share information about their accounts with third party applications or websites.<br/><br/></p><p class="western"><strong>SSO Support in BBWT3 (13-05-20)</strong></p><p class="western">Via OAuth</p><ul><li>Google - Microsoft.AspNetCore.Authentication.Google</li><li>Facebook -  Microsoft.AspNetCore.Authentication.Facebook</li><li>LinkedIn - Microsoft.AspNetCore.Authentication.LinkedIn.</li></ul><p class="western">Configuration for these methods is via the Operation Admin → System Configuration screen in the BBWT3 UI.</p><p class="western"><br/></p><p class="western">Via SAML</p><ul><li class="western">Office 365 - Using the Sustainsys SAML 2 library - <a class="external-link" href="https://github.com/Sustainsys/Saml2" rel="nofollow">https://github.com/Sustainsys/Saml2</a></li><li class="western">Active Directory / ADFS - Using the Sustainsys SAML 2 library - <a class="external-link" href="https://github.com/Sustainsys/Saml2" rel="nofollow">https://github.com/Sustainsys/Saml2</a></li></ul><p class="western">Configuration for these methods is via the Application Settings configuration file (appsettings.json)</p><p class="western"><br/></p><p class="western"><br/></p><h1 class="western" id="BBWT3-SingleSignOn(SSO),SAML&amp;OAuth-TestCase">Test Case</h1><ol><li class="western">A user accesses a remote application (BBWT3).</li><li class="western">The application identifies the user’s origin (such as from IP address).</li><li class="western">The user who is already logged in on one platform - the identity provider, tells the remote application that the user is authenticated. This is done in the form of a signed certificate containing the users email or username.</li><li class="western">The service provider (BBWT3) knowns the identity provider and validates the certificate.</li><li class="western">The user now has access to the service.</li></ol><h1 class="western" id="BBWT3-SingleSignOn(SSO),SAML&amp;OAuth-ForTesters">For Testers</h1><p class="title">(12-03-20)</p><p>Content required.</p><h1 class="western" id="BBWT3-SingleSignOn(SSO),SAML&amp;OAuth-ForProjectManagers">For Project Managers</h1><ul><li class="western">Security Assertion Markup Language (SAML) is an open standard that helps keep accounts secure.</li><li class="western">In addition to giving a smooth user experience with as little user engagement with the authentication as possible.</li><li class="western">It allows a user who is signed in on one account to be automatically and seamlessly logged into another.</li><li class="western">From the users point of view they are automatically logged in from only entering in one set of credentials. In reality there is work going on in the background server wise, which uses signed certificates to validate a user securely.</li><li class="western">It is reusable. Once deployed it is a set and forget technology.</li><li class="western">It doesn't use proprietary software with the added incurred costs associated with it.</li><li class="western">Users love it – no longer do they need multiple logins and passwords for every service they use.</li><li class="western">Supported Identity Providers (12/03/20): Office 365, Google. Some work has been done on Active Directory but this is not merged into BBWT3 code.</li></ul><p class="western"><br/></p><p class="western"><br/></p><h1 class="western" id="BBWT3-SingleSignOn(SSO),SAML&amp;OAuth-ForMarketing">For Marketing</h1><ul><li>Ability to login with one account across multiple services (such as &quot;login with Facebook&quot;).</li><li>A popular feature already in the mainstream.</li><li>User will not be put off by needing another username and password to remember.</li><li>Improves security by allowing the user to have 1 strongly protected account that can be used in multiple places.</li></ul>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : BBWT3 - Single Sign On (SSO), SAML &amp; OAuth&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<p>Overview</p>
+<p>Security Assertion Markup Language (SAML) is an open standard for logging into accounts, where authentication in one context has already taken place and another is requested elsewhere. This means that you are able to login with account "x" on system "y","z" etc. The single sign-on login streamlines the process of logging in by only requesting the user to sign in once. In this fashion it saves time and improves security; having one strong account that is remembered, instead of multiple accounts with weaker and more memorable passwords.</p>
+<p>OAuth is an open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords. This mechanism is used by companies such as Amazon, Google, Facebook, Microsoft and Twitter to permit the users to share information about their accounts with third party applications or websites.<br><br>&nbsp;</p>
+<p><strong>SSO Support in BBWT3 (13-05-20)</strong></p>
+<p>Via OAuth</p>
+<ul>
+  <li>Google - Microsoft.AspNetCore.Authentication.Google</li>
+  <li>Facebook -&nbsp; Microsoft.AspNetCore.Authentication.Facebook</li>
+  <li>LinkedIn - Microsoft.AspNetCore.Authentication.LinkedIn.</li>
+</ul>
+<p>Configuration for these methods is via the Operation Admin →&nbsp;System Configuration screen in the BBWT3 UI.</p>
+<p>&nbsp;</p>
+<p>Via SAML</p>
+<ul>
+  <li>Office 365 - Using the Sustainsys SAML 2 library -&nbsp;<a href="https://github.com/Sustainsys/Saml2">https://github.com/Sustainsys/Saml2</a></li>
+  <li>Active Directory / ADFS -&nbsp;Using the Sustainsys SAML 2 library -&nbsp;<a href="https://github.com/Sustainsys/Saml2">https://github.com/Sustainsys/Saml2</a></li>
+</ul>
+<p>Configuration for these methods is via the Application Settings configuration file (appsettings.json)</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Test Case</h1>
+<ol>
+  <li>A user accesses a remote application (BBWT3).</li>
+  <li>The application identifies the user’s origin (such as from IP address).</li>
+  <li>The user who is already logged in on one platform - the identity provider, tells the remote application that the user is authenticated. This is done in the form of a signed certificate containing the users email or username.</li>
+  <li>The service provider (BBWT3) knowns the identity provider and validates the certificate.</li>
+  <li>The user now has access to the service.</li>
+</ol>
+<h1>For Testers</h1>
+<p>(12-03-20)</p>
+<p>Content required.</p>
+<h1>For Project Managers</h1>
+<ul>
+  <li>Security Assertion Markup Language (SAML) is an open standard that helps keep accounts secure.</li>
+  <li>In addition to giving a smooth user experience with as little user engagement with the authentication as possible.</li>
+  <li>It allows a user who is signed in on one account to be automatically and seamlessly logged into another.</li>
+  <li>From the users point of view they are automatically logged in from only entering in one set of credentials. In reality there is work going on in the background server wise, which uses signed certificates to validate a user securely.</li>
+  <li>It is reusable. Once deployed it is a set and forget technology.</li>
+  <li>It doesn't use proprietary software with the added incurred costs associated with it.</li>
+  <li>Users love it – no longer do they need multiple logins and passwords for every service they use.</li>
+  <li>Supported Identity Providers (12/03/20): Office 365, Google. Some work has been done on Active Directory but this is not merged into BBWT3 code.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>For Marketing</h1>
+<ul>
+  <li>Ability to login with one account across multiple services (such as "login with Facebook").</li>
+  <li>A popular feature already in the mainstream.</li>
+  <li>User will not be put off by needing another username and password to remember.</li>
+  <li>Improves security by allowing the user to have 1 strongly protected account that can be used in multiple places.</li>
+</ul>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
