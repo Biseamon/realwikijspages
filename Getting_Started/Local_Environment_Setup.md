@@ -2,7 +2,7 @@
 title: Local Environment Setup
 description: 
 published: true
-date: 2020-12-01T16:50:22.116Z
+date: 2020-12-02T11:58:44.659Z
 tags: 
 editor: undefined
 dateCreated: 2020-11-27T09:43:01.871Z
