@@ -1,71 +1,135 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : PTS Outlook Client</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<!--
+title: Using PTS with Outlook Integration
+description: 
+published: true
+date: 2020-12-02T11:20:51.135Z
+tags: 
+editor: undefined
+dateCreated: 2020-12-01T16:51:04.497Z
+-->
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="PTS_85492592.html">PTS</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : PTS Outlook Client
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Aug 24, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><a href="https://wiki.bbconsult.co.uk/display/BP/BB+Outlook+Tools" rel="nofollow">BB Outlook Tools</a> includes a feature that allows PTS integration with Outlook. BB Outlook Tools can be downloaded <a href="https://wiki.bbconsult.co.uk/download/attachments/1507388/BB-OL-Tools-Setup32-0121003.zip?version=1&amp;modificationDate=1458316607977&amp;api=v2" rel="nofollow">here</a><a href="https://wiki.bbconsult.co.uk/bb-software/bb-outlook-tools/" rel="nofollow">.</a></p><h2 id="PTSOutlookClient-PTSClientIntegration">PTS Client Integration</h2><hr/><p>Issues and Tasks in PTS can easily be updated using emails but this requires remembering all of the necessary tags that could be needed. PTS Client Integration makes this even easier by providing an easy interface with the most commonly used options on it.<br/><br/><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492616/85492617.png" data-image-src="attachments/85492616/85492617.png" data-unresolved-comment-count="0" data-linked-resource-id="85492617" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="bbol.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85492616" data-linked-resource-container-version="1"></span></span><br/><br/>To use this feature, click File &gt; BB Outlook Tool, click Feature Tools and then enable the 'PTS Client' checkbox in the General Options tab.<br/><br/>You can use the Status and Priority drop down menus to update these fields and the Add and Delete button to update the Team members. Pressing Commit will then open a reply to the PTS email with the tags added and the bottom. Simply add any comments as necessary and send the reply to update the Issue/Task.<br/><br/><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85492616/85492618.png" data-image-src="attachments/85492616/85492618.png" data-unresolved-comment-count="0" data-linked-resource-id="85492618" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="bbolex.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85492616" data-linked-resource-container-version="1"></span></span></p><p>If you want to create a new Issue / Task instead of updating the current one, use the New PTS Mail and its associated options to do this - selecting a type of entity and a project will allow the correct email address to be auto-generated.<br/><br/>The Debug option will send log files for BBOL to Kevin Lazenby.</p><h2 id="PTSOutlookClient-InstallingPTSOutlookClient">Installing PTS Outlook Client</h2><hr/><p>To install PTS Outlook Client, simply download the latest version of BB Outlook tools <a href="https://wiki.bbconsult.co.uk/wp-content/uploads/2014/08/BB-OL-Tools-Setup32-0121003.zip" rel="nofollow">here</a> and then run the installer found in the zip file.</p><iframe frameBorder="no" seamless="seamless" src="https://flashbackconnect.com/Embed.aspx?id=kdOwf_y3GoCRMKwoipi6jw2&width=749&height=480" scrolling="no" width="749" height="480"></iframe>
-
-<iframe frameBorder="no" seamless="seamless" src="https://flashbackconnect.com/Embed.aspx?id=b9c-XXcNnY4P6MLOWvzvhw2&width=749&height=480" scrolling="no" width="749" height="480"></iframe><p> </p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/85492616/85492617.png">bbol.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/85492616/85492618.png">bbolex.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Dec 01, 2020 16:43</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>BB Outlook Tools</h1>
+<p>BB Outlook Tools is a free program from Blueberry which adds additional features to Microsoft Outlook (<a href="https://wiki.bbconsult.co.uk/wp-content/uploads/2014/08/BB-OL-Tools-Setup32-0121003.zip">download from here</a>).</p>
+<h2>What is BB Outlook Tools?</h2>
+<p>BB Outlook Tools is a free program from Blueberry which adds the following additional features to Microsoft Outlook:</p>
+<ul>
+  <li>Mailing List Preview</li>
+  <li>PTS Client integration</li>
+  <li>Employee Feedback</li>
+  <li>Reply with Attachments</li>
+  <li>Tidy Contact Numbers</li>
+  <li>Save Attached files</li>
+  <li>Contact Sync</li>
+</ul>
+<h2>Mailing List Preview</h2>
+<p>Mailing List Preview allows users to view the names of all of the members in a mailing list that is used in the address lines of an email. For each mailing list used, an entry is made in the expandable panel that appears at the bottom of the mail window.<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/1-listpreview.png?version=1&amp;modificationDate=1462978815640&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>To use this feature, click File &gt; BB Outlook Tool, click Feature Tools and then enable the 'Mailing List Preview' checkbox in the General Options tab.<br><br>If Employee Score is also enabled, you can navigate between the two by using the tab in the top left corner of the tool panel (Mailing List Preview will be the default tab).</p>
+<h2>PTS Client Integration</h2>
+<p>Issues and Tasks in PTS can easily be updated using emails but this requires remembering all of the necessary tags that could be needed. PTS Client Integration makes this even easier by providing an easy interface with the most commonly used options on it.<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/2-bbol-1.png?version=1&amp;modificationDate=1462978815757&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>To use this feature, click File &gt; BB Outlook Tool, click Feature Tools and then enable the 'PTS Client' checkbox in the General Options tab.<br><br>You can use the Status and Priority drop down menus to update these fields and the Add and Delete button to update the Team members. Pressing Commit will then open a reply to the PTS email with the tags added and the bottom. Simply add any comments as necessary and send the reply to update the Issue/Task.<br><br>If you want to create a new Issue / Task instead of updating the current one, use the New PTS Mail and its associated options to do this.<br><br>The Debug option will send log files for BBOL to Kevin Lazenby.</p>
+<h2>Employee Feedback</h2>
+<p>Employee Feedback allows you to rate the quality of employee's emails.<br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/3-employfeed.png?version=1&amp;modificationDate=1462978815880&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>To use this feature, click File &gt; BB Outlook Tool, click Feature Tools and then enable the 'Employee Feedbackt' checkbox in the General Options tab.<br><br>If either PTS Client integration or Mailing List Preview are also enabled, Employee Feedback will be accessible via the tab in the top left of the tool panel.</p>
+<h2>Reply with Attachments</h2>
+<p>Do you find yourself working on a shared document via email?&nbsp; We do this frequently, and we find it quite tedious to keep saving the document, editing it and sending it back.&nbsp; This tool makes this process a lot simpler.<br><br>The normal way of dealing with attached docs in Outlook is to download / open the attachment, make the changes, save/rename it, and then reply to the original email with the edited document re-attached.<br><br>As custom software developers, we thought there should be an easier way to do this, so we added a ‘Reply with Attachments’ function to Outlook.<br><br>This feature simply creates a reply with the original attachments still present.&nbsp; So you can press ‘Reply with Attachments’, edit the attachments, and send. There are no intermediate steps, making it much, much quicker.<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/4-bbol1.jpg?version=1&amp;modificationDate=1462978815927&amp;api=v2&amp;effects=drop-shadow"></figure>
+<h2>Tidy Contact Numbers</h2>
+<p>&nbsp;</p>
+<p>It's not unusual for the phone details of contacts in Outlook to be saved in a variety of different ways. For example as: 6123232323232, 0905 848 0011, 1948 663000, +44 (0) 121 285 0100, and so on. These varying formats mean the numbers can't be used internationally without a bit of re-editing.<br><br>Blueberry’s Outlook Tool tidies the contact phone numbers into a single unified format, so they can be used from any country without having to make changes.&nbsp; The tidied phone numbers can also be used in computer telephony and other systems being synchronized.<br><br>To use this feature, click File &gt; BB Outlook Tool and select the ‘Report enabled’ checkbox, and Apply before closing the dialogue box.<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/5-bbol2.jpg?version=1&amp;modificationDate=1462978815970&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>Note: The letters G, A, P1, P2, and R are placeholders that represent the default unified format (G – country code; A - local area code; P1 – first part of the local number; P2 – second part of the number; R – additional digits that in common are not a part of a standard telephone number). Simply insert characters into the edit boxes to specify any formatting – e.g. +G (A) to put brackets around the area code.<br><br>To use the feature, simply select ‘Contacts’ from the left-hand-side menu in Microsoft Outlook, place the mouse over a contact and right-click ‘Tidy Phone Numbers’. Or do a whole folder – try it!</p>
+<h2>Save Attached Files</h2>
+<p>&nbsp;</p>
+<p>This feature saves all incoming email attachments into a specified folder automatically when they arrive.<br><br>Moreover, when an attachment name appears to be duplicated (for example, if a document is being updated with each subsequent email), the feature changes its name by adding a sequential numeric suffix. This allows all attachments to be saved to one location, complete with their change history.<br><br>This feature is disabled by default. To enable it in Microsoft Outlook 2010, click on File &gt; BB OL Tools, tick ‘Enabled’ under File Attachment and enter the file location. For earlier versions of Outlook, click on File &gt; Options &gt; BB OL Tools.</p>
+<h2>Mailing List Preview</h2>
+<p>&nbsp;</p>
+<p>This is a Blueberry-only feature which reveals the recipient names on a mailing list by adding an extra viewing pane to messages.<br><br>For example, when you receive an email from ‘support@bbconsult.co.uk’, the preview shows you who else is on the mailing list. Conversely, when you send an email to ‘developers@bbconsult.co.uk’ you can see everyone that will receive your email.<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/6-bbol3.jpg?version=1&amp;modificationDate=1462978816047&amp;api=v2&amp;effects=drop-shadow"></figure>
+<h2>Signature</h2>
+<p>&nbsp;</p>
+<p>This feature corrects an issue reported in the standard signature feature of MS Outlook. Some versions of MS Outlook overwrite the contents of a newly composed email if the insert signature function is used to add a signature at the end of the email. BB OL Tools fixes this problem.<br><br>BB OL Tools uses the same signature list as present in the standard Outlook file, and the signature inserts at the current cursor (caret) position.</p>
+<h2>BB Merge</h2>
+<p>&nbsp;</p>
+<p>This feature allows a few contacts comparing and editing them. This feature can be used as separate feature and as part of Contact Sync (see below). To use it separately open any contact folder and select the contacts that should represent the same contact. Then right click them and select BB Merge from a popup menu.<br><br>For example:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/7-bbol4.jpg?version=1&amp;modificationDate=1462978816117&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>Then Merge dialog appears. With two contacts selected it appears as:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/8-bbol5.jpg?version=1&amp;modificationDate=1462978816160&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>The grid shows the contact field values. The field names are listed in the left column. The merged values are listed in the right column. All middle columns are contact values.<br><br>The grid header has two rows. The upper one contains contact names in the middle columns. The second one lists the folder names the contacts were selected in. You may see the folder full path in the tooltips when the mouse hovers over contact folder name.<br><br>The upper area has three checkboxes to control how and how many contact fields you would like to see. By default all checkboxes checked off. In this case you see the list of fields which values are different. Middle checkbox allows you to see contact key fields: contact name, email, and mobile phone number. Left checkbox shows all contact fields.<br><br>The phone number fields may have differently formatted phone numbers which are the same when tidied (see Tidy Phone Numbers section). Right checkbox allows you to see phone numbers tidied. To make sure you see tidied phone numbers the tool adds (T) suffix to tidied phone numbers in this dialog. Being saved the (T) suffix is removed from tidied numbers.<br><br>The lower area has Fit to Window checkbox. When it checked in the grid occupies all possible width of the dialog. The width of Merged column is not changed in this case. All other column widths calculated to fit to the dialog width.<br><br>As is visible in the screenshot the dialog uses different colours to highlight some details. When you call this dialog either from popup menu or from Contact Sync feature, the tool calculates ‘merged field values’. By default most recently modified contact becomes a ‘main’ contact which values are initially assumed to be merged ones. If some fields of the ‘main’ contact are missed then other contact values are supposed to be merged values. The contact name that was assigned as main one during auto-merge is highlighted in green in the header. You may manually assign any other contact to be main contact by clicking an appropriate header. If some field in all contacts has the same value, all values has Windows Text font colour (usually black). The contact value that is the same as merged value is highlighted in blue. The contact value that differs from merged value is highlighted in red.<br><br>Below the grid you see Actions combo boxes. Action here means ‘what to do with contact when saved’. There are possible three different actions applied: No Change, Delete, Write Merged. No Change means ‘do nothing’. The tool does not touch this contact when dialog is being finished. Delete means delete this contact. Make sure you would like to delete the contact. Write Merged means write Merged column values as this contact values.<br><br>The Merge work is finished by clicking Do Actions button. This button has name Do Actions and Next when the dialog was called from Contact Sync feature. Do Actions executes the actions against all contacts participated in this dialog. Make sure you understand what will happen when you click the button. If this dialog works as part of Contact Sync then it selects next contact group and shows it when all actions applied.<br><br>Merge dialog supports not only merge operations. You may change values in Merged column. Later, when Do Action button clicked they will be saved in the contact with Write Merged action assigned. To start value changing just left click appropriate cell in Merged column. Text editor appears. You are able to type your own value.<br><br>More advanced editing options provided by a popup menu. Right click the grid – popup menu appears. Some items are enabled or disabled. This depends on which column you right clicked.<br><br><i>Edit</i> - It is enabled in Merged column only. It opens editor in the cell you right clicked. It is the same as you just left click the cell.<br><br><i>Clear</i> - It is enabled in Merged column only too. It clears Merged cell value.<br><br><i>Copy to Merged -</i> It is enabled in contact columns only. It copies current contact field value to Merged column.<br><br><i>Copy To</i> - It is enabled in contact columns for the fields which designate email address or mailing address, its type, or display name. It allows you to copy current cell value into selected Merged column field. You may need this for example if both same person contacts have different values in Email1 field but you would like to store one of them in Email2 filed in Merged column. See a screenshot below:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/9-bbol6.jpg?version=1&amp;modificationDate=1462978816260&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br><i>Copy</i> - It is clipboard operation. It is enabled for contact columns only. Clipboard contents after this operation can be pasted into any cell of Merged column or into any other editor (like Notepad for example).<br><br><i>Paste -</i> It is clipboard operation too. It is enabled in Merged column only. It pastes any clipboard contents into current cell of Merged column.<br><br>If you double click some contact value, this value will be copied in the cell in the same row (contact field). In other words it does the same as Copy To Merged popup menu selection.<br><br>Note, some contact fields are calculated. This means that they are recalculated from the other fields when the contact is being saved. These fields are:</p>
+<ul>
+  <li>File As – it is calculated as “Last Name, First Name” if they both are not empty and Suffix is empty. If suffix is not empty too then it is calculated as “First Name Last Name Suffix”. If one field is not empty but the other are not then non-empty field is used, e.g. First Name or Last Name depending of which of them is not empty. If both First and Last name are empty then Company name is used.</li>
+  <li>Full Name – it is calculated from the fields Title, First Name, Middle Name, Last Name, Suffix by simple concatenation where space character is a separator.</li>
+  <li>First Last Name – it is First Name and Last Name concatenation where space character used as separator.</li>
+  <li>EmailN Display Name – it is calculated as “First Last Name (EmailN Address)”. N can be 1, 2, or 3.</li>
+  <li>Mailing Address fields are calculated from Home, Business, or Other mailing address fields depending on Selected Mailing Address value.</li>
+  <li>Primary Telephone Number field is also calculated from Home, Business, or Other telephone number fields depending on Selected Mailing Address value.</li>
+</ul>
+<h2>Contact Sync</h2>
+<p>&nbsp;</p>
+<p>Contact Sync provides you with ability to compare and merge entire contact folders.<br><br><strong>Contact Folders Selection</strong><br><br>First of all the contact folders set should be selected. Switch to Contacts and click Contact Sync ribbon button.<br><br>When called first time the folder list is empty.<br><br>The example above demonstrates two contact folders selected. The column Folder lists contact folder names. The column In lists folder names the contact folder is in. It is parent folder name. Full path to the contact folder is visible when mouse is over In column cells. Default Action On Merge and Default Action On Duplicate mean default actions that will be set for merge and merging duplicates operations. They could be easily changed when needed but at this step the default actions are to be set.<br><br>This is a main page of the dialog. Other pages describe settings you would prefer at contact sync time.<br><br><i>How To Compare</i> - It describes settings which help to decide if contacts are the same and allow comparison of not actual values but tidied.<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/10-bbol7.jpg?version=1&amp;modificationDate=1462978816343&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>At the moment there is just one algorithm to decide if contacts are the same. It cannot be changed yet. It is First Name + Last Name expression.<br><br><i>Tidy level -</i> Tidy level is applied to phone numbers. It determines what values should be used to compare contacts. There are three levels of tidying:</p>
+<ul>
+  <li>None – exact values of the contact are compared without any transformation.</li>
+  <li>Simple – the values are trimmed, all multiple spaces are replaced by single space character and that values participate in comparison.</li>
+  <li>Full – all phone numbers are reformatted using Tidy Phone Numbers algorithm. These tidied values are compared. This completely excludes the chance that the same phone number which was differently formatted in different contact folders will be assumed to be the same.</li>
+</ul>
+<p><br><i>How to Merge -</i> This page describes how default merged contact is determined.<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/11-bbol8.jpg?version=1&amp;modificationDate=1462978816397&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>Use Default Modified Timestamp is default selection applied to Merge dialog.<br><br>If folder list on the first page is empty then click Select Folders button. Contact Folders Selection dialog appears where you should select two or more folders to sync. See example below:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/12-bbol9.jpg?version=1&amp;modificationDate=1462978816440&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>This dialog lists all personal folder groups and public folders. All nested folders are represented by the tree. All folders are marked either by contact folder icon &nbsp;or ‘other’ folder icon . You may select contact folders only. Other folders selection ignored. When folders selected just click OK button. The list of selected folders appears in the previous dialog grid and you can Do Compare.<br><br><strong>Comparison Results</strong><br><br>Being called comparison results (Contact Sync form) looks like:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/13-bbol10.jpg?version=1&amp;modificationDate=1462978816507&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>Important note. After auto merge Contact Sync tool collects all contacts into 4 matching groups:</p>
+<ul>
+  <li>Identical contacts – the contacts in all folders have the same values in all fields including Last Modified field. This group is visually represented by two subgroups Identical and Identical (but tidied). The first subgroup contains ‘authentic’ contacts. The second one contains the contacts which become ‘authentic’ after tidying.</li>
+  <li>Simple Update – the contacts are ‘simple update’ because they differ in very small details. For example they have different Last Modified timestamp.</li>
+  <li>Needs Review – the contacts require human attention to decide what changes could be accepted and what should be changed to accept.</li>
+  <li>No Match – the contacts for which matching contacts could not be found. This group contains contact groups with one contact per contact group. For example, you compare current contact folder to which you added some new contacts with a backup which does not have them.</li>
+</ul>
+<p><br>By default only Needs Review and No Match matching groups are visible – they should take a lot of your attention. You can control a visibility of the matching groups by upper row of combo boxes. When all combo boxes are in, you see:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/14-bbol11.jpg?version=1&amp;modificationDate=1462978816553&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>All matching groups are collapsed here. The figures in parentheses show how many contact groups are in appropriate matching group.<br><br>Each group can be expanded by clicking the triangle sign in the leftmost column.<br><br>The second row of check boxes allows setting what fields of each contact you would like to see. For example:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/15-bbol12.jpg?version=1&amp;modificationDate=1462978816613&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>In the group footer there are combo boxes. Two combo boxes per contact folder. Left of them means an action on merge operation. The second one controls duplicates operations. Merge operations are applied to the contacts in the single contact group (single row). Duplicate operations are applied to the contacts in the same folder. For example, you occasionally created two contacts with the same first and last names. The folder has two contacts which actually represent the same person – they are duplicates.<br><br>Even and odd rows has different background colour to simplify perception. If two contacts in the same contact group are duplicates then such group contains more than one row and all such rows have the same background colour.<br><br>(Olivia’s Mum) contacts are duplicates. The rows have the same background colour. One of these contacts is a leader (upper one) and another one is a duplicate. In our case duplicates action is Delete. So, the duplicate is marked to be deleted on Save and Close. It is marked with strikethrough. If duplicate action is No Change then both contacts will have the same look without strikethrough.<br><br><strong>Working with contact groups</strong><br><br>Set ‘The Same Person’ tag. For example:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/16-bbol14.jpg?version=1&amp;modificationDate=1462978816687&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>We assume that Clair Chapmen and Clair are different contacts for the same person. Check both contacts in and click Same Person button:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/17-bbol15.jpg?version=1&amp;modificationDate=1462978816737&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>These contacts marked in red tell us that they both were internally modified by Contact Sync. Also they were moved from No Match matching group to Simple Update one.<br><br>If you have duplicates in No Match group they both could be checked in and then button the Same Person clicked. The contacts become duplicates and look like above duplicates of (Olivia’s Mum).<br><br>The Contact Sync dialog has a popup menu which can be used to control contacts.<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/18-bbol37.jpg?version=1&amp;modificationDate=1462978816797&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>Its items are:</p>
+<ul>
+  <li>Open in MS Outlook – opens current contact in MS Outlook.</li>
+  <li>Delete – deletes current contact (actually marks as deleted).</li>
+  <li>Copy to Other Folders – copies current contact into other folders in the row.</li>
+  <li>Copy to – copies email or mailing address to another folder from sub-menu.</li>
+  <li>Split – splits all contacts from current contact group to separate No Match contacts.</li>
+  <li>Merge calls merge dialog for current contact group.</li>
+  <li>Clear internal ID – clears internal ID assigned to by Contact Sync tool to make differently looking contacts the same or make similar contacts to not the same.</li>
+</ul>
+<p><br>Common note to the items above. As opposed to operations executed by buttons located in the bottom area all menu operations does not require to select contacts by check boxes in the grid. Menu operations manipulate by ‘current contact group’, e.g. by currently selected row. Current row is the row that was selected by either left or right mouse click.<br><br>Any grid row (contact sync group) can be double clicked or Merge item selected from a popup menu. In this case Merge dialog appears (see BB Merge section above). It shows all existent contacts of the contact sync group and all duplicates that could be referred (linked by duplicate relation) to this contact group. As many contacts will be shown in Merge dialog as many contacts and related duplicates are in the contact group. You may edit all them at once. In this case Merge dialog shows ‘Do Actions and Next’ and ‘Next’ buttons.<br><br>To save changes you’ve made simply click Save and Close button.</p>
+<h2>Check Duplicates</h2>
+<p>This operation allows you to check the folder on duplicates presence and handle them. It is called by selecting Check Duplicates from contact folder popup menu:<br><br>The Contact Sync form appears:<br><br>&nbsp;</p>
+<figure class="image"><img src="https://wiki.bbconsult.co.uk/download/attachments/1507460/19-bbol45.jpg?version=1&amp;modificationDate=1462978816870&amp;api=v2&amp;effects=drop-shadow"></figure>
+<p><br><br>Note, there is one folder only. No Match group is named No Duplicates here. And Duplicates check box only is there – there no Merge one. It does not make sense here.<br><br>You are free to use any operations you know from Contact Sync section.</p>
+<h2>How to Install</h2>
+<p>&nbsp;</p>
+<p>The BB Outlook Tools Installation Pack is available in three versions. Check which version of MS Outlook you are running and download the appropriate pack*. Each installation pack consists of two files: the setup.exe and an msi file. Once downloaded, click 'Setup.exe' to begin installation of BB OL Tools.<br><br>The additional functionality should automatically be added to your copy of MS Outlook. To check that it’s been installed, look under ‘File’ for the extra menu item.<br><br><i>*The BB Outlook Tools Installation Pack is available for MS Office 2007 and MS Office 2010 (32-bit and 64-bit versions).</i></p>
+<p><a href="https://wiki.bbconsult.co.uk/display/BP/BB+Outlook+Tools">BB Outlook Tools</a>&nbsp;includes a feature that allows PTS integration with Outlook. BB Outlook Tools can be downloaded&nbsp;<a href="https://wiki.bbconsult.co.uk/download/attachments/1507388/BB-OL-Tools-Setup32-0121003.zip?version=1&amp;modificationDate=1458316607977&amp;api=v2">here</a><a href="https://wiki.bbconsult.co.uk/bb-software/bb-outlook-tools/">.</a></p>
+<p>TODO: Locate these downloads</p>
+<h1>PTS Client Integration</h1>
+<p>Issues and Tasks in PTS can easily be updated using emails but this requires remembering all of the necessary tags that could be needed. PTS Client Integration makes this even easier by providing an easy interface with the most commonly used options on it.<br>&nbsp;</p>
+<figure class="image"><img src="/bbol.png"></figure>
+<p>&nbsp;</p>
+<p>To use this feature, click File &gt; BB Outlook Tool, click Feature Tools and then enable the 'PTS Client' checkbox in the General Options tab.<br><br>You can use the Status and Priority drop down menus to update these fields and the Add and Delete button to update the Team members. Pressing Commit will then open a reply to the PTS email with the tags added and the bottom. Simply add any comments as necessary and send the reply to update the Issue/Task.<br>&nbsp;</p>
+<figure class="image"><img src="/bbolex.png"></figure>
+<p>&nbsp;</p>
+<p>If you want to create a new Issue / Task instead of updating the current one, use the New PTS Mail and its associated options to do this - selecting a type of entity and a project will allow the correct email address to be auto-generated.<br><br>The Debug option will send log files for BBOL to Kevin Lazenby.</p>
+<h2>Installing PTS Outlook Client</h2>
+<p>To install PTS Outlook Client, simply download the latest version of BB Outlook tools&nbsp;<a href="https://wiki.bbconsult.co.uk/wp-content/uploads/2014/08/BB-OL-Tools-Setup32-0121003.zip">here</a>&nbsp;and then run the installer found in the zip file.</p>
+<p>TODO - Locate PTS Outlook Client</p>
+<p>&nbsp;</p>
