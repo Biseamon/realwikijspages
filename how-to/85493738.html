@@ -1,68 +1,34 @@
 <!--
-title: 85493738
+title: Amazon Web Services: Python lambda 
 description: 
 published: true
-date: 2020-12-02T12:00:14.688Z
+date: 2020-12-02T14:27:37.041Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-12-02T12:00:12.703Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : Amazon Web Services: Python lambda</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BVI_85493723.html">BVI</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : Amazon Web Services: Python lambda
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <h1 id="AmazonWebServices:Pythonlambda-Pythonlambda:">Python lambda:</h1><p>To get started with using AWS Lambda this link will get you through the basic tutorial of making a lambda function: <a class="external-link" href="http://docs.aws.amazon.com/lambda/latest/dg/getting-started.html" rel="nofollow">http://docs.aws.amazon.com/lambda/latest/dg/getting-started.html</a></p><h2 id="AmazonWebServices:Pythonlambda-Boto3:">Boto3:</h2><p>Boto3 is the AWS SDK for Python. Its documentation can be found here: <a class="external-link" href="https://boto3.readthedocs.io/en/latest/" rel="nofollow">https://boto3.readthedocs.io/en/latest/</a></p><p>To use Boto3 on AWS lambda you just need to import the module in the code as amazon already has it installed. You will also need to give your lambda a role which allow access to the resources your function will be using.</p><p>To use Boto3 on a computer you will need to install boto3 on your python environment and save a IAM key in a config file in your user folder as explained here:</p><p><a class="external-link" href="https://boto3.readthedocs.io/en/latest/guide/quickstart.html#configuration" rel="nofollow">https://boto3.readthedocs.io/en/latest/guide/quickstart.html#configuration</a></p><p>For example, the location where you will save the key in windows would be: C:\Users\User-Name\.aws</p><p> </p><p>To learn how to access AWS resources Boto3 has a good documentation here: <a class="external-link" href="https://boto3.readthedocs.io/en/latest/reference/services/index.html" rel="nofollow">https://boto3.readthedocs.io/en/latest/reference/services/index.html</a></p><p>There are two way to access to Aws resources:</p><ul><li>By using the client: client = boto3.client('sqs')</li><li>By using the resource: sqs = boto3.resource('sqs')</li></ul><p>The main difference is if you need to create new resources like a new SQS queues you will need to use the client and if you just need to access existing resources using ‘resource’ is better although you can also do it using the client.</p><h2 id="AmazonWebServices:Pythonlambda-ImportPackageAWSdon’thavebydefault:">Import Package AWS don’t have by default:</h2><p>To import package that AWS doesn’t have you will need to create a zip file with the package in it and your python code. Then upload your code to AWS using the upload from a zip file option and in the configuration of your lambda change the Handler to: ‘file_name.method’ where file name is the name of your python file and method is the name of your event handler method.</p><p>To know what exactly needs to be added to the zip file read here: <a class="external-link" href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html" rel="nofollow">http://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html</a></p><p><strong>Also, please note that AWS run with Linux so some package installed on windows might be missing stuff to run on Linux environment like it’s the case with ‘pymssql’ so it’s best to add package installed from a Linux environment.</strong></p>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : Amazon Web Services: Python lambda&nbsp;</h1>
+<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Python lambda:</h1>
+<p>To get started with using AWS Lambda this link will get you through the basic tutorial of making a lambda function: <a href="http://docs.aws.amazon.com/lambda/latest/dg/getting-started.html">http://docs.aws.amazon.com/lambda/latest/dg/getting-started.html</a></p>
+<h2>Boto3:</h2>
+<p>Boto3 is the AWS SDK for Python. Its documentation can be found here: <a href="https://boto3.readthedocs.io/en/latest/">https://boto3.readthedocs.io/en/latest/</a></p>
+<p>To use Boto3 on AWS lambda you just need to import the module in the code as amazon already has it installed. You will also need to give your lambda a role which allow access to the resources your function will be using.</p>
+<p>To use Boto3 on a computer you will need to install boto3 on your python environment and save a IAM key in a config file in your user folder as explained here:</p>
+<p><a href="https://boto3.readthedocs.io/en/latest/guide/quickstart.html#configuration">https://boto3.readthedocs.io/en/latest/guide/quickstart.html#configuration</a></p>
+<p>For example, the location where you will save the key in windows would be: C:\Users\User-Name\.aws</p>
+<p>&nbsp;</p>
+<p>To learn how to access AWS resources Boto3 has a good documentation here: <a href="https://boto3.readthedocs.io/en/latest/reference/services/index.html">https://boto3.readthedocs.io/en/latest/reference/services/index.html</a></p>
+<p>There are two way to access to Aws resources:</p>
+<ul>
+  <li>By using the client: client = boto3.client('sqs')</li>
+  <li>By using the resource: sqs = boto3.resource('sqs')</li>
+</ul>
+<p>The main difference is if you need to create new resources like a new SQS queues you will need to use the client and if you just need to access existing resources using ‘resource’ is better although you can also do it using the client.</p>
+<h2>Import Package AWS don’t have by default:</h2>
+<p>To import package that AWS doesn’t have you will need to create a zip file with the package in it and your python code. Then upload your code to AWS using the upload from a zip file option and in the configuration of your lambda change the Handler to: ‘file_name.method’ where file name is the name of your python file and method is the name of your event handler method.</p>
+<p>To know what exactly needs to be added to the zip file read here: <a href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html">http://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html</a></p>
+<p><strong>Also, please note that AWS run with Linux so some package installed on windows might be missing stuff to run on Linux environment like it’s the case with ‘pymssql’ so it’s best to add package installed from a Linux environment.</strong></p>
+<p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
