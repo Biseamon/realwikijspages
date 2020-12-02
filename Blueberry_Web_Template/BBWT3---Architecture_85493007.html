@@ -2,7 +2,7 @@
 title: Blueberry Group : BBWT3 - Architecture 
 description: 
 published: true
-date: 2020-12-02T14:02:53.452Z
+date: 2020-12-02T16:03:49.190Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-11-27T11:02:49.384Z
@@ -88,7 +88,7 @@ dateCreated: 2020-11-27T11:02:49.384Z
   </table>
 </figure>
 <h3>Call Sequence of a Client Request</h3>
-<figure class="image"><img src="attachments/85493007/85493008.png"></figure>
+<figure class="image"><img src="/image2020-8-30_9-6-13.png"></figure>
 <p><br>&nbsp;</p>
 <p>In this figure, we can see how the different layers of the solution communicate with each other and with the exterior. The call sequence is the following:</p>
 <ol>
@@ -107,62 +107,13 @@ dateCreated: 2020-11-27T11:02:49.384Z
 <p>For BBWT3 specifically, the Aurora instance is shared between platforms and branches. As the run-time code is common between operating systems, there's no need to distinguish between these two at the database level. At the branch level, we can create separate catalogues within the Aurora instance. In this case, we have 'master' and 'test' catalogues in the instance.</p>
 <p>As Elastic Beanstalk does not natively support RDS Aurora (i.e. you cannot bind a new or running Aurora instance to a Beanstalk environment) we need to manually specify access control within the appropriate security groups. An example of a security group structure which allows RDS access from two different Beanstalk groups is shown below.</p>
 <p>&nbsp;</p>
-<figure class="image"><img src="attachments/85493007/85493009.png"></figure>
+<figure class="image"><img src="/beanstalk_rds_security_groups.png"></figure>
 <p>&nbsp;</p>
 <p>The environments have been divided based on branch, platform, and database type. To make it easier for developers and sysadmins, the environments and URLs are constructed in this manner:&nbsp;<strong>branch-platform-database_type</strong>.</p>
-<figure class="table">
-  <table>
-    <tbody>
-      <tr>
-        <th>Branch</th>
-        <th>Platform</th>
-        <th>Database Type</th>
-        <th colspan="1">URL</th>
-      </tr>
-      <tr>
-        <th>master</th>
-        <th>Windows</th>
-        <th style="text-align:center;">SQL Server</th>
-        <th colspan="1"><a href="https://bbwt3-master-windows-sqlserver.blueberrytest.com/">https://bbwt3-master-windows-sqlserver.blueberrytest.com</a></th>
-      </tr>
-      <tr>
-        <th>test</th>
-        <th>Windows</th>
-        <th style="text-align:center;">SQL Server</th>
-        <th colspan="1"><a href="https://bbwt3-test-windows-sqlserver.blueberrytest.com/">https://bbwt3-test-windows-sqlserver.blueberrytest.com</a></th>
-      </tr>
-      <tr>
-        <th>master</th>
-        <th>Windows</th>
-        <th rowspan="4">
-          <p>&nbsp;</p>
-          <p style="text-align:center;">Aurora</p>
-          <p style="text-align:center;">(shared instance with 'master' and 'test' catalogues)</p>
-        </th>
-        <th colspan="1"><a href="https://bbwt3-master-windows-aurora.blueberrytest.com/">https://bbwt3-master-windows-aurora.blueberrytest.com</a></th>
-      </tr>
-      <tr>
-        <th colspan="1">test</th>
-        <th colspan="1">Windows</th>
-        <th><a href="https://bbwt3-test-windows-aurora.blueberrytest.com/">https://bbwt3-test-windows-aurora.blueberrytest.com</a></th>
-      </tr>
-      <tr>
-        <th>master</th>
-        <th>Linux</th>
-        <th><a href="https://bbwt3-master-linux-aurora.blueberrytest.com/">https://bbwt3-master-linux-aurora.blueberrytest.com</a></th>
-      </tr>
-      <tr>
-        <th>test</th>
-        <th>Linux</th>
-        <th><a href="https://bbwt3-test-linux-aurora.blueberrytest.com/">https://bbwt3-test-linux-aurora.blueberrytest.com</a></th>
-      </tr>
-    </tbody>
-  </table>
-</figure>
+<figure class="image"><img src="/branch.png"></figure>
 <p>Green indicates active deployments.</p>
-<p>&nbsp;</p>
 <p>This is visualised as:</p>
-<figure class="image"><img src="attachments/85493007/85493010.png"></figure>
+<figure class="image"><img src="/cloudcraft_-_bbwt3_deployment_targets.png"></figure>
 <h1>Deploying</h1>
 <p>Deployment is handled by GitLab. Within the BBWT3 project on GitLab is a&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/GitLab+CI">CI file</a>&nbsp;which defines how the job should be built and deployed. The table above has been translated into CI jobs for GitLab to build and deploy to.</p>
 <p>Deployment occurs on commits or merges to the&nbsp;<strong>master</strong>&nbsp;or&nbsp;<strong>test</strong>&nbsp;branches only, which then deploy on the appropriate beanstalk.</p>
