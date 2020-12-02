@@ -1,77 +1,38 @@
 <!--
-title: 85493318
+title: A4:2017 - XML External Entities (XXE)
 description: 
 published: true
-date: 2020-12-01T15:59:23.823Z
+date: 2020-12-02T14:54:57.336Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:01:14.719Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : A4:2017 - XML External Entities (XXE)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Security_85493287.html">BBWT3 - Security</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="85493303.html">BBWT3 - Application Security / Monitoring</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Security-Items_85493309.html">BBWT3 - Security Items</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : A4:2017 - XML External Entities (XXE)
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 22, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <h1 id="A4:2017-XMLExternalEntities(XXE)-Overview"><span style="color: rgb(60,66,81);">Overview<br/></span></h1><p>An <a class="external-link" href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing" rel="nofollow">XML External Entity attack</a> is a type of attack against an application that parses XML (eXtensible Markup Language) input. This attack occurs when XML input containing a reference to an external entity is processed by a weakly configured XML parser. This attack may lead to the disclosure of confidential data, denial of service, server side request forgery, port scanning from the perspective of the machine where the parser is located, and other system impacts.</p><h1 id="A4:2017-XMLExternalEntities(XXE)-Example"><span style="color: rgb(60,66,81);">Example<br/></span></h1><p>Remote code execution could be achieved by an attacker creating their own XML file, which may disclose target files such as web application secrets (e.g. database passwords)</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">&lt;?xml version=</code><code class="csharp string">&quot;1.0&quot;</code> <code class="csharp plain">encoding=</code><code class="csharp string">&quot;ISO-8859-1&quot;</code><code class="csharp plain">?&gt;</code><br/><code class="csharp plain">&lt;!DOCTYPE foo [ </code><br/><code class="csharp spaces">  </code><code class="csharp plain">&lt;!ELEMENT foo ANY &gt;</code><br/><code class="csharp spaces">  </code><code class="csharp plain">&lt;!ENTITY xxe SYSTEM </code><code class="csharp string">&quot;<a class="external-link" href="file:///etc/passwd" rel="nofollow">file:///etc/passwd</a>&quot;</code> <code class="csharp plain">&gt;]&gt;&lt;foo&gt;&amp;xxe;&lt;/foo&gt;</code></p></td></tr></tbody></table></div><h1 id="A4:2017-XMLExternalEntities(XXE)-HowBBWT3MitigatesThisVulnerability">How BBWT3 Mitigates This Vulnerability</h1><ul><li><p>Uses where possible JSON files instead of more complex data formats.</p></li><li>External entities references are disabled where XML <strong>is</strong> used<br/><br/></li></ul><p>As per OWASP guidelines, BBWT3 attempts to use JSON files where possible instead of XML ones.</p><p>Use of XML is potentially dangerous as an attacker could use an XML file to freely explore the files on the webserver.</p><p>The only time that BBWT3 does accept XML files is for SAML authentication - which allows for a user to login with an existing account instead of creating a new one for the web app. In this code, the XmlResolver is set to null - this completely prevents access to external entities.</p><p>Note well: if accepting other XML formats in the future, attention must be given to disabling the XmlResolver there, also.</p><h1 id="A4:2017-XMLExternalEntities(XXE)-OtherResources">Other Resources</h1><p>OWASP 2017 full details -  page 9 of <a class="external-link" href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf" rel="nofollow">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a></p>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : A4:2017 - XML External Entities (XXE)&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 22, 2020</p>
+<h1>Overview<br>&nbsp;</h1>
+<p>An&nbsp;<a href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing">XML External Entity attack</a>&nbsp;is a type of attack against an application that parses XML (eXtensible Markup Language) input. This attack occurs when XML input containing a reference to an external entity is processed by a weakly configured XML parser. This attack may lead to the disclosure of confidential data, denial of service, server side request forgery, port scanning from the perspective of the machine where the parser is located, and other system impacts.</p>
+<h1>Example<br>&nbsp;</h1>
+<p>Remote code execution could be achieved by an attacker creating their own XML file, which may disclose target files such as web application secrets (e.g. database passwords)</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>&lt;?xml version="1.0"</code>&nbsp;<code>encoding="ISO-8859-1"?&gt;</code><br><code>&lt;!DOCTYPE foo [&nbsp;</code><br><code>&nbsp; &lt;!ELEMENT foo ANY &gt;</code><br><code>&nbsp; &lt;!ENTITY xxe SYSTEM&nbsp;"</code><a href="file:///etc/passwd"><code>file:///etc/passwd</code></a><code>"</code>&nbsp;<code>&gt;]&gt;&lt;foo&gt;&amp;xxe;&lt;/foo&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>How BBWT3 Mitigates This Vulnerability</h1>
+<p>Uses where possible JSON files instead of more complex data formats.</p>
+<ul>
+  <li>External entities references are disabled where XML&nbsp;<strong>is</strong>&nbsp;used<br><br>&nbsp;</li>
+</ul>
+<p>As per OWASP guidelines, BBWT3 attempts to use JSON files where possible instead of XML ones.</p>
+<p>Use of XML is potentially dangerous as an attacker could use an XML file to freely explore the files on the webserver.</p>
+<p>The only time that BBWT3 does accept XML files is for SAML authentication - which allows for a user to login with an existing account instead of creating a new one for the web app. In this code, the XmlResolver is set to null - this completely prevents access to external entities.</p>
+<p>Note well: if accepting other XML formats in the future, attention must be given to disabling the XmlResolver there, also.</p>
+<h1>Other Resources</h1>
+<p>OWASP 2017 full details -&nbsp; page 9 of&nbsp;<a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a></p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
