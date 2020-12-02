@@ -1,79 +1,36 @@
 <!--
-title: 85493740
+title: Cognito for .Net: 
 description: 
 published: true
-date: 2020-12-02T12:00:17.555Z
+date: 2020-12-02T14:26:13.103Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-12-02T12:00:15.553Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : Cognito for .Net:</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BVI_85493723.html">BVI</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : Cognito for .Net:
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>Using Cognito in .Net is a bit tricky as it doesn’t have all the call tidied up like the other SDKs do to Authenticate, register, validate…</p><p>Instead you need to handle all of the crypto and making the <a class="external-link" href="https://en.wikipedia.org/wiki/Secure_Remote_Password_protocol" rel="nofollow">SRP</a> protocol work. Thankfully a feature request has been opened and some people shared their solution here: <a class="external-link" href="https://github.com/aws/aws-sdk-net/issues/495" rel="nofollow">https://github.com/aws/aws-sdk-net/issues/495</a></p><p>Those solutions are mostly based on the JS SDK: <a class="external-link" href="https://github.com/aws/amazon-cognito-identity-js/tree/master/src" rel="nofollow">https://github.com/aws/amazon-cognito-identity-js/tree/master/src</a></p><p>In the end this is what has been used in the BVI Test app: <a class="external-link" href="https://gist.github.com/BBNicolas/5ab3f1f8c604ebe2e4ecf14c35487495" rel="nofollow">https://gist.github.com/BBNicolas/5ab3f1f8c604ebe2e4ecf14c35487495</a></p><p>What has been done:</p><p>-          Register</p><p>-          Validation</p><p>-          Login</p><p>-          Forgot password</p><p>-          Refresh</p><p>-          Logout</p><p>Part of the device remembering is working (signing in with a new device and remembering it). But when login in a second time using the device key it fails at the Device Authentication.</p><h2 id="Cognitofor.Net:-UsefullLinks:">Usefull Links:</h2><p><a class="external-link" href="http://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html" rel="nofollow">AWS Cognito Documentation</a></p><p><a class="external-link" href="http://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/Welcome.html" rel="nofollow">AWS Cognito General API documentation</a></p><p><a class="external-link" href="https://aws.amazon.com/blogs/mobile/tracking-and-remembering-devices-using-amazon-cognito-your-user-pools/" rel="nofollow">AWS Blog about Remembering Devices</a></p><h2 id="Cognitofor.Net:-LoginFlow:">Login Flow:</h2><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85493740/85493741.png" data-image-src="attachments/85493740/85493741.png" data-unresolved-comment-count="0" data-linked-resource-id="85493741" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Cognito_Flow.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493740" data-linked-resource-container-version="1"></span></p><p><br/></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/85493740/85493741.png">Cognito_Flow.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : Cognito for .Net:&nbsp;</h1>
+<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>Using Cognito in .Net is a bit tricky as it doesn’t have all the call tidied up like the other SDKs do to Authenticate, register, validate…</p>
+<p>Instead you need to handle all of the crypto and making the <a href="https://en.wikipedia.org/wiki/Secure_Remote_Password_protocol">SRP</a> protocol work. Thankfully a feature request has been opened and some people shared their solution here: <a href="https://github.com/aws/aws-sdk-net/issues/495">https://github.com/aws/aws-sdk-net/issues/495</a></p>
+<p>Those solutions are mostly based on the JS SDK: <a href="https://github.com/aws/amazon-cognito-identity-js/tree/master/src">https://github.com/aws/amazon-cognito-identity-js/tree/master/src</a></p>
+<p>In the end this is what has been used in the BVI Test app: <a href="https://gist.github.com/BBNicolas/5ab3f1f8c604ebe2e4ecf14c35487495">https://gist.github.com/BBNicolas/5ab3f1f8c604ebe2e4ecf14c35487495</a></p>
+<p>What has been done:</p>
+<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Register</p>
+<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Validation</p>
+<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Login</p>
+<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Forgot password</p>
+<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Refresh</p>
+<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Logout</p>
+<p>Part of the device remembering is working (signing in with a new device and remembering it). But when login in a second time using the device key it fails at the Device Authentication.</p>
+<h2>Usefull Links:</h2>
+<p><a href="http://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html">AWS Cognito Documentation</a></p>
+<p><a href="http://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/Welcome.html">AWS Cognito General API documentation</a></p>
+<p><a href="https://aws.amazon.com/blogs/mobile/tracking-and-remembering-devices-using-amazon-cognito-your-user-pools/">AWS Blog about Remembering Devices</a></p>
+<h2>Login Flow:</h2>
+<figure class="image"><img src="attachments/85493740/85493741.png"></figure>
+<p>&nbsp;</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493740/85493741.png">Cognito_Flow.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
