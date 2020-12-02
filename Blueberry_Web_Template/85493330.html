@@ -1,77 +1,30 @@
 <!--
-title: 85493330
+title: A9:2017 - Using Components with Known Vulnerabilities
 description: 
 published: true
-date: 2020-12-01T15:59:36.318Z
+date: 2020-12-02T14:48:49.039Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:01:31.643Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : A9:2017 - Using Components with Known Vulnerabilities</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Security_85493287.html">BBWT3 - Security</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="85493303.html">BBWT3 - Application Security / Monitoring</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Security-Items_85493309.html">BBWT3 - Security Items</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : A9:2017 - Using Components with Known Vulnerabilities
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 22, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <h1 id="A9:2017-UsingComponentswithKnownVulnerabilities-Overview">Overview</h1><p>Components, including libraries and frameworks, may be taken from the open source community and should be used with caution in case vulnerabilities are lurking. As a vulnerable component is exploited, attackers can leverage it and cause the app serious damage and a major loss of data that can undermine the app, and perhaps even the organization.</p><p>By using components with known vulnerabilities, attackers can take advantage of that using SQLi and an XSS (among other attack methods) to attempt to takeover and occupy the app.</p><h1 id="A9:2017-UsingComponentswithKnownVulnerabilities-Example">Example</h1><p>Components typically run with the same privileges as the application itself, so flaws in any component can result in serious impact.</p><p>Such flaws can be accidental (e.g. coding error) or intentional (e.g. backdoor in component).</p><p>If the web application uses undocumented dependencies this could lead to them not being updated and thus pose a security risk.</p><p><br/></p><h1 id="A9:2017-UsingComponentswithKnownVulnerabilities-HowBBWT3MitigatesThisVulnerability">How BBWT3 Mitigates This Vulnerability</h1><ul><li>Constant testing with 3rd party tools<br/><br/></li></ul><p>BBWT3 uses a tool known as Acunetix which scans our code for potential vulnerabilities. When one is identified it is quickly patched so that the integrity of BBWT3 remains.</p><p>High risk sites should be tested regularly with both <a href="https://wiki.bbconsult.co.uk/display/BLUEB/How+to+Perform+an+Application+Vulnerability+Scan+with+Acunetix" rel="nofollow">Acunetix </a>(for application vulnerabilities) and <a href="https://wiki.bbconsult.co.uk/display/BLUEB/How+to+Perform+a+Server+Vulnerability+Scan+with+OpenVAS" rel="nofollow">OpenVAS </a>(for system vulnerabilities). Note well: Hosts such as Amazon require notification up-front of vulnerability scans. Otherwise, they're unable to differentiate between real and simulated attacks.</p><h1 id="A9:2017-UsingComponentswithKnownVulnerabilities-OtherResources">Other Resources</h1><p>OWASP 2017 full details -  page 15 of <a class="external-link" href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf" rel="nofollow">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a></p>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : A9:2017 - Using Components with Known Vulnerabilities&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 22, 2020</p>
+<h1>Overview</h1>
+<p>Components, including libraries and frameworks, may be taken from the open source community and should be used with caution in case vulnerabilities are lurking. As a vulnerable component is exploited, attackers can leverage it and cause the app serious damage and a major loss of data that can undermine the app, and perhaps even the organization.</p>
+<p>By using components with known vulnerabilities, attackers can take advantage of that using SQLi and an XSS (among other attack methods) to attempt to takeover and occupy the app.</p>
+<h1>Example</h1>
+<p>Components typically run with the same privileges as the application itself, so flaws in any component can result in serious impact.</p>
+<p>Such flaws can be accidental (e.g. coding error) or intentional (e.g. backdoor in component).</p>
+<p>If the web application uses undocumented dependencies this could lead to them not being updated and thus pose a security risk.</p>
+<p>&nbsp;</p>
+<h1>How BBWT3 Mitigates This Vulnerability</h1>
+<ul>
+  <li>Constant testing with 3rd party tools<br><br>&nbsp;</li>
+</ul>
+<p>BBWT3 uses a tool known as Acunetix which scans our code for potential vulnerabilities. When one is identified it is quickly patched so that the integrity of BBWT3 remains.</p>
+<p>High risk sites should be tested regularly with both&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/How+to+Perform+an+Application+Vulnerability+Scan+with+Acunetix">Acunetix&nbsp;</a>(for application vulnerabilities) and&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/How+to+Perform+a+Server+Vulnerability+Scan+with+OpenVAS">OpenVAS&nbsp;</a>(for system vulnerabilities). Note well: Hosts such as Amazon require notification up-front of vulnerability scans. Otherwise, they're unable to differentiate between real and simulated attacks.</p>
+<h1>Other Resources</h1>
+<p>OWASP 2017 full details -&nbsp; page 15 of&nbsp;<a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a></p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
