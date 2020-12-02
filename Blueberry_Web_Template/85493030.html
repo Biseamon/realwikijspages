@@ -1,82 +1,250 @@
 <!--
-title: 85493030
+title: BBWT3 - Building, Running and Publishing
 description: 
 published: true
-date: 2020-12-01T15:58:58.642Z
+date: 2020-12-02T15:06:23.246Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:00:40.497Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : BBWT3 - Building, Running and Publishing</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Development-Environment_85493024.html">BBWT3 - Development Environment</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : BBWT3 - Building, Running and Publishing
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <h1 id="BBWT3-Building,RunningandPublishing-Overview">Overview</h1><p>This page will help you familiarise yourself with the project, how to create new components, debug them, and how to upload them to GitLab for merging into the main repository.</p><h1 id="BBWT3-Building,RunningandPublishing-GettingtoKnowtheWorkspace">Getting to Know the Workspace</h1><p>Open the BBWT.sln file in Visual Studio, or open the BBWT3 directory using Visual Studio Code.</p><p>Also you can work with the back-end and the front-code separately by opening the BBWT.Server.sln solution and project/BBWT.Client/ folder in separate applications.</p><p>The project is laid out into the following structure:</p><ul><li>project/<ul><li>BBWT.Client/</li><li>BBWT.Data/</li><li>BBWT.Data.MySQL/</li><li>BBWT.Data.SqlServer/</li><li>BBWT.InitialData/</li><li>BBWT.Server/</li><li>BBWT.Services/</li></ul></li><li>test/<ul><li>BBWT.Services.Test/</li></ul></li><li>modules/<ul><li>BBWM.*/</li></ul></li></ul><ul><li>./docker/</li><li>(loose files)</li></ul><p><br/></p><p>The top-level files and folders should be self-explanatory.</p><p>The back-end project lives in project/BBWT.Server folder. The front-end project sits in project/BBWT.Client folder.</p><h1 id="BBWT3-Building,RunningandPublishing-RecommendedRead">Recommended Read</h1><p><br/>Please take the time to have a read through how BBWT3 is made and how to work on it <a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners" rel="nofollow">here</a>.</p><h1 id="BBWT3-Building,RunningandPublishing-Workflow">Workflow</h1><p>BBWT3 uses a branching model. Develop is considered the default branch, and the latest working copy of the code. When developing, you should make your changes in a separate branch with a prefix of feature/ or fix/ based off of develop, push that branch up, then create a merge request back into develop.</p><p><br/></p><p>The test branch is considered test code. Merges to it will trigger actual deployments, and can only be orchestrated by repository maintainers. First, you'll want to make sure your local copy is up to date. The default branch is develop, so switch to it if not there already:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">git checkout develop</code></p></td></tr></tbody></table></div><p>Then, run git pull to pull down the latest changes.</p><p>You can now edit files directly in the develop branch, but really you should create a branch and hack away there. So, run:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">git checkout -b feature/my-cool-thing</code></p></td></tr></tbody></table></div><p><br/></p><p>This will create a new branch from develop. Once you're done, push it back to GitLab (assuming you've already committed locally) with:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">git push -u origin feature/my-cool-thing</code></p></td></tr></tbody></table></div><h1 id="BBWT3-Building,RunningandPublishing-Changingencoding">Changing encoding</h1><p>Before you continue you will have to change the encoding from ASCII to UTF-8. You will have to find the file called &quot;my.ini&quot; on Windows and &quot;my.cnf&quot; on Linux.</p><p><br/></p><p><br/></p><p>Then open this file with a text editor. Under the heading &quot;[client]&quot; insert the line:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp keyword">default</code><code class="csharp plain">-character-</code><code class="csharp keyword">set</code> <code class="csharp plain">= utf8mb4</code></p></td></tr></tbody></table></div><p><br/></p><p>Under the heading &quot;[mysql]&quot; insert the line:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp keyword">default</code><code class="csharp plain">-character-</code><code class="csharp keyword">set</code> <code class="csharp plain">= utf8mb4</code></p></td></tr></tbody></table></div><p><br/></p><p>Under the heading &quot;[mysqld]&quot; insert the lines:</p><p><br/></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">character-</code><code class="csharp keyword">set</code><code class="csharp plain">-client-handshake = FALSE</code><br/> <br/><code class="csharp plain">character-</code><code class="csharp keyword">set</code><code class="csharp plain">-server = utf8mb4</code><br/> <br/><code class="csharp plain">collation-server = utf8mb4_unicode_ci</code></p></td></tr></tbody></table></div><p><br/></p><p>Finally restart the MySQL service in Windows (search &quot;Services&quot;, then in window go to &quot;MySQL&quot;, right click and go down to and click on &quot;Restart&quot;). </p><h1 id="BBWT3-Building,RunningandPublishing-BuildingandRunning">Building and Running</h1><p><br/></p><h3 id="BBWT3-Building,RunningandPublishing-BuildingtheProject">Building the Project</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">cd project/BBWT.Server</code><br/> <br/><code class="csharp plain">dotnet build</code></p></td></tr></tbody></table></div><h3 id="BBWT3-Building,RunningandPublishing-RunningLocally">Running Locally</h3><p class="title">Recent changes (03-01-19)</p><p>Angular CLI server was previously configured to start when ASP.NET Core app starts in development mode. However due to the fact that each change in code requires the ASP.NET Core to restart, it wastes time waiting for Angular CLI server to initiate. For this reason Angular CLI server now runs independently. You need to manually start Angular CLI server before debugging BBWT.Server by typing:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">npm start</code></p></td></tr></tbody></table></div><p>For more information go <a class="external-link" href="https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-2.2&amp;tabs=visual-studio#run-ng-serve-independently" rel="nofollow">here</a>.</p><p><br/></p><ul><li>In VS Code<u>:</u></li></ul><p style="margin-left: 60.0px;">Press Ctrl+F5</p><ul><li>In Visual Studio:</li></ul><p style="margin-left: 60.0px;">Go to [File &gt; Open &gt; Project/solution...] and select the BBWT.sln from <em>bbw3/</em> .</p><p style="margin-left: 60.0px;">Then Select BBWT.Server as the start-up project. Then press Ctrl + F5 or click on the green arrow.</p><p style="margin-left: 90.0px;"><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85493030/85493031.png" data-image-src="attachments/85493030/85493031.png" data-unresolved-comment-count="0" data-linked-resource-id="85493031" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-8-30_10-19-43.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493030" data-linked-resource-container-version="1"></span></span></p><ul><li>In Console :</li></ul><p style="margin-left: 60.0px;">First, switch to development mode (to make it permanent, set it as an environment variable)<br/>Windows:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="powershell keyword">set</code> <code class="powershell plain">ASPNETCORE_ENVIRONMENT=Development</code></p></td></tr></tbody></table></div><p><br/></p><p style="margin-left: 60.0px;">...or Linux / MacOS:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="bash functions">export</code> <code class="bash plain">ASPNETCORE_ENVIRONMENT=Development</code></p></td></tr></tbody></table></div><p style="margin-left: 60.0px;"><br/></p><p style="margin-left: 60.0px;">Then launch the server from <em>bbwt3/project/BBWT.Server/</em> :</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">dotnet run</code></p></td></tr></tbody></table></div><p><br/></p><p>Important - do not remove appsettings.Production.json file. For your local development use <em>appsettings.Development.json</em>. But beforehand it is necessary to switch ASPNETCORE_ENVIRONMENT to Development (as described above).</p><p>Addition information about environment here <a class="external-link" href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments" rel="nofollow">https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments</a></p><p><br/></p><p>By default, ASP.NET Core runs in the Development environment/mode and binds to localhost, while dotnet runs in the Debug configuration. ASP.NET Core can be adjusted using the following environment variables:</p><ul><li>ASPNETCORE_ENVIRONMENT - used to set the environment, defaults to Development if not set.</li><li>ASPNETCORE_URLS - used to set the ip:port on which Kestrel binds.<br/><br/></li></ul><p><br/></p><p>You can make these variables persist in the current shell and sub-processes using export e.g:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">export ASPNETCORE_ENVIRONMENT=Production</code></p></td></tr></tbody></table></div><p><br/></p><p>The ASPNETCORE_ENVIRONMENT variable is used to select the correct configuration file during start-up, of the form appsettings.${ASPNETCORE_ENVIRONMENT}.json. See project/BBWT.Server/Program.cs::BuildConfiguration() for further details.</p><p>Dotnet can use either of the two configurations:</p><ul><li>Debug.</li><li>Release.</li></ul><p>Example:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">dotnet run -c Debug</code></p></td></tr></tbody></table></div><p><br/></p><p>Running the app in development mode enables webpack hot reloading, so any changes made to the front-end are reflected quickly in your browser.</p><p>Visual Studio users can hit CTRL+F5 after selecting the BBWT.Server project.</p><h1 class="x_CodeLight2" id="BBWT3-Building,RunningandPublishing-PublishingtheProject">Publishing the Project</h1><p>It may be necessary to generate a published version of the project for manual deployment. Use dotnet publish to achieve this:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">dotnet publish -c &lt;Configuration&gt; -o /path/to/published/output/ project/BBWT.Server/BBWT.Server.csproj</code></p></td></tr></tbody></table></div><p>This will generate a runtime dependant configuration, meaning that the .NET Core 2 runtime needs to be installed on the target.</p><p>To generate a self-contained deployment, use the -r option with a valid runtime identifier. This kind of deployment won't require .NET Core 2 to be installed on the target.</p><p>To speed up building and/or publishing, use the --no-build or --no-restore options when appropriate, which will skip building the project or restoring dependencies respectively. Use this when the project build is up to date. Note that --no-build implies --no-restore.</p><p><br/></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/85493030/85493031.png">image2020-8-30_10-19-43.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : BBWT3 - Building, Running and Publishing&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<h1>Overview</h1>
+<p>This page will help you familiarise yourself with the project, how to create new components, debug them, and how to upload them to GitLab for merging into the main repository.</p>
+<h1>Getting to Know the Workspace</h1>
+<p>Open the BBWT.sln file in Visual Studio, or open the BBWT3 directory using Visual Studio Code.</p>
+<p>Also you can work with the back-end and the front-code separately by opening the BBWT.Server.sln solution and project/BBWT.Client/ folder in separate applications.</p>
+<p>The project is laid out into the following structure:</p>
+<ul>
+  <li>project/<ul>
+      <li>BBWT.Client/</li>
+      <li>BBWT.Data/</li>
+      <li>BBWT.Data.MySQL/</li>
+      <li>BBWT.Data.SqlServer/</li>
+      <li>BBWT.InitialData/</li>
+      <li>BBWT.Server/</li>
+      <li>BBWT.Services/</li>
+    </ul>
+  </li>
+  <li>test/<ul>
+      <li>BBWT.Services.Test/</li>
+    </ul>
+  </li>
+  <li>modules/<ul>
+      <li>BBWM.*/</li>
+    </ul>
+  </li>
+  <li>./docker/</li>
+  <li>(loose files)</li>
+</ul>
+<p>&nbsp;</p>
+<p>The top-level files and folders should be self-explanatory.</p>
+<p>The back-end project lives in project/BBWT.Server folder. The front-end project sits in project/BBWT.Client folder.</p>
+<h1>Recommended Read</h1>
+<p><br>Please take the time to have a read through how BBWT3 is made and how to work on it&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/BBWT3+Explained+to+Beginners">here</a>.</p>
+<h1>Workflow</h1>
+<p>BBWT3 uses a branching model. Develop is considered the default branch, and the latest working copy of the code. When developing, you should make your changes in a separate branch with a prefix of feature/ or fix/ based off of develop, push that branch up, then create a merge request back into develop.</p>
+<p>&nbsp;</p>
+<p>The test branch is considered test code. Merges to it will trigger actual deployments, and can only be orchestrated by repository maintainers. First, you'll want to make sure your local copy is up to date. The default branch is develop, so switch to it if not there already:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>git checkout develop</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Then, run git pull to pull down the latest changes.</p>
+<p>You can now edit files directly in the develop branch, but really you should create a branch and hack away there. So, run:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>git checkout -b feature/my-cool-thing</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>This will create a new branch from develop. Once you're done, push it back to GitLab (assuming you've already committed locally) with:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>git push -u origin feature/my-cool-thing</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h1>Changing encoding</h1>
+<p>Before you continue you will have to change the encoding from ASCII to UTF-8. You will have to find the file called "my.ini" on Windows and "my.cnf" on Linux.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Then open this file with a text editor. Under the heading "[client]" insert the line:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>default-character-set</code>&nbsp;<code>= utf8mb4</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Under the heading "[mysql]" insert the line:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>default-character-set</code>&nbsp;<code>= utf8mb4</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Under the heading "[mysqld]" insert the lines:</p>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>character-set-client-handshake = FALSE</code><br>&nbsp;<br><code>character-set-server = utf8mb4</code><br>&nbsp;<br><code>collation-server = utf8mb4_unicode_ci</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Finally restart the MySQL service in Windows (search "Services", then in window go to "MySQL", right click and go down to and click on "Restart").&nbsp;</p>
+<h1>Building and Running</h1>
+<p>&nbsp;</p>
+<h3>Building the Project</h3>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>cd project/BBWT.Server</code><br>&nbsp;<br><code>dotnet build</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h3>Running Locally</h3>
+<p>Recent changes (03-01-19)</p>
+<p>Angular CLI server was previously configured to start when ASP.NET Core app starts in development mode. However due to the fact that each change in code requires the ASP.NET Core to restart, it wastes time waiting for Angular CLI server to initiate. For this reason Angular CLI server now runs independently.&nbsp;You need to manually start Angular CLI server&nbsp;before debugging BBWT.Server&nbsp;by typing:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>npm start</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>For more information go&nbsp;<a href="https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-2.2&amp;tabs=visual-studio#run-ng-serve-independently">here</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li>In VS Code<u>:</u></li>
+</ul>
+<p>Press Ctrl+F5</p>
+<ul>
+  <li>In Visual Studio:</li>
+</ul>
+<p>Go to [File &gt; Open &gt; Project/solution...] and select the BBWT.sln from&nbsp;<i>bbw3/</i>&nbsp;.</p>
+<p>Then Select BBWT.Server as the start-up project. Then press Ctrl + F5 or click on the green arrow.</p>
+<figure class="image"><img src="attachments/85493030/85493031.png"></figure>
+<ul>
+  <li>In Console :</li>
+</ul>
+<p>First, switch to development mode (to make it permanent, set it as an environment variable)<br>Windows:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>set</code>&nbsp;<code>ASPNETCORE_ENVIRONMENT=Development</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>...or Linux / MacOS:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export</code>&nbsp;<code>ASPNETCORE_ENVIRONMENT=Development</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Then launch the server from&nbsp;<i>bbwt3/project/BBWT.Server/</i>&nbsp;:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet run</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Important&nbsp;-&nbsp;do not remove appsettings.Production.json file. For your local development use&nbsp;<i>appsettings.Development.json</i>. But beforehand it is necessary to switch&nbsp;ASPNETCORE_ENVIRONMENT to Development (as described above).</p>
+<p>Addition information about environment here&nbsp;<a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments">https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments</a></p>
+<p>&nbsp;</p>
+<p>By default, ASP.NET Core runs in the Development environment/mode and binds to localhost, while dotnet runs in the Debug configuration. ASP.NET Core can be adjusted using the following environment variables:</p>
+<ul>
+  <li>ASPNETCORE_ENVIRONMENT - used to set the environment, defaults to Development if not set.</li>
+  <li>ASPNETCORE_URLS - used to set the ip:port on which Kestrel binds.<br><br>&nbsp;</li>
+</ul>
+<p>&nbsp;</p>
+<p>You can make these variables persist in the current shell and sub-processes using export e.g:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export ASPNETCORE_ENVIRONMENT=Production</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>The ASPNETCORE_ENVIRONMENT variable is used to select the correct configuration file during start-up, of the form appsettings.${ASPNETCORE_ENVIRONMENT}.json. See project/BBWT.Server/Program.cs::BuildConfiguration() for further details.</p>
+<p>Dotnet can use either of the two configurations:</p>
+<ul>
+  <li>Debug.</li>
+  <li>Release.</li>
+</ul>
+<p>Example:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet run -c Debug</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Running the app in development mode enables webpack hot reloading, so any changes made to the front-end are reflected quickly in your browser.</p>
+<p>Visual Studio users can hit CTRL+F5 after selecting the BBWT.Server project.</p>
+<h1>Publishing the Project</h1>
+<p>It may be necessary to generate a published version of the project for manual deployment. Use dotnet publish to achieve this:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>dotnet publish -c &lt;Configuration&gt; -o /path/to/published/output/ project/BBWT.Server/BBWT.Server.csproj</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>This will generate a runtime dependant configuration, meaning that the .NET Core 2 runtime needs to be installed on the target.</p>
+<p>To generate a self-contained deployment, use the -r option with a valid runtime identifier. This kind of deployment won't require .NET Core 2 to be installed on the target.</p>
+<p>To speed up building and/or publishing, use the --no-build or --no-restore options when appropriate, which will skip building the project or restoring dependencies respectively. Use this when the project build is up to date. Note that --no-build implies --no-restore.</p>
+<p>&nbsp;</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493030/85493031.png">image2020-8-30_10-19-43.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
