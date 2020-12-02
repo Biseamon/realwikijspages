@@ -1,77 +1,83 @@
 <!--
-title: 85493326
+title: A7:2017 - Cross-Site Scripting (XSS)
 description: 
 published: true
-date: 2020-12-01T15:59:32.144Z
+date: 2020-12-02T14:50:08.437Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:01:26.035Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : A7:2017 - Cross-Site Scripting (XSS)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Security_85493287.html">BBWT3 - Security</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="85493303.html">BBWT3 - Application Security / Monitoring</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Security-Items_85493309.html">BBWT3 - Security Items</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : A7:2017 - Cross-Site Scripting (XSS)
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 22, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <h1 id="A7:2017-Cross-SiteScripting(XSS)-Overview">Overview</h1><p>Following a broad disagreement with the previous A7 (which was “Insufficient Attack Protection”), OWASP updated the list and placed Cross-Site Scripting as the updated A7. Cross-Site Scripting, commonly known as XSS, is a vulnerability that is often found in web apps. XSS allows attackers to inject client-side scripts into public facing web pages and, in many cases, can be used by attackers to work their way past access controls.</p><p>This is done by tricking a browser with a &quot;hostile&quot; string, purporting to be data for display, but actually crafted so that the browser's interpreter will misread it as code to be executed.</p><p>When an XSS attack is successful, attackers are able to cause serious damage to websites and have the ability to drag users on to other websites (often hosting more malicious code). </p><p>The definition of XSS has evolved over the years. Originally intended in January 2000 by Microsoft security-engineers to refer to the act of loading the attacked third-party web application from an unrelated attack-site, in a manner which executes JavaScript prepared by the attacker of the targeted domain. But has since changed to include other modes of code injection.</p><h1 id="A7:2017-Cross-SiteScripting(XSS)-Example">Example</h1><p>Assuming that we have an error page, which is handling requests for a non existing pages, a classic 404 error page. We may use the code below as an example to inform user about what specific page is missing:</p><p><br/></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">&lt;html&gt;</code><br/><code class="csharp plain">&lt;body&gt;</code><br/> <br/><code class="csharp plain">&lt;? php</code><br/><code class="csharp plain">print </code><code class="csharp string">&quot;Not found: &quot;</code> <code class="csharp plain">. urldecode($_SERVER[</code><code class="csharp string">&quot;REQUEST_URI&quot;</code><code class="csharp plain">]);</code><br/><code class="csharp plain">?&gt;</code><br/> <br/><code class="csharp plain">&lt;/body&gt;</code><br/><code class="csharp plain">&lt;/html&gt;</code></p></td></tr></tbody></table></div><p><br/></p><p>Let's see how it works:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">http:</code><code class="csharp comments">//testsite.test/file_which_not_exist</code></p></td></tr></tbody></table></div><p><br/></p><p>In response we get:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">Not found: /file_which_not_exist</code></p></td></tr></tbody></table></div><p><br/></p><p>Now we will try to force the error page to include our code:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">http:</code><code class="csharp comments">//testsite.test/&lt;script&gt;alert(&quot;TEST&quot;);&lt;/script&gt;</code></p></td></tr></tbody></table></div><p><br/></p><p>The result is:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">Not found: / (but with JavaScript code &lt;script&gt;alert(</code><code class="csharp string">&quot;TEST&quot;</code><code class="csharp plain">);&lt;/script&gt;)</code></p></td></tr></tbody></table></div><p>We have successfully injected the code, our XSS. What does it mean? For example, that we may use this flaw to try to steal a user's session cookie.</p><h1 id="A7:2017-Cross-SiteScripting(XSS)-HowBBWT3MitigatesThisVulnerability">How BBWT3 Mitigates This Vulnerability</h1><ul><li>Treat all values as untrusted by default.<br/><br/></li></ul><p>A technology called Angular that we use, treats by default all values as untrusted. When a value is inserted into the Document Object Model from a template, via property, attribute, style, class biding, or interpolation, Angular sanitises and escapes untrusted values.</p><h1 id="A7:2017-Cross-SiteScripting(XSS)-OtherResources">Other Resources</h1><p>OWASP 2017 full details -  page 13 of <a class="external-link" href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf" rel="nofollow">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a></p>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : A7:2017 - Cross-Site Scripting (XSS)&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 22, 2020</p>
+<h1>Overview</h1>
+<p>Following a broad disagreement with the previous A7 (which was “Insufficient Attack Protection”), OWASP updated the list and placed Cross-Site Scripting as the updated A7. Cross-Site Scripting, commonly known as XSS, is a vulnerability that is often found in web apps. XSS allows attackers to inject client-side scripts into public facing web pages and, in many cases, can be used by attackers to work their way past access controls.</p>
+<p>This is done by tricking a browser with a "hostile" string, purporting to be data for display, but actually crafted so that the browser's interpreter will misread it as code to be executed.</p>
+<p>When an XSS attack is successful, attackers are able to cause serious damage to websites and have the ability to drag users on to other websites (often hosting more malicious code).&nbsp;</p>
+<p>The definition of XSS has evolved over the years. Originally intended in January 2000 by Microsoft security-engineers to refer to the act of loading the attacked third-party web application from an unrelated attack-site, in a manner which executes JavaScript prepared by the attacker of the targeted domain. But has since changed to include other modes of code injection.</p>
+<h1>Example</h1>
+<p>Assuming that we have an error page, which is handling requests for a non existing pages, a classic 404 error page. We may use the code below as an example to inform user about what specific page is missing:</p>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>&lt;html&gt;</code><br><code>&lt;body&gt;</code><br>&nbsp;<br><code>&lt;? php</code><br><code>print&nbsp;"Not found: "</code>&nbsp;<code>. urldecode($_SERVER["REQUEST_URI"]);</code><br><code>?&gt;</code><br>&nbsp;<br><code>&lt;/body&gt;</code><br><code>&lt;/html&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Let's see how it works:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>http://testsite.test/file_which_not_exist</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>In response we get:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>Not found: /file_which_not_exist</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>Now we will try to force the error page to include our code:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>http://testsite.test/&lt;script&gt;alert("TEST");&lt;/script&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>The result is:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>Not found: / (but with JavaScript code &lt;script&gt;alert("TEST");&lt;/script&gt;)</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>We have successfully injected the code, our XSS. What does it mean? For example, that we may use this flaw to try to steal a user's session cookie.</p>
+<h1>How BBWT3 Mitigates This Vulnerability</h1>
+<ul>
+  <li>Treat all values as untrusted by default.<br><br>&nbsp;</li>
+</ul>
+<p>A technology called Angular that we use, treats by default all values as untrusted. When a value is inserted into the&nbsp;Document Object Model&nbsp;from a template, via property, attribute, style, class biding, or interpolation, Angular sanitises and escapes untrusted values.</p>
+<h1>Other Resources</h1>
+<p>OWASP 2017 full details -&nbsp; page 13 of&nbsp;<a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a></p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
