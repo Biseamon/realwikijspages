@@ -1,71 +1,75 @@
 <!--
-title: 85493766
+title: MS Sync (Piling and KEF) 
 description: 
 published: true
-date: 2020-12-02T12:00:23.563Z
+date: 2020-12-02T14:24:14.397Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-12-02T12:00:21.512Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : MS Sync (Piling and KEF)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Keltbray_85493762.html">Keltbray</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Piling_85493765.html">Piling</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : MS Sync (Piling and KEF)
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>Instructions for adding tables to synchronization process.</p><p><br/></p><ol><li>Your entity should be inherited from SyncEntity if instances will be created offline, otherwise from Entity. PK types other than int and Guid are not supported in Eforms (could be if needed, but it needs code changes)</li><li>Create new migration and add your table to the synchronization scope like this:</li></ol><p>         string scopeName = &quot;designData&quot;;</p><p>             var provisionHelper = new SyncProvisionHelper();</p><p>             using (var serverConn = new SqlConnection(ConfigurationManager.ConnectionStrings[&quot;DefaultConnection&quot;].ConnectionString))</p><p>            {</p><p>                var scopeDesc = new DbSyncScopeDescription(scopeName);</p><p>                 scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable(&quot;BusinessArea&quot;, serverConn));</p><p>                scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable(&quot;BusinessAreaGroup&quot;, serverConn));</p><p>                scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable(&quot;FormStatus&quot;, serverConn));</p><p>                scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable(&quot;Ticket&quot;, serverConn));</p><p>                scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable(&quot;SiteUser&quot;, serverConn));</p><p>                 provisionHelper.UpdateProvision(scopeDesc, new List&lt;string&gt;</p><p>                {</p><p>                    &quot;BusinessArea&quot;,</p><p>                    &quot;BusinessAreaGroup&quot;,</p><p>                    &quot;FormStatus&quot;,</p><p>                    &quot;Ticket&quot;</p><p>                });</p><p>            }</p><p> </p><p><strong>Note for not read-only tables:</strong> Principal table should always be added before dependent table, not after. Check this for all principal tables otherwise upload of principal and dependent entity together will fail.</p><p>                 UpdateProvision() method replaces stored procedures for already added tables, so you do not need to add your tables there the first time, but need to add them in the next migrations which change synchronization.</p><ol><li>Run this migration</li><li>Open ClassesGenScript.sql in BBWT.Sync, add there your table:</li></ol><p> insert into @tmp (name, [readOnly]) values ('Ticket', 0);</p><p> Note: Second parameter should be 1 if the data in your table won’t be changed offline. </p><ol><li>Copy this script to SQL Server Management Studio and run against your database. Then copy the result in &lt;root&gt; tag and replace the content of OfflineModels.cs (in BBWT.Sync)</li></ol><p>Note: If your entity has PK with more than one field then you need to create a separate file with model and not include your table into the script. </p><ol><li>In DesignDataScope.cs add your new model collection. Name doesn’t matter.</li><li>If you table needs filtering when synchronizing (like downloading only entities linked to the current user) add this logic to DataFilter.cs</li><li>In app.ts (BBWT.Web) add new offline table:</li></ol><p> angular.extend($idbProvider.defaults, {</p><p>        version: 1,</p><p>        name: 'Eforms',</p><p>        onUpgradeNeeded: function (session) {</p><p>            session.createObjectStore('BusinessAreas', { keyPath: 'Id' });</p><p>            session.createObjectStore('BusinessAreaGroups', { keyPath: 'Id' });</p><p>            session.createObjectStore('PdfForms', { keyPath: 'Id' });</p><p>            session.createObjectStore('TaskDefinitions', { keyPath: 'Id' });  </p><p>Indexes if needed are also created here. </p><ol><li>In SyncSvc.cs add link between server and client tables: </li></ol><p>var tablesToSync: HashTable&lt;ITable&gt; = {            </p><p>                'BBWT.Sync.OfflineModels.BusinessArea': { localName: 'BusinessAreas', readOnly: true },</p><p>                'BBWT.Sync.OfflineModels.BusinessAreaGroup': { localName: 'BusinessAreaGroups', readOnly: true },</p><p>                'BBWT.Sync.OfflineModels.PdfForm': { localName: 'PdfForms', readOnly: true },</p><p>               'BBWT.Sync.OfflineModels.PdfFormImage': { localName: 'PdfFormImages', readOnly: true },</p><p> </p><p>Again if the entity has more than 1 PK you need to change getEntityId() method here.</p>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : MS Sync (Piling and KEF)&nbsp;</h1>
+<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>Instructions for adding tables to synchronization process.</p>
+<p>&nbsp;</p>
+<ol>
+  <li>Your entity should be inherited from SyncEntity if instances will be created offline, otherwise from Entity. PK types other than int and Guid are not supported in Eforms (could be if needed, but it needs code changes)</li>
+  <li>Create new migration and add your table to the synchronization scope like this:</li>
+</ol>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;string scopeName = "designData";</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;var provisionHelper = new SyncProvisionHelper();</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;using (var serverConn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var scopeDesc = new DbSyncScopeDescription(scopeName);</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("BusinessArea", serverConn));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("BusinessAreaGroup", serverConn));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("FormStatus", serverConn));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Ticket", serverConn));</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scopeDesc.Tables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("SiteUser", serverConn));</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;provisionHelper.UpdateProvision(scopeDesc, new List&lt;string&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "BusinessArea",</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "BusinessAreaGroup",</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "FormStatus",</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Ticket"</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;</p>
+<p><strong>Note for not read-only tables:</strong> Principal table should always be added before dependent table, not after. Check this for all principal tables otherwise upload of principal and dependent entity together will fail.</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;UpdateProvision() method replaces stored procedures for already added tables, so you do not need to add your tables there the first time, but need to add them in the next migrations which change synchronization.</p>
+<ol>
+  <li>Run this migration</li>
+  <li>Open ClassesGenScript.sql in BBWT.Sync, add there your table:</li>
+</ol>
+<p>&nbsp;insert into @tmp (name, [readOnly]) values ('Ticket', 0);</p>
+<p>&nbsp;Note: Second parameter should be 1 if the data in your table won’t be changed offline.&nbsp;</p>
+<ol>
+  <li>Copy this script to SQL Server Management Studio and run against your database. Then copy the result in &lt;root&gt; tag and replace the content of OfflineModels.cs (in BBWT.Sync)</li>
+</ol>
+<p>Note: If your entity has PK with more than one field then you need to create a separate file with model and not include your table into the script.&nbsp;</p>
+<ol>
+  <li>In DesignDataScope.cs add your new model collection. Name doesn’t matter.</li>
+  <li>If you table needs filtering when synchronizing (like downloading only entities linked to the current user) add this logic to DataFilter.cs</li>
+  <li>In app.ts (BBWT.Web) add new offline table:</li>
+</ol>
+<p>&nbsp;angular.extend($idbProvider.defaults, {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; version: 1,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name: 'Eforms',</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; onUpgradeNeeded: function (session) {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; session.createObjectStore('BusinessAreas', { keyPath: 'Id' });</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; session.createObjectStore('BusinessAreaGroups', { keyPath: 'Id' });</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; session.createObjectStore('PdfForms', { keyPath: 'Id' });</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; session.createObjectStore('TaskDefinitions', { keyPath: 'Id' });&nbsp;&nbsp;</p>
+<p>Indexes if needed are also created here.&nbsp;</p>
+<ol>
+  <li>In SyncSvc.cs add link between server and client tables:</li>
+</ol>
+<p>var tablesToSync: HashTable&lt;ITable&gt; = {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'BBWT.Sync.OfflineModels.BusinessArea': { localName: 'BusinessAreas', readOnly: true },</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'BBWT.Sync.OfflineModels.BusinessAreaGroup': { localName: 'BusinessAreaGroups', readOnly: true },</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'BBWT.Sync.OfflineModels.PdfForm': { localName: 'PdfForms', readOnly: true },</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'BBWT.Sync.OfflineModels.PdfFormImage': { localName: 'PdfFormImages', readOnly: true },</p>
+<p>&nbsp;</p>
+<p>Again if the entity has more than 1 PK you need to change getEntityId() method here.</p>
+<p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
