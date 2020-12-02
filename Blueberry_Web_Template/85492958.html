@@ -1,82 +1,30 @@
 <!--
-title: 85492958
+title: Important note to Add a background Image on Reports (SSRS)
 description: 
 published: true
-date: 2020-12-01T15:58:50.048Z
+date: 2020-12-02T15:21:38.395Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:00:27.709Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : Important note to Add a background Image on Reports (SSRS)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT2_85492528.html">BBWT2</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT2---Development-Notes_85492953.html">BBWT2 - Development Notes</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : Important note to Add a background Image on Reports (SSRS)
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><br/></p><p><em>I noticed that SQL server reporting services is rendering the images in a different way for the reporting viewer control and the PDF renderer.</em></p><p>So the workaround I found is to create 2 templates, I mean 2 .pgn files with the graphics called VerticalImagePDF.png and VerticalImageScreen.png and to add some code that dynamically use both graphics depending of the renderer that is being used , later I uploaded both images to the report server ( you can find those files under the path “/Report Parts/”) the idea is to reuse those images on all reports</p><p><strong>Important Notes:</strong></p><p>– It is important to use external images because it will allow you to reuse the same template (pgn file used as background) for several reports this will allow you make your life easier maintaining the background graphic on reports, please don’t use embedded images because if someone ask you to modify templates then you will need to edit every image on all reports separately.</p><p>– Every template should be modified by making the image as background image to the body of the report and adjusting its size to match with the body (if you don’t listen and do something different then you will see the image repeated several times on the same page) — You will need to perform different tests for the template that will be used for the Report viewer control (I mean the one that will be showed on the web application) and the template that will be used for the PDF renderer.<br/><br/></p><p>Please see below more details about how to <em>add code that dynamically use both graphics depending of the renderer  :</em></p><p>1.- Click on Report Body properties and click on Fx button to add an expression</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/85492958/85492959.png" data-image-src="attachments/85492958/85492959.png" data-unresolved-comment-count="0" data-linked-resource-id="85492959" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="F4S-add-backgroup-graphic1.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85492958" data-linked-resource-container-version="1"></span></span></p><p>2.- Add the expression code and change the template names to suit your needs:</p><p>=IIF(Globals!RenderFormat.Name = “PDF”, “/Report Parts/VerticalImagePDF.png”,”/Report Parts/VerticalImageScreen.png”)</p><p> </p><p>Note: The code above is using the variable Globals!RenderFormat.Name to determine what renderer is being used at runtime, so if the PDF renderer is being used then it will return the string “/Report Parts/VerticalImagePDF.png” otherwhise “/Report Parts/VerticalImageScreen.png”</p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/85492958/85492959.png">F4S-add-backgroup-graphic1.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : Important note to Add a background Image on Reports (SSRS)&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<p>&nbsp;</p>
+<p><i>I noticed that SQL server reporting services&nbsp;is&nbsp;rendering the images in a different way for the reporting viewer control and the PDF renderer.</i></p>
+<p>So the workaround I found is to create 2 templates, I mean 2 .pgn files with the graphics called VerticalImagePDF.png and VerticalImageScreen.png and to add some code that&nbsp;dynamically use both graphics depending of the renderer that is being used , later I uploaded both images to the report server ( you can find those files under the path “/Report Parts/”) the idea is to reuse those images on all reports</p>
+<p><strong>Important Notes:</strong></p>
+<p>– It is important to use external images because it will allow you to reuse the same template (pgn file used as background) for several reports this will allow you make your life easier maintaining the background graphic on reports, please don’t use embedded images because if someone ask you to modify templates then you will need to edit every image on all reports separately.</p>
+<p>– Every template should be modified by making the image as background image to the body of the report and adjusting its size to match with the body (if you don’t listen and do something different then you will see the image repeated several times on the same page) — You will need to perform different tests for the template that will be used for the Report viewer control (I mean the one that will be showed on the web application) and the template that will be used for the PDF renderer.<br><br>&nbsp;</p>
+<p>Please see below more details about how to&nbsp;<i>add code that&nbsp;dynamically use both graphics depending of the renderer &nbsp;:</i></p>
+<p>1.-&nbsp;Click on Report Body properties and click on Fx button to add an expression</p>
+<figure class="image"><img src="attachments/85492958/85492959.png"></figure>
+<p>2.- Add the expression&nbsp;code and change the template names to suit your needs:</p>
+<p>=IIF(Globals!RenderFormat.Name = “PDF”, “/Report Parts/VerticalImagePDF.png”,”/Report Parts/VerticalImageScreen.png”)</p>
+<p>&nbsp;</p>
+<p>Note: The code above is&nbsp;using&nbsp;the variable&nbsp;Globals!RenderFormat.Name to determine what renderer is being used at runtime, so if the PDF renderer is being used then it will return the string “/Report Parts/VerticalImagePDF.png” otherwhise&nbsp;“/Report Parts/VerticalImageScreen.png”</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85492958/85492959.png">F4S-add-backgroup-graphic1.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
