@@ -1,77 +1,32 @@
 <!--
-title: 85493332
+title: A10:2017 - Insufficient Logging & Monitoring
 description: 
 published: true
-date: 2020-12-01T15:59:38.362Z
+date: 2020-12-02T14:48:10.308Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:01:34.452Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : A10:2017 - Insufficient Logging &amp; Monitoring</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Security_85493287.html">BBWT3 - Security</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="85493303.html">BBWT3 - Application Security / Monitoring</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Security-Items_85493309.html">BBWT3 - Security Items</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : A10:2017 - Insufficient Logging &amp; Monitoring
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 22, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <h1 id="A10:2017-InsufficientLogging&amp;Monitoring-Overview"><span style="color: rgb(60,66,81);">Overview<br/></span></h1><p>According to OWASP, insufficient logging and monitoring, coupled with missing or ineffective integration with incident response, allows attackers to further attack systems, maintain persistence, pivot to more systems, and tamper, extract, or destroy data. Most breach studies show time to detect a breach is over 200 days, typically detected by external parties rather than internal processes or monitoring.</p><h1 id="A10:2017-InsufficientLogging&amp;Monitoring-Example">Example</h1><p>An attacker runs several scans of the web server hosting the app to gain useful information.</p><p>An attacker uses this gained intel to find a vulnerability within the web application.</p><p>They managed to gain admin access through the vulnerability and implant malware that gets viewed by the web application's users.</p><p>This malware goes undetected so more users are effected by the malware without realising they are becoming apart of a botnet.</p><p>The attacker is able to build up a sizeable amount of infected computers before the sysadmins realise that there is malware on their server.</p><h1 id="A10:2017-InsufficientLogging&amp;Monitoring-HowBBWT3MitigatesThisVulnerability">How BBWT3 Mitigates This Vulnerability</h1><ul><li>Extensive logging through GrayLog.</li><li>Automatic alerts.</li><li>ReCaptcha.<br/><br/></li></ul><p>BBWT3 uses a combination of GrayLog as well as Raygun services to monitor and log behaviour on the web application. Using these powerful tools we are able to discern what has happened or is happening as well as being alerted to potential problems. Not only do we have these 3rd party tools, but there are admin facing features which display logs as well. Logs for changes made to the web application as well as login logs. Giving you the information at a glance of what has happened, and giving us detailed information that we can dig through to resolve any issues. Detected errors are recorded and sent back to the BBWT3 project team as a ticket, which immediately notifies the development team of the issue.</p><p>ReCaptcha can be configured which will enable us to detect suspicious activity at login, which can alert admins to a potential attack.</p><h1 id="A10:2017-InsufficientLogging&amp;Monitoring-OtherResources">Other Resources</h1><p>OWASP 2017 full details -  page 16 of <a class="external-link" href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf" rel="nofollow">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a></p>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : A10:2017 - Insufficient Logging &amp; Monitoring&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 22, 2020</p>
+<h1>Overview<br>&nbsp;</h1>
+<p>According to OWASP, insufficient logging and monitoring, coupled with missing or ineffective integration with incident response, allows attackers to further attack systems, maintain persistence, pivot to more systems, and tamper, extract, or destroy data. Most breach studies show time to detect a breach is over 200 days, typically detected by external parties rather than internal processes or monitoring.</p>
+<h1>Example</h1>
+<p>An attacker runs several scans of the web server hosting the app to gain useful information.</p>
+<p>An attacker uses this gained intel to find a vulnerability within the web application.</p>
+<p>They managed to gain admin access through the vulnerability and implant malware that gets viewed by the web application's users.</p>
+<p>This malware goes undetected so more users are effected by the malware without realising they are becoming apart of a botnet.</p>
+<p>The attacker is able to build up a sizeable amount of infected computers before the sysadmins realise that there is malware on their server.</p>
+<h1>How BBWT3 Mitigates This Vulnerability</h1>
+<ul>
+  <li>Extensive logging through GrayLog.</li>
+  <li>Automatic alerts.</li>
+  <li>ReCaptcha.<br><br>&nbsp;</li>
+</ul>
+<p>BBWT3 uses a combination of GrayLog as well as Raygun services to monitor and log behaviour on the web application. Using these powerful tools we are able to discern what has happened or is happening as well as being alerted to potential problems. Not only do we have these 3rd party tools, but there are admin facing features which display logs as well. Logs for changes made to the web application as well as login logs. Giving you the information at a glance of what has happened, and giving us detailed information that we can dig through to resolve any issues. Detected errors are recorded and sent back to the BBWT3 project team as a ticket, which immediately notifies the development team of the issue.</p>
+<p>ReCaptcha can be configured which will enable us to detect suspicious activity at login, which can alert admins to a potential attack.</p>
+<h1>Other Resources</h1>
+<p>OWASP 2017 full details -&nbsp; page 16 of&nbsp;<a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf">https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf</a></p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
