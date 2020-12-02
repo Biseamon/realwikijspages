@@ -1,82 +1,85 @@
 <!--
-title: 85493274
+title: BBWT3 - Progressive Web App (PWA)
 description: 
 published: true
-date: 2020-12-01T15:59:15.387Z
+date: 2020-12-02T14:58:19.442Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:01:03.353Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : BBWT3 - Progressive Web App (PWA)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3_85492530.html">BBWT3</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT3---Features_85493080.html">BBWT3 - Features</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : BBWT3 - Progressive Web App (PWA)
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><span style="color: rgb(0,0,0);">PWA stands for progressive web app. This is an app built from the web technologies we all know, like HTML, CSS, and JavaScript, but with a feel and functionality that rivals an actual native app.</span></p><p>In BBWT3, PWA is presented by <a class="external-link" href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/tree/develop/project/BBWT.Client/src/app/main/modules/pwa" rel="nofollow">this front-end module</a> that implements basic functionality.</p><p><br/></p><p>Here we will describe steps required to set up PWA for local testing.</p><h1 id="BBWT3-ProgressiveWebApp(PWA)-PWASetUpforLocalTesting">PWA Set Up for Local Testing</h1><h2 id="BBWT3-ProgressiveWebApp(PWA)-1.Setcorrespondingoriginsintheinterceptorclass.">1. Set corresponding origins in the interceptor class.</h2><p>Go to <strong>project/BBWT.Client/src/app/bbwt/modules/data-service/api.interceptor.ts</strong> and change variables for origins:</p><p><strong>frontEndOrigin </strong>- the origin where you plan to start your HTTP server (about the HTTP server see below).</p><p><strong>backEndOrigin</strong> - the origin where your back-end runs.<br/><strong>project/BBWT.Client/src/app/bbwt/modules/data-service/api.interceptor.ts</strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code>export </code><code>class</code> <code>ApiInterceptor implements HttpInterceptor {</code><br/><code>    </code><code>private</code> <code>readonly</code> <code>frontEndOrigin = </code><code>&quot;<a class="external-link" href="http://localhost:8080/" rel="nofollow">http://localhost:8080&quot;</a></code><code>; // Origin where the front-end server runs.</code><br/><code>    </code><code>private</code> <code>readonly</code> <code>backEndOrigin = </code><code>&quot;<a class="external-link" href="http://localhost:50815/" rel="nofollow">http://localhost:50815&quot;</a></code><code>; // Origin where the back-end server runs.</code><br/><code>    </code><code>private</code> <code>readonly</code> <code>apiUrlSegment = </code><code>&quot;api/&quot;</code><code>; </code><code>// A segment within an URL that uniquely identifies an API request.</code><br/> <br/><code>    </code><code>intercept(req: HttpRequest&lt;any&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;any&gt;&gt; {</code><br/><code>        </code><code>...</code><br/><code>    </code><code>}</code><br/><code>}</code></p></td></tr></tbody></table></div><h2 id="BBWT3-ProgressiveWebApp(PWA)-2.SettheFront-EndOrigininStartup">2. Set the Front-End Origin in Startup</h2><p>Set corresponding front-end origin in the <strong>project/BBWT.Server/Startup.cs</strong> to allow CORS handle requests from you front-end:<br/><strong>project/BBWT.Server/Startup.cs</strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code>if</code> <code>(Environment.IsDevelopment())</code><br/><code>{</code><br/><code>    </code><code>app.UseCors(p =&gt;</code><br/><code>    </code><code>{</code><br/><code>        </code><code>p.AllowAnyHeader();</code><br/><code>        </code><code>p.AllowAnyMethod();</code><br/><code>        </code><code>p.AllowCredentials();</code><br/><code>        </code><code>p.WithOrigins(</code><code>&quot;<a class="external-link" href="http://localhost:8080/" rel="nofollow">http://localhost:8080&quot;</a></code><code>);</code><br/><code>    </code><code>});</code><br/><code>}</code></p></td></tr></tbody></table></div><h2 id="BBWT3-ProgressiveWebApp(PWA)-3.BuildYourFront-EndintheProductionMode">3. Build Your Front-End in the Production Mode</h2><p>Run this command to build the front-end code in <strong>project/BBWT.Client</strong> folder:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">npm run build:prod</code></p></td></tr></tbody></table></div><p>Compiled sources will be published to the <strong>project/BBWT.Client/wwwroot</strong> folder.</p><h2 id="BBWT3-ProgressiveWebApp(PWA)-4.Install“http-server”npmPackage">4. Install “http-server” npm Package</h2><p>Run this command to install the package in <strong>project/BBWT.Client</strong> folder:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">npm install --global http-server</code></p></td></tr></tbody></table></div><h2 id="BBWT3-ProgressiveWebApp(PWA)-5.StarttheHTTPServer">5. Start the HTTP Server</h2><p>Run these commands to switch to the <strong>wwwroot</strong> folder and start the HTTP server:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><code class="csharp plain">cd wwwroot</code><br/><code class="csharp plain">http-server -p 8080 -c-1</code></p></td></tr></tbody></table></div><h2 id="BBWT3-ProgressiveWebApp(PWA)-6.StarttheBack-End">6. Start the Back-End</h2><p>Start the back-end's BBWT.Server project from Visual Studio or CLI.</p><h2 id="BBWT3-ProgressiveWebApp(PWA)-7.VisittheFront-EndOrigininBrowser">7. Visit the Front-End Origin in Browser</h2><p>Start your browser and visit the origin where your front-end part is running. On the &quot;Application&quot; tab you may see that Service Worker is enabled:</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="1200" src="attachments/85493274/85493275.png" data-image-src="attachments/85493274/85493275.png" data-unresolved-comment-count="0" data-linked-resource-id="85493275" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="12.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493274" data-linked-resource-container-version="1"></span></span></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/85493274/85493275.png">12.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : BBWT3 - Progressive Web App (PWA)&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<p>PWA stands for progressive web app. This is an app built from the web technologies we all know, like HTML, CSS, and JavaScript, but with a feel and functionality that rivals an actual native app.</p>
+<p>In BBWT3, PWA is presented by&nbsp;<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/tree/develop/project/BBWT.Client/src/app/main/modules/pwa">this front-end module</a>&nbsp;that implements basic functionality.</p>
+<p>&nbsp;</p>
+<p>Here we will describe steps required to set up PWA for local testing.</p>
+<h1>PWA Set Up for Local Testing</h1>
+<h2>1.&nbsp;Set corresponding origins in the interceptor class.</h2>
+<p>Go to&nbsp;<strong>project/BBWT.Client/src/app/bbwt/modules/data-service/api.interceptor.ts</strong>&nbsp;and change variables for origins:</p>
+<p><strong>frontEndOrigin&nbsp;</strong>- the origin where you plan to start your HTTP server (about the HTTP server see below).</p>
+<p><strong>backEndOrigin</strong>&nbsp;- the origin where your back-end runs.<br><strong>project/BBWT.Client/src/app/bbwt/modules/data-service/api.interceptor.ts</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>export&nbsp;class</code>&nbsp;<code>ApiInterceptor implements HttpInterceptor {</code><br><code>&nbsp;&nbsp;&nbsp; private</code>&nbsp;<code>readonly</code>&nbsp;<code>frontEndOrigin =&nbsp;"</code><a href="http://localhost:8080/"><code>http://localhost:8080"</code></a><code>; // Origin where the front-end server runs.</code><br><code>&nbsp;&nbsp;&nbsp; private</code>&nbsp;<code>readonly</code>&nbsp;<code>backEndOrigin =&nbsp;"</code><a href="http://localhost:50815/"><code>http://localhost:50815"</code></a><code>; // Origin where the back-end server runs.</code><br><code>&nbsp;&nbsp;&nbsp; private</code>&nbsp;<code>readonly</code>&nbsp;<code>apiUrlSegment =&nbsp;"api/";&nbsp;// A segment within an URL that uniquely identifies an API request.</code><br>&nbsp;<br><code>&nbsp;&nbsp;&nbsp; intercept(req: HttpRequest&lt;any&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;any&gt;&gt; {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</code><br><code>&nbsp;&nbsp;&nbsp; }</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h2>2. Set the Front-End Origin in Startup</h2>
+<p>Set corresponding front-end origin in the&nbsp;<strong>project/BBWT.Server/Startup.cs</strong>&nbsp;to allow CORS handle requests from you front-end:<br><strong>project/BBWT.Server/Startup.cs</strong></p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>if</code>&nbsp;<code>(Environment.IsDevelopment())</code><br><code>{</code><br><code>&nbsp;&nbsp;&nbsp; app.UseCors(p =&gt;</code><br><code>&nbsp;&nbsp;&nbsp; {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p.AllowAnyHeader();</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p.AllowAnyMethod();</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p.AllowCredentials();</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p.WithOrigins("</code><a href="http://localhost:8080/"><code>http://localhost:8080"</code></a><code>);</code><br><code>&nbsp;&nbsp;&nbsp; });</code><br><code>}</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h2>3. Build Your Front-End in the Production Mode</h2>
+<p>Run this command to build the front-end code in&nbsp;<strong>project/BBWT.Client</strong>&nbsp;folder:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>npm run build:prod</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Compiled sources will be published to the&nbsp;<strong>project/BBWT.Client/wwwroot</strong>&nbsp;folder.</p>
+<h2>4. Install “http-server” npm Package</h2>
+<p>Run this command to install the package in&nbsp;<strong>project/BBWT.Client</strong>&nbsp;folder:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>npm install --global http-server</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h2>5. Start the HTTP Server</h2>
+<p>Run these commands to switch to the&nbsp;<strong>wwwroot</strong>&nbsp;folder and start the HTTP server:</p>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><code>cd wwwroot</code><br><code>http-server -p 8080 -c-1</code></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h2>6. Start the Back-End</h2>
+<p>Start the back-end's BBWT.Server project from Visual Studio or CLI.</p>
+<h2>7. Visit the Front-End Origin in Browser</h2>
+<p>Start your browser and visit the origin where your front-end part is running. On the "Application" tab you may see that Service Worker is enabled:</p>
+<figure class="image"><img src="attachments/85493274/85493275.png"></figure>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493274/85493275.png">12.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
