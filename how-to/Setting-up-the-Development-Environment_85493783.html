@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Setting up the Development Environment</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="PImeo---Sean-Griffin_85493772.html">PImeo - Sean Griffin</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Setting up the Development Environment
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h2 id="SettinguptheDevelopmentEnvironment-InitialSteps">Initial Steps</h2><ul><li>Install NodeJS and make sure it is added to your PATH variable (restart if necessary)</li><li>Sync the source code</li><li>Cd to the root of the project repository</li><li>run command &quot;dotnet restore&quot; to restore nuget packages</li><li>Cd into PIMeo.Web</li><li>Use npm to install webpack (currently 4.19.0 - npm install webpack@4.19.0)</li><li>Run &quot;npm i&quot;</li><li>Run &quot;npm run build:dev&quot;</li></ul><h2 id="SettinguptheDevelopmentEnvironment-DatabaseSetup">Database Setup</h2><ul><li>We have updated the code to use Entity Framework migrations.  Migrations will be run when the app runs in a development environment or when it is started with the '--migrate true' tag on the command line<br/><p>The default username\password that the system will be created with is: (Will be in BitWarden, if you don't have access ask for it over Wire)</p></li></ul><ul><li><s>There is  SeedDemoData.sql script file located in PIMeo.Persistence.SQL which will fill the database with demo data.  To use this, your database must be at the InitialCreate version.  You can run the following command to achieve this:</s><br/><s>'dotnet ef --project ../Persistence/PIMeo.Persistence.SQL -s ./ database update 20180608231453_InitialCreate'</s><br/><s>After that, run the SeedDemoData file then run:</s><br/><s>'dotnet ef --project ../Persistence/PIMeo.Persistence.SQL -s ./ database update' to update the database to the latest version.</s><br/><s><br/></s></li><li><p>Above is outdated, please contact either Chris Murrary or Jonathon Fitch for a database backup</p><s><span style="text-decoration: line-through;"><br/></span></s></li></ul><h2 id="SettinguptheDevelopmentEnvironment-UsingEntityFramework">Using Entity Framework</h2><ul><li>The commands for using EF are below and to be executed from the PIMeo.Web directory.<br/>dotnet ef --project ../Persistence/PIMeo.Persistence.SQL -s ./ migrations add replace_me<br/>dotnet ef --project ../Persistence/PIMeo.Persistence.SQL -s ./ database update</li></ul><h2 id="SettinguptheDevelopmentEnvironment-DevelopmentNotes">Development Notes</h2><ul><li>Avoid using jQuery - this is an Angular Universal app that can be used with Server-Side Rendering.  Currently this is disabled due to some issues, however, if/when we re-enable it, it will make the process faster if we don't have to replace a lot of code that causes problems when run inside a NodeJS environment.<br/>You can use Angular ViewChild components to adjust element properties and classes in a SSR-safe way, or if you need to change global properties (CSS colours for example), you can create a custom component for this and add it to the main &lt;app&gt; tag.<br/><br/></li><li>Along the same line as above, any call to document/window or some other JS object that is not available in a NodeJS environment needs to be wrapped in an &quot;if (isPlatformBrowser(PLATFORM_ID))&quot; check.<br/><br/></li><li>Any styles added should be added to the global pimeo.css/pimeo.responsive.css files in wwwroot/css folder - due to the nature of this project we don't know if styles will be needed again so best to create global styles than component-specific styles.<br/>If possible, try to create generic styles - yes this means you will need to use more classes in HTML to achieve the desire result, but it makes the needed classes much more reusable and useful.  In pimeo.css there is a section headed by the comment /* PIMeo Generic styles */ - see this for examples.</li></ul><h2 id="SettinguptheDevelopmentEnvironment-CommonIssues:">Common Issues:</h2><ul><li>Chrome forwarding localhost to HTTPS:<br/>Go to <a href="chrome://net-internals/#hsts" rel="nofollow">chrome://net-internals/#hsts</a> and type localhost into the &quot;Delete domain security policies&quot; input field<br/><br/></li><li>Project hangs on the PIMEO MP4 file<br/>In the ASP.Net Core logs, wait until you see:<br/><br/><p>PIMeo.Web&gt; webpack built 3f4a7ef1408860e43b46 in 86825ms</p><p><br/>Then refresh the page.</p></li><li>Application.cs fails to move past<br/><p>app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions<br/> {<br/>    HotModuleReplacement = true<br/> });</p><br/>This is usually due to Visual Studio failing to find NodeJS in the PATH.  A reboot fixed this for me.<br/><br/></li><li>Dotnet restore fails with the target path to SSDT error.<br/>Running &quot;dotnet restore /p:RestoreUseSkipNonexistentTargets=&quot;false&quot;&quot; fixes this.<br/><br/></li><li>Cookies was not authenticated. Failure message: Unprotect ticket failed<br/>This can happen when the ASP.Net Core was listening to a different port than the app was on, switching the port over to the correct one in the PIMeo.Web properties file fixed it.<br/><br/></li><li>Odd issues with ASP.NET failing to find files such as vendor.js, vendor.css<br/>I don't know the specific reason for this, however, commenting out the below lines, letting the app run, then uncommenting them again appeared to work - no idea why.  If this fails to work then try changing true to false.<br/><br/>app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions<br/>{<br/>    HotModuleReplacement = true<br/>});<br/><br/></li><li>Command &quot;npm i&quot; can sometimes fail on windows<br/>This is due to windows sometimes not releasing file locks, usually just trying the command again works, but if not the only way to get this working again is to reboot.</li></ul>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

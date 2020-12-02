@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Create or Modify existing CloudWatch rules responsible to execute Lamdba Backup scripts</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="How-To-Guides-and-Articles_85492538.html">How-To Guides and Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="AWS-Lamdba_85493522.html">AWS Lamdba</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Create or Modify existing CloudWatch rules responsible to execute Lamdba Backup scripts
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>At present we have 2 python scripts, one of them it is called <strong>Producer</strong> and it is going to put all volumes of all AWS accounts that are going to be snapshotted withing the SQS queue called <strong><span style="color: rgb(68,68,68);">Level1_Backup_Script </span></strong><span style="color: rgb(68,68,68);">for 24H backups and it is going to use </span><span style="color: rgb(68,68,68);">Level2_Backup_Script queue in order to process 4H backups,</span><span style="color: rgb(68,68,68);">  <strong>Consumer</strong> code it is going be executed every 10 min  by retrieving messages of the queue within the 5 minutes maximum execution time due to a known lamdba limitation, this design  allow that all volumes get snapshotted bit a bit in order to avoid getting the <strong><span style="color: rgb(0,0,0);">RequestLimitExceeded </span> </strong>AWS exception,  see more information on the URL below:</span></p><p><br/></p><ul><li><a class="external-link" href="https://forums.aws.amazon.com/thread.jspa?messageID=720883" rel="nofollow">https://forums.aws.amazon.com/thread.jspa?messageID=720883</a></li></ul><p><br/></p><p>Both Producer and Consumer are designed to receive a parameter in Json format called <strong>BackupFrequency</strong>  by passing either &quot;4H&quot; or &quot;24H&quot; parameters which is going to instruct the scripts whether it should process either 24H or 4H backups,</p><p><br/></p><p><strong>How to Modify a C</strong><strong>loudWatch </strong><strong>rule?</strong></p><p><br/></p><ol><li>Open AWS console and then click on Services and then click on Cloudwatch which is located under Managment tool like it is shown in the screenshoot below <br/><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85493530/85493531.png" data-image-src="attachments/85493530/85493531.png" data-unresolved-comment-count="0" data-linked-resource-id="85493531" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2017-9-30_19-15-30.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493530" data-linked-resource-container-version="1"></span></span></li><li>Then Click on Rules and then Click on any of the rules below<br/><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85493530/85493532.png" data-image-src="attachments/85493530/85493532.png" data-unresolved-comment-count="0" data-linked-resource-id="85493532" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2017-9-30_19-20-29.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493530" data-linked-resource-container-version="1"></span></span></li></ol><p>3. Then Click on Actions and then Click on Edit and you are going to see the screenshot below.</p><p><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85493530/85493533.png" data-image-src="attachments/85493530/85493533.png" data-unresolved-comment-count="0" data-linked-resource-id="85493533" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2017-9-30_19-22-13.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493530" data-linked-resource-container-version="1"></span></span></p><p><br/></p><p><strong>Important: </strong></p><ul><li>You can change the Cron expression by using any of the examples provided on the URL below: <br/><strong><a class="external-link" href="http://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html" rel="nofollow">http://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html</a></strong></li><li><p class="auto-cursor-target">On the right side you can use Constant (Json text) field in order to instruct the scripts to either execute 24H or 4H backups.<span style="color: rgb(68,68,68);"><strong><br/></strong></span></p></li></ul><h2 id="CreateorModifyexistingCloudWatchrulesresponsibletoexecuteLamdbaBackupscripts-HowtoCreateaCloudWatchrule?"><strong>How </strong><strong>to Create a C</strong><strong>loudWatch </strong><strong>rule?</strong></h2><ol><li>Open AWS console and then click on Services and then click on Cloudwatch which is located under Managment tool </li><li>Click on Rules and then Click on Create Rule and you are going to see the screenshot below<br/><span class="confluence-embedded-file-wrapper"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/85493530/85493534.png" data-image-src="attachments/85493530/85493534.png" data-unresolved-comment-count="0" data-linked-resource-id="85493534" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2017-9-30_19-43-50.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493530" data-linked-resource-container-version="1"></span></span><br/><strong>Important: </strong><br/><br/></li></ol><ul><li>You can change the Cron expression by using any of the examples provided on the URL below: <br/><strong><a class="external-link" href="http://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html" rel="nofollow">http://docs.aws.amazon.com/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html</a></strong></li><li>On the right side you can use   Constant (Json text) field in order to instruct the scripts to either execute 24H or 4H backups, we have 2 python scripts that are executing the Producer and Consumer code, Producer one it is going to put all volumes of all AWS accounts that are going to be snapshooted withing the SQS queue called <strong><span style="color: rgb(68,68,68);">Level1_Backup_Script,</span></strong><span style="color: rgb(68,68,68);">  Consumer code it is going be executed every 10 min and it is going to retrieve messages of the queue within the 5 minutes maximun execution time due to a known lamdba limitation</span></li></ul><p><br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493530/85493531.png">image2017-9-30_19-15-30.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493530/85493532.png">image2017-9-30_19-20-29.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493530/85493533.png">image2017-9-30_19-22-13.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493530/85493534.png">image2017-9-30_19-43-50.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

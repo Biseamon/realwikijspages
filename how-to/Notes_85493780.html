@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Notes</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="PImeo---Sean-Griffin_85493772.html">PImeo - Sean Griffin</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Notes
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Notes about the system, which then can be put into relevant areas later on.</p><p><br/></p><p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1606908733815 {padding: 0px;}
+div.rbtoc1606908733815 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1606908733815 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1606908733815'>
+<ul class='toc-indentation'>
+<li><a href='#Notes-Developmentsoftware'>Development software</a></li>
+<li><a href='#Notes-Deployment'>Deployment</a></li>
+<li><a href='#Notes-Acronyms'>Acronyms</a></li>
+<li><a href='#Notes-Buglist'>Bug list</a></li>
+<li><a href='#Notes-SendingthetasksviaEmail'>Sending the tasks via Email</a></li>
+<li><a href='#Notes-Documentation'>Documentation</a></li>
+<li><a href='#Notes-DocumentManagementSystem(DMS)'>Document Management System (DMS)</a></li>
+<li><a href='#Notes-Stepstoupdatetheuserspasswordorcreateanewpassword:'>Steps to update the users password or create a new password:</a></li>
+<li><a href='#Notes-Linkstoexternal&#39;screenshot&#39;files'>Links to external &#39;screenshot&#39; files</a></li>
+<li><a href='#Notes-OffCalland&#39;NonOffCall&#39;'>Off Call and &#39;Non Off Call&#39;</a>
+<ul class='toc-indentation'>
+<li><a href='#Notes-NonOffCall'>Non Off Call</a></li>
+</ul>
+</li>
+</ul>
+</div></p><h1 id="Notes-Developmentsoftware">Development software</h1><ul><li>Visual Studio 2017 / Visual Studio Code / JetBrains Rider</li><li>ASP.NET Core</li><li>Angular 6</li><li>Bootstrap</li></ul><h1 id="Notes-Deployment">Deployment</h1><ul><li>The Development branch in the GitLab repository has been set to use GitLab CI to build the project upon every commit.  This is then deployed via Elastic Beanstalk to a Windows EC2 instance, linked to the UAT site (we have no internal testing site for now).</li></ul><h1 id="Notes-Acronyms">Acronyms</h1><ul><li>RFI - Request for Information</li><li>CVI - Confirmation of Verbal Instruction</li></ul><p><br/></p><h1 id="Notes-Buglist">Bug list</h1><p>Formula to get the status of each bug with a character limit</p><pre>=&quot;[&quot;&amp;C2&amp;&quot;]&quot;&amp;IF(ISTEXT(D2),&quot;[&quot;&amp;D2&amp;&quot;]&quot;,&quot;&quot;)&amp;&quot; - &quot;&amp;LEFT(F2,IFERROR(FIND(&quot; &quot;, F2, 100),100))&amp;&quot;…&quot;</pre><h1 id="Notes-SendingthetasksviaEmail">Sending the tasks via Email</h1><ul><li>In the subject of the email, put the task in (Column E)</li><li>In the description, put in the following, and fill it out where needed (Row ID)</li></ul><p><br/></p><pre>##status WfMT</pre><pre>##type OriginalSpec</pre><pre>##priority High</pre><pre>##private off</pre><pre>##project 79991</pre><pre>##parent-task 164918</pre><pre>##short-name Row ID: [Column A]</pre><pre>Description: [column F]</pre><pre><br/></pre><pre><br/></pre><pre>Previous Comments: [Column J]</pre><p><br/></p><h1 id="Notes-Documentation">Documentation</h1><p>The original documents from Sean are located here:</p><p><a class="external-link" href="https://drive.google.com/drive/folders/1PmnLHX6M5chpdG_rlpj88Z5ViwUV1Rpk?usp=sharing" rel="nofollow">Google Drive</a></p><p><br/></p><p>The Plant Issue screenshots are located here:</p><p><a class="external-link" href="https://docs.google.com/presentation/d/18f8WlBbqVVSr6xYV14A7y3F7M9NNN7Dw2x_UnWjQgBQ/edit#slide=id.g3c18a958a1_0_682" rel="nofollow">Google Drive Presentation</a></p><h1 id="Notes-DocumentManagementSystem(DMS)">Document Management System (DMS)</h1><p>PIMeo uses the Document Management System component and API controller to create the S3 browsing modal for Plant/Material document browsing.  It is unsuitable to use this for adding/displaying things like docket images as the file path and URL are replaced with an empty string.</p><p>However, there is a service behind this that can be used to for CRUD operations to S3, then the WebAPI imlementation needs to be copied from somewhere where this is already implemented (SiteWork → RFI for example).</p><h1 id="Notes-Stepstoupdatetheuserspasswordorcreateanewpassword:"><span>Steps to update the users password or create a new password:</span></h1><p><span>1) <a class="external-link" href="https://asecuritysite.com/encryption/PBKDF2z" rel="nofollow">https://asecuritysite.com/encryption/PBKDF2z</a></span></p><p>2) Enter a password</p><p><span>3) Enter a 64bit salt i.e. FF02F7ED8C1812C05B021F67E2043D19 (stored in database as 0xFF02F7ED8C1812C05B021F67E2043D19)</span></p><p><span>4) Set Iterations to 10,000</span></p><p><span>5) Set Key Length to 32bit</span></p><p><span>6) The Hash (Base-64) value generated will need to be stored as the password for that user in the PIMeo.users.users table</span></p><p><span><br/></span></p><h1 id="Notes-Linkstoexternal&#39;screenshot&#39;files"><span>Links to external 'screenshot' files</span></h1><p><span>These are files that Sean has started creating, that are more recent than the wireframes. There is also a chance he might change them too.</span></p><ul><li><span><a class="external-link" href="https://docs.google.com/presentation/d/1fauk5Fd1TD6gfUQuGiemH2I3cs-XeeMbKS9z0xm8dAs/edit#slide=id.g37fc29d1be_0_183" rel="nofollow">External Plant Screenshots</a></span></li><li><span><a class="external-link" href="https://docs.google.com/presentation/d/1GCjlXk7nILDDpYV-p5_UaibwMbv97Vb4Ju5mUV2QqWw/edit#slide=id.p" rel="nofollow">Material Screenshots</a></span></li><li><a class="external-link" href="https://docs.google.com/presentation/d/1jhEupzHiTqHmkWYhRcMB_-pIlwhHwXQJwLRF6gZWwzc/edit?usp=sharing" rel="nofollow">Edit Projects Screenshots</a></li><li><a class="external-link" href="https://docs.google.com/presentation/d/17GymiaBtGFNonGxSU0Tt2M--kc0MSUZyghNfz3nSDD8/edit#slide=id.p" rel="nofollow">Global Backend Settings Screenshots</a></li><li><a class="external-link" href="https://docs.google.com/presentation/d/1MxqcM7Vtxtf8IWSrmGF9AAs629cIpnQYrnXKTDKz7Yw/edit#slide=id.p" rel="nofollow">180525 Global Summary</a></li><li><a class="external-link" href="https://docs.google.com/presentation/d/16ig8Zp-uHjR7nGPhE0z5kMosouVPHeGkPf9sW4j6LRw/edit#slide=id.p" rel="nofollow">Global Screenshots</a></li><li><a class="external-link" href="https://docs.google.com/presentation/d/18f8WlBbqVVSr6xYV14A7y3F7M9NNN7Dw2x_UnWjQgBQ/edit#slide=id.g3c18a958a1_0_682" rel="nofollow">Internal Plant Screenshots</a></li><li><a class="external-link" href="https://docs.google.com/presentation/d/1GuDvHVmcKasSttB3eRWYZ1aOT8K54JTFdikvYXM6MYI/edit#slide=id.g3d62cee395_0_179" rel="nofollow">Dayworks Screenshots</a></li><li><a class="external-link" href="https://drive.google.com/file/d/1mjoENKuXJyJrxZJlL_GV6lPCXb2WGBio/view" rel="nofollow">Allocation Sheet UI Revamp</a></li><li><a class="external-link" href="https://docs.google.com/presentation/d/1AerXFaM8nEAuVSuJF6VFHI96I74d4lHV5K-n4LVWP9o/edit#slide=id.g3d77ebbefc_0_0" rel="nofollow">RFI Screenshots</a></li><li><a class="external-link" href="https://docs.google.com/presentation/d/1KI3bb57ziYjWi0CzqjPdLfe7tRkc3Acg_pF_gHFvRls/edit" rel="nofollow">CVI screenshots</a></li><li><a class="external-link" href="https://docs.google.com/presentation/d/1tlL0YFyYTm3Yxq3B3jPZoMXjAHJrSRplL7wkIeU6cxI/edit" rel="nofollow">Submittal Screenshots</a></li><li><a class="external-link" href="https://docs.google.com/presentation/d/1kxwRuWD1-41EViW-SZhSvVxlL9Bi6AiXonO69G_6I8M/edit" rel="nofollow">Packages Screenshots</a></li><li><p><a class="external-link" href="https://docs.google.com/presentation/d/1TZWW4aCr5MbqBm99kh25vP6eHIhgKy1j3UrVnsbt0xE/edit#slide=id.g42ac0f16a6_0_1" rel="nofollow">QS Prelim Screenshots</a></p></li><li><p><a class="external-link" href="https://docs.google.com/presentation/d/1ziK1BWjTX2HnufGF-ABvon8z4-J6FWL9hl03ReUtbV0/edit#slide=id.p" rel="nofollow">QS Subcontractor Screenshots</a></p></li><li><p><a class="external-link" href="https://docs.google.com/presentation/d/133IMTfTwjF0nUY2LpqnFezVhcRkWRwnDYmHjr6JSnM8/edit#slide=id.p" rel="nofollow">QS Procurement Plant Screenshots</a></p></li><li><p><a class="external-link" href="https://docs.google.com/presentation/d/1PG9anvezjo8CeHy2kMNrBGwnnElKkErvteycKQQHsq4/edit#slide=id.p" rel="nofollow">QS Procurement Materials Screenshots</a></p></li><li><p><a class="external-link" href="https://docs.google.com/presentation/d/12GjFJRkWn9pNB4qmKR4WkQLKuYsQXnDwMC8WoihwghQ/edit#slide=id.g3f5cd7b84f_0_85" rel="nofollow">QS Projection Screenshots</a></p></li><li><p><a class="external-link" href="https://docs.google.com/presentation/d/1jVfWAKzAkcRycEL4Pxhy18Yk2kTRdMwiqhoIsRgTQ6Q/edit#slide=id.p" rel="nofollow">QS Labour Screenshots</a></p></li></ul><p><span><br/></span></p><h1 id="Notes-OffCalland&#39;NonOffCall&#39;"><span>Off Call and 'Non Off Call'</span></h1><p><span><br/></span></p><h2 id="Notes-NonOffCall"><span>Non Off Call<br/></span></h2><p><span>With Non Off Call orders, There are two options that dictate if the order is placed automatically or goes to back office for approval. These are S<strong>et Daily Spend Limit</strong>, and <strong>Daily Spend Limit is</strong><br/></span></p><p>Link for this page <a class="external-link" href="https://uat.pimeo.net/procurement/materials/admin" rel="nofollow">https://uat.pimeo.net/procurement/materials/admin</a><strong><br/></strong></p><p><strong><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/85493780/85493781.png" data-image-src="attachments/85493780/85493781.png" data-unresolved-comment-count="0" data-linked-resource-id="85493781" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-7-13_11-29-13.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493780" data-linked-resource-container-version="1"></span></strong></p><p><strong><br/></strong></p><p>The daily spend limit is a cost value (determined by rate x quantity) that if the order is under, will be approved automatically.</p><p>The Daily Spend Limit is one of two options, setting it as per order or per day.</p><ul><li>Per Order - The daily spend limit is the max for each order, if over, it has to go to back office for approval</li><li>Per Day - The daily spend limit is the max for each day, so each day's order is accumulative</li></ul><p><span><br/></span></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493780/85493781.png">image2018-7-13_11-29-13.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

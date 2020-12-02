@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Q8-IVR Home</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Q8-IVR Home
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><strong style="font-size: 24.0px;">Project Summary</strong></p><h2 id="Q8-IVRHome-Problem">Problem</h2><p>Current existing tool, WUG (WhatsUp Gold) provides a visual overview to IDS Network operations on the real time availability of IDS sites. Currently it can only be used for IDS owned sites and some sites with direct connection (P2H) to CHost. Nevertheless, is has been proven to be a vital IDS tool to enable the timely detection and correction of sites within current scope. A major proportion (70%) of sites is not connected to WUG and form a risk of late detection and recovery when unavailable. The still difficult to be controlled sites are:</p><ul><li>all CA sites</li><li>all H2H catered sites.</li></ul><p>The lack of real time monitoring capability is a business issue:</p><ul><li>correction only occurs after customer complaint</li><li>sites may have been unavailable for days/weeks/months undetected</li><li>a site problem may actual be a host or routing problem where many sites are effected without direct notice. This leads to delayed and incorrect recovery actions.</li></ul><p>The missing sites can not directly be linked to WUG. WUG is IP based and inherently needs the site IP address. This address is in many cases not available:</p><ul><li>for security or business reasons parties do not publish their IP address</li><li>site is not reachable because it is in different network.</li></ul><h2 id="Q8-IVRHome-Solution"> Solution</h2><p>By introducing a virtual router in the IDS network (further named IVR), where a physical network interface is assigned multiple IP addresses that are dynamically updated by [email] messages from IDS partners, whereas:</p><ul><li>each created virtual IP address represents one site/terminal. If that IP address is available on the virtual router, then the site/terminal is available. If the site is not available, then the IP address is dropped by the virtual router.</li><li>3rd party hosts already have facilities (commonly email based) where site availability is reported to customer by automatic servers. The WUG extension then picks up these messages, parses the contents and then adds or removes the virtual IP.</li><li>all P2H sites already report on application level (IFSF network management messages) every 30 to 15 minutes to CHost their availability. This information can be reported by CGI to the IDS virtual router by email report.</li></ul><p>For information, IDS uses internally to identify site terminal by 6 characters:</p><ul><li>ISO3166 alpha 2 to specify the county code (2 characters)</li><li>extended with a 4 digit IDS site code,</li><li>extended with a 2 digit code to identify the terminal.</li></ul><p>To introduce the IVR into IDS, the following should be done:</p><ol><li>Add in IDS network a virtual or physical server that caters following services:<br/><ul><li>act as virtual router on IDS network</li><li>act as mail/message server that receives site reports from specific 3rd parties</li><li>interprets the 3rd part site reports to command a virtual router to set or reset corresponding IPs available.</li></ul></li><li>Agree with 3rd parties on site message report format and service</li><li>WUG to display site availability based on IP from virtual router.</li></ol></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<h2 id="Q8-IVRHome-Recentspaceactivity">Recent space activity</h2><p>    
+
+<div class="recently-updated recently-updated-social" >
+            <div class="hidden parameters">
+    <input type="hidden" id="changesUrl" value="/plugins/recently-updated/changes.action?theme=social&amp;pageSize=5&amp;spaceKeys=BG&amp;contentType=page, comment, blogpost">
+</div>
+    <div class="results-container">
+        <ul class="update-groupings">
+        <li class="grouping">
+                <div class="update-item-profile">
+            <a class="confluence-userlink url fn" data-username="jpc" href=""><img class="userLogo logo" src="images/icons/profilepics/default.svg" alt="" title="jpc"></a>
+        </div>
+        <ul class="update-items">
+            <div><a class="confluence-userlink url fn" data-username="jpc" href="/display/~jpc">Jason Cozza</a></div>
+                        <li class="update-item">
+                <div class="update-item-icon">
+                    <span class="aui-icon content-type-page"></span>
+                </div>
+                <div class="update-item-details">
+                    <span class="update-item-content">
+                                                    <a href="Contacting-System-Administrators_85493811.html" title="Blueberry Group">Contacting System Administrators</a>
+                                            </span>
+                    <span class="update-item-date">created Nov 24, 2020</span>
+                                                                            </div>
+            </li>
+                        <li class="update-item">
+                <div class="update-item-icon">
+                    <span class="aui-icon content-type-page"></span>
+                </div>
+                <div class="update-item-details">
+                    <span class="update-item-content">
+                                                    <a href="85493808.html" title="Blueberry Group">Prepare a new employee's laptop</a>
+                                            </span>
+                    <span class="update-item-date">created Nov 24, 2020</span>
+                                                                            </div>
+            </li>
+                        <li class="update-item">
+                <div class="update-item-icon">
+                    <span class="aui-icon content-type-page"></span>
+                </div>
+                <div class="update-item-details">
+                    <span class="update-item-content">
+                                                    <a href="How-to-articles_85493807.html" title="Blueberry Group">How-to articles</a>
+                                            </span>
+                    <span class="update-item-date">created Nov 24, 2020</span>
+                                                                            </div>
+            </li>
+                        <li class="update-item">
+                <div class="update-item-icon">
+                    <span class="aui-icon content-type-page"></span>
+                </div>
+                <div class="update-item-details">
+                    <span class="update-item-content">
+                                                    <a href="Project-Information_85493575.html" title="Blueberry Group">Project Information</a>
+                                            </span>
+                    <span class="update-item-date">updated Nov 24, 2020</span>
+                                            <span class="update-item-changes"> <a class="changes-link" href="/pages/diffpagesbyversion.action?pageId=85493575&selectedPageVersions=3&selectedPageVersions=2">view change</a></span>
+                                                                            </div>
+            </li>
+                        <li class="update-item">
+                <div class="update-item-icon">
+                    <span class="aui-icon content-type-page"></span>
+                </div>
+                <div class="update-item-details">
+                    <span class="update-item-content">
+                                                    <a href="Oobeedoo_85493802.html" title="Blueberry Group">Oobeedoo</a>
+                                            </span>
+                    <span class="update-item-date">created Nov 24, 2020</span>
+                                                                            </div>
+            </li>
+                    </ul>
+    </li>
+    </ul>
+<div class="more-link-container">
+    <a class="more-link" href="/plugins/recently-updated/changes.action?theme=social&amp;pageSize=5&amp;startIndex=5&amp;searchToken=98098&amp;spaceKeys=BG&amp;contentType=page, comment, blogpost">Show More</a>
+    <img class="waiting-image" alt="Please wait" src="images/icons/wait.gif">
+</div>
+    </div>
+</div>
+</p></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<h2 id="Q8-IVRHome-Spacecontributors">Space contributors</h2><p><div class="plugin-contributors"><div class="plugin-contributors"><ul class="contributors-list"><li><a href="/display/~jpc"class="url fn">Jason Cozza</a>  (7 days ago)</li></ul></div></div></p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p> </p></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

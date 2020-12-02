@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Parcel SafePlace System Architecture</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Parcel-SafePlace_85493752.html">Parcel SafePlace</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Parcel SafePlace System Architecture
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Parcel SafePlace (hereafter referred to as PSP) is a system for dropping off and retrieving packages at a shared residency.</p><p>The system consists of three major components:</p><ul><li>iPad application</li><li>Web Portal + Database</li><li>Raspberry Pi</li></ul><h1 id="ParcelSafePlaceSystemArchitecture-iPadapplication">iPad application</h1><p>The iPad application allows carriers to make deliveries to a residency, managers to open lockers, and residents to open their locker.</p><p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" height="400" confluence-query-params="effects=drop-shadow" src="attachments/85493756/85493761.png?effects=drop-shadow" data-image-src="attachments/85493756/85493761.png" data-unresolved-comment-count="0" data-linked-resource-id="85493761" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Simulator Screen Shot - iPad Pro (10.5-inch) - 2018-08-10 at 12.16.53.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493756" data-linked-resource-container-version="1"></span></p><p>The app allows the carrier to take a picture of the label, which is then associated with the delivery on the web portal. For every package delivered, the carrier can select the locker to store the package in. In Dustin's case, each residency uses a shared 'Package Room', access to which is controlled by a relay connected to the Raspberry Pi. The iPad app sends a HTTP request to a web server running on the Pi, which then fires the relay via GPIO. Once a delivery has been confirmed, the web portal sends out an email and SMS to the resident with their pickup code, which they can then use to retrieve the package at their convenience.</p><p>If a manager enters their code they can view the status of, and override the locks, on lockers.</p><p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" height="400" confluence-query-params="effects=drop-shadow" src="attachments/85493756/85493760.png?effects=drop-shadow" data-image-src="attachments/85493756/85493760.png" data-unresolved-comment-count="0" data-linked-resource-id="85493760" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Simulator Screen Shot - iPad Pro (10.5-inch) - 2018-08-10 at 12.17.18.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493756" data-linked-resource-container-version="1"></span></p><p><br/></p><h1 id="ParcelSafePlaceSystemArchitecture-Webportal">Web portal</h1><p>The web portal has multiple interfaces depending on the role of the logged in user.</p><h2 id="ParcelSafePlaceSystemArchitecture-Administratorinterface">Administrator interface</h2><p>The admin interface provides a global view into the system, allowing the admin to view or modify any aspect of the system.</p><p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" height="400" src="attachments/85493756/85493759.png" data-image-src="attachments/85493756/85493759.png" data-unresolved-comment-count="0" data-linked-resource-id="85493759" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screen Shot 2018-08-10 at 11.46.44.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493756" data-linked-resource-container-version="1"></span></p><h2 id="ParcelSafePlaceSystemArchitecture-Managerinterface">Manager interface</h2><p>The manager interface provides a location-specific view for deliveries and residents. The location can be changed using a drop-down menu at the top-right of the page.</p><h2 id="ParcelSafePlaceSystemArchitecture-Residentinterface"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" height="400" src="attachments/85493756/85493758.png" data-image-src="attachments/85493756/85493758.png" data-unresolved-comment-count="0" data-linked-resource-id="85493758" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screen Shot 2018-10-03 at 16.41.13.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493756" data-linked-resource-container-version="1"></span>Resident interface</h2><p>The resident interface provides a way for residents to view delivered parcels and update their personal information.</p><p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" height="400" src="attachments/85493756/85493757.png" data-image-src="attachments/85493756/85493757.png" data-unresolved-comment-count="0" data-linked-resource-id="85493757" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screen Shot 2018-10-03 at 16.49.44.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493756" data-linked-resource-container-version="1"></span></p><h1 id="ParcelSafePlaceSystemArchitecture-RaspberryPi">Raspberry Pi</h1><p>The Pi serves the role of the hardware bridge to the lockers, allowing the iPad application or web portal to open physical lockers on site. In order to open the lockers, the Pi is equipped with a shield which is then wired to the locker(s).</p><p>The iPad app communicates with the Pi through a small web server on the Pi which exposes an API, allowing lockers to be opened.</p><p>The Pi also acts as the internet gateway for the iPad, allowing it to sync data with the web portal server.</p><p>Additionally, an OpenVPN client is installed which connects back to the web portal server, allowing remote diagnostics if required.</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493756/85493757.png">Screen Shot 2018-10-03 at 16.49.44.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493756/85493758.png">Screen Shot 2018-10-03 at 16.41.13.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493756/85493759.png">Screen Shot 2018-08-10 at 11.46.44.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493756/85493760.png">Simulator Screen Shot - iPad Pro (10.5-inch) - 2018-08-10 at 12.17.18.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493756/85493761.png">Simulator Screen Shot - iPad Pro (10.5-inch) - 2018-08-10 at 12.16.53.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

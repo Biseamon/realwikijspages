@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Shape GB</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BVI_85493723.html">BVI</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Shape GB
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="ShapeGB-Contact">Contact</h1><div class="table-wrap"><table class="confluenceTable"><colgroup><col/><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Name</th><th class="confluenceTh">Role</th><th class="confluenceTh">Email</th><th class="confluenceTh">Skype</th></tr><tr><td class="confluenceTd">John Allan</td><td class="confluenceTd">PM</td><td class="confluenceTd"><a class="external-link" href="mailto:Jonathan.allan@bbconsult.co.uk" rel="nofollow">Jonathan.allan@bbconsult.co.uk</a></td><td class="confluenceTd"><span>Jonallan_bb</span></td></tr><tr><td class="confluenceTd">Chris Murray</td><td class="confluenceTd">APM</td><td class="confluenceTd"><a class="external-link" href="mailto:chris.murray@bbconsult.co.uk" rel="nofollow">chris.murray@bbconsult.co.uk</a><br/><br/></td><td class="confluenceTd"><span><a class="external-link" href="mailto:chris.murray.blueberry@outlook.com" rel="nofollow">chris.murray.blueberry@outlook.com</a></span></td></tr><tr><td class="confluenceTd">Alexander Knight</td><td class="confluenceTd">Dev</td><td class="confluenceTd"><p><span><a class="external-link" href="mailto:alexander.knight@bbconsult.co.uk" rel="nofollow">alexander.knight@bbconsult.co.uk</a></span></p></td><td class="confluenceTd"><span>alexander.knight.blueberry</span></td></tr></tbody></table></div><p><br/></p><h1 id="ShapeGB-BasicDescription">Basic Description</h1><p>Customer has an app that will take two pictures, one from the front, one from the side, create an outline around their profiles, and then send the outlines to the server along with the metrics (height/weight/ethnicity/gender), via a <strong>scan/startsgb</strong> post call.</p><p>They get a scan ID returned, and then will send in a JSON packet which contains the results of the survey taken before the images were taken.</p><p>The Survey will be linked to the scan via this scan ID.</p><p><br/></p><h1 id="ShapeGB-Examiningthedata">Examining the data</h1><p>The credentials are in Bitwarden, under BVI ShapeGB SQL Express Server. Use SSMS to log in.</p><p>The most important tables are <strong>Job</strong>, <strong>SgbSurveyReponses</strong>, and the view <strong>JobMeasurements</strong>.</p><h2 id="ShapeGB-dbo.Job">dbo.Job</h2><p>The following are important columns</p><h3 id="ShapeGB-Status">Status</h3><ul><li>This shows the status of the scan. If it is a 6, it means that all stages are fine, as there are six stages, and once each stage is passed successfully, it will increment this status.</li><li>-1 means we have detected an issue, normally outside of the system.</li><li>any number lower than 6, means it has failed on the next stage (so a 5 means that there was an error in stage 6, when processing the scan)</li></ul><h3 id="ShapeGB-ErrorText">Error Text</h3><p>If the scan failed (specifically if it was -1), the contents of this should give insight into what has gone wrong.</p><h3 id="ShapeGB-Height/Weight/Age/Gender/Ethnicity">Height/Weight/Age/Gender/Ethnicity</h3><p>These are all survey information entered by the app.</p><p><br/></p><h2 id="ShapeGB-SgbSurveryResponses">SgbSurveryResponses</h2><p>This table stores the survey responses, taken through the app, in a JSON format. Each survey is linked to to a Job.ID</p><p>Example Response:</p><div class="table-wrap"><table class="confluenceTable"><colgroup><col/></colgroup><tbody><tr><th class="confluenceTh">{&quot;size_male_trouser&quot;:&quot;28L&quot;,&quot;bonus_enter_prize_draw&quot;:false,&quot;about_postcode&quot;:&quot;W2&quot;,&quot;size_male_jacket&quot;:&quot;34R&quot;,&quot;size_male_collar&quot;:&quot;15.5 (M)&quot;,&quot;brands_where_shop&quot;:[&quot;John Lewis&quot;],&quot;brands_heard_about&quot;:&quot;New Look&quot;,&quot;version&quot;:1,&quot;about_ethnicity&quot;:&quot;Asian&quot;}</th></tr></tbody></table></div><p><br/></p><h2 id="ShapeGB-JobMeasurements">JobMeasurements</h2><p>This is a view created from two tables:</p><p>OrdMeasurementsKind which contains the index and measurement area. There are different apps that handle scans, so there isa  set of indexes for various measurements per app. For example, the latest app uses ID 297-312 as it's indexes for measurements.</p><p>OrdMeasurements which fills in the values attributed to the indexes found in OrdMeasurementsKind, and links it back to the Job. </p><h1 id="ShapeGB-Accessingthesilhouettes">Accessing the silhouettes</h1><ul><li>Use the S3Browser, and navigate to bvi-api-uk/SGB/</li><li>In there are the job folders (which correspond to the ID in the Job table), and inside each one are the two silhouettes.</li><li>Highlight the silhouettes, click Download and point them to a file</li><li>They will download (there is no indicator that they have downloaded!)</li><li>Opening these in Notepad++ show a list of co-ordinates, used by the image software to show the outline.</li></ul><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

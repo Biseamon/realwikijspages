@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Further Issues</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="PImeo---Sean-Griffin_85493772.html">PImeo - Sean Griffin</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Further Issues
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><br/></p><div class="table-wrap"><table class="relative-table wrapped confluenceTable" style="width: 62.663%;"><colgroup><col style="width: 65.1042%;"/><col style="width: 18.8368%;"/><col style="width: 16.059%;"/></colgroup><tbody><tr><th class="confluenceTh">Description</th><th class="confluenceTh">Severity</th><th class="confluenceTh">Affects</th></tr><tr><td class="confluenceTd">In sites where you can view a forms, you can changing the word 'view' to 'edit' will allow the user to edit the form, even if the option is not given to the user (CVI cannot be edited after being created, for example)</td><td class="confluenceTd">High, present site-wide</td><td class="confluenceTd">Security of site</td></tr><tr><td class="confluenceTd">User passwords are sent in plain text to the server</td><td class="confluenceTd"><span>High, present site-wide</span></td><td class="confluenceTd">Security of site</td></tr><tr><td class="confluenceTd">User permission are not checked on WebAPI - considering Id's are used as URL parameters this leaves the site open to URL exploitation, ordering plants/materials for another organisation, accessing another organisation's data etc</td><td class="confluenceTd">High, present site-wide</td><td class="confluenceTd">Security of site</td></tr><tr><td class="confluenceTd"><p>On <a class="external-link" href="https://uat.pimeo.net/procurement/materials/suppliers/details/7/edit" rel="nofollow">https://uat.pimeo.net/procurement/materials/suppliers/details/7/edit</a> the Material Types are showing correctly. They are displayed as null, and the drop down does not populate with previously selected values</p><p>Chadwicks should have Blockwork set to it, for example.</p></td><td class="confluenceTd">Low</td><td class="confluenceTd"><p>Company Admin</p></td></tr><tr><td colspan="1" class="confluenceTd">S3 bucket pimeo-test has protection on folder view, but not against viewing files if you have the direct URL. This is easy to resolve for the viewing of files within the PIMeo app, but for downloading files we would need to make some code changes (to be discussed with Sean) so that the access keys for S3 are sent with the request.</td><td colspan="1" class="confluenceTd">Medium (Filenames begin with a GUID so URL manipulation would be fruitless here)</td><td colspan="1" class="confluenceTd">Security of site</td></tr><tr><td colspan="1" class="confluenceTd">Object mappings from the database → server side code → client side code are done manually, so making changes to the database is very time consuming. If we need to add in new tables we should consider adding in a library such as AutoMapper. Combined with the below, this can affect performance of database calls.</td><td colspan="1" class="confluenceTd">Medium</td><td colspan="1" class="confluenceTd">Performance</td></tr><tr><td colspan="1" class="confluenceTd"><span>Ties in with the above - No DTO usage so we are getting back every column from the database for every call we make. This is incredibly inefficient and if the system ends up being used heavily will need addressing.</span></td><td colspan="1" class="confluenceTd">Medium</td><td colspan="1" class="confluenceTd">Performance</td></tr><tr><td colspan="1" class="confluenceTd">Sorting and filtering for the grids appears to be done client-side. This can lead to the client using old data if the grid is not setup to auto-refresh. There is also usually more performance overhead with JS sorting/filtering than with a database call so generally server-side sorting is considered better.</td><td colspan="1" class="confluenceTd">Medium</td><td colspan="1" class="confluenceTd">Performance/Stale or incorrect data</td></tr><tr><td colspan="1" class="confluenceTd"><span>In External Plant, we currently have plant and accessory split into two tables, which contain the same information. In future we should have these in one table, with a boolean to say if it is accessory or plant.</span></td><td colspan="1" class="confluenceTd">Low</td><td colspan="1" class="confluenceTd">Performance, will need to fix later if we stay on project</td></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" height="250" src="attachments/85493777/85493778.png" data-image-src="attachments/85493777/85493778.png" data-unresolved-comment-count="0" data-linked-resource-id="85493778" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-7-9_14-18-20.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493777" data-linked-resource-container-version="1"></span></p><p>Site makes multiple requests to the server and to S3. This is causing performance issues</p></div></td><td colspan="1" class="confluenceTd">Medium</td><td colspan="1" class="confluenceTd">Site wide</td></tr><tr><td colspan="1" class="confluenceTd"><br/></td><td colspan="1" class="confluenceTd"><br/></td><td colspan="1" class="confluenceTd"><br/></td></tr></tbody></table></div>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493777/85493778.png">image2018-7-9_14-18-20.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Deployment Checklist (2015)</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Hudson_85493576.html">Hudson</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Deployment Checklist (2015)
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                     <br/>
+<br/>
+<strong>From:</strong> Nikolay Proboyski [<a class="external-link" href="mailto:nikolay.proboyski@blueberrysystems.co.uk" rel="nofollow">mailto:nikolay.proboyski@blueberrysystems.co.uk</a>]<br/>
+<strong>Sent:</strong> Friday, June 26, 2015 5:54 PM<br/>
+<strong>Subject:</strong> RE: Hudson deployment checklist and long-term deployment plan<br/>
+<br/>
+Hi Alex&amp;Andrew,<br/>
+<br/>
+Please review and correct if necessary the 1<sup>st</sup> draft:<br/>
+<br/>
+<strong><br/>
+Full ePay Server Update </strong><br/>
+<ol><br/>
+	<li>Take ePay WebSite down to make sure and put the under maintenance page:<br/>
+<ol><br/>
+	<li>Stop ‘epay2 – redirect’ in IIS</li><br/>
+	<li>Start ‘under’ in IIS</li><br/>
+	<li>Change the port for ‘epay2’ from 443 to something else to ensure no one else can get connected while the doing the update (port changed from IIS in Site Bindings)</li><br/>
+</ol><br/>
+</li><br/>
+	<li><u>Update Hudson ePay Service(Windows Sync service):</u><br/>
+<ol><br/>
+	<li>Backup the ‘Hudson ePay Service’ by copying entire windows service folder(C:\Program Files(86)\HudsonEpayService)</li><br/>
+	<li>Uninstall ‘Hudson ePay Service’ from ‘Programs and Features’</li><br/>
+	<li>Install and configure the config file inside the directory(we need to have 2 config files – 1 for .205 and 1 for Live)</li><br/>
+	<li>Make sure the service is started(Services) and check if it is configured correctly(EventViewer -&gt; HudsonLog)</li><br/>
+</ol><br/>
+</li><br/>
+	<li><u>Update ePay Website, ePay Reports used by the ePay Web App and ePay database:</u><br/>
+<ol><br/>
+	<li>Take a manual database backup of the ‘epay200’ database</li><br/>
+	<li>Update ‘epay2’ website by copying manually all files from folder ‘D:\UpdateForTonight\ePay2UpdateTonight_23062015\epay2-1_0_1984_0’ to ‘C:\inetpub\epay2’ except web.config file</li><br/>
+	<li>Check the DLLs version to make sure copying went OK</li><br/>
+	<li>Apply the latest epay(ePay_UpdateScript.sql) database update from version 20 to 21 using DBM</li><br/>
+	<li>Update all necessary reports, e.g. ‘TransmissionPrintPaye’ report in the Reporting Services Configuration Manager(backup the old first to this folder ‘D:\UpdateForTonight\backup_17062015’)</li><br/>
+</ol><br/>
+</li><br/>
+	<li>Check that Payment Instruction transmission works for all 3 Hudson Companies(Test HCS, HAD and PAYE)</li><br/>
+	<li>If all ok put epay online and send update email to the customer</li><br/>
+</ol><br/>
+ <br/>
+<br/>
+<strong>Full PayFlex&amp;Chronicle Server Update</strong><br/>
+<ol><br/>
+	<li>Take a full backup of the PayFlex Database</li><br/>
+	<li><u>Update PayFlex Web Service:</u><br/>
+<ol><br/>
+	<li>Backup PayFlex Web Service by copying the entire folder(navigate to the folder from IIS) manually</li><br/>
+	<li>Copying the entire content of new version into the location where the Web Service is being hosted</li><br/>
+	<li>Make sure the correct web.config file is being used(there should be 2 config files – 1 for .29 and 1 for Live PayFlex Server)</li><br/>
+	<li>Restart the entire Web Server and make sure that the web service is still accessible from the browser</li><br/>
+</ol><br/>
+</li><br/>
+	<li><u>Update PayFlex app and PayFlex database:</u><br/>
+<ol><br/>
+	<li>Backup the entire content of the following folder: \\PAYFLEXSERVER\HudsonShare2\Publish\PayFlex</li><br/>
+	<li>For the latest version make sure that the file ‘PayFlex.application’ is updated before ‘deploying’ to live and especially the value for deploymentProcvider codebase is identical to the from the backup in the step above  (&lt;deploymentProvider codebase=&quot;file://PAYFLEXSERVER/HudsonShare2/Publish/PayFlex/PayFlex.application&quot; /&gt;)</li><br/>
+	<li>Drill down to .. \PayFlex\Application Files\PayFlex_1_0_<strong>XXXX_X</strong>\PayFlex.exe.config.deploy file where <strong>XXXX_X</strong> is the version number and make sure that connection string is configured correctly(connectionString=&quot;Data Source=PAYFLEXSERVER;Initial Catalog=PayFlex;Integrated Security=False;User ID=hudson;Password=hudson2012&quot;)</li><br/>
+	<li>Once the files from ‘b’ and ‘c’ are configured correctly then ‘deployment’ can be done – simply copy the all the files from the new version into \\PAYFLEXSERVER\HudsonShare2\Publish\PayFlex</li><br/>
+	<li>Update PayFlex database with script files <strong>sql</strong> and/or <strong>HMRCRTI_UpdateScript.sql</strong>(optional), and/or <strong>PAYE_UpdateScript.sql</strong>  to the latest version(s) using DBM</li><br/>
+	<li>Start PayFlex app and check if the user is prompt to Auto-Update(using Click-once installer which does not work every time), ensuring that application is working even after manual update by clicking on this file://PAYFLEXSERVER/HudsonShare2/Publish/PayFlex/PayFlex.application is a must</li><br/>
+</ol><br/>
+</li><br/>
+	<li><u>Update Chronicle app and Chronicle side of the PayFlex Database:</u><br/>
+<ol><br/>
+	<li>Backup the entire content of the following folder: \\PAYFLEXSERVER\HudsonShare2\Publish\Chronicle</li><br/>
+	<li>For the latest version make sure that the file ‘Chronicle.application’ is updated before ‘deploying’ to live and especially the value for deploymentProcvider codebase is identical to the from the backup in the step above  (&lt;deploymentProvider codebase=&quot;file://PAYFLEXSERVER/HudsonShare2/Publish/Chronicle/Chronicle.application&quot; /&gt;)</li><br/>
+	<li>Drill down to .. \Chronicle\Application Files\Chronicle_1_0_<strong>XXXX_X</strong>\Chronicle.exe.config.deploy file where <strong>XXXX_X</strong> is the version number and make sure that connection string is configured correctly(connectionString=&quot;Data Source=PAYFLEXSERVER;Initial Catalog=PayFlex;Integrated Security=False;User ID=hudson;Password=hudson2012&quot;)</li><br/>
+	<li>Once the files from ‘b’ and ‘c’ are configured correctly then ‘deployment’ can be done – simply copy the all the files from the new version into \\PAYFLEXSERVER\HudsonShare2\Publish\Chronicle</li><br/>
+	<li>Update PayFlex database with script files <strong>sql </strong>to the latest version using DBM</li><br/>
+	<li>Start Chronicle app and check if the user is prompt to Auto-Update(using Click-once installer which does not work every time), ensuring that application is working even after manual update by clicking on this file://PAYFLEXSERVER/HudsonShare2/Publish/Chronicle/Chronicle.application is a must</li><br/>
+</ol><br/>
+</li><br/>
+	<li><u>Updating Hudson-specific Windows Services(Hudson Bank Statement Parser Service(Chronicle service), Hudson Clientele Import Service(Chronicle service), Hudson DocsFolder Scanner Service(PayFlex service), Hudson Document Service(PayFlex service), Hudson Payroll Index Service(PayFlex service), HudsonISCDService(PayFlex service):</u><br/>
+<ol><br/>
+	<li>Backup the Service first by copying entire windows service folder(C:\Program Files(86)\ServiceName where ServiceName is replaced by the name of the service, e.g. Hudson DocsFolder Scanner Service)</li><br/>
+	<li>Uninstall the service from ‘Programs and Features’</li><br/>
+	<li>Install and configure the config file inside the directory(we need to have 2 config files – 1 for .205 and 1 for Live)</li><br/>
+	<li>Configure the service folder/location path(s) from Chronicle app -&gt; Tools -&gt; Settings and/or PayFlex app -&gt; Master -&gt; Tools -&gt; Settings depending on the type service(s) and which applications is being used by</li><br/>
+	<li>Make sure the service(s) is/are started(Services) and check if it is configured correctly(EventViewer -&gt; HudsonLog)</li><br/>
+</ol><br/>
+</li><br/>
+</ol><br/>
+ <br/>
+<br/>
+ <br/>
+<br/>
+<hr/><br/>
+<br/>
+<strong>From:</strong> Andrew Oakley<br/>
+<strong>Sent:</strong> 22 June 2015 11:05<br/>
+<strong>Subject:</strong> Hudson deployment checklist and long-term deployment plan<br/>
+<br/>
+As you know we have been having trouble with deployments to live with Hudson, and Alex, Nikolay and especially Hudson have been finding this frustrating. This is a separate issue to coding bugs. It’s perfectly understandable that a human being will make mistakes, so I am making a plan to reduce these mistakes (and reduce the frustration!).<br/>
+<br/>
+The plan is:<br/>
+<ol><br/>
+	<li>Make a list of manual deployment steps – Nikolay</li><br/>
+	<li>Review the list, make corrections, add in missing parts - Alex</li><br/>
+	<li>Use the list to manually put the system live – Nikolay</li><br/>
+	<li>For any bugs found after go-live, keep updating the list – Nikolay and Alex</li><br/>
+</ol><br/>
+<ol><br/>
+	<li>Write automated scripts to perform as many parts of the list as possible (Jenkins? PowerShell?) – Nikolay</li><br/>
+	<li>Review the scripts, makes corrections, add in missing parts – Alex</li><br/>
+	<li>Use the scripts to automatically or semi-automatically put the system live</li><br/>
+	<li>Keep updating the scripts – Nikolay and Alex</li><br/>
+	<li>Eventually… fully automatic deployment! ;-)</li><br/>
+</ol><br/>
+ <br/>
+<br/>
+I estimate stages 1-3 should take about 2-5 days – Nikolay, Alex, are you okay with doing this work this &amp; next week?<br/>
+<br/>
+We then gradually move towards steps 5-8 over the next 1-3 months.<br/>
+<br/>
+We arrive at step 9 – fully automated deployment - in 3-6 months. Nikolay, Alex, does that sound reasonable?<br/>
+<br/>
+I suggest Nikolay writes this list on the BB Wiki so that we can all review and edit.
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

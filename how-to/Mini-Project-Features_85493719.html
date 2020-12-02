@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Mini Project Features</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Developer-Tasks_85493716.html">Developer Tasks</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="PTS-Features_85493718.html">PTS Features</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Mini Project Features
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="MiniProjectFeatures-MiniProjectConcept">Mini Project Concept</h1><hr/><p>Sysadmins don’t use PTS, nor does Marketing.  They find it too clunky and complex.  A lot of this is because PTS is slow - if we fix issue editor screens, we can improve this.</p><p>But Sysadmins and Marketing have other issues – they have lots of mini projects, for example:</p><ul><li>Migrate Exchange to 365</li><li>Fix LDAP Security</li></ul><p>The problem is that creating each one of these as a PTS project requires loads of fields that  aren't required.  And these mini projects are too small to really get their own project ID.</p><p>Really we need a concept of a mini project.<br/><br/> My thinking is that we should make it so that individual tasks can be Mini Projects – we promote a task to be a mini project, and then maybe some extra fields appear.</p><p>We can then add extra screens to PTS to show all the mini projects by some criteria.</p><p>Question:  can we have mini projects at any point in the tree?   I don’t know.  If we allow Mini Projects to exist at lower tree levels, then we can use the hierarchy to organise them - so we can have a collection of security tasks.  But this does make it a lot more complex.</p><p>I'd probably say that mini projects can't contain other mini projects, and any folders above a mini project must be just a container.  But it needs more thought</p><p>Mini Projects would exist within a normal PTS project, so we might have a PTS project for Sysadmin, one for PTS, and one for BBWT - each including a list of significant mini projects.</p><h1 id="MiniProjectFeatures-ProjectGroups">Project Groups</h1><hr/><p>Are mini projects another way of doing project groups?   At present, a PTS project is completely standalone.  This quite often gives us a problem:  if we get two related projects from customer - which share code and timescales - it feels wrong to put them into two different projects.  </p><p>Maybe Mini Projects could fix this - we could have a project called BIMS with mini or subprojects of EOBS and Core?</p><h1 id="MiniProjectFeatures-WhatdowedowithMiniProjects">What do we do with Mini Projects</h1><hr/><p>The main thing that mini projects allows is for us to make a list of all current mini projects, perhaps with an owner, and some idea of time left or completion date</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/><col/></colgroup><tbody><tr><th class="confluenceTh">Mini Project</th><th class="confluenceTh">In Project</th><th class="confluenceTh">Owner</th><th class="confluenceTh">Target Completion Date</th></tr><tr><td class="confluenceTd">Exchange Migration</td><td class="confluenceTd">Systems</td><td class="confluenceTd">Asghar</td><td class="confluenceTd">1st October 2016</td></tr></tbody></table></div><p>I suppose Mini Projects would also gain other features of big projects, but I'm not sure exactly which yet <img class="emoticon emoticon-smile" src="images/icons/emoticons/smile.png" data-emoticon-name="smile" alt="(smile)"/></p><p>One idea is to publish mini project details to the wiki?</p><h1 id="MiniProjectFeatures-Dependencies/MultipleParents">Dependencies / Multiple Parents</h1><hr/><p>PTS at present has a strict hierarchy which is currently used to model the functional breakdown of tasks and dependency.  This is a bit limited compared to other tools<br/> </p><div>This becomes more important when using PTS for syadmin tasks, because it's more likely there will be common dependencies between mini projects.  If two projects are dependent on one common task, we can't represent this in PTS properly. </div><div>The big question is how exactly to present this in the UI?  UIs to represent tree structures that support multiple parents are very hard to do well - users struggle to know how to delete one parent, for example.</div><div>Options:<br/> </div><div><ol><li>We have a simple system:  a mini project can be linked to multiple tasks elsewhere in the containing project as dependent tasks, but this isn't in the tree as such<br/> </li><li>We allow a task from another mini project to be dragged into the tree and it appears with a shortcut icon.  Note that marking the imported task in this way means that each task actually has one real parent and inbound links from other places.  This may simplify the logic a bit.<br/> </li><li>Maybe we only allow mini projects to be dependent on other mini projects.  This feels too limited.</li></ol></div>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

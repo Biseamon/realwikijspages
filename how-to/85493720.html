@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : New Issues / Tasks / Tickets Management Pages</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Developer-Tasks_85493716.html">Developer Tasks</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="PTS-Features_85493718.html">PTS Features</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : New Issues / Tasks / Tickets Management Pages
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="NewIssues/Tasks/TicketsManagementPages-Introduction">Introduction</h1><hr/><p>I think we need to do a big overhaul of tasks/issues management inside PTS - it is far too slow, and is  wasting a lot of people's time.<br/> </p><ol><li>I think we should have merged issue+tickets+tasks page, so a PM can look through all items that need action on a project. <br/><br/></li><li>Users should be able to see a list of issues/tasks in an LHS panel, and then open the details in a right side panel - this should be much faster than switching to a new screen.  Obviously it can be difficult to get everything on one screen, but wide-screens are common. <br/> </li><li>We are potentialy standardising on Office 365, and maybe we could integrate with it more directly - this might make it easier to discuss PTS issues in outlook?</li></ol><h1 id="NewIssues/Tasks/TicketsManagementPages-PreviousDesignsandImplementation">Previous Designs and Implementation</h1><hr/><p>We have this google doc:</p><p>   <a class="external-link" href="https://docs.google.com/document/d/1KoKEDLR3P6TGMSHyIdsV69MlWnkbu88FylY6haNcyU4/edit#heading=h.m1ppfmqbyw70" rel="nofollow">https://docs.google.com/document/d/1KoKEDLR3P6TGMSHyIdsV69MlWnkbu88FylY6haNcyU4/edit#heading=h.m1ppfmqbyw70</a> </p><p>And the associated XLS:</p><p>   <a class="external-link" href="https://drive.google.com/a/bbconsult.co.uk/file/d/0BwrpSzy5Mr1HMEJaLU1DNG9WR28/view?ths=true" rel="nofollow">https://drive.google.com/a/bbconsult.co.uk/file/d/0BwrpSzy5Mr1HMEJaLU1DNG9WR28/view?ths=true</a> <br/> <br/>We have new issues page here - <a class="external-link" href="http://ptsa.bbconsult.co.uk/#/issues" rel="nofollow">http://ptsa.bbconsult.co.uk/#/issues</a></p><h1 id="NewIssues/Tasks/TicketsManagementPages-Review/EditIssueswithoutOpeningNewWindow">Review / Edit Issues without Opening New Window</h1><hr/><p>I think the best idea is to have a dual mode screen.  I open up the issues/tasks/tickets search screen, and I  can perform filtered searches and see a big grid.  I can use a tooltip to view more details.   If I click the issue<br/>title, the grid shrinks to only a few columns, and an editor panel appears on the right.  I can now click on issues and they appear in the right hand side panel.</p><p>Another option:  we display the detail window in a separate screen.  Some BB people spend a lot of time reviewing issues, and they could have one smaller screen to show the issue list, another larger screen<br/>to show the detail.   To support this we'd need to have a special mode which can be enabled and saved to that PCs' cookies. </p><h1 id="NewIssues/Tasks/TicketsManagementPages-ReviewIssues/Tasks/TicketsinOneScreen">Review Issues / Tasks / Tickets in One Screen</h1><hr/><p>I think it's useful to have a single screen where I can see all issues and tasks for a project, and  review / close them.  The &quot;issue editor&quot; panel would change depending on which item is selected.</p><p>I'm not sure what issues this presents?   I guess for issues / tasks do not have identical status values which may make filtering more complex?</p><h1 id="NewIssues/Tasks/TicketsManagementPages-ImplementationApproach">Implementation Approach</h1><hr/><p>I suggest</p><ul style="list-style-type: square;"><li>We review and improve the new Angular issues screen, taking time to get it right - and thinking of it as a template for other screens to come<br/> </li><li>We implement the dual mode with a dummy issue review panel, and see how this feels<br/> </li><li>We then work on the full issue panel, so we can put this into general use<br/> </li><li>The we do tasks screen and tasks panel<br/> </li><li>Then we create a merged tasks / issues screen</li></ul><p> </p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,71 @@
+How to use DB Maintainer.
+=========================
+
+DB Maintainer is database synchronisation tool. To launch it click DBMaintainer.exe. In the apeared window you see the list of database connections. 
+
+To add a new connection call the context menu by right mouse click over the grid and click Add menu item. To edit an existing connection simply double click the row of the grid.
+
+DB Maintainer takes information on the schema version from a table it creates on first use, named SystemInfo. DBM will warn the user if an already established database has no SystemInfo table; this will occur when DBM is being used to add functionality to a legacy database.
+
+Connection Editor
+-----------------
+
+Connection name - the name of the connection, should be unique in the list of DBMaintainer connections;
+Connection types - for now two types supported: MS SQL (2000 or 2005) or MS Access;
+Server - MS SQl Server instance (for example ACER\SQLEXPRESS);
+Database - the name of sql server database matching to the selected sql server or the path to ms access database;
+Upgrade file - the path to DB Maintainer upgrade file (.sql);
+Login - ms sql server database login data.
+
+
+Upgrade Script Fie Format
+-------------------------
+
+The file looks like:
+
+-- SchemaVersion = 3;
+
+sql commands
+
+-- SchemaVersion = 2;
+
+sql commands
+
+-- SchemaVersion = 1;
+
+sql commands
+
+When the script is launched the program checks the current database schema version, executes the new sql commands and updates the database schema version.
+
+If you need to update the database schema simply add the new sql commands in the top of the file and put the incremented schema version number, for example:
+
+-- SchemaVersion = 4;
+
+sql commands
+
+then update the target databases by using DB Maintainer utility. 
+
+
+Upgrade Script Special commands
+-------------------------------
+
+Stored procedures, functions might be stored in a separate file. To include the file add the file name after schema version number in the main upgrade script:
+
+-- SchemaVersion = 5; SPSchema5.sql
+
+You may include sql commands stored in another file by using the line like:
+
+-- include UpgradeScript3.sql
+
+To launch an executable at script execution add the line:
+
+-- runexe ConsoleApplicationTest.exe
+
+
+The usage
+---------
+
+select the connection in the grid on the main window;
+select the target schema version;
+click Create/Update button.
+

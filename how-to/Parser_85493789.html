@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Parser</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Q8-IVR-Home_85493785.html">Q8-IVR Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Scripts_85493786.html">Scripts</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Parser
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><strong>Parser Global System Variables</strong></p><p style="margin-left: 30.0px;">Demo Site - <a class="external-link" href="https://vrouter-dev.bbconsult.co.uk/" rel="nofollow">https://vrouter-dev.bbconsult.co.uk/</a></p><p style="margin-left: 60.0px;">server_email = 'support@<a class="external-link" href="http://q8-vr.bbconsult.co.uk" rel="nofollow">q8-vr.bbconsult.co.uk</a>'<br/>mailing_list = ['ivr-support@<a class="external-link" href="http://bbconsult.co.uk" rel="nofollow">bbconsult.co.uk</a>']<br/>email_host_address = &quot;localhost&quot;<br/>mySQLHost = &quot;localhost&quot;<br/>mySQLUser = ***IN LAST PASS***<br/>mySQLPassword = ***IN LAST PASS***<br/>mySQLDatabase = &quot;Q8_Database&quot;<br/>network_name = &quot;eth0:&quot;</p><p style="margin-left: 30.0px;"><br/></p><p style="margin-left: 30.0px;">Live Site - 192.168.245.2 (VPN access) </p><p style="margin-left: 60.0px;">server_email = 'support@<a class="external-link" href="http://idsvr.q8.com" rel="nofollow">idsvr.q8.com</a>'<br/>mailing_list = ['ivr-support@<a class="external-link" href="http://bbconsult.co.uk" rel="nofollow">bbconsult.co.uk</a>']<br/>email_host_address = &quot;10.216.100.5&quot;<br/>mySQLHost = &quot;localhost&quot;<br/>mySQLUser = ***IN LAST PASS**<br/>mySQLPassword = ***IN LAST PASS***<br/>mySQLDatabase = &quot;Q8_Database&quot;<br/>network_name = &quot;ens160:&quot;</p><p><br/></p><p>Breakdown of the parsing process:</p><ol><li>A bash script (<em>monitor_emails.sh</em>) on the server detects when new email files come in to the new email folder. This script then runs the actual python parser script.</li><li>The script attempts to open a file, whose file path is passed to the script as an argument. I.e. when the script is run, the command to run the script is as follows:<br/><br/><em>python parser.py [path to email file]<br/><br/></em></li><li>The text of the email’s body is broken down into a list of the lines, we evaluate each line to see if it's a comment line (denoted by the line beginning with '(*' and ending with '*)'), if it is, it can be ignored:<br/>*****************************************************************************************************************************************************************************<br/><pre><span style="color: rgb(128,128,128);"># Get the message text from the email as a string<br/></span>body_text = eml.get_payload()<br/><br/><span style="color: rgb(128,128,128);"># Split the message body into a list of lines, as we need to evaluate each line to check if they are a comment<br/></span>body_lines = body_text.splitlines()<br/><br/>body_text = []<br/><br/><span style="color: rgb(128,128,128);"># Lines beginning with (* and ending with *) are comments, and can be discarded<br/></span><span style="color: rgb(204,120,50);">for </span>i <span style="color: rgb(204,120,50);">in </span>body_lines:<br/><span style="color: rgb(204,120,50);">if </span>i[:<span style="color: rgb(104,151,187);">2</span>] != <span style="color: rgb(165,194,97);">'(*' </span><span style="color: rgb(204,120,50);">and </span>i[-<span style="color: rgb(104,151,187);">2</span>:] == <span style="color: rgb(165,194,97);">'*)'</span>:<br/>        body_text.append(i)</pre>*****************************************************************************************************************************************************************************</li><li>The remaining lines are then recombined into a single string, special characters in the ascii value range 1 to 47 are removed, along with the semicolon character (ascii value: 59), and the whole thing is then split into a list of individual words:<br/>***************************************************************************************************************<pre><span style="color: rgb(128,128,128);"># Concatenate all elements from the list into a single string<br/></span><span style="color: rgb(204,120,50);">if </span>type(body_text) <span style="color: rgb(204,120,50);">is </span>list:<br/>    body_text = <span style="color: rgb(165,194,97);">', '</span>.join(str(v) <span style="color: rgb(204,120,50);">for </span>v <span style="color: rgb(204,120,50);">in </span>body_text)<br/><br/><span style="color: rgb(128,128,128);"># Remove delimiters, and split the body text into individual words<br/></span><span style="color: rgb(204,120,50);">for </span>i <span style="color: rgb(204,120,50);">in </span>range(<span style="color: rgb(104,151,187);">1</span><span style="color: rgb(204,120,50);">, </span><span style="color: rgb(104,151,187);">48</span>):<br/>    body_text = body_text.replace(str(unichr(i))<span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">' '</span>)</pre><pre><span>body_text</span> = <span>body_text</span>.replace(<span style="color: rgb(165,194,97);">';'</span><span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">' '</span>).split()</pre><pre><br/></pre>***************************************************************************************************************<br/><br/></li><li>Each word is evaluated to find either “Online:” or “Offline:” keywords, or “[2 Upper case characters][6 digit number]” terminal IDs (TIDs). If the online / offline keywords are found, any subsequent TIDs are stored in a list, corresponding to which keyword was evaluated most recently.</li><li><strong><em>Pseudo Code for this process:</em></strong><ol><li><em> <span style="color: rgb(0,128,0);">For each word in the email body:</span></em><br class="_mce_tagged_br"/><ol><li><em> </em><span style="color: rgb(0,128,0);">    </span><em><span style="color: rgb(0,128,0);">If the word is online: Activate the online list to receive subsequent TIDs</span></em></li><li><em><span style="color: rgb(0,128,0);">     If the word is offline: Activate the offline list to receive subsequent TIDs</span></em></li><li><em><span style="color: rgb(0,128,0);">     If the word begins with two upper case characters (ascii range 65 - 90) and is 8 characters long: add it to the currently activated list.</span></em></li><li><em>  <span style="color: rgb(255,102,0);"><strong>* </strong></span><span style="color: rgb(0,128,0);">If the word begins with <em><span style="color: rgb(0,128,0);">two upper case characters <em><span style="color: rgb(0,128,0);">(ascii range 65 - 90)</span></em></span></em> and is not 8 characters long: send an error notification.</span></em></li><li><em><span style="color: rgb(0,128,0);">     If the word does not match any of the above: ignore it.<br/></span></em><em style="color: rgb(255,102,0);">* Planned, not yet implemented.<br/> </em></li></ol></li></ol></li><li>The script then connects to the MySQL database, and updates the relevant rows on the “Status Table”, to reflect any terminal status changes made by the email:<br/><br/><strong><em>My Code:<br/></em></strong><pre>cur.execute(<span style="color: rgb(165,194,97);">&quot;UPDATE Status_table SET Status=</span><span style="color: rgb(204,120,50);">\&quot;</span><span style="color: rgb(165,194,97);">Online</span><span style="color: rgb(204,120,50);">\&quot;</span><span style="color: rgb(165,194,97);">, Last_Changed=&quot; </span>+<br/>            datetime.datetime.now() + <span style="color: rgb(165,194,97);">&quot; WHERE TID=&quot; </span>+ on[<span style="color: rgb(104,151,187);">2</span>:])</pre>OR<br/><pre>cur.execute(<span style="color: rgb(165,194,97);">&quot;UPDATE Status_table SET Status=</span><span style="color: rgb(204,120,50);">\&quot;</span><span style="color: rgb(165,194,97);">Offline</span><span style="color: rgb(204,120,50);">\&quot;</span><span style="color: rgb(165,194,97);">, Last_Changed=&quot; </span>+<br/>            datetime.datetime.now() + <span style="color: rgb(165,194,97);">&quot; WHERE TID=&quot; </span>+ on[<span style="color: rgb(104,151,187);">2</span>:])</pre><em><br/><br/></em><strong><em>Explanation:<br/></em></strong>The above lines of code execute an SQL statement on the MySQL database, where the “status” (online or offline) of a terminal, specified by the TID (terminal ID), is updated to the correct value (depending on which “keyword” preceded it most recently).</li><li>Finally, the python script makes a system call, which tells Ubuntu to set an IP address to being “up”, or “down” depending on whether the associated TID is online or offline respectively. If an IP address is “up” that IP address can be locally “pinged”, it cannot be “pinged” however, if that IP address is “down. The system call from Python looks like this:<br/><br/><pre>call([<span style="color: rgb(165,194,97);">&quot;ifconfig&quot;</span><span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">&quot;eth0:&quot; </span>+ eth0_addr<span style="color: rgb(204,120,50);">, </span>ip<span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">&quot;netmask&quot;</span><span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">&quot;255.255.255.0&quot;</span><span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">&quot;up&quot;</span>]) to set an IP address as &quot;up&quot;<br/>OR</pre><pre>call([<span style="color: rgb(165,194,97);">&quot;ifconfig&quot;</span><span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">&quot;eth0:&quot; </span>+ eth0_addr<span style="color: rgb(204,120,50);">, </span>ip<span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">&quot;netmask&quot;</span><span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">&quot;255.255.255.0&quot;</span><span style="color: rgb(204,120,50);">, </span><span style="color: rgb(165,194,97);">&quot;down&quot;</span>]) to set an IP address as &quot;down&quot;</pre><p><br/></p></li></ol><p><br/></p><h2 id="Parser-Debugging"><strong>Debugging</strong></h2><p>Various levels of debugging can be enabled via passing an argument to the email monitoring Bash script. By default, if no argument is passed, debugging will assume that errors should be logged and support emails should be sent when errors are detected. The following codes are arguments which can be passed to enable different debugging levels than the standard - only log errors - debugging level:</p><ul><li>0 : Completely disable logging</li><li>1 : Enable comprehensive logging (i.e. When emails were received, when email parsing starts, when it finishes, if all IP addresses had matches found in the database, if the terminal statuses were updated successfully)</li><li>2 : Comprehensive logging, with additional logs to measure how long certain parts of the script take to run</li></ul><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493789/85493790.png">code.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

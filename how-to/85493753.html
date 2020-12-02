@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Parcel SafePlace (PackageRoom) iPad application</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Parcel-SafePlace_85493752.html">Parcel SafePlace</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Parcel SafePlace (PackageRoom) iPad application
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>This document aims to describe the build and release process for the Parcel SafePlace iPad application.</p><h1 id="ParcelSafePlace(PackageRoom)iPadapplication-Sourcecode">Source code</h1><p>The source code for the application resides in the <a class="external-link" href="https://svn.bbconsult.co.uk/repository/packageroom/trunk/iPad%20application/" rel="nofollow">packageroom</a> repository. Use SVN to checkout the code to somewhere on your Mac that Xcode can see.</p><div class="confluence-information-macro confluence-information-macro-tip"><span class="aui-icon aui-icon-small aui-iconfont-approve confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>A VM has already been set up within the Birmingham office with the necessary tools and configuration to release the application. See the BitWarden note 'macOS VM: Parcel Safeplace'.</p></div></div><p><br/></p><h1 id="ParcelSafePlace(PackageRoom)iPadapplication-Buildenvironment">Build environment</h1><p>The iPad application requires the following to build:</p><ul><li>Xcode</li><li>Developer certificates, either personal or from the <strong>Parcel Safe Place Limited</strong> account</li></ul><p>The iPad application requires the following to release:</p><ul><li>Xcode Organiser / Application Loader</li><li>Being part of the Parcel Safe Place Limited enterprise team (ask Ben Waters at Parcel Safeplace for help with this)</li><li>Possessing the Parcel Safeplace distribution certificate</li></ul><h2 id="ParcelSafePlace(PackageRoom)iPadapplication-Preparingtheenvironment">Preparing the environment</h2><p>Open <strong>Xcode → Preferences</strong> and add the account you used to join the Parcel Safeplace Limited enterprise team. In our case, this is <strong>apple@bbconsult.co.uk</strong>, the details of which are in the 'BB Consult Dev Account' BW note. Once signed in, click <strong>View Details...</strong> when highlighting the <strong>Parcel Safe Place Limited</strong> team and ensure that iOS development and iOS distribution certificates are on your machine. If they aren't, use the <strong>Create</strong> button to request them. Download any provisioning profiles using the <strong>Download all</strong><strong> </strong>button.</p><p>If the distribution certificate needs renewing or resetting, follow the instructions at <a class="external-link" href="https://developer.apple.com" rel="nofollow">developer.apple.com</a> in the <strong>Certificates, Identifiers &amp; Profiles</strong> page, otherwise skip to the next section. Click <strong>Certificates → Production </strong>and follow the instructions. You'll need to generate a certificate signing request using the <strong>Keychain Access</strong> app on your Mac. Click <strong>Keychain Access → Certificate Assistant → Request a Certificate from a Certificate Authority.</strong> Use <strong>admin@parcelsafeplace.com </strong>in the email field, <strong>Parcel SafePlace </strong>in the common name field, and leave the CA email field blank.</p><p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" height="400" src="attachments/85493753/85493754.png" data-image-src="attachments/85493753/85493754.png" data-unresolved-comment-count="0" data-linked-resource-id="85493754" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screen Shot 2018-04-05 at 10.27.29.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493753" data-linked-resource-container-version="1"></span></p><p>Click the option to save the file to disk. Now upload the CSR when requested by the certificate request wizard on the Apple developer portal, and it should return a new certificate which you can then import back into <strong>Keychain Access</strong> using <strong>File → Import</strong>. You should now see the new certificate in the <strong>login</strong> keychain. The old distribution certificate/key can safely be removed. The instructions are the same for normal developer certificates, just choose <strong>Certificates → Development </strong>in the developer portal.</p><p>As you've created a new distribution certificate, you need to also create a new distribution provisioning profile, or edit the existing one to point to the new certificate and then download it in Xcode again. To create a new profile, select <strong>Provisioning Profiles → Distribution</strong> in the developer portal and click the <strong>+</strong> icon, select App Store distribution, ensure that the correct app ID (com.parcelsafeplace) is selected, then select the new certificate you generated earlier. To edit an existing profile, select it and click <strong>Edit</strong>, then select the new distribution certificate you created earlier. Either option will generate a new profile, which you can then download in the Xcode account details pane.</p><h2 id="ParcelSafePlace(PackageRoom)iPadapplication-Sharingcertificates/keysacrossmachines">Sharing certificates/keys across machines</h2><p>While provisioning profiles can be downloaded again to a new machine via Xcode, the private key tied to a certificate is stored in the keychain of the Mac which generated the initial CSR. To migrate or share the certificate, the key must be exported alongside it. Right click the certificate in <strong>Keychain Access</strong> and select the export option. Save it somewhere, and encrypt it with a password when prompted. Use the <strong>File → Import</strong> option on the destination machine and use the same password to decrypt when importing. Delete exported file when finished.</p><h1 id="ParcelSafePlace(PackageRoom)iPadapplication-Buildingandrunningtheapplication">Building and running the application</h1><p>Open the project in Xcode and ensure that the <strong>Parcel Safe Place Limited</strong> team is selected.</p><p>Select the correct scheme using the scheme menu in Xcode.</p><p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" height="250" confluence-query-params="effects=drop-shadow" src="attachments/85493753/85493755.png?effects=drop-shadow" data-image-src="attachments/85493753/85493755.png" data-unresolved-comment-count="0" data-linked-resource-id="85493755" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screen Shot 2018-04-04 at 14.05.14.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493753" data-linked-resource-container-version="1"></span></p><p>Click the play icon on the control bar across the top of Xcode to run the app with the active scheme.</p><p>Alternatively, use the <strong>Product</strong> menu to build without running, or run the last built version of the app.</p><p>Connect an iPad and select it from the scheme menu if you want to test on a physical device. This will require you to trust your Mac on the iPad, and will trigger Xcode to generate provisioning profiles for the device.</p><h1 id="ParcelSafePlace(PackageRoom)iPadapplication-Releasingtheapplication">Releasing the application</h1><p>Parcel Safeplace used to use Testflight as a distribution mechanism, but have switched to using Miradore as an MDM solution and also use it to distribute applications.</p><p>Ensure that you've selected a valid scheme for release. If in doubt, select the <strong>Generic iOS Device</strong> scheme.</p><p>Once you're ready to release, increment the build number in the <strong>General</strong> tab, and use the <strong>Product → Archive</strong> menu to prepare a release.</p><p>In the organizer window, select the newly built archive and select <strong>Distribute App</strong>. Choose manual signing, and select 'Ad Hoc' distribution, and select the appropriate distribution certificate when prompted.</p><p>Alternatively, you can use the <strong>Application Loader </strong>in the <strong>Window</strong> menu of Xcode. This is not covered in this article.</p><p>The signed IPA is then sent to our contact at Parcel Safeplace via email. At the time of writing, this is Ben Waters.</p><h1 id="ParcelSafePlace(PackageRoom)iPadapplication-Addingdevicestotheprovisioningprofile">Adding devices to the provisioning profile</h1><p>Occasionally, Parcel Safeplace may want to add new devices to the provisioning profile used for distribution. Simply add the devices in the Apple developer portal, regenerate the profile, and then import it into Xcode.</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493753/85493754.png">Screen Shot 2018-04-05 at 10.27.29.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/85493753/85493755.png">Screen Shot 2018-04-04 at 14.05.14.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

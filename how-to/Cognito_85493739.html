@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry Group : Cognito</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry Group</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="BVI_85493723.html">BVI</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry Group : Cognito
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="Cognito-Howit’ssetup:">How it’s set up:</h1><h2 id="Cognito-Attributes">Attributes</h2><p>Once a Cognito user poll has been created you cannot change the required attributes from the list of proposed attributes. Nor can you delete a custom attribute once created.</p><p>To make a custom attribute required you will need to create a lambda that gets triggered at post register (see Triggers below).</p><p>The only attributes used are Email and custom:API_Key all other attributes are legacies from an old plan/setup.</p><h3 id="Cognito-StandardAttributes:">Standard Attributes:</h3><p>Email -                                    Required - Alias</p><p>Family name -                         Required</p><p>Gender -                                 Required</p><p>Given Name -                          Required</p><p>Name -                                    Required</p><p>Updated at -                            Required</p><h3 id="Cognito-CustomAttributes:">Custom Attributes:</h3><p>custom:API_Key -                    Required</p><p>custom:height -</p><p>custom:weight -</p><p>custom:birthyear -</p><p>custom:ethnicity -</p><p>custom:activity -</p><p>custom:country -</p><p>custom:market_contact -</p><p>custom:notification_freq –</p><h2 id="Cognito-Policies">Policies</h2><p>Password minimum Length is 8, requires: Numbers, Uppercase letters and Lowercase letters.</p><p>Users are allowed to sign themselves up (via email validation).</p><p>After 7 days if a created account hasn’t been used, it should expire.</p><h2 id="Cognito-Verifications">Verifications</h2><p>Verification is made by email and MFA is disabled.</p><h2 id="Cognito-Messagecustomizations">Message customizations</h2><p>Message customization is handled by using the custom message trigger. The email used is <a class="external-link" href="mailto:bvi-support@bbconsult.co.uk" rel="nofollow">bvi-support@bbconsult.co.uk</a></p><h2 id="Cognito-Devices">Devices</h2><p>Device remembering is set to NO because we couldn’t make the .Net SDK log back in with the remembered device. See: Cognito for .Net</p><h2 id="Cognito-Apps">Apps</h2><p>The currently used app is mybvi2 which has app client secret enabled as well as admin_no_srp_auth and its refresh token expires in 30 days.</p><h2 id="Cognito-Triggers">Triggers</h2><p>Documentation about Cognito triggers can be found <a class="external-link" href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html?icmpid=docs_cognito_console" rel="nofollow">Here.</a></p><p>Our Cognito uses three triggers:</p><p><strong>CustomMessage:</strong></p><p style="margin-left: 30.0px;">Used for customising the email, sent on a new register, or on forgot password.</p><p style="margin-left: 30.0px;">Example: <a class="external-link" href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html?icmpid=docs_cognito_console#cognito-user-pools-lambda-trigger-syntax-custom-message-example" rel="nofollow">aws-lambda-triggers-custom-message-example</a></p><p style="margin-left: 30.0px;">Documentation: <a class="external-link" href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html?icmpid=docs_cognito_console#cognito-user-pools-lambda-trigger-syntax-custom-message" rel="nofollow">cognito-user-pools-lambda-trigger-syntax-custom-message</a></p><p><strong>PostAuthentication:</strong></p><p style="margin-left: 30.0px;">Check if user exist in DB and if not, or if values of AppApiKey, SubscriptionType or ScansRemaining are null, It creates/updates the user.</p><p style="margin-left: 30.0px;">Example: <a class="external-link" href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html?icmpid=docs_cognito_console#aws-lambda-triggers-post-authentication-example" rel="nofollow">aws-lambda-triggers-post-authentication-example</a></p><p style="margin-left: 30.0px;">Documentation: <a class="external-link" href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html?icmpid=docs_cognito_console#cognito-user-pools-lambda-trigger-syntax-post-auth" rel="nofollow">cognito-user-pools-lambda-trigger-syntax-post-auth</a></p><p><strong>PreSign-up:</strong></p><p style="margin-left: 30.0px;">Used to check if the given API_Key in custom:API_Key exist in the DB.</p><p style="margin-left: 30.0px;">Example: <a class="external-link" href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html?icmpid=docs_cognito_console#aws-lambda-triggers-pre-registration-example" rel="nofollow">aws-lambda-triggers-pre-registration-example</a></p><p style="margin-left: 30.0px;">Documentation: <a class="external-link" href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html?icmpid=docs_cognito_console#cognito-user-pools-lambda-trigger-syntax-pre-signup" rel="nofollow">cognito-user-pools-lambda-trigger-syntax-pre-signup</a></p><p style="margin-left: 30.0px;"><br/></p><p>No particular extra permission are needed for the lambda that will get call by Cognito.</p><p><br/></p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
