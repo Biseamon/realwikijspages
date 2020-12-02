@@ -1,68 +1,101 @@
 <!--
-title: 85492997
+title: BBWT2 - Application Security / Monitoring
 description: 
 published: true
-date: 2020-12-01T15:58:54.261Z
+date: 2020-12-02T15:07:10.087Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:00:33.974Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : BBWT2 - Application Security / Monitoring</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Blueberry-Web-Template_85492520.html">Blueberry Web Template</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BBWT2_85492528.html">BBWT2</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : BBWT2 - Application Security / Monitoring
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Sep 21, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p class="auto-cursor-target">The list of security items below is compiled from the OWASP top 10 Application Security Risks. </p><p>For each risk, there is a statement of compliance for BBWT2 based projects.</p><p>This page is still a draft - more details will be added soon.</p><div class="table-wrap"><table class="relative-table confluenceTable" style="width: 1326.0px;"><colgroup><col style="width: 0.0px;"/><col style="width: 0.0px;"/><col style="width: 0.0px;"/></colgroup><thead><tr><th class="confluenceTh"><p>Item</p></th><th class="confluenceTh"><p>Brief Description</p></th><th class="confluenceTh"><p>How This Is Addressed in BBWT2</p></th></tr></thead><thead><tr><th class="confluenceTh"><p>Item</p></th><th class="confluenceTh"><p>Brief Description</p></th><th class="confluenceTh"><p>How This Is Addressed in BBWT2</p></th></tr></thead><tbody><tr><td class="confluenceTd">A1:2017-Injection</td><td class="confluenceTd">Injection flaws, such as SQL, NoSQL, OS, and LDAP injection, occur when untrusted data is sent to an interpreter as part of a command or query. The attacker's hostile data can trick the interpreter into executing unintended commands or accessing data without proper authorisation.</td><td class="confluenceTd">TBA</td></tr><tr><td class="confluenceTd">A2:2017-Broken Authentication</td><td class="confluenceTd">Application functions related to authentication and session management are often implemented incorrectly, allowing attackers to compromise passwords, keys, or session tokens, or to exploit other implementation flaws to assume other users' identities temporarily or permanently.</td><td class="confluenceTd">TBA</td></tr><tr><td class="confluenceTd">A3:2017-Sensitive Data Exposure</td><td class="confluenceTd">Many web applications and APIs do not properly protect sensitive data, such as financial, healthcare, and PII. Attackers may steal or modify such weakly protected data to conduct credit card fraud, identity theft, or other crimes. Sensitive data may be compromised without extra protection, such as encryption at rest or in transit, and requires special precautions when exchanged with the browser.</td><td class="confluenceTd">TBA</td></tr><tr><td class="confluenceTd">A4:2017-XML External Entities (XXE)</td><td class="confluenceTd">Many older or poorly configured XML processors evaluate external entity references within XML documents. External entities can be used to disclose internal files using the file URI handler, internal file shares, internal port scanning, remote code execution, and denial of service attacks.</td><td class="confluenceTd">TBA</td></tr><tr><td class="confluenceTd">A5:2017-Broken Access Control</td><td class="confluenceTd">Restrictions on what authenticated users are allowed to do are often not properly enforced. Attackers can exploit these flaws to access unauthorised functionality and/or data, such as access other users' accounts, view sensitive files, modify other users' data, change access rights, etc.</td><td class="confluenceTd">TBA</td></tr><tr><td class="confluenceTd">A6:2017-Security Misconfiguration</td><td class="confluenceTd">Security misconfiguration is the most commonly seen issue. This is commonly a result of insecure default configurations, incomplete or ad hoc configurations, open cloud storage, misconfigured HTTP headers, and verbose error messages containing sensitive information. Not only must all operating systems, frameworks, libraries, and applications be securely configured, but they must be patched/upgraded in a timely fashion.</td><td class="confluenceTd">TBA</td></tr><tr><td class="confluenceTd">A7:2017-Cross-Site Scripting (XSS)</td><td class="confluenceTd">XSS flaws occur whenever an application includes untrusted data in a new web page without proper validation or escaping, or updates an existing web page with user-supplied data using a browser API that can create HTML or JavaScript. XSS allows attackers to execute scripts in the victim's browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites.</td><td class="confluenceTd">TBA</td></tr><tr><td class="confluenceTd">A8:2017-Insecure Deserialisation</td><td class="confluenceTd">Insecure deserialisation often leads to remote code execution. Even if deserialisation flaws do not result in remote code execution, they can be used to perform attacks, including replay attacks, injection attacks, and privilege escalation attacks.</td><td class="confluenceTd">TBA</td></tr><tr><td class="confluenceTd">A9:2017-Using Components with Known Vulnerabilities</td><td class="confluenceTd">Components, such as libraries, frameworks, and other software modules, run with the same privileges as the application. If a vulnerable component is exploited, such an attack can facilitate serious data loss or server takeover. Applications and APIs using components with known vulnerabilities may undermine application defences and enable various attacks and impacts.</td><td class="confluenceTd">TBA</td></tr><tr><td colspan="1" class="confluenceTd">A10:2017-Insufficient Logging&amp;Monitoring</td><td colspan="1" class="confluenceTd">Insufficient logging and monitoring, coupled with missing or ineffective integration with incident response, allows attackers to further attack systems, maintain persistence, pivot to more systems, and tamper, extract, or destroy data. Most breach studies show time to detect a breach is over 200 days, typically detected by external parties rather than internal processes or monitoring.</td><td colspan="1" class="confluenceTd">TBA</td></tr></tbody></table></div><p><br/></p><p><br/></p><h2 id="BBWT2-ApplicationSecurity/Monitoring-References">References</h2><p><br/></p><ul class="content-by-label conf-macro output-block"><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=49152068" rel="nofollow">A10:2017 - Insufficient Logging &amp; Monitoring</a></p></li><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A1%3A2017-+Injection" rel="nofollow">A1:2017- Injection</a></p></li><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A2%3A2017+-+Broken+Authentication" rel="nofollow">A2:2017 - Broken Authentication</a></p></li><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A3%3A2017+-+Sensitive+Data+Exposure" rel="nofollow">A3:2017 - Sensitive Data Exposure</a></p></li><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=49152016" rel="nofollow">A4:2017 - XML External Entities (XXE)</a></p></li><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A5%3A2017+-+Broken+Access+Control" rel="nofollow">A5:2017 - Broken Access Control</a></p></li><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A6%3A2017+-+Security+Misconfiguration" rel="nofollow">A6:2017 - Security Misconfiguration</a></p></li><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=49152067" rel="nofollow">A7:2017 - Cross-Site Scripting (XSS)</a></p></li><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A8%3A2017+-+Insecure+Deserialization" rel="nofollow">A8:2017 - Insecure Deserialization</a></p></li><li><p><span class="icon aui-icon content-type-page" title="Page">Page:</span><br/><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A9%3A2017+-+Using+Components+with+Known+Vulnerabilities" rel="nofollow">A9:2017 - Using Components with Known Vulnerabilities</a></p></li></ul><p><br/></p><p><br/></p>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Nov 27, 2020 10:56</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : BBWT2 - Application Security / Monitoring&nbsp;</h1>
+<p>Created by Jason Cozza on Sep 21, 2020</p>
+<p>The list of security items below is compiled from the OWASP top 10 Application Security Risks.&nbsp;</p>
+<p>For each risk, there is a statement of compliance for BBWT2 based projects.</p>
+<p>This page is still a draft - more details will be added soon.</p>
+<figure class="table" style="width:1326.0px;">
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Brief Description</th>
+        <th>How This Is Addressed in BBWT2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Item</th>
+        <th>Brief Description</th>
+        <th>How This Is Addressed in BBWT2</th>
+      </tr>
+      <tr>
+        <th>A1:2017-Injection</th>
+        <th>Injection flaws, such as SQL, NoSQL, OS, and LDAP injection, occur when untrusted data is sent to an interpreter as part of a command or query. The attacker's hostile data can trick the interpreter into executing unintended commands or accessing data without proper authorisation.</th>
+        <th>TBA</th>
+      </tr>
+      <tr>
+        <th>A2:2017-Broken Authentication</th>
+        <th>Application functions related to authentication and session management are often implemented incorrectly, allowing attackers to compromise passwords, keys, or session tokens, or to exploit other implementation flaws to assume other users' identities temporarily or permanently.</th>
+        <th>TBA</th>
+      </tr>
+      <tr>
+        <th>A3:2017-Sensitive Data Exposure</th>
+        <th>Many web applications and APIs do not properly protect sensitive data, such as financial, healthcare, and PII. Attackers may steal or modify such weakly protected data to conduct credit card fraud, identity theft, or other crimes. Sensitive data may be compromised without extra protection, such as encryption at rest or in transit, and requires special precautions when exchanged with the browser.</th>
+        <th>TBA</th>
+      </tr>
+      <tr>
+        <th>A4:2017-XML External Entities (XXE)</th>
+        <th>Many older or poorly configured XML processors evaluate external entity references within XML documents. External entities can be used to disclose internal files using the file URI handler, internal file shares, internal port scanning, remote code execution, and denial of service attacks.</th>
+        <th>TBA</th>
+      </tr>
+      <tr>
+        <th>A5:2017-Broken Access Control</th>
+        <th>Restrictions on what authenticated users are allowed to do are often not properly enforced. Attackers can exploit these flaws to access unauthorised functionality and/or data, such as access other users' accounts, view sensitive files, modify other users' data, change access rights, etc.</th>
+        <th>TBA</th>
+      </tr>
+      <tr>
+        <th>A6:2017-Security Misconfiguration</th>
+        <th>Security misconfiguration is the most commonly seen issue. This is commonly a result of insecure default configurations, incomplete or ad hoc configurations, open cloud storage, misconfigured HTTP headers, and verbose error messages containing sensitive information. Not only must all operating systems, frameworks, libraries, and applications be securely configured, but they must be patched/upgraded in a timely fashion.</th>
+        <th>TBA</th>
+      </tr>
+      <tr>
+        <th>A7:2017-Cross-Site Scripting (XSS)</th>
+        <th>XSS flaws occur whenever an application includes untrusted data in a new web page without proper validation or escaping, or updates an existing web page with user-supplied data using a browser API that can create HTML or JavaScript. XSS allows attackers to execute scripts in the victim's browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites.</th>
+        <th>TBA</th>
+      </tr>
+      <tr>
+        <th>A8:2017-Insecure Deserialisation</th>
+        <th>Insecure deserialisation often leads to remote code execution. Even if deserialisation flaws do not result in remote code execution, they can be used to perform attacks, including replay attacks, injection attacks, and privilege escalation attacks.</th>
+        <th>TBA</th>
+      </tr>
+      <tr>
+        <th>A9:2017-Using Components with Known Vulnerabilities</th>
+        <th>Components, such as libraries, frameworks, and other software modules, run with the same privileges as the application. If a vulnerable component is exploited, such an attack can facilitate serious data loss or server takeover. Applications and APIs using components with known vulnerabilities may undermine application defences and enable various attacks and impacts.</th>
+        <th>TBA</th>
+      </tr>
+      <tr>
+        <th colspan="1">A10:2017-Insufficient Logging&amp;Monitoring</th>
+        <th colspan="1">Insufficient logging and monitoring, coupled with missing or ineffective integration with incident response, allows attackers to further attack systems, maintain persistence, pivot to more systems, and tamper, extract, or destroy data. Most breach studies show time to detect a breach is over 200 days, typically detected by external parties rather than internal processes or monitoring.</th>
+        <th colspan="1">TBA</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>References</h2>
+<p>&nbsp;</p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=49152068">A10:2017 - Insufficient Logging &amp; Monitoring</a></p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A1%3A2017-+Injection">A1:2017- Injection</a></p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A2%3A2017+-+Broken+Authentication">A2:2017 - Broken Authentication</a></p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A3%3A2017+-+Sensitive+Data+Exposure">A3:2017 - Sensitive Data Exposure</a></p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=49152016">A4:2017 - XML External Entities (XXE)</a></p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A5%3A2017+-+Broken+Access+Control">A5:2017 - Broken Access Control</a></p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A6%3A2017+-+Security+Misconfiguration">A6:2017 - Security Misconfiguration</a></p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=49152067">A7:2017 - Cross-Site Scripting (XSS)</a></p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A8%3A2017+-+Insecure+Deserialization">A8:2017 - Insecure Deserialization</a></p>
+<p>Page:<br><a href="https://wiki.bbconsult.co.uk/display/BLUEB/A9%3A2017+-+Using+Components+with+Known+Vulnerabilities">A9:2017 - Using Components with Known Vulnerabilities</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Document generated by Confluence on Nov 27, 2020 10:56</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
