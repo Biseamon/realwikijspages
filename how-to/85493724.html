@@ -1,82 +1,50 @@
 <!--
-title: 85493724
+title: Amazon Web Services: Deploying a new live version of AWS BVI
 description: 
 published: true
-date: 2020-12-02T12:00:08.768Z
+date: 2020-12-02T14:32:03.786Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-12-02T12:00:06.728Z
 -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry Group : Amazon Web Services: Deploying a new live version of AWS BVI</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry Group</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Project-Information_85493575.html">Project Information</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="BVI_85493723.html">BVI</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry Group : Amazon Web Services: Deploying a new live version of AWS BVI
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Jason Cozza</span> on Nov 24, 2020
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <h2 id="AmazonWebServices:DeployinganewliveversionofAWSBVI-CheckingLambda:">Checking Lambda:</h2><p>Before deploying a new live version, the lambdas need the following checks:</p><ul><li>Cognito_BVI_Post_Authentication_Python<ul><li>Check if every SQL query are functional.</li></ul></li><li>Cognito_BVI_Pre_Sign_up_Python<ul><li>Check if every SQL query are functional.</li></ul></li></ul><p>Note: <strong>Grabcut</strong> and <strong>BVI engine</strong> are also using SQL so they need a check as well.</p><h2 id="AmazonWebServices:DeployinganewliveversionofAWSBVI-TestRun:">Test Run:</h2><p>Once all lambdas have been checked and change to use the next live values. A full test is required and any critical fail need fixing.</p><p>For this it is best to double check that all API Gateway end points are using the correct Lambda on the beta stage.</p><h2 id="AmazonWebServices:DeployinganewliveversionofAWSBVI-Deployinganewliveversion:">Deploying a new live version:</h2><p>Once the future version has passed the test program, create a new version of the lambdas and stage using the instruction at the following link: <a href="https://wiki.bbconsult.co.uk/display/BLUEB/Amazon+Web+Services%3A+Deploying+a+stable+stage+of+an+API+gateway+calling+Lambda" rel="nofollow">https://wiki.bbconsult.co.uk/display/BLUEB/Amazon+Web+Services%3A+Deploying+a+stable+stage+of+an+API+gateway+calling+Lambda</a></p><p>The new stage should be named “app_test_” followed by the release date. Ex: ‘app_test_17_02_17’.</p><p>Once the API deployed reverse all method to use the latest lambda to avoid having to do so when deploying the next time to beta.</p><p>Then make a copy of the swagger file and rename it to contain the new stage name.</p><p>The next step is to update the app_test usage Plan:</p><ul><li>Go to Usage Plans</li><li>Select the usage plan you want to add to stage to.</li><li>Under &quot;Associated API Stages&quot; choose the BVI Web Service API for the API and then choose the new created Stage.</li></ul><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/85493724/85493726.png" data-image-src="attachments/85493724/85493726.png" data-unresolved-comment-count="0" data-linked-resource-id="85493726" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Usage Plan.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493724" data-linked-resource-container-version="1"></span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/85493724/85493725.png" data-image-src="attachments/85493724/85493725.png" data-unresolved-comment-count="0" data-linked-resource-id="85493725" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Usage Plan Stage.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="85493724" data-linked-resource-container-version="1"></span></p><p><br/></p><p><br/></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/85493724/85493725.png">Usage Plan Stage.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/85493724/85493726.png">Usage Plan.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Dec 02, 2020 11:32</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry Group : Amazon Web Services: Deploying a new live version of AWS BVI&nbsp;</h1>
+<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h2>Checking Lambda:</h2>
+<p>Before deploying a new live version, the lambdas need the following checks:</p>
+<ul>
+  <li>Cognito_BVI_Post_Authentication_Python<ul>
+      <li>Check if every SQL query are functional.</li>
+    </ul>
+  </li>
+  <li>Cognito_BVI_Pre_Sign_up_Python<ul>
+      <li>Check if every SQL query are functional.</li>
+    </ul>
+  </li>
+</ul>
+<p>Note: <strong>Grabcut</strong> and <strong>BVI engine</strong> are also using SQL so they need a check as well.</p>
+<h2>Test Run:</h2>
+<p>Once all lambdas have been checked and change to use the next live values. A full test is required and any critical fail need fixing.</p>
+<p>For this it is best to double check that all API Gateway end points are using the correct Lambda on the beta stage.</p>
+<h2>Deploying a new live version:</h2>
+<p>Once the future version has passed the test program, create a new version of the lambdas and stage using the instruction at the following link: <a href="https://wiki.bbconsult.co.uk/display/BLUEB/Amazon+Web+Services%3A+Deploying+a+stable+stage+of+an+API+gateway+calling+Lambda">https://wiki.bbconsult.co.uk/display/BLUEB/Amazon+Web+Services%3A+Deploying+a+stable+stage+of+an+API+gateway+calling+Lambda</a></p>
+<p>The new stage should be named “app_test_” followed by the release date. Ex: ‘app_test_17_02_17’.</p>
+<p>Once the API deployed reverse all method to use the latest lambda to avoid having to do so when deploying the next time to beta.</p>
+<p>Then make a copy of the swagger file and rename it to contain the new stage name.</p>
+<p>The next step is to update the app_test usage Plan:</p>
+<ul>
+  <li>Go to Usage Plans</li>
+  <li>Select the usage plan you want to add to stage to.</li>
+  <li>Under "Associated API Stages" choose the BVI Web Service API for the API and then choose the new created Stage.</li>
+</ul>
+<figure class="image"><img src="attachments/85493724/85493726.png"></figure>
+<figure class="image"><img src="attachments/85493724/85493725.png"></figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493724/85493725.png">Usage Plan Stage.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/85493724/85493726.png">Usage Plan.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<p>Document generated by Confluence on Dec 02, 2020 11:32</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
