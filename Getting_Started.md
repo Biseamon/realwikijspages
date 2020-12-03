@@ -2,9 +2,9 @@
 title: Getting Started
 description: 
 published: true
-date: 2020-12-02T11:53:31.764Z
+date: 2020-12-03T14:09:03.907Z
 tags: 
-editor: undefined
+editor: markdown
 dateCreated: 2020-11-26T11:59:56.547Z
 ---
 
@@ -16,7 +16,7 @@ The Wiki is divided into multiple spaces but during a trial, you will only have 
 
 Please review each of these.
 
-## Security
+# Security
 
 > It is a requirement of working for Blueberry that you are aware of your obligations towards Security.
 >  
