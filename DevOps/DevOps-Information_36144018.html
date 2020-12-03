@@ -1,88 +1,846 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry : DevOps Information</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<!--
+title: DevOps Information
+description: 
+published: true
+date: 2020-12-03T15:12:01.098Z
+tags: 
+editor: ckeditor
+dateCreated: 2020-12-03T14:58:00.187Z
+-->
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry : DevOps Information
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Gareth Casey</span>, last modified by <span class='editor'> Unknown User (ahk)</span> on Aug 21, 2017
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>
-
-
-<div class="plugin_pagetree">
-
-        
-        
-    <ul class="plugin_pagetree_children_list plugin_pagetree_children_list_noleftspace">
-        <div class="plugin_pagetree_children">
-        </div>
+<h1>Blueberry : DevOps Information&nbsp;</h1>
+<p>Created by Gareth Casey, last modified by Unknown User (ahk) on Aug 21, 2017</p>
+<p>&nbsp;</p>
+<h1>Blueberry : Application's Environment Configuration&nbsp;</h1>
+<p>Created by Duncan Forsyth, last modified on Jul 24, 2017</p>
+<p>When the application runs, it needs to know:</p>
+<ul>
+  <li>Which database to connect to</li>
+  <li>Whether to enable caching</li>
+  <li>Whether to ensure all client-side resources are bundled, minified&nbsp;<i>(and potentially served from a CDN)</i></li>
+  <li>Whether to use technical diagnostic&nbsp;error pages&nbsp;or friendly error pages</li>
+  <li>What level of logging and monitoring to use</li>
+</ul>
+<p>The application uses the environment variable&nbsp;ASPNETCORE_ENVIRONMENT to decide how to behave. You can read more about the environment variable at&nbsp;<a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments">https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments</a>&nbsp;. Note well: the example values described in the Microsoft link are not the ones we're using to support BBWT3.</p>
+<h2>How the environment variable is set</h2>
+<h3>On a development machine</h3>
+<p>On a development machine you can set the value at System or User level in your OS.</p>
+<figure class="image"><img src="attachments/38175045/38175046.png"></figure>
+<p>Or you can specify it in Web project properties when using Visual Studio.</p>
+<figure class="image"><img src="attachments/38175045/38175047.png"></figure>
+<p>Or if you're using VS Code, you can specify it in .vscode/launch.json&nbsp;</p>
+<figure class="image"><img src="attachments/38175045/38175048.png"></figure>
+<h3>On elastic beanstalk</h3>
+<p>On elastic beanstalk, due to an Amazon bug, we cannot <i>directly</i> set the environment variables. But we can set environment "properties" and with a bit of code in Startup.cs we can read the environment properties and write them into the environment variables.&nbsp;</p>
+<p>As part of the DevOps process, the environment named "master" will have the environment property ASPNETCORE_ENVIRONMENT&nbsp;set to the value "master" and the environment named "test" will have the value as "test".</p>
+<p>&nbsp;</p>
+<h2>Configuration Files</h2>
+<p>One of the important things we do with the environment variable is decide which configuration we're going to load from the configuration files.</p>
+<ul>
+  <li><i>appsettings.json</i>&nbsp;– should contain configuration elements that are the same for all our environments. It will not have database connections in it - because developers will certainly not be using the same database as the test and live environments</li>
+</ul>
+<p>And then we load one of the following, depending on the value of the environment variable&nbsp;ASPNETCORE_ENVIRONMENT</p>
+<ul>
+  <li><i>appsettings.development.json</i>&nbsp;– the developer's configuration with specific connection strings for his machine. <strong>Don't push this to GitLab.</strong></li>
+  <li><i>appsettings.test.json</i>&nbsp;– the configuration for the test server</li>
+  <li><i>appsettings.master.json</i>&nbsp;– the configuration for the master server (the master server is deployed to when pushes are made to the master branch of GitLab)</li>
+</ul>
+<p>Worth nothing:</p>
+<ul>
+  <li><i>appsettings.development.json.template</i>&nbsp;– the template file you can use to create your own development config.</li>
+</ul>
+<p>&nbsp;</p>
+<p>Note well: appsettings.{env.EnvironmentName}.json file is able to either <strong>add</strong> new config sections or <strong>overwrite</strong> values. Configuration depends on the combination of the two files loaded into the app.</p>
+<p>&nbsp;</p>
+<h2>Known 'gotchas'</h2>
+<p>Visual Studio creates a file with a couple of profiles for running your application either via IIS Express or directly as a console application.</p>
+<p>Please ensure you don’t have a specific override in Properties/launchSettings.json file for your profile.</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/38175045/38175046.png">OS.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/38175045/38175047.png">Visual Studio.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/38175045/38175048.png">VSCODE.png</a> (image/png)</p>
+<p>&nbsp;</p>
+<h1>Blueberry : Configuring CI for your project&nbsp;</h1>
+<p>Created by Unknown User (ahk), last modified on Oct 16, 2018</p>
+<p>This article assumes that you have a basic understanding of Git and GitLab.</p>
+<p>You've set your project up on GitLab, and you now want to enable continuous building and continuous delivery of your project. The first thing to consider is where the building and deploying will occur. You may have already set up a project-specific runner which is designed to build the project, in which case skip ahead to the final sections of this article.</p>
+<p>GitLab uses a .gitlab-ci.yml file in the root of a repository to define the CI/CD pipelines for a project. It's recommended that you refer to the&nbsp;<a href="https://docs.gitlab.com/ce/ci/variables/">GitLab CI Variables</a> article while reading this article.</p>
+<h1>Docker (Linux) based builds</h1>
+<p>If your project can be built using a linux-based docker image, e.g. from&nbsp;<a href="https://dockerhub.com">DockerHub</a> or from a repository on GitLab's registry, then use this section of the article.</p>
+<p>The examples here will assume you're building an asp.net core project using Microsoft's official docker images.</p>
+<p>First, you'll want to find the test the build locally to ensure the docker image you intend to use is fit for purpose. This can be done by using bind mounts to mount your project directory within the docker container, e.g (assuming ${PWD} is the project root:</p>
+<p>docker run --rm -v ${PWD}:/src -it microsoft/dotnet:2.1-sdk cd /src &amp;&amp; dotnet build -c Debug</p>
+<p>This will run the `dotnet build -c Debug` command in the context of the '/src' directory, which is mapped to the project root on the docker host.</p>
+<p>To translate this into a CI job, we could use the following definition in our .gitlab-ci.yml file:</p>
+<p>image: microsoft/dotnet:2.1-sdk stages: &nbsp;- build build-app: &nbsp;stage: build &nbsp;only: &nbsp; &nbsp;- Development &nbsp;script: &nbsp; &nbsp;- 'dotnet restore' &nbsp; &nbsp;- 'dotnet publish --no-restore -c Debug -o ${CI_PROJECT_DIR}/build/ --version-suffix ${CI_PIPELINE_ID}-${CI_COMMIT_SHA:0:8}-${CI_PROJECT_ID}' &nbsp;artifacts: &nbsp; &nbsp;name: "${CI_JOB_NAME}-${CI_COMMIT_REF_NAME}" &nbsp; &nbsp;paths: &nbsp; &nbsp; &nbsp;- build</p>
+<p>Let's break down the structure of this CI block.</p>
+<p>Specifying 'image:' as a top-level directive means that it's used for any jobs in this CI where image is not specified, i.e. as a default.</p>
+<p>We then specify the broad stages within our pipelines. For now, we'll just use one.</p>
+<p>Next, we define our first job. Job names must be unique. Note that:</p>
+<ul>
+  <li>We assign the job to a stage using 'stage:'.</li>
+  <li>We restrict the job to only run on commits to the 'Development' branch.</li>
+</ul>
+<p>Within the job, we have defined a 'script:' block, which allows us to specify the commands required to build the project.</p>
+<p>Here, we're taking advantage of the dotnet command line to do the following:</p>
+<ul>
+  <li>Restore dependencies for the solution</li>
+  <li>Publish the solution using the 'Debug' configuration into the 'build' directory</li>
+  <li>Pass in the pipeline ID, first 8 characters of the commit hash, and the project ID as the version suffix (the app can then access this at runtime if needed)</li>
+</ul>
+<p>After the script block is the 'artifacts:' block, where we instruct GitLab to collect the 'build/' folder and treat it as our job artifact. We also assign this a useful name, which in this case would evaluate to 'build-app-Development'.</p>
+<p>Now let's say that we had an additional branch running alongside Development called Test. We want to deploy the software to a target whenever a merge or commit to this branch is made. In this case, we could amend the CI to look like this:</p>
+<p>image: microsoft/dotnet:2.1-sdk stages: &nbsp;- build &nbsp;- deploy build-app: &nbsp;stage: build &nbsp;only: &nbsp; &nbsp;- Development &nbsp; &nbsp;- Test &nbsp;script: &nbsp; &nbsp;- 'dotnet restore' &nbsp; &nbsp;- 'dotnet publish --no-restore -c Debug -o ${CI_PROJECT_DIR}/build/ --version-suffix ${CI_PIPELINE_ID}-${CI_COMMIT_SHA:0:8}-${CI_PROJECT_ID}' &nbsp;artifacts: &nbsp; &nbsp;name: "${CI_JOB_NAME}-${CI_COMMIT_REF_NAME}" &nbsp; &nbsp;paths: &nbsp; &nbsp; &nbsp;- build deploy-app: &nbsp;stage: deploy &nbsp;only: &nbsp; &nbsp;- Test &nbsp;environment: &nbsp; &nbsp;name: internal-test &nbsp; &nbsp;url: https://internal-test.example.com &nbsp;script: &nbsp; &nbsp;- ''</p>
+<p>Note that we've added a new job which only runs on commits/merges to the 'Test' branch, but we've also added 'Test' to the candidate branches in the 'build-app' phase. This gives two possible pipelines depending on which branch the commit is made on, e.g:</p>
+<p style="text-align:center;">Development: &lt;build-app&gt;</p>
+<p style="text-align:center;">Test: &lt;build-app&gt;&nbsp;→ &lt;deploy-app&gt;</p>
+<p>By default, artifacts specified in a previous stage are automatically restored in jobs in the next stage. In this case, the 'build/' folder we specified earlier would be restored and made available when the 'deploy-app' job runs. This way, we can take the contents of the build folder and deploy it using whatever deployment method we need.</p>
+<p>Note the additional 'environment:' block. Whatever we define here will become listed in the project's 'Operations&nbsp;→ Environments' page, allowing you to keep track of deployments.</p>
+<h1>Using a shared runner</h1>
+<p>By default, all jobs will run on the shared 'master' runner, which is a linux-based docker runner.</p>
+<p>If you want to use a specific shared runner, specify the a 'tags:' block in the job configuration. Example:</p>
+<p>deploy-app: &nbsp;stage: deploy &nbsp;only: &nbsp; &nbsp;- Test &nbsp;environment: &nbsp; &nbsp;name: internal-test &nbsp; &nbsp;url: https://internal-test.example.com &nbsp;script: &nbsp; &nbsp;- '' &nbsp;tags: &nbsp; &nbsp;- windows &nbsp; &nbsp;- reportingservices</p>
+<p>In this example, the job would look for a runner which had&nbsp;<strong>both</strong> the 'windows' and 'reportingservices' tags. If this requirement cannot be satisfied, the job will be stuck in a pending state until a runner becomes available, the job is cancelled, or the job expires.</p>
+<h1>Using a project-specific runner</h1>
+<p>If you want your project to have exclusive access to a runner, then navigate to the 'Settings&nbsp;→ CI/CI&nbsp;→ Runners' page in your project. Here, you can register a new runner for your project and optionally exclude the project from using shared runners. If using a project-specific runner,&nbsp;<strong>remember to tag your</strong> <strong>runners/job(s) appropriately.</strong></p>
+<p>Sometimes it's useful to have a project-specific runner as the configuration to build the project is quite unique or exotic i.e. a legacy .NET Framework project with third party dependencies which can't be satisfied with NuGet.</p>
+<p>If using a Windows runner, note that environment variables are expanded like %EXAMPLE% instead of ${EXAMPLE}</p>
+<p>&nbsp;</p>
+<h1>Blueberry : Docker&nbsp;</h1>
+<p>Created by Duncan Forsyth, last modified on Jul 14, 2017</p>
+<p><strong>What is Docker?</strong></p>
+<p>It’s a platform for packaging an application or service plus “all” the dependencies.</p>
+<p><strong>What Are We Using Docker for Today?</strong></p>
+<p>We're using it within the GitLab framework for BBWT3 to specify the environment in which particular steps of the build script are run.</p>
+<p><strong>What Might We Use Docker for Later?</strong></p>
+<p>We might find a way to use it for other deployment tasks, sharing database data rather than code and configuration files. This is highly hypothetical at the moment.</p>
+<p>We might use it for specifying what should be uploaded through Elastic Beanstalk to EC2 on AWS. But we don't at the moment, and have not yet seen a strong reason to investigate the possibility.</p>
+<p><strong>What is a Docker Image?</strong></p>
+<p>It's a description for building a docker container. There's some fancy technology to make it efficient to build a container from an image. Images can be shared easily. If you don't have a local copy of a docker image, it can be pulled from a docker registry without additional fuss.</p>
+<p><i>Worry: Some of the standard images in the registry effectively pull the <u>latest</u> version of an image. That's perhaps a little less controlled than we might like for a smoothly running DevOps operation.</i></p>
+<p><strong>What is a Docker Container?</strong></p>
+<p>A runnable instance of a built image. It will be run on a host which could be your local machine or, for instance, a central GitLab server. The host may be running multiple containers. They can be started, stopped, created, deleted, moved, etc.</p>
+<p>When you run a Docker container it's possible to connect it to a terminal on your host machine. This is called interactive mode. This could be very important for debugging a container that isn't acting as expected.</p>
+<p><strong>What is the Docker Engine?</strong></p>
+<p>It's a service/daemon that manages containers, images, data volumes and networks. It's what makes a server into a Docker Host.</p>
+<p><strong>What is a Docker Host?</strong></p>
+<p>The underlying OS on which you’re running the Docker Engine. Shared OS kernel resources are provided to the docker containers.</p>
+<p>Older versions of Docker were limited in what they could do. As of July 2017, ignoring MacOS:</p>
+<ul>
+  <li>If the host is Linux, it can only run Linux containers.</li>
+  <li>If the host is&nbsp;Windows<ul>
+      <li>And it's Windows Pro 10 or higher, on 64 bit, and it has Hyper-V support enabled, then you can use Docker for Windows to run&nbsp;<strong>both&nbsp;</strong>Linux and Windows containers, but not at the same time.</li>
+      <li>If it's a different Windows machine,<ul>
+          <li>You can use&nbsp;Docker for Windows to run&nbsp;Windows containers only.</li>
+          <li>Or Docker Toolbox to run&nbsp;<strong>both&nbsp;</strong>Linux and Windows containers. This is a heavyweight solution that runs you a suitable VM and then Docker inside of that.</li>
+        </ul>
+      </li>
     </ul>
-
-    <fieldset class="hidden">
-        <input type="hidden" name="treeId" value="">
-        <input type="hidden" name="treeRequestId" value="/plugins/pagetree/naturalchildren.action?decorator=none&amp;excerpt=false&amp;sort=position&amp;reverse=false&amp;disableLinks=false&amp;expandCurrent=false">
-        <input type="hidden" name="treePageId" value="36144018">
-
-        <input type="hidden" name="noRoot" value="false">
-        <input type="hidden" name="rootPageId" value="36144018">
-
-        <input type="hidden" name="rootPage" value="">
-        <input type="hidden" name="startDepth" value="0">
-        <input type="hidden" name="spaceKey" value="BLUEB" >
-
-        <input type="hidden" name="i18n-pagetree.loading" value="Loading...">
-        <input type="hidden" name="i18n-pagetree.error.permission" value="Unable to load page tree. It seems that you do not have permission to view the root page.">
-        <input type="hidden" name="i18n-pagetree.eeror.general" value="There was a problem retrieving the page tree. Please check the server log file for more information.">
-        <input type="hidden" name="loginUrl" value="">
-        <input type="hidden" name="mobile" value="false">
-
-                <fieldset class="hidden">
-                            <input type="hidden" name="ancestorId" value="36144018">
-                    </fieldset>
-    </fieldset>
-</div>
-
-</p>
-                    </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Dec 03, 2020 14:51</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+  </li>
+</ul>
+<p><strong>How Do I Setup My Local Machine as a Docker Host?</strong></p>
+<p>The following is one way:</p>
+<p>Download and install Docker for Windows.You may need to restart your machine several times before you're finished, and you may need to go into your BIOS to switch on Hyper-V. Be warned Hyper-V apparently doesn't like some Virtual Machines.</p>
+<p>You should now be able to type 'docker run -i -t ubuntu /bin/bash' at a command line, and be in interactive communication with a docker container. The image will download and build first.</p>
+<p>Before running a Windows container, you will need to execute: '"C:\Program Files\Docker\Docker\DockerCli.exe" -SwitchDaemon'. It would appear at first glance that Docker for Windows doesn't support running a mix of containers. The first time that you run that executable you will be prompted to enable more Docker features and restart your machine.</p>
+<p>Then 'docker run -i -t microsoft/windowsservercore cmd' will allow you to run an interactive Windows container.&nbsp;Do note - it's a 5 Gb download to build the container for that particular image.</p>
+<p>&nbsp;</p>
+<h1>Blueberry : GitLab and DevOps&nbsp;</h1>
+<p>Created by Duncan Forsyth, last modified by Unknown User (ahk) on Aug 21, 2017</p>
+<p>Projects should be set up as follows.</p>
+<figure class="table" style="width:94.1854%;">
+  <table>
+    <tbody>
+      <tr>
+        <th>Environment</th>
+        <th>Domain</th>
+        <th>Git Branch</th>
+        <th colspan="1">Environment Variable</th>
+        <th colspan="1">Pushed/Merged into by</th>
+        <th colspan="1">Notes</th>
+      </tr>
+      <tr>
+        <th colspan="1">-</th>
+        <th colspan="1">-</th>
+        <th colspan="1">&lt;PTS number&gt;</th>
+        <th colspan="1">Development</th>
+        <th colspan="1">All developers</th>
+        <th colspan="1">
+          <p>Developers should typically make one branch per PTS task. They should include the PTS number in the name. These branches are called 'feature' branches. They are branched from the "develop" branch (see below), and merged back into the "develop" branch. PTS tasks are expected to be small - less than 2-3 man days work, so these branches should not exist for long. They should be removed when they are merged back into develop.</p>
+          <p>We should try and avoid developing multiple tasks in the same feature branch, but this is not strictly ruled out. A rare issue that is expected to take several days work should also be worked on in a feature branch.</p>
+          <p>Typically, only a single developer will work on a feature branch. But that's not a rule set in stone.</p>
+        </th>
+      </tr>
+      <tr>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>develop</th>
+        <th colspan="1">Development (not yet in use)</th>
+        <th colspan="1">All developers</th>
+        <th colspan="1">Quick issue fixes can be applied directly to the development branch without creating a feature branch. Doing so risks merge conflicts so please do consider the other developers on your team.</th>
+      </tr>
+      <tr>
+        <th colspan="1">Internal Test</th>
+        <th colspan="1">&lt;project&gt;-test-&lt;platform&gt;-&lt;dbtype&gt;.blueberrytest.com</th>
+        <th colspan="1">test</th>
+        <th colspan="1">test-&lt;platform&gt;-&lt;dbtype&gt;</th>
+        <th colspan="1">See notes</th>
+        <th colspan="1">
+          <p>Where our PMs and tester view the work and feedback to developers. Pushing/Merging to this branch will cause deployment to test servers.</p>
+          <p>Some PMs will choose to restrict who may push/merge to create control over the test environment. This is done by "protecting" the branch in Gitlab. See below for more details. Other PMs will allow all developers to push to the the test environment so as not introduce additional lead time between a fix and its availability for testing.&nbsp;<br>&nbsp;</p>
+        </th>
+      </tr>
+      <tr>
+        <th>External Test / User Acceptance Test (<strong><u>optional</u></strong>)</th>
+        <th>&lt;project&gt;-uat.blueberrytest.com</th>
+        <th>uat</th>
+        <th colspan="1">uat</th>
+        <th colspan="1">PM / technical lead only</th>
+        <th colspan="1">Some projects will have a separate site where the customers check over the Blueberry tested work before paying invoices. Its important that we're not constantly breaking this with new work, so it needs a separate branch than "develop".</th>
+      </tr>
+      <tr>
+        <th colspan="1">Staging (<strong><u>optional and rare</u></strong>)</th>
+        <th colspan="1">&lt;project&gt;-staging.blueberrytest.com</th>
+        <th colspan="1">staging</th>
+        <th colspan="1">staging</th>
+        <th colspan="1">PM / technical lead only</th>
+        <th colspan="1">Staging environments are used where we want to test the deployment process itself.&nbsp;</th>
+      </tr>
+      <tr>
+        <th>Live / Production</th>
+        <th>
+          <p>&lt;project&gt;.blueberrytest.com</p>
+          <p>&lt;project&gt;-master-&lt;platform&gt;-&lt;dbtype&gt;.blueberrytest.com</p>
+        </th>
+        <th>master</th>
+        <th colspan="1">master-&lt;platform&gt;-&lt;dbtype&gt;</th>
+        <th colspan="1">PM / technical lead only</th>
+        <th colspan="1">The specified domain name merely used initially, until customer chooses a domain:</th>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>Just as with SVN, developers should backup their work to the server once a day - even if the work is not completed. We ask only that work do not break the build for other developers. For GitLab this means <i>pushing</i> their work to GitLab.</p>
+<p>The roles on a project in GitLab are: owner, master, developer, guest, reporter. "Protected" branches can only receive a push or merge from users with the project role 'master'. It is important that the branches "uat", "staging", and "master" are marked in GitLab as protected branches.&nbsp;This is how the PM controls deployment to customer-facing release environments. Only the PM, an APM, perhaps one technical lead, should have the 'master' role. To protect a branch please see:&nbsp;<a href="https://docs.gitlab.com/ee/user/project/protected_branches.html#configuring-protected-branches">https://docs.gitlab.com/ee/user/project/protected_branches.html#configuring-protected-branches</a>&nbsp;.</p>
+<p>Without that degree of restriction a PM can't speak to the customer with confidence about what the customer can expect to see on "their" sites.</p>
+<p>Most projects will only have feature branches, a develop branch, a test branch, and a master branch.</p>
+<p><strong>Comparison to SVN</strong></p>
+<p>If you're coming from an SVN background</p>
+<ul>
+  <li>Yes, a push is like an SVN commit.</li>
+  <li>Yes, branching and merging is (claimed to be) so easy that normal development is expected to use a branch for each item of work.</li>
+  <li>Yes, the develop branch is a bit like trunk.</li>
+  <li>Yes, the master branch is a bit like either tagged releases or an SVN 'release' branch, if you used either of them. Many SVN-based projects used neither.</li>
+  <li>Yes, separating 'test' and 'master' branches has rarely been implemented on SVN projects.</li>
+</ul>
+<p><strong>The Continuous Integration Scripts</strong></p>
+<p>A push or merge to any of those branches can cause GitLab CI scripts to run. The GitLab scripts are in the root of your branch and called ".gitlab-ci.yml". The scripts contain rules about all the branches, but explicitly say "if I'm being run as a result to an X branch push do A, B, and C, but not D".</p>
+<p>We're not fully rolled out on the features below.</p>
+<p>Feature branches:</p>
+<ul>
+  <li>No build, no tests, no deployment, no SonarQube analysis, no publishing of test report pages<br>&nbsp;</li>
+  <li><i>Perhaps later: build and test, with tests emailed rather that published&nbsp;</i><br>&nbsp;</li>
+</ul>
+<p>Develop branch:</p>
+<ul>
+  <li><i>Currently inconsistent between VME and BBWT3 but soon: </i>No build, no tests, no deployment, no SonarQube analysis, no publishing of test report pages</li>
+  <li><i>Perhaps later: build and test,&nbsp;SonarQube analysis, publishing of test report pages, but no deployment</i><br>&nbsp;</li>
+</ul>
+<p>All other branches:</p>
+<ul>
+  <li>Build <i>(soon to build for the appropriate target environment)</i>. <i>Planned for much later: Builds are executed on servers other than the GitLab server.</i></li>
+  <li>Pre-deployment tests, <i>soon to&nbsp;include code coverage metrics</i>, <i>soon to&nbsp;merge tests into one report</i>, publish test report pages (<i>soon to branch-specific pages)</i>, perform SonarQube analysis, and report it against a (<i>soon branch-specific)</i> SonarQube project.</li>
+  <li>If the tests pass, deploy. <i>Later: Deployment should be friendly and should not present errors to end-users.</i> If the tests don't pass, there is an option for the PM / Technical Lead to manually deploy.</li>
+  <li><i>Planned for later: Post-deployment tests.</i></li>
+  <li><i>Perhaps later: For Internal Test, we prompt testers to tell them a new release has been deployed and perhaps what changes it contains.</i></li>
+  <li><i>Perhaps later: With more R&amp;D, we trigger some process that leads to periodic application vulnerability testing (The CI server does not know about OS changes – patches – so we can’t prompt for OS-level vulnerability scans from CI)</i><br>&nbsp;</li>
+</ul>
+<p>See&nbsp;<a href="38175045.html">Application's Environment Configuration</a> for details on how an application configures itself to run on the correct target environment.</p>
+<p><strong>Developer Support for CI Scripts</strong></p>
+<p>CI scripts are run by GitLab-runner. The GitLab-runner can make use of Docker to ensure that the scripts are run against the same configuration each time. <i>Soon: We specify specific packages and images rather than the "latest".</i></p>
+<p>It is important that developers can fix problems with the CI scripts, and that it doesn't become a sysadmin responsibility to debug and fix builds. That means they need to be able to interactively work with Docker Containers, ideally on their own machines rather than on the GitLab server.&nbsp;</p>
+<p>We are not insisting that developers should run normal local builds using the CI scripts. This is likely difficult and has only minor benefits.</p>
+<p>The GitLab server is currently running on Linux. This means that it can only run Linux Docker Containers. This has implications for what a developer's Docker setup should be. See the&nbsp;<a href="Docker_37062673.html">Docker&nbsp;</a>page for more details. The developer does not need to have a Linux machine.</p>
+<p><strong>GitLab, Platforms, and BBWT3</strong></p>
+<p>BBWT3 is intended to be cross-platform for deployment. We are not planning for the CI scripts to be cross-platform.&nbsp;</p>
+<p>Currently BBWT3 pre-deployment tests can be executed cross-platform. Even if other things change, it would remain very useful to keep that feature intact.</p>
+<p>Currently BBWT3 and VME are on Windows/SQL Server. <i>BBWT3 will soon be targetting Linux/Aurora.</i></p>
+<p>&nbsp;</p>
+<h1>Blueberry : Tutos&nbsp;</h1>
+<p>Created by Veronica Chatworth on Jul 28, 2017</p>
+<p>&nbsp;</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/38175636/38175638.pdf">GitLab_Tutorial.pdf</a> (application/pdf)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/38175636/38175639.pdf">Introduction to Git.pdf</a> (application/pdf)&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Blueberry : GitLab CI&nbsp;</h1>
+<p>Created by Unknown User (ahk), last modified by Alex Putnam on Aug 31, 2020</p>
+<p>GitLab CI is a tool in GitLab which allows users to continuously build and deploy new revisions of their applications. Our GitLab is configured to use Docker for builds, allowing build pristine build environments. Blueberry uses GitLab CI with Web Template 3.</p>
+<p>For a list of GitLab CI variables, refer to&nbsp;<a href="https://docs.gitlab.com/ce/ci/variables/">this documentation.</a>&nbsp;These variables can be used anywhere within the file.</p>
+<p>For a comprehensive breakdown of the CI language, see <a href="https://docs.gitlab.com/ce/ci/yaml/">this page.</a></p>
+<p>The CI definition is stored within the root of a given repository in the .gitlab-ci.yml file. Here's a basic example which can build bbwt3:</p>
+<p>image : microsoft/aspnetcore-build variables: &nbsp;AWS_DEFAULT_REGION: "eu-west-1" stages: &nbsp;- build &nbsp;- deploy cache: &nbsp;key: "${CI_JOB_NAME}/${CI_COMMIT_REF_NAME}" &nbsp;paths: &nbsp;- project/BBWT.Client/node_modules/ &nbsp;- ${HOME}/.nuget/packages/ &nbsp; before_script: - 'apt-get -qq update' &nbsp; build: stage: build script: &nbsp;- 'dotnet restore' &nbsp;- 'dotnet publish -c Release -o out' &nbsp;- 'mkdir build' &nbsp;- 'mv project/BBWT.Server/out/* build' artifacts: &nbsp;name: "${CI_JOB_NAME}-${CI_COMMIT_REF_NAME}" &nbsp;when: on_success &nbsp;paths: &nbsp;- build only: &nbsp;- master deploy/dev: &nbsp;stage: deploy &nbsp;script: &nbsp; - 'apt-get -qq install python-pip zip' &nbsp; - 'pip install --upgrade pip awscli' &nbsp; - 'pushd build' &nbsp; - 'zip "${CI_PROJECT_DIR}/app.zip" -r ./*' &nbsp; - 'popd' &nbsp; - 'zip "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}.zip" aws-windows-deployment-manifest.json app.zip' &nbsp; - 'aws s3 cp "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}.zip" s3://bb.gitlab.artifacts/' &nbsp; - 'aws elasticbeanstalk create-application-version --application-name "Blueberry Web Template 3" --version-label ${CI_COMMIT_SHA} --source-bundle S3Bucket="bb.gitlab.artifacts",S3Key="${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}.zip"' &nbsp; - 'while [[ "$(aws elasticbeanstalk describe-environments --environment-ids ${ELASTICBEANSTALK_ENV_ID} --query Environments[0].Status --output=text)" != "Ready" ]]; do sleep 5; done;' &nbsp; - 'aws elasticbeanstalk update-environment --environment-id ${ELASTICBEANSTALK_ENV_ID} --version-label ${CI_COMMIT_SHA}' &nbsp;environment: &nbsp; &nbsp;name: dev &nbsp; &nbsp;url: https://bbwt3.blueberrytest.com &nbsp;only: &nbsp; - master</p>
+<p>The&nbsp;<strong>image</strong>&nbsp;stanza defines a docker image to use, as listed on Docker Hub. By default, it pulls the latest version of the image, but appending a version number after a colon (i.e.&nbsp;microsoft/aspnetcore-build:1.4) will use a specific version. This image can be overwritten at an individual job level if required.</p>
+<p>We can also define global variables at the top of the file, to be used later on.</p>
+<p>The CI file is divided into&nbsp;<strong>stages</strong>, which are further divided into&nbsp;<strong>jobs</strong>. A stage can have as many jobs as required, which are executed in parallel. Artifiacts from a previous stage are made available to the jobs in the next stage with the <strong>artifacts</strong> definition. In our example to the side, the artifacts from the&nbsp;<strong>build</strong>&nbsp;stage would be available to the&nbsp;<strong>deploy</strong>&nbsp;stage. We define the stages and their order at the top of the CI file.</p>
+<p>The&nbsp;<strong>cache</strong>&nbsp;stanza defines which paths the CI system should cache within the docker image, thereby saving some time and bandwidth. In this example, we're caching the node and nuget packages, but the cache is invalidated if the CI commit reference changes, i.e. we're running CI against a different commit.</p>
+<p>The&nbsp;<strong>before_script</strong> stanza is a script section which will run before every&nbsp;<strong>script</strong> section within a job. In this case, we're running&nbsp;<strong>apt-get update</strong>&nbsp;in our containers to prep them for any package installations we might need.</p>
+<p>Now we come to our first job definition. The job name itself is arbitrary and is&nbsp;<strong>not</strong> dependant on the stage it is part of. Hopefully the <strong>stage</strong> and&nbsp;<strong>script</strong> sections are self-explanatory. We're simply telling the system which CI stage this job belongs to, and what commands to run. The script section is effectively a bash shell and allows you to run any command you need to build the software. In our case, we're running&nbsp;<strong>dotnet</strong>, as part of the docker image we defined earlier, and building and then publishing Web Template 3. We then make a directory in the CI root, and move the published site there for GitLab CI to collect in the&nbsp;<strong>artifacts</strong> stanza.</p>
+<p>The&nbsp;<strong>artifacts</strong> stanza defines the artifacts that will be passed between CI stages and ultimately published to the Pipelines page for download. The (optional)&nbsp;<strong>name</strong> allows us to give the published ZIP file a custom name.&nbsp;<strong>when</strong> (optional)&nbsp;defines when the artifact should be published - in this case we only want it if the job succeeded.&nbsp;<strong>paths</strong> is a list of paths to be zipped up and published, and passed to the next CI stage, in this case the build folder we created earlier.</p>
+<p>Finally, the&nbsp;<strong>only</strong> stanza tell the CI system to only run this job on commits to the master branch of the repository.</p>
+<p>Onto our next stage (<strong>deploy</strong>)&nbsp;and job (<strong>deploy/dev</strong>), we're installing the AWS CLI tools through PIP, which is itself installed through APT. We then create a ZIP file within the build directory that we retrieved automatically from the previous stage, pop back to the CI root, and add the deployment manifest (which itself exists at the root of the repository). We then copy this to an S3 bucket, and then create a new Elastic Beanstalk app version referencing this new bucket object, with the commit hash as the version string for easy cross-reference with the git repository. Finally, we tell Elastic Beanstalk to use this new app version. Not the&nbsp;<strong>$ELASTICBEANSTALK_ENV_ID</strong> variable, which is a secret pipeline variable within GitLab CI. You can define secret pipeline variables in the <strong>Settings &gt; CI/CD Pipelines</strong> page of the repository.</p>
+<p>We don't require IAM keys as the GitLab server uses an IAM role to interact with AWS, which the CLI tools will use to fetch temporary credentials with.</p>
+<p>The&nbsp;<strong>environment</strong> stanza allows GitLab to track the deployments and provide rollback functionality, which is then exposed in the&nbsp;<strong>Pipelines &gt; Enviroments</strong> page.</p>
+<p>By default, the entire pipeline will fail if one job fails. This can be overridden at the individual job level using the&nbsp;<strong>allow_failure</strong> directive. Again, see the <a href="https://docs.gitlab.com/ce/ci/yaml/">complete reference</a> for details.</p>
+<p>When creating a new implementation, plan out the stages and then think about the jobs required by each stage. If you can parallelise the jobs (e.g. multiple test suites) then do so, but be aware of the dependent nature of the pipeline graph.</p>
+<h1>Integrating unit tests</h1>
+<p>You may need to integrate unit testing into a CI workflow. To do this, create a new stage with a job or two, like so:</p>
+<p>&nbsp;</p>
+<p>test/backend: &nbsp;stage: test &nbsp;before_script: [] &nbsp;script: &nbsp; &nbsp;- 'pushd test/BBWT.Services.Test' &nbsp; &nbsp;- 'dotnet restore' &nbsp; &nbsp;- 'dotnet xunit -xml ${CI_PROJECT_DIR}/xunit-result.xml' &nbsp; &nbsp;- 'dotnet build -o ${CI_PROJECT_DIR}/testdll' &nbsp; &nbsp;- 'popd' &nbsp; &nbsp;- 'ls testdll/*.Test.dll | xargs dotnet vstest --logger:"trx;LogFileName=vstest-result.trx"' &nbsp;artifacts: &nbsp; &nbsp;name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}" &nbsp; &nbsp;paths: &nbsp; &nbsp;- xunit-result.xml &nbsp; &nbsp;- TestResults &nbsp;only: &nbsp; &nbsp;- Development &nbsp; &nbsp;- master test/karma: &nbsp;stage: test &nbsp;before_script: &nbsp; - 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" &gt;&gt; /etc/apt/sources.list' &nbsp; - 'apt-get -qq update' &nbsp; - 'apt-get -qq install --no-install-recommends --allow-unauthenticated google-chrome-stable' &nbsp;script: &nbsp; - 'pushd project/BBWT.Client' &nbsp; - 'npm install' &nbsp; - 'npm test' &nbsp; - 'mv karma-test-results.trx ${CI_PROJECT_DIR}/' &nbsp;artifacts: &nbsp; &nbsp;name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}" &nbsp; &nbsp;paths: &nbsp; &nbsp;- 'karma-test-results.trx' &nbsp;only: &nbsp; &nbsp;- Development &nbsp; &nbsp;- master</p>
+<p>Note how we're creating an empty&nbsp;<strong>before_script</strong> section - this overrides the global one we defined before.</p>
+<p>This example will cover both running with XUnit directly and VSTest. First, the&nbsp;<strong>test/backend</strong>&nbsp;job.</p>
+<p>In this&nbsp;<strong>script</strong> example, we're changing into the&nbsp;<strong>test/BBWT.Services.Test</strong> directory as the test project has its own set of dependencies, and the XUnit test runner can only run within the context of the test directory. After restoring, we run&nbsp;<a href="https://xunit.github.io/docs/getting-started-dotnet-core"><strong>dotnet</strong> xunit</a> and tell it to place the resulting XML in the CI root.</p>
+<p>Next, we build the project and tell it to drop files into the&nbsp;<strong>testdll</strong> folder in the CI root, and we then pop back to the CI root. We pipe together the&nbsp;<strong>ls</strong> command, getting a space-separated list of testing DLLs which we then parse with&nbsp;<strong>xargs</strong> which then feeds the results into&nbsp;<strong>dotnet vstest</strong>, the integrated test runner, which we tell to emit a TRX file. The TRX file is placed in a subfolder,&nbsp;<strong>TestResults</strong>, of the CI root. We then collect these using the artifacts feature of GitLab CI.</p>
+<p>In the&nbsp;<strong>test/karma</strong>&nbsp;job, which will be running in parallel to the previous job, we install the latest version of Google Chrome from Google's official APT repositories. We've skipped adding their keys for authentication as they were broken in any case when I tried. We're doing this to ensure we grab a version of Chrome with the headless mode, which negates the need to set up an X virtual framebuffer and all the headaches that come with that.</p>
+<p>In the script section, we're installing the&nbsp;<strong>node</strong> dependencies using&nbsp;<strong>npm</strong>, and then using&nbsp;<strong>npm</strong> to run the&nbsp;<strong>karma</strong>&nbsp;front-end tests. After running the test, we collect the TRX file that karma produced, to be used in a later step for example.</p>
+<p>Note that in both examples we're running tests on commits to both the Development and master branches.</p>
+<h1>Integrating SonarQube</h1>
+<p>You may need to integrate SonarQube analysis into the CI flow. Create a new job and stage as exampled below.</p>
+<p>sonarqube: &nbsp;stage: analysis &nbsp;image: accesto/gitlab-sonar-runner &nbsp;before_script: [] &nbsp;script: &nbsp; - '${SONAR_RUNNER_HOME}/bin/sonar-runner -Dsonar.projectVersion=${CI_BUILD_ID} -Dsonar.login=${SONAR_LOGIN}' &nbsp;only: &nbsp; &nbsp;- master &nbsp;when: manual</p>
+<p>We also need another file defined at the root of the repository, with the name&nbsp;<strong>sonar-project.properties</strong>:</p>
+<p><strong>sonar-project.properties</strong></p>
+<p>sonar.projectName=BBWT3 :: Blueberry Web Template 3 sonar.projectKey=bbwt3:vme sonar.sources=src sonar.tests=test sonar.exclusions=**/wwwroot sonar.host.url=https://sonar.bbconsult.co.uk</p>
+<p>The&nbsp;<strong>sonar-runner</strong> tool will use these properties automatically. It's a good idea to place static configuration properties in this file, whereas anything dynamic like variables should be defined in the CI job.</p>
+<p>We've defined a new stage,&nbsp;<strong>analysis</strong>, with a job called&nbsp;<strong>sonarqube</strong>.</p>
+<p>Note that we're overriding the global&nbsp;<strong>image</strong> directive and using one with the sonar runner bundled, making our life easier.</p>
+<p>The script section is simple, and calls the&nbsp;<strong>sonar-runner</strong> binary with several arguments:</p>
+<ul>
+  <li>sonar.projectVersion=${CI_BUILD_ID}</li>
+</ul>
+<p>We use the CI build ID for the version reported in Sonar</p>
+<ul>
+  <li>sonar.login=${SONAR_LOGIN}</li>
+</ul>
+<p>A secret API token generated in SonarQube, defined in the repository's CI/CD Pipeline settings.</p>
+<p>In the&nbsp;<strong>sonar-project.properties</strong> file, the following should be defined at a minimum:</p>
+<ul>
+  <li>sonar.projectName - the project name as it exists on SonarQube</li>
+  <li>sonar.projectKey - the project key as it exists on SonarQube</li>
+  <li>sonar.host.url - the URL of the SonarQube installation</li>
+</ul>
+<p>While SonarQube can guess where the source code and tests are, it's good to explicitly set the locations:</p>
+<ul>
+  <li>sonar.sources - the source code folder in the repository</li>
+  <li>sonar.tests - the tests directory in the repository</li>
+</ul>
+<p>If you need certain files or folders excluded from analysis (such as vendor code), use:</p>
+<ul>
+  <li>sonar.exclusions - comma separated list of excluded source files</li>
+</ul>
+<p>sonar.test.exclusions - comma separated list of excluded test files</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Wildcard</th>
+        <th>Matches</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>*</td>
+        <td>zero or more characters</td>
+      </tr>
+      <tr>
+        <td>**</td>
+        <td>zero or more directories</td>
+      </tr>
+      <tr>
+        <td>?</td>
+        <td>a single character</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>See the <a href="https://docs.sonarqube.org/display/SONAR/Narrowing+the+Focus">official documentation</a> for further help.</p>
+<p>sonar.cs.vstest.reportPaths - A VSTEST (e.g. TRX) file to be included in the final Sonar report</p>
+<p>sonar.cs.xunit.reportsPaths - An Xunit XML file to be included in the final Sonar report</p>
+<p>It's unclear if the above two options are mutually exclusive.</p>
+<h1>Administrating GitLab CI</h1>
+<p>GitLab CI runs on the main GitLab server using Docker containers through a&nbsp;<strong>CI runner</strong>. A CI runner is similar to a Jenkins node/slave and executes CI tasks according to its configuration (e.g on the bare server, in a docker environment etc.). Administration is mostly hands-off, but you can diagnose issues by logging onto the server over SSH and checking the status of docker using the docker shell e.g.&nbsp;<strong>sudo docker ps</strong></p>
+<p>Runners can be arbitrarily tagged, and then projects can be configured to only run on certain tagged runners. This could be useful to distinguish between Windows and Linux build hosts for example.</p>
+<p>The CI runners can be administrated from <a href="https://gitlab.bbconsult.co.uk/admin/runners">this page.</a></p>
+<p>Elastic Beanstalk issues</p>
+<p>If you need to re-run a deployment within CI, Elastic Beanstalk might complain about an already existing application version. In this case, delete the application version from within the Elastic Beanstalk console.</p>
+<p>&nbsp;</p>
+<h1>Blueberry : Rollbar and RayGun GitLab Integrations&nbsp;</h1>
+<p>Created by Unknown User (ahk), last modified by Alex Putnam on Aug 30, 2020</p>
+<p>Blueberry use both Rollbar and RayGun to track user experience metrics and crashes. These tools can also be integrated with GitLab to upload source maps or notify the services when a new deployment occurs.</p>
+<h1>Rollbar</h1>
+<p>Blueberry has been using Rollbar with Blueberry Web Template 3. So far, we have only used the front-end error tracking, and not the code integration, as the former was the only tool available when BBWT3 was being bootstrapped.</p>
+<p>Your project should include the Rollbar scripts. This article won't go into detail on how to set that up, instructions are available on Rollbar's site e.g.&nbsp;<a href="https://rollbar.com/error-tracking/angular/">angular setup.</a></p>
+<p>See the BBWT3 project for a reference implementation.</p>
+<p>For a BBWT3 project, the integration should already be included.</p>
+<p>Rollbar is integrated with BBWT3 using these files:</p>
+<ul>
+  <li>project/BBWT.Client/src/app/bbwt/modules/logging/rollbar.ts (project/BBWT.Client/src/app/utils/rollbar.ts in older BBWT3 projects) - Declares the Rollbar object for use in the project.</li>
+  <li>project/BBWT.Client/src/app/services/global-error-handler.ts - Registers Rollbar in the&nbsp;Angular global error handler.</li>
+</ul>
+<p>Once it's included, you then need to add or update the following GitLab CI variables:</p>
+<ul>
+  <li>ROLLBAR_CLIENT_TOKEN - The Rollbar front-end token, included in the app.</li>
+  <li>ROLLBAR_SERVER_TOKEN - The Rollbar project token, allowing API access to Rollbar itself. This should never be included in the front-end. If it has, rotate it immediately.</li>
+</ul>
+<p>Ask sysadmins for help with this if required. You might not have acces to the variables page or to the tokens themselves.</p>
+<h2>CI</h2>
+<p>The CI has three tasks to do regarding Rollbar:</p>
+<ul>
+  <li>Substitute variables into the source files during build time</li>
+  <li>Upload source maps to Rollbar</li>
+  <li>Notify Rollbar of a new deployment</li>
+</ul>
+<p>If you're using a BBWT3 project, this should already be done. The following lines are sufficient to substitute the variables in. Make sure to update the values in angle brackets.</p>
+<p>- 'sed -i "0,/__rollbar_flag__/s//true/" project/BBWT.Client/src/app/utils/rollbar.ts' - 'sed -i "s#__rollbar_environment__#&lt;YOUR ENVIRONMENT IN ROLLBAR&gt;#g" project/BBWT.Client/src/app/utils/rollbar.ts' - 'sed -i "s#__rollbar_server_token__#${ROLLBAR_SERVER_TOKEN}#g" project/BBWT.Client/webpack.config.js' - 'sed -i "s#__rollbar_client_token__#${ROLLBAR_CLIENT_TOKEN}#g" project/BBWT.Client/src/app/utils/rollbar.ts' - 'sed -i "s#__rollbar_source_map_version__#${CI_COMMIT_SHA}#g" project/BBWT.Client/src/app/utils/rollbar.ts project/BBWT.Client/webpack.config.js' - 'sed -i "s#__rollbar_public_path__#&lt;YOUR WEBSITE URL&gt;/dist#g" project/BBWT.Client/webpack.config.js'</p>
+<p>Uploading source maps are achieved using the following lines during build job, after the project is built:</p>
+<p>- 'curl https://api.rollbar.com/api/1/sourcemap -F access_token=${ROLLBAR_ACCESS_TOKEN} -F version=${CI_COMMIT_SHA} -F minified_url=&lt;YOUR WEBSITE URL&gt;/dist/app.js -F source_map=@build/wwwroot/dist/app.js.map' - 'curl https://api.rollbar.com/api/1/sourcemap -F access_token=${ROLLBAR_ACCESS_TOKEN} -F version=${CI_COMMIT_SHA} -F minified_url=&lt;YOUR WEBSITE URL&gt;/dist/account.js -F source_map=@build/wwwroot/dist/account.js.map' - 'curl https://api.rollbar.com/api/1/sourcemap -F access_token=${ROLLBAR_ACCESS_TOKEN} -F version=${CI_COMMIT_SHA} -F minified_url=&lt;YOUR WEBSITE URL&gt;/dist/vendor.js -F source_map=@build/wwwroot/dist/vendor.js.map'</p>
+<p>Adjust the source map URLs as required.</p>
+<p>The following line should be included after the software is successfully deployed:</p>
+<p>- 'curl https://api.rollbar.com/api/1/deploy/ -F access_token=${ROLLBAR_SERVER_TOKEN} -F environment=&lt;YOUR ROLLBAR ENVIRONMENT&gt; -F revision=${CI_COMMIT_SHA} -F local_username="${GITLAB_USER_NAME} (${GITLAB_USER_LOGIN})"'</p>
+<p>This notifies Rollbar of the deployment, making it easier to track.</p>
+<h1>Raygun</h1>
+<p>There are multiple ways to integrate RayGun with your project:</p>
+<ul>
+  <li>Frontend<br>
+    <ul>
+      <li><a href="https://raygun.com/languages/javascript/angular">Angular</a></li>
+      <li><a href="https://raygun.com/languages/javascript">Javascript</a></li>
+    </ul>
+  </li>
+  <li>Application Performance Monitoring<ul>
+      <li><a href="https://raygun.com/documentation/product-guides/apm/agent/downloads/">APM agent</a></li>
+    </ul>
+  </li>
+  <li>Code<ul>
+      <li><a href="https://raygun.com/docs/languages/net">Raygun4Net</a></li>
+    </ul>
+  </li>
+</ul>
+<p>Blueberry Web Template can make full use of all of the Raygun platform.</p>
+<p>See the BBWT3 project for a reference implementation.</p>
+<p>Raygun is integrated with BBWT3 using these files:</p>
+<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>For newer versions of BBWT3</p>
+<ul>
+  <li>project/BBWT.Client/src/app/bbwt/modules/logging/raygun.ts</li>
+  <li>project/BBWT.Client/src/app/bbwt/modules/logging/global-error.handler.ts</li>
+</ul>
+<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>For older versions of BBWT3</p>
+<ul>
+  <li>project/BBWT.Server/Views/Shared/_Layout.cshtml - Javascript snippet included here async, as recommended by Raygun themselves.</li>
+  <li>project/BBWT.Client/src/app/utils/raygun.ts - Provides a Typescript hook to the above snippet object.</li>
+  <li>project/BBWT.Client/src/app/handlers/global-error-handler.ts - Registers Raygun in the Angular global error handler.</li>
+</ul>
+<p>Once RayGun has been added to the project, the following variables should be defined in the CI variables for the project:</p>
+<ul>
+  <li>RAYGUN_API_KEY - Included in the front-end. You may wish to create multiples of these with different suffixes if you have multiple environments.</li>
+  <li>RAYGUN_API_TOKEN - API access to RayGun, should not be included in front-end. Rotate immediately if leaked.</li>
+</ul>
+<p>Ask sysadmins for help with this if required. You might not have acces to the variables page or to the tokens themselves.</p>
+<p>Raygun also provide a <a href="https://raygun.com/docs/deployments/bash">convenience script</a> for notifying them of deployments. This should be included in the repository as 'raygun.sh', ideally in the top-level 'scripts' directory.</p>
+<h2>CI</h2>
+<p>CI has two tasks to do regarding RayGun:</p>
+<ul>
+  <li>Substitute variables into the source files during build time</li>
+  <li>Notify Raygun of a new deployment</li>
+</ul>
+<p>The following lines should be included after the project has been built, in the deploy job for a particular environment:</p>
+<p>- 'sed -i "0,/__raygun_flag__/s//true/" build/wwwroot/dist/bbwt.js' - 'sed -i "s#__raygun_version__#${CI_COMMIT_SHA}#g" build/wwwroot/dist/bbwt.js' - 'sed -i "s#__raygun_api_key__#${RAYGUN_API_KEY}#g" build/wwwroot/dist/bbwt.js'</p>
+<p>You may need to abstract these variables if you have multiple environments. See the BBWT3 project's CI as an example.</p>
+<p>Those lines are added in the built project to support projects which deploy to multiple environments, as Raygun does not have the ability to include the running environment name on the front-end like Rollbar.</p>
+<p>The following line should be run after a successful deploy and notifies Raygun of the deployment:</p>
+<p>- 'scripts/raygun.sh -v ${CI_COMMIT_SHA} -a ${RAYGUN_API_KEY} -t ${RAYGUN_API_TOKEN} -g ${CI_COMMIT_SHA} -e ${GITLAB_USER_EMAIL} -n ${GITLAB_USER_NAME}'</p>
+<p>See the BBWT3 project for a copy of the raygun.sh script if your project does not include it.</p>
+<h2>Installing and integrating the APM agent</h2>
+<p>To install the APM agent, download the latest installer from <a href="https://raygun.com/documentation/product-guides/apm/agent/downloads/">this page</a>.</p>
+<p>If installing interactively, install as normal and then open the Raygun profiler configuration utility. Register the API key of the project on the agent tab, and then switch to either the IIS tab (BBWT2/other applications), or the .NET Core tab (BBWT3) and register the relevant application.</p>
+<p>In the CI, you will need to run a post installation script to register the Raygun profiler. If you're using the SSH deployment method, create or update the scripts/win-postinstall.ps1 file in the repository with the following contents:</p>
+<p>if ($PSHOME -like "*SysWOW64*") { &nbsp; &nbsp;Write-Warning "Restarting this script under 64-bit Windows PowerShell." &nbsp; &nbsp;# Restart this script under 64-bit Windows PowerShell. &nbsp; &nbsp;&amp; (Join-Path ($PSHOME -replace "SysWOW64", "SysNative") powershell.exe) -File (Join-Path $PSScriptRoot $MyInvocation.MyCommand) @args &nbsp; &nbsp;# Exit 32-bit script, pass error code to deployment agent. &nbsp; &nbsp;Exit $LastExitCode } $appCmd = (Join-Path -Path $Env:windir -ChildPath "system32\inetsrv\appcmd.exe") $rgcli = "${env:Programfiles(x86)}\Raygun\RaygunAgent\rgc.exe" $IISWebSite = "bbwt3-app" $IISAppPool = "bbwt3-app" $raygunProfilerx86RootPath = (Join-Path -Path ${env:Programfiles(x86)} -ChildPath "Raygun" | Join-Path -ChildPath "RaygunProfiler") $raygunProfilerx64RootPath = (Join-Path -Path ${env:Programfiles} -ChildPath "Raygun" | Join-Path -ChildPath "RaygunProfiler") $raygunProfilerCurrentVersionx86Path = (Join-Path -Path $raygunProfilerx86RootPath (Get-ChildItem $raygunProfilerx86RootPath -Directory | Sort-Object LastWriteTime | Select-Object -Last 1)) $raygunProfilerCurrentVersionx64Path = (Join-Path -Path $raygunProfilerx64RootPath (Get-ChildItem $raygunProfilerx64RootPath -Directory | Sort-Object LastWriteTime | Select-Object -Last 1)) # Raygun setup &amp; $rgcli -register __raygun_api_key__ &amp; $rgcli -enable BBWT.Web.dll -type dotnetcore -apikey __raygun_api_key__ -startup 30 -norecycle &amp; $appCmd set config "$IISWebSite" -section:system.webServer/aspNetCore /+"environmentVariables.[name='CORECLR_ENABLE_PROFILING',value='1']" /commit:site &amp; $appCmd set config "$IISWebSite" -section:system.webServer/aspNetCore /+"environmentVariables.[name='CORECLR_PROFILER',value='{e2338988-38cc-48cd-a6b6-b441c31f34f1}']" /commit:site &amp; $appCmd set config "$IISWebSite" -section:system.webServer/aspNetCore /+"environmentVariables.[name='CORECLR_PROFILER_PATH_32',value='$raygunProfilerCurrentVersionx86Path\x86\RaygunProfiler.dll']" /commit:site &amp; $appCmd set config "$IISWebSite" -section:system.webServer/aspNetCore /+"environmentVariables.[name='CORECLR_PROFILER_PATH_64',value='$raygunProfilerCurrentVersionx64Path\x64\RaygunProfiler.dll']" /commit:site &amp; $appCmd set config "$IISWebSite" -section:system.webServer/aspNetCore /+"environmentVariables.[name='COMPLUS_ProfAPI_ProfilerCompatibilitySetting',value='EnableV2Profiler']" /commit:site &amp; $appCmd set config "$IISWebSite" -section:system.webServer/aspNetCore /+"environmentVariables.[name='PROTON_STARTUP_PERIOD',value='60']" /commit:site</p>
+<p>This script ensures that the profiler configuration is using the latest version installed on the server and writes this to the web.config of the application.</p>
+<p>Update the $IISWebSite and $IISAppPool variables as necessary.</p>
+<p>In your CI, ensure that you substitute the __raygun_api_key__ above using sed, e.g.:</p>
+<p>script: - 'sed -i "s#__raygun_api_key__#${RAYGUN_API_KEY_TEST}#g" scripts/win-postinstall.ps1'</p>
+<p>Then make sure that your ssh command includes a call to the script, e.g.:</p>
+<p>script: - 'ssh -i ${HOME}/ssh.key -o StrictHostKeyChecking=no -p ${SERVER_PORT_LIVE_WIN} -l ${SERVER_USER_LIVE_WIN} ${SERVER_IP_LIVE_WIN} "cd C:/deploy &amp;&amp; app-deploy.bat ${CI_COMMIT_SHA} &amp;&amp; powershell -File win-postinstall.ps1"'</p>
+<h2>Integrating Raygun4Net</h2>
+<p>Ensure the <a href="https://www.nuget.org/packages/Mindscape.Raygun4Net/">Raygun4Net nuget package</a> has been added to the web project, and that the <a href="https://raygun.com/documentation/language-guides/dotnet/crash-reporting/aspnetcore/">necessary code changes</a> have been made. This should already be done if you are using a recent version of BBWT3.</p>
+<p>In the appsettings.$environment.json file for your project, add the following top-level key:</p>
+<p>"RaygunSettings": { &nbsp;"ApiKey": "API_KEY" &nbsp;"ApplicatonVersion": "APP_VERSION" }</p>
+<p>Substitute API_KEY for the project's api key, and APP_VERSION for an application version identifier, e.g. the commit hash. For an example of these variables being substituted during CI, see <a href="https://gitlab.bbconsult.co.uk/hudson/freepay/blob/test/.gitlab-ci.yml#L287">here</a>.</p>
+<p>&nbsp;</p>
+<h1>Blueberry : SonarQube Plan&nbsp;</h1>
+<p>Created by Duncan Forsyth, last modified on Jun 26, 2017</p>
+<h1><strong><u>What benefits can we hope for with SonarQube</u></strong></h1>
+<p>&nbsp;SonarQube is a tool which, amongst other things:</p>
+<ul>
+  <li>Finds bugs in code</li>
+  <li>Is particularly good at finding faults in CSS that would only be revealed under specific browsers</li>
+  <li>Provides a limited ability to find security concerns</li>
+  <li>Puts focus on the use of cheap and efficient automated unit-testing</li>
+  <li>Can potentially be used as a customer-friendly reports</li>
+  <li>Provides something that we can point at when asked about our quality assurance initiatives</li>
+  <li>Reports on code that is potentially confusing to read</li>
+  <li>Could potentially help QA find projects that are in particular need of a quality assurance intervention</li>
+</ul>
+<p>The last point in the list above is important to the Quality Assurance function in getting “situational awareness” of the upcoming challenges to quality assurance. We will also be planning PTS tools to assist in that job.</p>
+<p><strong>QA is&nbsp;very keen to see SonarQube used. Blueberry Systems has been pushing for it to be used on all projects as a key indicator for project governance.</strong></p>
+<p>It is available at&nbsp;<a href="https://sonar.bbconsult.co.uk/">https://sonar.bbconsult.co.uk</a>&nbsp;. LDAP passwords should work, and the admin password is in LastPass.</p>
+<p>SonarQube is undergoing a lot of rapid community development, so upgrades are risky. Its feature set is comprised of both paid-for and freely-licensed plugins. A lot of the BBWT2 technologies have freely licensed scanners. Not all projects will be so fortunate.</p>
+<h1><strong><u>Where We Are Today</u></strong></h1>
+<p>&nbsp;</p>
+<ul>
+  <li>Many years ago we started using Jenkins as a deployment engine.<ul>
+      <li>This largely came about as a response to one project’s need to get automated deployment working quickly. It wasn’t part of a considered deployment strategy. But it has worked “well enough” and an in depth examination of what we could do better is a topic for another day.</li>
+    </ul>
+  </li>
+  <li>Some years ago we more-or-less standardised so that build scripts for websites poll source-control every 15 minutes and perform both a build and deploy to an internal test server if there is a change.<ul>
+      <li>Unfortunately some people took that template and applied it to their live servers too. We shouldn’t be running SonarQube as part of a build and deploy to live.</li>
+    </ul>
+  </li>
+  <li>A couple of years ago we put SonarQube into pretty much everyone’s build script</li>
+  <li>Last year, in response to an upgrade error and developer feedback, builds were ‘parameterised’ to say whether or not to run SonarQube. This, in turn, wasn’t done very carefully.<ul>
+      <li>Upgrade error: an unmanaged upversioning of SonarQube by a sysadmin broke many builds</li>
+      <li>Developer feedback: running SonarQube on every build put a hiccup in some projects very fast commit-deploy-and-manual-test workflows</li>
+      <li>Not very carefully: I don’t think our scripts should <i>deploy</i> when the purpose for the build is SonarQube analysis.</li>
+      <li>There is a discussion ongoing on how we can improvement our capability and maturity as regards our build processes.</li>
+    </ul>
+  </li>
+  <li>We left source-control triggered builds to build <i>without</i> SonarQube. To build <i>with</i> SonarQube. it has to be <i>specifically</i> requested through the Jenkins web interface.</li>
+  <li>The consequence has been that projects have largely fallen out of using SonarQube as part of their process.</li>
+  <li>We recently acquired a new plugin for Jenkins – a parameterised scheduler. The parameterised scheduler can be told to run the build with the “SonarQube on” parameter. The test project for this (BBWT2) is now doing daily SonarQube builds regardless of developer activity, and without manual intervention from anyone. I believe this is what we need.<ul>
+      <li>Sadly there’s no easy way of combining the polling check for whether any code has changed with the build parameterisation</li>
+    </ul>
+  </li>
+</ul>
+<p><br>&nbsp;<strong><u>Plan Going Forward</u></strong></p>
+<p>&nbsp;At Blueberry Consultants, trust in SonarQube seemed damaged when the unmanaged up-versioning broke build scripts. At Blueberry Systems, people aren’t using it as much as they intend.</p>
+<p>The plan is to re-boot the SonarQube initiative. To do that, we’d like to get several projects actively using SonarQube for a few weeks. This will allow QA to resolve any objections with SonarQube, document the answers to any frequently asked questions, etc, before rolling out more widely. On those projects, the use of the parameterised scheduler to ensure analysis would be mandated, and QA would be heavily involved in helping the PMs interpret the output and taking feedback from the developers on false positive issues.</p>
+<h1><strong><u>SQL Analysis</u></strong></h1>
+<p>&nbsp;SQL analysis, where used, is being performed by a TechCognia plugin that’s only compatible with our older SonarQube 5.6 server at <a href="https://sonar563.bbconsult.co.uk/sessions/new">https://sonar563.bbconsult.co.uk</a>&nbsp;. We have been told that a newer version exists compatible with 6.1 and 6.2. We're currently on 6.0 at&nbsp;<a href="https://sonar.bbconsult.co.uk">https://sonar.bbconsult.co.uk</a>&nbsp;.</p>
+<p>At the moment projects wanting to do SQL analysis have to use the older server. It is possible and currently advisable to split the analysis so that&nbsp;</p>
+<h1><strong><u>GitLab</u></strong></h1>
+<p>Experiments are ongoing with GitLab and SonarQube. We have some initial successes with the basic analysis and we’re now striving to achieve input of code coverage and test result data.</p>
+<h1><strong><u>Upversioning</u></strong></h1>
+<p>We're currently on version 6.0 of SonarQube. A 6.4 exists but a plan to upgrade will take 2-4 days and interfere with the plan above. So we'll defer that to a later time.</p>
+<p><i>[&nbsp;Space here for Tomas to make some notes about his experience trialling a 6.0 to 6.4 upgrade ]</i></p>
+<p><strong><u>Usage Notes - Bugs</u></strong></p>
+<p>The number of SonarQube detected bugs in the software is a prominent measure. To see those bugs, from the project’s home page, clicking on the yellow-circled link takes you to a list of all the bugs in the project which is easy to work through.</p>
+<p>Clicking on the blue-circled link below will take you to the measures feature, which isn’t very helpful. &nbsp;</p>
+<p>You will likely find many of the bugs are reported due to failures in CSS compatibility with older browser versions.</p>
+<figure class="image"><img src="attachments/36144001/36144016.png"></figure>
+<p><br>&nbsp;</p>
+<p>&nbsp;</p>
+<h1><strong><u>SonarQube Priority Ratings</u></strong></h1>
+<p>From time to time I try and re-jig SonarQube’s reporting priorities. If you see something that looks out of place, do let <a href="mailto:duncan.forsyth@bbconsult.co.uk">duncan.forsyth@bbconsult.co.uk</a>&nbsp;know. Here’s what I aim for:</p>
+<ul>
+  <li>Blocker – Security issues, potential crashing</li>
+  <li>Critical – Functionality issues – the code doesn’t always do what the developer expected it would</li>
+  <li>Major - Major readability and testability issues</li>
+  <li>Minor – Minor readability and testability issues</li>
+</ul>
+<h1><strong><u>SonarQube Known Concerns</u></strong></h1>
+<p>Why is the duplicated lines count so high? It’s probably targeting some files that it shouldn’t be targeting. Duncan to investigate.</p>
+<p>What are we to do with analysis of third party libraries? We should try and drop this, but we should do a good website scan in its place. Duncan and Tomas to investigate.</p>
+<p>Isn't reporting faults in test code a little much? Yes. There's a way to stop that. Duncan to arrange a demonstration of that.</p>
+<p>Standard reports try and report differences between versions of the work, but we're always telling SonarQube the same version number. Duncan to investigate.</p>
+<p>&nbsp;</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/36144001/36144016.png">Bugs.png</a> (image/png)&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Blueberry : SonarQube Plan&nbsp;</h1>
+<p>Created by Duncan Forsyth, last modified on Jun 26, 2017</p>
+<h1><strong><u>What benefits can we hope for with SonarQube</u></strong></h1>
+<p>&nbsp;SonarQube is a tool which, amongst other things:</p>
+<ul>
+  <li>Finds bugs in code</li>
+  <li>Is particularly good at finding faults in CSS that would only be revealed under specific browsers</li>
+  <li>Provides a limited ability to find security concerns</li>
+  <li>Puts focus on the use of cheap and efficient automated unit-testing</li>
+  <li>Can potentially be used as a customer-friendly reports</li>
+  <li>Provides something that we can point at when asked about our quality assurance initiatives</li>
+  <li>Reports on code that is potentially confusing to read</li>
+  <li>Could potentially help QA find projects that are in particular need of a quality assurance intervention</li>
+</ul>
+<p>The last point in the list above is important to the Quality Assurance function in getting “situational awareness” of the upcoming challenges to quality assurance. We will also be planning PTS tools to assist in that job.</p>
+<p><strong>QA is&nbsp;very keen to see SonarQube used. Blueberry Systems has been pushing for it to be used on all projects as a key indicator for project governance.</strong></p>
+<p>It is available at&nbsp;<a href="https://sonar.bbconsult.co.uk/">https://sonar.bbconsult.co.uk</a>&nbsp;. LDAP passwords should work, and the admin password is in LastPass.</p>
+<p>SonarQube is undergoing a lot of rapid community development, so upgrades are risky. Its feature set is comprised of both paid-for and freely-licensed plugins. A lot of the BBWT2 technologies have freely licensed scanners. Not all projects will be so fortunate.</p>
+<h1><strong><u>Where We Are Today</u></strong></h1>
+<p>&nbsp;</p>
+<ul>
+  <li>Many years ago we started using Jenkins as a deployment engine.<ul>
+      <li>This largely came about as a response to one project’s need to get automated deployment working quickly. It wasn’t part of a considered deployment strategy. But it has worked “well enough” and an in depth examination of what we could do better is a topic for another day.</li>
+    </ul>
+  </li>
+  <li>Some years ago we more-or-less standardised so that build scripts for websites poll source-control every 15 minutes and perform both a build and deploy to an internal test server if there is a change.<ul>
+      <li>Unfortunately some people took that template and applied it to their live servers too. We shouldn’t be running SonarQube as part of a build and deploy to live.</li>
+    </ul>
+  </li>
+  <li>A couple of years ago we put SonarQube into pretty much everyone’s build script</li>
+  <li>Last year, in response to an upgrade error and developer feedback, builds were ‘parameterised’ to say whether or not to run SonarQube. This, in turn, wasn’t done very carefully.<ul>
+      <li>Upgrade error: an unmanaged upversioning of SonarQube by a sysadmin broke many builds</li>
+      <li>Developer feedback: running SonarQube on every build put a hiccup in some projects very fast commit-deploy-and-manual-test workflows</li>
+      <li>Not very carefully: I don’t think our scripts should <i>deploy</i> when the purpose for the build is SonarQube analysis.</li>
+      <li>There is a discussion ongoing on how we can improvement our capability and maturity as regards our build processes.</li>
+    </ul>
+  </li>
+  <li>We left source-control triggered builds to build <i>without</i> SonarQube. To build <i>with</i> SonarQube. it has to be <i>specifically</i> requested through the Jenkins web interface.</li>
+  <li>The consequence has been that projects have largely fallen out of using SonarQube as part of their process.</li>
+  <li>We recently acquired a new plugin for Jenkins – a parameterised scheduler. The parameterised scheduler can be told to run the build with the “SonarQube on” parameter. The test project for this (BBWT2) is now doing daily SonarQube builds regardless of developer activity, and without manual intervention from anyone. I believe this is what we need.<ul>
+      <li>Sadly there’s no easy way of combining the polling check for whether any code has changed with the build parameterisation</li>
+    </ul>
+  </li>
+</ul>
+<p><br>&nbsp;<strong><u>Plan Going Forward</u></strong></p>
+<p>&nbsp;At Blueberry Consultants, trust in SonarQube seemed damaged when the unmanaged up-versioning broke build scripts. At Blueberry Systems, people aren’t using it as much as they intend.</p>
+<p>The plan is to re-boot the SonarQube initiative. To do that, we’d like to get several projects actively using SonarQube for a few weeks. This will allow QA to resolve any objections with SonarQube, document the answers to any frequently asked questions, etc, before rolling out more widely. On those projects, the use of the parameterised scheduler to ensure analysis would be mandated, and QA would be heavily involved in helping the PMs interpret the output and taking feedback from the developers on false positive issues.</p>
+<h1><strong><u>SQL Analysis</u></strong></h1>
+<p>&nbsp;SQL analysis, where used, is being performed by a TechCognia plugin that’s only compatible with our older SonarQube 5.6 server at <a href="https://sonar563.bbconsult.co.uk/sessions/new">https://sonar563.bbconsult.co.uk</a>&nbsp;. We have been told that a newer version exists compatible with 6.1 and 6.2. We're currently on 6.0 at&nbsp;<a href="https://sonar.bbconsult.co.uk">https://sonar.bbconsult.co.uk</a>&nbsp;.</p>
+<p>At the moment projects wanting to do SQL analysis have to use the older server. It is possible and currently advisable to split the analysis so that&nbsp;</p>
+<h1><strong><u>GitLab</u></strong></h1>
+<p>Experiments are ongoing with GitLab and SonarQube. We have some initial successes with the basic analysis and we’re now striving to achieve input of code coverage and test result data.</p>
+<h1><strong><u>Upversioning</u></strong></h1>
+<p>We're currently on version 6.0 of SonarQube. A 6.4 exists but a plan to upgrade will take 2-4 days and interfere with the plan above. So we'll defer that to a later time.</p>
+<p><i>[&nbsp;Space here for Tomas to make some notes about his experience trialling a 6.0 to 6.4 upgrade ]</i></p>
+<p><strong><u>Usage Notes - Bugs</u></strong></p>
+<p>The number of SonarQube detected bugs in the software is a prominent measure. To see those bugs, from the project’s home page, clicking on the yellow-circled link takes you to a list of all the bugs in the project which is easy to work through.</p>
+<p>Clicking on the blue-circled link below will take you to the measures feature, which isn’t very helpful. &nbsp;</p>
+<p>You will likely find many of the bugs are reported due to failures in CSS compatibility with older browser versions.</p>
+<figure class="image"><img src="attachments/36144001/36144016.png"></figure>
+<p><br>&nbsp;</p>
+<p>&nbsp;</p>
+<h1><strong><u>SonarQube Priority Ratings</u></strong></h1>
+<p>From time to time I try and re-jig SonarQube’s reporting priorities. If you see something that looks out of place, do let <a href="mailto:duncan.forsyth@bbconsult.co.uk">duncan.forsyth@bbconsult.co.uk</a>&nbsp;know. Here’s what I aim for:</p>
+<ul>
+  <li>Blocker – Security issues, potential crashing</li>
+  <li>Critical – Functionality issues – the code doesn’t always do what the developer expected it would</li>
+  <li>Major - Major readability and testability issues</li>
+  <li>Minor – Minor readability and testability issues</li>
+</ul>
+<h1><strong><u>SonarQube Known Concerns</u></strong></h1>
+<p>Why is the duplicated lines count so high? It’s probably targeting some files that it shouldn’t be targeting. Duncan to investigate.</p>
+<p>What are we to do with analysis of third party libraries? We should try and drop this, but we should do a good website scan in its place. Duncan and Tomas to investigate.</p>
+<p>Isn't reporting faults in test code a little much? Yes. There's a way to stop that. Duncan to arrange a demonstration of that.</p>
+<p>Standard reports try and report differences between versions of the work, but we're always telling SonarQube the same version number. Duncan to investigate.</p>
+<p>&nbsp;</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/36144001/36144016.png">Bugs.png</a> (image/png)&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Blueberry : Standardizing BB Servers&nbsp;</h1>
+<p>Created by Martin Green on Jul 21, 2020</p>
+<h1>Overall Goals</h1>
+<p>We need to standardize our processes for working with servers to<br><br>&nbsp;</p>
+<ul>
+  <li>Reduce the time spent creating and maintaining servers<ul>
+      <li>In particular, doing small fixes like disk space updates</li>
+      <li>By making server configurations self-documenting<br><br>&nbsp;</li>
+    </ul>
+  </li>
+  <li>Save AWS costs<ul>
+      <li>By using CMM / Switching to Serverless</li>
+      <li>By not using Windows so much</li>
+      <li>By saving disk space<br><br>&nbsp;</li>
+    </ul>
+  </li>
+  <li>Improve security and reliability<ul>
+      <li>By limiting who has access</li>
+      <li>By reducing manual changes to servers</li>
+    </ul>
+  </li>
+</ul>
+<h1>Server Types</h1>
+<p>Blueberry has</p>
+<ul>
+  <li>Core servers - used to run the company.&nbsp; Mostly Linux, but not entirely.&nbsp; Mostly need to be 24-7<br>but not all.&nbsp; Managed by Sysadmins, not PMs.<br><br>&nbsp;</li>
+  <li>Test servers - used to test customer projects.&nbsp; Often Linux at Consult, mostly Windows at BB&nbsp;<br>Systems.&nbsp; Mostly have embedded database on the VM, but not always.<br><br>&nbsp;</li>
+  <li>Live servers - used to run customer systems.&nbsp; Consult generally pushes these to customer accounts<br>but not completely.&nbsp; Systems has more Live systems, and these are often expensive.&nbsp; But if we're<br>hosting, we're usually being paid to host.</li>
+</ul>
+<p>&nbsp;</p>
+<p>Maintenance of core servers is a completely different issue to test and live servers.</p>
+<h1>Legacy vs Future Servers</h1>
+<p>We have ~190 legacy servers.&nbsp; The truth is that making significant changes to these servers is hard to<br>justify economically - because any manual intervention costs hours of engineer time, and because<br>for customer servers we need to get customer permission.</p>
+<p>However, there are still some actions we may be able to take.&nbsp; There many be a reasonable number<br>of simpler servers which could be converted to a new approach.</p>
+<h1>Server Hosting &amp; Management Systems</h1>
+<p>Technology is racing forward, and there are many new ways of deploying and managing software<br>in the cloud.&nbsp;In particular, we see the following technologies as relevant<br><br>&nbsp;</p>
+<p><strong>Standard Servers</strong></p>
+<p>The current approach - we have standard EC2 servers which run software - which generally we<br>manually install.<br><br>&nbsp;</p>
+<p><strong>Docker - Containerisation&nbsp;</strong></p>
+<p>Docker provides a lightweight alternative to virtual machines.&nbsp; An application can be packaged with<br>it's dependencies into a container image, which can then be run on various different types of<br>container hosts.</p>
+<p>One major advertised benefit of Docker is that it provides a clean interface between the application<br>developers and sysadmins - the developer packages the application into a docker container, which<br>is delivered to sysadmins to run.&nbsp; In practice, I'm not sure how often this really happens.</p>
+<p>Docker has significant limitations compared to VM technology</p>
+<ul>
+  <li>It has no process isolation - a bad docker container could attack nearby ones.&nbsp; Not a<br>huge concern for us</li>
+  <li>Practically speaking, it's mostly a Linux solution. Docker for Windows exists, but the image files&nbsp;<br>are bigger and it requires Windows hosts.</li>
+  <li>I think here is no RDP GUI - you can't get to the desktop.&nbsp; But this is something we're trying<br>to wean ourselves off.</li>
+</ul>
+<p>But the big issue with Docker from an application hosting perspective is that the systems and solutions<br>for hosting containers are complex, require specialist skills and are relatively expensive.</p>
+<p>Docker containers can just be run on a server using standard docker technology.&nbsp; But more often they<br>are run using an "orchestration system" which allows many containers to be run across multiple host<br>servers.</p>
+<p>There are multiple orchestration systems</p>
+<ul>
+  <li>Amazon has Elastic Container Service and Fargate.&nbsp; &nbsp;The former requires more hands-on<br>management, the later is a service to run a single container at a time.</li>
+  <li>Google has Cloud Run which just runs a container and you pay while it's working</li>
+  <li>Kubernetes is a very large system from Google which is supported by many clouds -&nbsp;<br>it allows multiple containers to be run across servers, and has a huge suite of tools - it's<br>famously complex.&nbsp; Entreprises like it because in theory they can redeploy their whole<br>cluster on a different cloud quickly.&nbsp; Kubernetes effectively offers an alternative to learning<br>AWS tools - instead you learn K8.</li>
+</ul>
+<p>I have investigated these hosting systems, and in general I found that they are quite a bit more<br>expensive than standard EC2 servers.&nbsp; There are lots of gotchas - Google Cloud Run looks<br>interesting, but it's not clear that the "turn off when unused" would really work.</p>
+<p>I am quite apprehensive about Kubernetes - it looks like a huge time sink.</p>
+<p>There is also the risk that we pick one system, find issues, switch to another - and then the<br>AWS comes out with a new system and we have to move again.</p>
+<p>Having said this, using Docker is a&nbsp;<i>significant&nbsp;</i>benefit over running multiple applications on<br>a single server.</p>
+<p>I can see a situation where we convert many of our core servers to docker containers and<br>run them on some AWS Container platform.&nbsp; But it raises questions</p>
+<ul>
+  <li>Which system would we run the containers on?&nbsp; Standard Docker, ECS, K8?</li>
+  <li>How much extra might it cost, if anything?</li>
+  <li>Are we sure we can manage performance and other issues?</li>
+</ul>
+<p><br><strong>Serverless</strong></p>
+<p>Serverless is a new approach which has no server at all. It refers to both a general<br>technology and a specific tool:&nbsp; the Serverless Framework&nbsp;<a href="https://www.serverless.com/">https://www.serverless.com/</a></p>
+<p>In this approach, we build&nbsp;SPA web-apps which use a REST API to deliver data to the client.&nbsp;&nbsp;<br>The code which handles REST calls is put into Lambda functions, which AWS executes for us<br>and bills us for.&nbsp; AWS is completely responsible for making the server resources available<br>and scaling to meet need.</p>
+<p>Although the CPU cost of running Lambda functions is low, it's actually 3x more expensive<br>than EC2 - except that with EC2 we rarely max out the server for long periods.&nbsp; Serverless<br>is usually a fraction of traditional web-server hosting cost - because most web applications<br>are used very intermittently.</p>
+<p>Serverless is only really a solution for new BBWT3 projects, because it needs significant<br>changes in the code.&nbsp; It's generally not an option for core servers.</p>
+<p>Serverless has potentially a huge impact on future system hosting</p>
+<ul>
+  <li>It should deliver a huge cost saving, with automatic and free scalability with<br>zero management overhead</li>
+  <li>It eliminates CMM, which whilst a useful solution has been a huge time-sync</li>
+  <li>Sites would be available 24-7 with no interruptions</li>
+  <li>It forces BB teams to design systems to be stateless, which is a good thing</li>
+</ul>
+<p><br>Converting BBWT3 to run Serverless will require some changes, but is currently expected to&nbsp;<br>be a multiple-week problem, not a multiple-month problem.&nbsp; For example, we need to&nbsp;<br>remove Hangfire, the background scheduler.</p>
+<p>Also, by definition, Serverless applications require the database to be external to the&nbsp;<br>application - whereas current practice with small BBWT3 systems is to host the&nbsp;database on&nbsp;<br>the same server in many cases.&nbsp; &nbsp;Giving each test system it's own RDS database would eliminate&nbsp;<br>most of the cost savings, so we should instead look at having a common shared DB server used&nbsp;<br>by multiple Serverless applications - we need to investigate this further.</p>
+<p>Adoption of Serverless would require changes to PTS, because PTS currently tracks "servers"<br>extracted from AWS - and these would not exist.</p>
+<p>Widespread adoption of BBWT3 Serverless for new BB web applications would be a huge<br>step change in our server management - and potentially very attractive to customers.&nbsp; It<br>would achieve many of the goals listed at the top of this document in one step.</p>
+<p>What about Legacy servers?&nbsp; We'd want to look at BBWT3 systems, and see which - if any -<br>might be economically converted to this new approach.&nbsp; Then we'd probably want to<br>consider the legacy and new systems separately, but we probably would need to treat<br>the legacy systems as something to "manage out".<br><br>&nbsp;</p>
+<p><strong>Standard Servers + Ansible</strong></p>
+<p>Ansible is a server configuration technology which converts server setup into scripts.</p>
+<p>Instead of manually logging on to a server, and installing SQL Express, we tell Ansible<br>about the server, then tell it to run a "playbook" for installing SQL Express on the server</p>
+<p>Ansible is a mature and powerful technology which is very well supported and understood -<br>it can be used to manage 100s of servers.&nbsp;</p>
+<p>It also works with both Windows and Linux servers - although it is mostly a Linux tool<br>and must be run on Linux.</p>
+<p>However, it's not immediately clear exactly how Ansible would be used within our setup.</p>
+<p>My current understanding</p>
+<ul>
+  <li>We have a directory of servers, which we pull from AWS, probably including AWS tags</li>
+  <li>We tag all servers with descriptive information "BBWT3 server", "BBWT2" etc</li>
+  <li>Ansible can query the servers to record facts - "Windows 2019", "Ubuntu 18.4" "20gb free disk space"</li>
+  <li>We then create a suite of scripts to manage the servers</li>
+</ul>
+<p><br>My concerns / questions</p>
+<ul>
+  <li>Ansible could get quite complex - if we have multiple tags on the servers, and each<br>tag triggers different scripts.&nbsp; This could be efficient, but will need careful design and<br>management</li>
+  <li>We've not defined e.g. how Ansible solves problems like "out of disk space" on a server<br>or implementing Windows Security patches.&nbsp; It needs more time to understand</li>
+  <li>We should look at AWX - the Ansible GUI for server management</li>
+</ul>
+<p><br>Ansible can be used to deliver significant standardization benefits.&nbsp; The goal should be&nbsp;<br>to create Ansible scripts that can recreate a server from scratch - all the details of<br>how to setup the server are defined in scripts.&nbsp; In this scenario, if the server has no local&nbsp;<br>state - i.e. no local files - then we may not need to backup the server at all:&nbsp; if it dies, we&nbsp;<br>just re-run the Ansible script to create a new version of the system.</p>
+<p>We currently have a situation where we'd like to move all systems to the new Amazon<br>T3 instances because they offer better value.&nbsp; Sysadmins have needed to do this<br>manually, taking a lot of time.&nbsp; If we had an Ansible script for each server, we'd just<br>create new servers and re-run the scripts.<br><br>&nbsp;</p>
+<p>Ansible can potentially be an&nbsp;alternative to Docker:&nbsp; if we have a Linux server where we&nbsp;<br>want to run multiple applications we can:</p>
+<ul>
+  <li>Manually install multiple applications on the server (as now)</li>
+  <li>Install docker, and install containerised versions of the applications on the server</li>
+  <li>Write an Ansible script which specifies the full list of software to install</li>
+</ul>
+<p>&nbsp;</p>
+<p>Docker purists will say that the Ansible option is not as good, but I'm not sure there<br>are real practical benefits to Docker in this situation?</p>
+<p>Question:&nbsp; if we remove some application from the Ansible Playbook, will Ansible<br>uninstall it?&nbsp; Not clear.</p>
+<p><br>Ansible can still potentially be useful with Serverless hosting, because we still have a database<br>that may need maintenance, and there are integrations with other systems to manage.</p>
+<p>The big question is how to organise Ansible.&nbsp; Do we have one script per server, or .. something<br>that drives the setup based on tags?</p>
+<p>&nbsp;</p>
+<p><strong>NixOS + PowerShell DSC</strong></p>
+<p>NixOS is a new Linux Distribution that uses the Nix Package Manager.&nbsp; <a href="https://nixos.org/nixos/manual/">https://nixos.org/nixos/manual/</a></p>
+<p>PowerShell DSC is similar technology for Windows -&nbsp;<a href="https://docs.microsoft.com/en-us/powershell/scripting/dsc/overview/overview?view=powershell-7">https://docs.microsoft.com/en-us/powershell/scripting/dsc/overview/overview?view=powershell-7</a></p>
+<p>&nbsp;</p>
+<p>As far as I can tell, Ansible is a scripting system, not a declarative system.&nbsp; &nbsp;NixOS and DSC<br>are both fully declarative.</p>
+<p><br>A declarative configuration management system does not have a script which specifies<br>steps to perform.&nbsp; Instead, it has a declaration of the desired state.</p>
+<p>We don't say "install SQL Express".&nbsp; We say "make sure the server has SQL Express installed"</p>
+<p>The difference is that if we remove the "SQL Express" item from the list, and re-run the<br>tool, it will <i>uninstall</i> SQL Express.</p>
+<p>&nbsp;</p>
+<p>NixOS and PowerShell DSC are potentially significantly better than Ansible - because they&nbsp;<br>reduce the need to figure out what to do.</p>
+<p>For example, we could have scripts that specify the disk size for each server - if we&nbsp;need to&nbsp;<br>increase the disk space, we just change the value in the script and the tools handle the change.</p>
+<p><br>BUT - these technologies are both fairly new, and significantly less understood than Ansible.</p>
+<p>Note:&nbsp; PowerShell PSC can be run from Ansible, but this isn't quite the point...</p>
+<p><br>I suspect these tools are probably too big a jump for us.</p>
+<h1>Conclusions</h1>
+<p>I see these conclusions</p>
+<p><br><strong>New Web Systems - Serverless</strong></p>
+<p>We should investigate moving BBWT3 to Serverless ASAP as the benefits are strong.&nbsp; If<br>this proves possible, we should try to make it our standard platform.</p>
+<p>If it's not possible, we'll need to rethink&nbsp;</p>
+<figure class="image"><img src="images/icons/emoticons/smile.png" alt="(smile)"></figure>
+<p><br>&nbsp;</p>
+<p><strong>New Web Systems - PM Goals</strong></p>
+<p>Regardless of Serverless, we should be asking all PMs to move towards stateless<br>web servers:</p>
+<ol>
+  <li>Ask PMs to always use S3 for files</li>
+  <li>Move away from local databases - create a "test" DB server</li>
+  <li>Move to Linux + MySQL by default</li>
+</ol>
+<p><br>Note that #1, #2 are required for Serverless.&nbsp; #3 becomes irrelevant if we do Serverless.</p>
+<p>&nbsp;</p>
+<p><strong>Core Servers</strong></p>
+<p>My current thinking is that we're probably better trying to use Ansible exclusively.&nbsp; I'm<br>not against Docker, and it might be useful - but if we have Ansible scripts for each<br>server, I'm not sure Docker has enough benefits?</p>
+<p>However, we need to understand the right way of using Ansible across many servers?</p>
+<p>Note - if sysadmins think there is a big benefit in moving many systems to docker,<br>I'll consider it further.</p>
+<p>&nbsp;</p>
+<p><strong>Legacy Servers</strong></p>
+<p>This is a much more complex issue.</p>
+<p>If Serverless works, then we should look at all BBWT3 test systems and see if any<br>might be moved to Serverless. I suspect it's unlikely.</p>
+<p>The next step is to try to create Ansible scripts for Legacy Systems where possible<br>and then test that recreating the system with Ansible works.&nbsp; Ideally, we'd try to<br>make the server stateless, although this won't be possible that often.</p>
+<p>We should look hard at two technologies that might assist us</p>
+<ul>
+  <li>Using EFS to give servers some spare disk space without increasing the actual disk</li>
+  <li>Mounting S3 as a drive to move storage off the server without changing cod.</li>
+</ul>
+<p>&nbsp;</p>
+<h1>Blueberry : Using GitLab Registry&nbsp;</h1>
+<p>Created by Unknown User (ahk), last modified on Sep 04, 2018</p>
+<p>GitLab has a feature where you can upload Docker images to be used by projects within GitLab.</p>
+<h1>Using the registry from your local machine</h1>
+<p>First, ensure that you have a <a href="https://gitlab.bbconsult.co.uk/profile/personal_access_tokens">personal access token</a> created.</p>
+<p>Note that this token will have access to registries on all projects you have access to, so don't use it in any build systems and keep it safe.</p>
+<p>Next, you'll need to login. Start a shell, then run:</p>
+<p>docker login gitlab-registry.bbconsult.co.uk</p>
+<p>You can now build and push your images. Note that you only need to login before a push, not a build.</p>
+<p>It's handy to alias this, so in your shell profile/rc:</p>
+<p>alias glr-login='echo personal-access-token | docker login -u gitlab-username --password-stdin https://gitlab-registry.bbconsult.co.uk'</p>
+<p>You could take this a step further and store the personal access token in BitWarden, then fetch it via the BitWarden CLI.</p>
+<p>Building</p>
+<p>Switch to the directory with your Dockerfile, then:</p>
+<p>docker build -t gitlab-registry.bbconsult.co.uk/group/project .</p>
+<p>or:</p>
+<p>docker build -t gitlab-registry.bbconsult.co.uk/group/project:tag .</p>
+<p>The '-t' switch tags at the same time as building.</p>
+<p>You can then tag the same image with aliases. For example, if you wanted to build and tag the image as version 0.1&nbsp;<i>and</i> latest, you could do this:</p>
+<p>docker build -t gitlab-registry.bbconsult.co.uk/group/project:0.1 -t gitlab-registry.bbconsult.co.uk/group/project:latest .</p>
+<p>You can also use the 'docker tag' command to retag at a later time if required.</p>
+<h2>Pushing</h2>
+<p>Once you're happy with the build, you can then push the image with its tags.</p>
+<p>You can push individual tags, or do a push on the image which will push all tags.</p>
+<p>Pushing image and all tags:</p>
+<p>docker push gitlab-registry.bbconsult.co.uk/group/project</p>
+<p>Be aware that this will push&nbsp;<i>all</i> tags without discrimination, so if you have some tags you don't want to push you may want to push individual tags instead, like so:</p>
+<p>docker push gitlab-registry.bbconsult.co.uk/group/project:0.1</p>
+<p>This will only push the layers related to the '0.1' tag of the image.</p>
+<p>GitLab supports up to 3 levels of image names. The following examples of images are valid:</p>
+<p>gitlab-registry.bbconsult.co.uk/group/project:tag gitlab-registry.bbconsult.co.uk/group/project/optional-image-name:tag gitlab-registry.bbconsult.co.uk/group/project/optional-name/optional-image-name:tag</p>
+<h1>Using the registry within GitLab CI</h1>
+<p>GitLab exposes the variable 'GITLAB_CI_TOKEN' within CI jobs for use with GitLab registry, to be paired with the built-in 'gitlab-ci-token' user. You need to use this to login before pushing tags in CI.</p>
+<p>As GitLab uses Docker for running CI jobs, you need to use a special 'docker-in-docker' setup to be able to build in Docker.</p>
+<p>Add the following to any job config in CI to set up docker in docker:</p>
+<p>&nbsp; services: &nbsp; &nbsp;- docker:dind</p>
+<p>You also need to set the registry URL to the project you're pushing to, like so:</p>
+<p>variables: &nbsp;DOCKER_REGISTRY_URL: gitlab-registry.bbconsult.co.uk/group/project</p>
+<p>A complete but basic example would look like:</p>
+<p>image: docker:latest stages: &nbsp;- 'build' build: &nbsp;variables: &nbsp; &nbsp;DOCKER_REGISTRY_URL: gitlab-registry.bbconsult.co.uk/group/project &nbsp;stage: build &nbsp;services: &nbsp; &nbsp;- docker:dind &nbsp;script: &nbsp; &nbsp;- 'echo ${CI_JOB_TOKEN} | docker login -u gitlab-ci-token --password-stdin gitlab-registry.bbconsult.co.uk' &nbsp; &nbsp;- 'docker build -t ${DOCKER_REGISTRY_URL}:latest .' &nbsp; &nbsp;- 'docker push ${DOCKER_REGISTRY_URL}'</p>
+<p>For a working example, see the <a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3-build/blob/master/.gitlab-ci.yml">bbwt3-build</a> project.</p>
