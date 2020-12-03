@@ -2,7 +2,7 @@
 title: Who to Contact
 description: 
 published: true
-date: 2020-12-03T15:16:19.003Z
+date: 2020-12-03T15:17:34.150Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-02T07:55:17.617Z
@@ -18,13 +18,13 @@ On this page you will see a list of common queries and who the best person to sp
 
 ## Accounts
 [Financial Controller - Julie Ebbitt](mailto:julie.ebbitt@bbconsult.co.uk)
-[Assistant - SIma Ali](syma.ali@bbconsult.co.uk)
+[Assistant - Sima Ali](mailto:syma.ali@bbconsult.co.uk)
 
 ## Purchasing
-[Purchasing](purchasing@bbconsult.co.uk)
-[Personal Assistant to Martin Green](emma.neale@bbconsult.co.uk)
-[Personal Assistant to David Lee](lynn.roome@blueberrysystems.co.uk)
-[Gareth Casey](gareth.casey@bbconsult.co.uk)
+[Purchasing](mailto:purchasing@bbconsult.co.uk)
+[Personal Assistant to Martin Green](mailto:emma.neale@bbconsult.co.uk)
+[Personal Assistant to David Lee](mailto:lynn.roome@blueberrysystems.co.uk)
+[Gareth Casey](mailto:gareth.casey@bbconsult.co.uk)
 
 ## Flashback Support
 [Gareth Casey](mailto:gareth.casey@bbconsult.co.uk)
