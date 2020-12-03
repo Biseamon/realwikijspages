@@ -2,7 +2,7 @@
 title: Getting Started
 description: 
 published: true
-date: 2020-12-03T14:43:20.988Z
+date: 2020-12-03T14:43:55.185Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T11:59:56.547Z
@@ -16,9 +16,9 @@ The Wiki is divided into multiple spaces but during a trial, you will only have 
 
 Please review each of these.
 
-# [Security](/Getting_Started/Security)
+[Security](/Getting_Started/Security)
 
-# [Local Environment Setup](/Getting_Started/Local_Environment_Setup)
+[Local Environment Setup](/Getting_Started/Local_Environment_Setup)
 
 
 # PTS Overview
