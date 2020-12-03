@@ -1,72 +1,63 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Blueberry : Application&#39;s Environment Configuration</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<!--
+title: Application's Environment Configuration
+description: 
+published: true
+date: 2020-12-03T15:06:11.542Z
+tags: 
+editor: ckeditor
+dateCreated: 2020-12-03T14:57:54.279Z
+-->
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Blueberry</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="DevOps-Information_36144018.html">DevOps Information</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            Blueberry : Application&#39;s Environment Configuration
-                        </span>
-                    </h1>
-                </div>
-
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Duncan Forsyth</span>, last modified on Jul 24, 2017
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>When the application runs, it needs to know:</p><ul><li>Which database to connect to</li><li>Whether to enable caching</li><li>Whether to ensure all client-side resources are bundled, minified <em>(and potentially served from a CDN)</em></li><li>Whether to use technical diagnostic error pages or friendly error pages</li><li>What level of logging and monitoring to use</li></ul><p>The application uses the environment variable ASPNETCORE_ENVIRONMENT to decide how to behave. You can read more about the environment variable at <a class="external-link" href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments" rel="nofollow">https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments</a> . Note well: the example values described in the Microsoft link are not the ones we're using to support BBWT3.</p><h2 id="Application&#39;sEnvironmentConfiguration-Howtheenvironmentvariableisset">How the environment variable is set</h2><h3 id="Application&#39;sEnvironmentConfiguration-Onadevelopmentmachine">On a development machine</h3><p>On a development machine you can set the value at System or User level in your OS.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/38175045/38175046.png" data-image-src="attachments/38175045/38175046.png" data-unresolved-comment-count="0" data-linked-resource-id="38175046" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="OS.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="38175045" data-linked-resource-container-version="4"></span></p><p>Or you can specify it in Web project properties when using Visual Studio.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="167" src="attachments/38175045/38175047.png" data-image-src="attachments/38175045/38175047.png" data-unresolved-comment-count="0" data-linked-resource-id="38175047" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Visual Studio.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="38175045" data-linked-resource-container-version="4"></span></p><p>Or if you're using VS Code, you can specify it in .vscode/launch.json </p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="133" src="attachments/38175045/38175048.png" data-image-src="attachments/38175045/38175048.png" data-unresolved-comment-count="0" data-linked-resource-id="38175048" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="VSCODE.png" data-base-url="https://wiki.bbconsult.co.uk" data-linked-resource-content-type="image/png" data-linked-resource-container-id="38175045" data-linked-resource-container-version="4"></span></p><h3 id="Application&#39;sEnvironmentConfiguration-Onelasticbeanstalk">On elastic beanstalk</h3><p>On elastic beanstalk, due to an Amazon bug, we cannot <em>directly</em> set the environment variables. But we can set environment &quot;properties&quot; and with a bit of code in Startup.cs we can read the environment properties and write them into the environment variables. </p><p>As part of the DevOps process, the environment named &quot;master&quot; will have the environment property ASPNETCORE_ENVIRONMENT set to the value &quot;master&quot; and the environment named &quot;test&quot; will have the value as &quot;test&quot;.</p><p><br/></p><h2 id="Application&#39;sEnvironmentConfiguration-ConfigurationFiles">Configuration Files</h2><p>One of the important things we do with the environment variable is decide which configuration we're going to load from the configuration files.</p><ul><li><em>appsettings.json</em> – should contain configuration elements that are the same for all our environments. It will not have database connections in it - because developers will certainly not be using the same database as the test and live environments</li></ul><p>And then we load one of the following, depending on the value of the environment variable ASPNETCORE_ENVIRONMENT</p><ul><li><em>appsettings.development.json</em> – the developer's configuration with specific connection strings for his machine. <strong>Don't push this to GitLab.</strong></li><li><em>appsettings.test.json</em> – the configuration for the test server</li><li><em>appsettings.master.json</em> – the configuration for the master server (the master server is deployed to when pushes are made to the master branch of GitLab)</li></ul><p>Worth nothing:</p><ul><li><em>appsettings.development.json.template</em> – the template file you can use to create your own development config.</li></ul><p><br/></p><p>Note well: appsettings.{env.EnvironmentName}.json file is able to either <strong>add</strong> new config sections or <strong>overwrite</strong> values. Configuration depends on the combination of the two files loaded into the app.</p><p><br/></p><h2 id="Application&#39;sEnvironmentConfiguration-Known&#39;gotchas&#39;">Known 'gotchas'</h2><p>Visual Studio creates a file with a couple of profiles for running your application either via IIS Express or directly as a console application.</p><p>Please ensure you don’t have a specific override in Properties/launchSettings.json file for your profile.</p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/38175045/38175046.png">OS.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/38175045/38175047.png">Visual Studio.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/38175045/38175048.png">VSCODE.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on Dec 03, 2020 14:51</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+<h1>Blueberry : Application's Environment Configuration&nbsp;</h1>
+<p>Created by Duncan Forsyth, last modified on Jul 24, 2017</p>
+<p>When the application runs, it needs to know:</p>
+<ul>
+  <li>Which database to connect to</li>
+  <li>Whether to enable caching</li>
+  <li>Whether to ensure all client-side resources are bundled, minified&nbsp;<i>(and potentially served from a CDN)</i></li>
+  <li>Whether to use technical diagnostic&nbsp;error pages&nbsp;or friendly error pages</li>
+  <li>What level of logging and monitoring to use</li>
+</ul>
+<p>The application uses the environment variable&nbsp;ASPNETCORE_ENVIRONMENT to decide how to behave. You can read more about the environment variable at&nbsp;<a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments">https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments</a>&nbsp;. Note well: the example values described in the Microsoft link are not the ones we're using to support BBWT3.</p>
+<h2>How the environment variable is set</h2>
+<h3>On a development machine</h3>
+<p>On a development machine you can set the value at System or User level in your OS.</p>
+<figure class="image"><img src="attachments/38175045/38175046.png"></figure>
+<p>Or you can specify it in Web project properties when using Visual Studio.</p>
+<figure class="image"><img src="attachments/38175045/38175047.png"></figure>
+<p>Or if you're using VS Code, you can specify it in .vscode/launch.json&nbsp;</p>
+<figure class="image"><img src="attachments/38175045/38175048.png"></figure>
+<h3>On elastic beanstalk</h3>
+<p>On elastic beanstalk, due to an Amazon bug, we cannot <i>directly</i> set the environment variables. But we can set environment "properties" and with a bit of code in Startup.cs we can read the environment properties and write them into the environment variables.&nbsp;</p>
+<p>As part of the DevOps process, the environment named "master" will have the environment property ASPNETCORE_ENVIRONMENT&nbsp;set to the value "master" and the environment named "test" will have the value as "test".</p>
+<p>&nbsp;</p>
+<h2>Configuration Files</h2>
+<p>One of the important things we do with the environment variable is decide which configuration we're going to load from the configuration files.</p>
+<ul>
+  <li><i>appsettings.json</i>&nbsp;– should contain configuration elements that are the same for all our environments. It will not have database connections in it - because developers will certainly not be using the same database as the test and live environments</li>
+</ul>
+<p>And then we load one of the following, depending on the value of the environment variable&nbsp;ASPNETCORE_ENVIRONMENT</p>
+<ul>
+  <li><i>appsettings.development.json</i>&nbsp;– the developer's configuration with specific connection strings for his machine. <strong>Don't push this to GitLab.</strong></li>
+  <li><i>appsettings.test.json</i>&nbsp;– the configuration for the test server</li>
+  <li><i>appsettings.master.json</i>&nbsp;– the configuration for the master server (the master server is deployed to when pushes are made to the master branch of GitLab)</li>
+</ul>
+<p>Worth nothing:</p>
+<ul>
+  <li><i>appsettings.development.json.template</i>&nbsp;– the template file you can use to create your own development config.</li>
+</ul>
+<p>&nbsp;</p>
+<p>Note well: appsettings.{env.EnvironmentName}.json file is able to either <strong>add</strong> new config sections or <strong>overwrite</strong> values. Configuration depends on the combination of the two files loaded into the app.</p>
+<p>&nbsp;</p>
+<h2>Known 'gotchas'</h2>
+<p>Visual Studio creates a file with a couple of profiles for running your application either via IIS Express or directly as a console application.</p>
+<p>Please ensure you don’t have a specific override in Properties/launchSettings.json file for your profile.</p>
+<h2>Attachments:</h2>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/38175045/38175046.png">OS.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/38175045/38175047.png">Visual Studio.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
+<p><a href="attachments/38175045/38175048.png">VSCODE.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<p>Document generated by Confluence on Dec 03, 2020 14:51</p>
+<p><a href="http://www.atlassian.com/">Atlassian</a></p>
