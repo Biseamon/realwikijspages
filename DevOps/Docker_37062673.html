@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blueberry : Docker</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Blueberry</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DevOps-Information_36144018.html">DevOps Information</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Blueberry : Docker
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Duncan Forsyth</span>, last modified on Jul 14, 2017
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><strong>What is Docker?</strong></p><p>It’s a platform for packaging an application or service plus “all” the dependencies.</p><p><strong>What Are We Using Docker for Today?</strong></p><p>We're using it within the GitLab framework for BBWT3 to specify the environment in which particular steps of the build script are run.</p><p><strong><strong>What Might We Use Docker for Later?</strong></strong></p><p>We might find a way to use it for other deployment tasks, sharing database data rather than code and configuration files. This is highly hypothetical at the moment.</p><p>We might use it for specifying what should be uploaded through Elastic Beanstalk to EC2 on AWS. But we don't at the moment, and have not yet seen a strong reason to investigate the possibility.</p><p><strong>What is a Docker Image?</strong></p><p>It's a description for building a docker container. There's some fancy technology to make it efficient to build a container from an image. Images can be shared easily. If you don't have a local copy of a docker image, it can be pulled from a docker registry without additional fuss.</p><p><em>Worry: Some of the standard images in the registry effectively pull the <u>latest</u> version of an image. That's perhaps a little less controlled than we might like for a smoothly running DevOps operation.</em></p><p><strong>What is a Docker Container?</strong></p><p>A runnable instance of a built image. It will be run on a host which could be your local machine or, for instance, a central GitLab server. The host may be running multiple containers. They can be started, stopped, created, deleted, moved, etc.</p><p>When you run a Docker container it's possible to connect it to a terminal on your host machine. This is called interactive mode. This could be very important for debugging a container that isn't acting as expected.</p><p><strong>What is the Docker Engine?</strong></p><p>It's a service/daemon that manages containers, images, data volumes and networks. It's what makes a server into a Docker Host.</p><p><strong>What is a Docker Host?</strong></p><p>The underlying OS on which you’re running the Docker Engine. Shared OS kernel resources are provided to the docker containers.</p><p>Older versions of Docker were limited in what they could do. As of July 2017, ignoring MacOS:</p><ul><li>If the host is Linux, it can only run Linux containers.</li><li>If the host is Windows <ul><li>And it's Windows Pro 10 or higher, on 64 bit, and it has Hyper-V support enabled, then you can use Docker for Windows to run <strong>both </strong>Linux and Windows containers, but not at the same time.</li><li>If it's a different Windows machine, <ul><li>You can use Docker for Windows to run Windows containers only.</li><li>Or Docker Toolbox to run <strong>both </strong>Linux and Windows containers. This is a heavyweight solution that runs you a suitable VM and then Docker inside of that.</li></ul></li></ul></li></ul><p><strong>How Do I Setup My Local Machine as a Docker Host?</strong></p><p>The following is one way:</p><p>Download and install Docker for Windows.You may need to restart your machine several times before you're finished, and you may need to go into your BIOS to switch on Hyper-V. Be warned Hyper-V apparently doesn't like some Virtual Machines.</p><p>You should now be able to type 'docker run -i -t ubuntu /bin/bash' at a command line, and be in interactive communication with a docker container. The image will download and build first.</p><p>Before running a Windows container, you will need to execute: '&quot;C:\Program Files\Docker\Docker\DockerCli.exe&quot; -SwitchDaemon'. It would appear at first glance that Docker for Windows doesn't support running a mix of containers. The first time that you run that executable you will be prompted to enable more Docker features and restart your machine.</p><p>Then 'docker run -i -t microsoft/windowsservercore cmd' will allow you to run an interactive Windows container. Do note - it's a 5 Gb download to build the container for that particular image.</p><p><br/></p><p><br/></p><p><strong><br/></strong></p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on Dec 03, 2020 14:51</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
