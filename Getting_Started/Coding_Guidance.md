@@ -2,7 +2,7 @@
 title: Coding Guidance
 description: 
 published: true
-date: 2020-12-03T15:21:05.553Z
+date: 2020-12-03T15:24:54.601Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-03T15:21:05.553Z
@@ -10,13 +10,13 @@ dateCreated: 2020-12-03T15:21:05.553Z
 
 # Coding Guidance
 
-Comments
+## Comments
 
 The name of the method can be sufficient, by itself, if you keep your methods short and well-named. When the code is long, or complex, or the point of an entire class is unclear then you need comments.
 
 Comments need to be useful. The following comment is not a useful comment: "if( result < 17 ) // check if the result was less than 17". It tells us nothing that isn't already obvious. The reader hasn't been helped to know why 17 is important nor why the check helps the code achieve its goal.
 
-Useful comments are:
+## Useful comments are:
 
 What is the goal of the code? What's it trying to achieve? A well named method usually makes a comment for this unnecessary.
 If it’s not obvious, how does the code achieve its goal?
@@ -26,7 +26,7 @@ Are there any assumptions about the values of the parameters, or the data that y
 What’s the meaning of any codes or magic numbers you use, e.g. ‘PDM_F’, ‘13’?
 
 
-Exception / error handling
+## Exception / error handling
 
 Use a global exception handler. You can have some local exception handling too, but you need a global exception handler. Your global exception handler must log exceptions.
 
@@ -47,7 +47,7 @@ On a website, security issues should be returning codes 401 (you need to log in)
 Exceptions are often good for resource problems such as “file locked” or "out of memory". A website should usually be producing 500 errors for resource problem. Usually there's nothing the end-user can do about it, and so there's no local description we can helpfully add. In that case, it is perfectly fine to let a resource exception get caught by a global exception handler. The global exception handler may log the details of the problem and return the 500 code. Plenty of exceptions will pass up from the various APIs that we use to become 500 errors.
 
 
-
+## Furthermore
 
 
 > Useful reading
