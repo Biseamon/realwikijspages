@@ -2,7 +2,7 @@
 title: Version Control
 description: 
 published: true
-date: 2020-12-03T15:00:13.999Z
+date: 2020-12-04T14:44:10.490Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-03T15:00:13.999Z
@@ -433,4 +433,127 @@ Please avoid using '#no_task' as it helps nobody – changes become untraceable 
   ![ptscommit-1024x240.png](/ptscommit-1024x240.png)
 
 
-## **TortoiseSVN**
+## TortoiseSVN
+  
+TortoiseSVN is Blueberry's source control of choice.
+
+Installing TortoiseSVN:
+
+TortoiseSVN is a Subversion client, implemented as a windows shell extension. The coolest Interface to (Sub)Version Control.
+
+Features of TortoiseSVN/Subversion:
+
+Windows Shell (Explorer) integration. Can be used without any IDE.
+Icon overlays show immediately which files/folders need to be uploaded (committed) to the database.
+Easy to use dialogs for version control operations
+The UI is available in different languages.
+Global revision numbers. You can get old versions of your project and not just single files.
+Atomic transactions. Interrupted operations don't affect the repository at all.
+
+System Requirements:
+
+- Win2k SP2 or WinXP, IE5.5 or later
+
+Go to http://tortoisesvn.net/downloads.html and get latest stable version of TortoiseSVN (Official version for Win2k/XP or higher).
+Download installation programm to you local disk and run it. Also you can download language pack to TortoiseSVN.
+Run installation.
+Reboot your PC.
+Open Explorer and make rigth click on any folder. You will see pop-up menu. Select TortoiseSVN - > Repo-Browser.
+In new window enter path to project: https://svn.bbconsult.co.uk/repository/<project_name>
+In dialog box enter authentication details (use your LDAP account) and set 'save authentication' chechbox.
+In case, you will have questions ask sysadmins@bbconsult.co.uk
+
+Also, you can read Tortoise SVN manual:
+
+http://tortoisesvn.sourceforge.net/docs/release/TortoiseSVN_en/index.html
+
+### Starting a new project on Linux:
+
+  We use a policy in which each project has its own repository. It's very useful because we can control the revision number for each project. To create a new project in Subversion do:
+
+Login to bbfile.bbconsult.co.uk as normal user and get root's privileges (su -l) or use VMware Console and login as root
+
+1. Run command to create new project in Subversion:
+
+-# svnadmin create --fs-type fsfs /home/svn/repository/<project_name>
+
+2.   Copy postcommit script to project's hooks folder:
+-# cp /home/svn/hooks/post-commit /home/svn/repository/<project_name>/hooks/
+
+3. Copy pre-commit hook from any existing repository to new one:
+-# cp /home/svn/repository/rubric/hooks/pre_commit /home/svn/repository/<project_name>/hooks/
+4. Edit post-commit script (PROJECT variable)
+
+5. Change permissions to project directory:
+-# chown -R www:www /home/svn/repository/<project_name>
+
+6. Edit /home/svn/access.conf to set appropriate access permissions to project.at mail.bbconsult.co.uk (use mail.ppk attached)
+ 
+7. Createto LDAP group, same name as project name (need to receive e-mail notification):
+-# smbldap-groupadd <group_name>
+
+8. Add users to LDAP group
+-# smbldap-groupmod -m <nick1>,<nick2> <group_name>
+
+9. Add info to BBIntranet:21317
+
+  **Example:**
+
+-# svnadmin create --fs-type fsfs /home/svn/repository/wms
+-# cp /home/svn/post-commit /home/svn/repository/wms/hooks/
+
+-# chmod +x /home/svn/repository/wms/hooks/post-commit
+-# cp /home/svn/repository/rubric/hooks/pre_commit /home/svn/repository/wms/hooks/
+-# vi /home/svn/repository/wms/hooks/post-commit
+-# chown -R www:www /home/svn/repository/wms
+-# vi /home/svn/access.conf
+
+  **Connect to NixSystem VM using ssh**
+
+-# smbldap-groupadd wms
+-# smbldap-groupmod -m pxm,mvj wms
+
+  P.S. You can use Midnight Commander to edit files instead of vi editor.
+
+### When creating projects in a Windows Subversion server
+
+Use: svnadmin create c:\repositories\project-name
+
+Then edit the C:\etc\subversion.conf file accordingly, which will contain things such as:
+
+> <Location /svn/test-project>
+> 
+> DAV svn
+> SVNPath C:/repositories/test-project
+> 
+> AuthType Basic
+> AuthName "KahSystems Test Repository"
+> AuthUserFile C:/etc/svn-auth-file
+> Require valid-user
+> AuthzSVNAccessFile c:/etc/svn-acl.txt
+> SSLRequireSSL
+> 
+> Order Allow,Deny    Allow from 10.1.21
+> Allow from 10.28.20
+> Allow from 192.168.96
+> #/Location>
+
+
+You will need to restart the Apache service for changes to this file to take effect (takes 5 seconds, literally).
+
+Start > All Programs > Apache HTTP Server > Control Apache Server > Restart
+  
+
+### How to Merge Branches
+
+ If you have any uncommitted changes in your working copy before your merge this will cause problems. You should revert or commit everything in your working copy (usually to your branch) before performing a merge. You should then take a backup copy in case you get your merge settings horribly wrong.
+
+At this point switch your working copy to the trunk - because when you are successful you will want to commit your merged version to the trunk.
+
+Now you can begin your merge; "Merging Two Different Trees" is the correct option from the dialog.
+
+Set from trunk (the revision at the moment you made branch) to branch (the HEAD revision).
+
+It is vitally important that after the merge you resolve any conflicts and check that you have the expected code in your working copy. Never commit your merged code to the trunk without building it and testing it. Test it well.
+
+When you are finally happy you can commit your work (to the trunk). You should then delete the branch (first checking that nobody else has added to it).
