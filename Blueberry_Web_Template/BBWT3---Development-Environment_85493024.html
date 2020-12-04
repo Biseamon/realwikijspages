@@ -1,16 +1,16 @@
 <!--
-title: Blueberry Group : BBWT3 - Development Environment 
+title: BBWT3 - Development Environment 
 description: 
 published: true
-date: 2020-12-01T12:01:07.247Z
+date: 2020-12-04T16:04:32.226Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:03:49.037Z
 -->
 
-<h1>Blueberry Group : BBWT3 - Angular CLI&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Angular CLI&nbsp;</h1>
+<p>&nbsp;</p>
+<h2>Overview</h2>
 <p>Angular CLI is a powerful tool that can quickly generate configuration files required for bootstrapping an angular application instantly. It has the advantage of automatically installing and configuring all dependencies required. It is apart of the MEAN framework; MongoDB (noSQL non-relational database), Express (back-end middleware), Angular (front-end framework), Node.js (runtime environment). Although apart of this framework it can be used with other technologies.</p>
 <p>Recent changes (03-01-19)</p>
 <p>Angular CLI server was previously configured to start when ASP.NET Core app starts in development mode. However due to the fact that each change in code requires the ASP.NET Core to restart, it wastes time waiting for Angular CLI server to initiate. For this reason Angular CLI server now runs independently.&nbsp;You need to manually start Angular CLI server&nbsp;before debugging BBWT.Server&nbsp;by typing:</p>
@@ -24,7 +24,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
   </table>
 </figure>
 <p>For more information go&nbsp;<a href="https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-2.2&amp;tabs=visual-studio#run-ng-serve-independently">here</a>.</p>
-<h1>Advantages</h1>
+<h2>Advantages</h2>
 <ul>
   <li>Benefits from having a standard way to create/build angular projects.</li>
   <li>Helps to quickly generate new components, directives, services etc.</li>
@@ -34,13 +34,13 @@ dateCreated: 2020-11-27T11:03:49.037Z
   <li>Centralized configuration via an Angular CLI config file.</li>
   <li>Most support assumes that you are using Angular CLI.</li>
 </ul>
-<h1>Disadvantages</h1>
+<h2>Disadvantages</h2>
 <ul>
   <li>Less advanced configuration - cannot change advanced Webpackconfig etc.</li>
   <li>More rigid configuration structure - harder to move config files to desired locations (they’re more strewn about inside of various different directories).</li>
   <li>Less or no support for various addons -&nbsp; HTML template engines like PugJS etc.</li>
 </ul>
-<h1>Installation and Usage</h1>
+<h2>Installation and Usage</h2>
 <p>From your IDE open a terminal and type:</p>
 <figure class="table">
   <table>
@@ -169,28 +169,8 @@ dateCreated: 2020-11-27T11:03:49.037Z
 <h1>Useful Resources</h1>
 <p><a href="https://angular.io/cli">https://angular.io/cli</a></p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Configuration&nbsp;</h1>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="#BBWT3-Configuration-Overview">Overview</a></li>
-  <li><a href="#BBWT3-Configuration-ConnectionStrings">ConnectionStrings</a></li>
-  <li><a href="#BBWT3-Configuration-DatabaseConnectionSettings">DatabaseConnectionSettings</a></li>
-  <li><a href="#BBWT3-Configuration-EmailSettings">EmailSettings</a></li>
-  <li><a href="#BBWT3-Configuration-StorageSettings">StorageSettings</a></li>
-  <li><a href="#BBWT3-Configuration-MembershipSettings">MembershipSettings</a></li>
-  <li><a href="#BBWT3-Configuration-DBDocSettings">DBDocSettings</a></li>
-  <li><a href="#BBWT3-Configuration-MenuSettings">MenuSettings</a></li>
-  <li><a href="#BBWT3-Configuration-FooterMenuSettings">FooterMenuSettings</a></li>
-  <li><a href="#BBWT3-Configuration-GitLabSettings">GitLabSettings</a></li>
-  <li><a href="#BBWT3-Configuration-RecaptchaSettings">RecaptchaSettings</a></li>
-  <li><a href="#BBWT3-Configuration-AwsSettings">AwsSettings</a></li>
-  <li><a href="#BBWT3-Configuration-SupportSettings">SupportSettings</a></li>
-  <li><a href="#BBWT3-Configuration-RaygunSettings">RaygunSettings</a></li>
-  <li><a href="#BBWT3-Configuration-Serilog">Serilog</a></li>
-  <li><a href="#BBWT3-Configuration-EnvironmentVariables">Environment Variables</a></li>
-</ul>
-<p>&nbsp;</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Configuration&nbsp;</h1>
+<h2>Overview</h2>
 <p>This page details the different configuration keys that are available to use, along with a description and example for each.</p>
 <p><br>&nbsp;</p>
 <p>These settings can be specified in an&nbsp;<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/blob/develop/project/BBWT.Server/appsettings.json">appsettings.json</a>&nbsp;file or specified as their full path in an environment variable, e.g. DatabaseConnectionSettings:DatabaseType<strong>&nbsp;</strong>or DatabaseConnectionSettings__DatabaseType. For example, in bash we can set variables so:</p>
@@ -259,7 +239,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>ConnectionStrings</h1>
+<h2>ConnectionStrings</h2>
 <p>The keys set used by the database initialization code depends on the value of&nbsp;<strong>DatabaseConnectionSettings:DatabaseType</strong>.</p>
 <p>&nbsp;</p>
 <figure class="table">
@@ -325,7 +305,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
   </table>
 </figure>
 <p>See&nbsp;<strong>DatabaseConnectionSettings&nbsp;</strong>section&nbsp;below for examples.</p>
-<h1>DatabaseConnectionSettings</h1>
+<h2>DatabaseConnectionSettings</h2>
 <figure class="table">
   <table>
     <thead>
@@ -379,7 +359,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>EmailSettings</h1>
+<h2>EmailSettings</h2>
 <p>Use TLS (SSL) and either port 465 or 587 when using AWS SES.</p>
 <p>In general, try to avoid sending unencrypted email. On AWS, traffic over port 25 is throttled to prevent abuse.</p>
 <figure class="table">
@@ -467,7 +447,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>StorageSettings</h1>
+<h2>StorageSettings</h2>
 <p>File storage provider settings.&nbsp;</p>
 <figure class="table">
   <table>
@@ -501,7 +481,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>MembershipSettings</h1>
+<h2>MembershipSettings</h2>
 <p>Settings of the Core Membership module.&nbsp;</p>
 <figure class="table">
   <table>
@@ -533,7 +513,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1><br>DBDocSettings</h1>
+<h2><br>DBDocSettings</h2>
 <p>Settings related to the DB Documenter.</p>
 <figure class="table">
   <table>
@@ -565,7 +545,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>MenuSettings</h1>
+<h2>MenuSettings</h2>
 <p>The main menu settings.</p>
 <figure class="table">
   <table>
@@ -597,7 +577,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>FooterMenuSettings</h1>
+<h2>FooterMenuSettings</h2>
 <p>The footer menu settings.</p>
 <figure class="table">
   <table>
@@ -629,7 +609,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>GitLabSettings</h1>
+<h2>GitLabSettings</h2>
 <p>Settings for the GitLab module to interact with Gitlab via AWS lambda.</p>
 <figure class="table">
   <table>
@@ -679,7 +659,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>RecaptchaSettings</h1>
+<h2>RecaptchaSettings</h2>
 <figure class="table">
   <table>
     <thead>
@@ -712,7 +692,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>AwsSettings</h1>
+<h2>AwsSettings</h2>
 <figure class="table">
   <table>
     <thead>
@@ -776,7 +756,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>SupportSettings</h1>
+<h2>SupportSettings</h2>
 <figure class="table">
   <table>
     <thead>
@@ -827,7 +807,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
 </figure>
 <p>&nbsp;</p>
 <p>Third party packages also use the Asp.Net Core configuration interface and may have their configuration specified along with ours. For example, we use the following:</p>
-<h1>RaygunSettings</h1>
+<h2>RaygunSettings</h2>
 <p><br>RayGun settings are normally set automatically as part of the deployment process and shouldn't be used during local development.</p>
 <figure class="table">
   <table>
@@ -865,7 +845,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>Serilog</h1>
+<h2>Serilog</h2>
 <p>For a full breakdown of Serilog configuration options, check the documentation&nbsp;<a href="https://github.com/serilog/serilog-settings-configuration">here</a>&nbsp;and&nbsp;<a href="https://github.com/serilog/serilog-aspnetcore">here</a>.</p>
 <p>Remember to set the ProjectName property in your Serilog configuration to be able to distinguish logs within GrayLog. This can be set in code, or in the application configuration as in the example below.</p>
 <p>An Example Configuration:</p>
@@ -889,7 +869,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>Environment Variables</h1>
+<h2>Environment Variables</h2>
 <p>These configuration items can only be specified as environment variables.</p>
 <ul>
   <li>ASPNETCORE_ENVIRONMENT<br>
@@ -927,12 +907,10 @@ dateCreated: 2020-11-27T11:03:49.037Z
   </table>
 </figure>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Databases and Migrations&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Databases and Migrations&nbsp;</h1>
+<h2>Overview</h2>
 <p>This page shows how to perform migrations with examples and explanations for each of the commands.</p>
-<h1>Migrating the Database</h1>
-<p>&nbsp;</p>
+<h2>Migrating the Database</h2>
 <p>&nbsp;</p>
 <p>An explanation of each command segment follows.</p>
 <figure class="table">
@@ -965,7 +943,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
 </figure>
 <p>&nbsp;</p>
 <p>You can obtain a list of database contexts using&nbsp;<strong>dotnet ef migrations list.</strong><br><strong>dotnet ef</strong>&nbsp;will use the environment specified in ASPNETCORE_ENVIRONMENT (<strong>Development</strong>&nbsp;if not specified), so make sure the appsettings file is filled out correctly.<br>If you've built the project recently, you can speed up&nbsp;<strong>dotnet ef</strong>&nbsp;by including&nbsp;<strong>--no-build</strong>&nbsp;on the command line, as&nbsp;<strong>dotnet ef</strong>&nbsp;likes to build the project every time you run it by default.</p>
-<h1>Listing Migrations</h1>
+<h2>Listing Migrations</h2>
 <p><br><strong>For MySQL</strong></p>
 <figure class="table">
   <table>
@@ -986,7 +964,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>Adding a Migration</h1>
+<h2>Adding a Migration</h2>
 <p>To add an Entity Framework Migration, use the following commands:</p>
 <p><br><br><strong>For MySQL</strong></p>
 <figure class="table">
@@ -1009,11 +987,10 @@ dateCreated: 2020-11-27T11:03:49.037Z
   </table>
 </figure>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Forking for a new Project&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Forking for a new Project&nbsp;</h1>
+<h2>Overview</h2>
 <p>This page documents how to fork from the latest state of BBWT3 for a new project. The recommended way of doing this is to fork the project to your local account, rename it and change the URL, remove the relationship to the main BBWT3 source, then transfer it back to the Blueberry group.<br>At the bottom of this page you will find important information about modules, and a link to the instructions of how to correctly set up the email settings.</p>
-<h1>Directions</h1>
+<h2>Directions</h2>
 <ol>
   <li>First you will have to login to&nbsp;<a href="https://gitlab.bbconsult.co.uk/">GitLab</a>&nbsp;using your LDAP login username and password.</li>
   <li>Enter in your 2FA code.</li>
@@ -1049,34 +1026,15 @@ dateCreated: 2020-11-27T11:03:49.037Z
 <p>If you have problems with this, ask sysadmins for help.</p>
 <p><br><br>&nbsp;</p>
 <p>You are now ready to start your new project based off of the latest BBWT3.</p>
-<h1>Modules</h1>
+<h2>Modules</h2>
 <p>The code BBWT3 codebase has modules located in "bbwt3/modules". These are a mixture of third party modules and Blueberry code. When adding third party libraries to a forked BBWT3 project, they must not be put in "bbwt3/modules" they must be kept separate. We recommend "bbwt3/thirdparty".</p>
 <p>Why? This is to help with code audits and specifically to allow automated tools such as SonarQube to be implemented correctly.</p>
-<h1>Email Settings</h1>
+<h2>Email Settings</h2>
 <p>To correctly set up the email functionality within BBWT3 please refer to&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Configuration#Configuration-EmailSettings">this section of the configuration document</a>.</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493045/85493046.png">image2019-1-22_15-31-17.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493045/85493047.png">image2019-1-22_15-52-20.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493045/85493048.png">image2019-1-22_15-54-27.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493045/85493049.png">image2019-1-22_15-56-0.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493045/85493050.png">image2019-1-22_15-57-32.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493045/85493051.png">image2019-1-22_15-58-25.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493045/85493052.png">image2019-1-22_16-0-2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493045/85493053.png">image2019-1-22_16-15-48.png</a> (image/png)&nbsp;</p>
-<p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Getting Started with your Development Environment&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Getting Started with your Development Environment&nbsp;</h1>
+<h2>Overview</h2>
 <p>A quick look at what you will need to start coding for BBWT3 and some of the technologies used.</p>
-<h1>Editors</h1>
+<h2>Editors</h2>
 <p>Install one of&nbsp;<a href="https://visualstudio.microsoft.com/ru/vs/community/">Visual Studio 2019</a>,&nbsp;<a href="https://code.visualstudio.com/">Visual Studio Code</a>&nbsp;or&nbsp;<a href="https://www.jetbrains.com/rider/">JetBrains Rider</a>&nbsp;for your development environment.</p>
 <p>Recommended plugins for use with VSCode:</p>
 <ul>
@@ -1091,7 +1049,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
 <ul>
   <li>Visual Studio Spell Checker.</li>
 </ul>
-<h1>Technologies Used</h1>
+<h2>Technologies Used</h2>
 <h3>When Developing</h3>
 <ul>
   <li>.NET Core 3.1.</li>
@@ -1107,7 +1065,7 @@ dateCreated: 2020-11-27T11:03:49.037Z
   <li>GitLab CI.</li>
   <li>Terraform.</li>
 </ul>
-<h1>Git</h1>
+<h2>Git</h2>
 <p>Familiarise yourself with Git first, either by reading&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Using+Git">Blueberry's guide</a>&nbsp;or&nbsp;<a href="http://www.atlassian.com/git/tutorials/setting-up-a-repository">one of the many tutorial series on the web</a>.<br>NOTE: Make sure you've set your name and email using:</p>
 <figure class="table">
   <table>
@@ -1119,9 +1077,8 @@ dateCreated: 2020-11-27T11:03:49.037Z
   </table>
 </figure>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Setting up your Development Environment&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Setting up your Development Environment&nbsp;</h1>
+<h2>Overview</h2>
 <p>This page details how to correctly set up your system for coding BBWT3. It has links to the relevant information and files. If you leave this page to complete a section e.g. to install Git, ensure that you return here and follow from where you left off - especially if you get stuck.</p>
 <p>&nbsp;</p>
 <p><strong>1. Install&nbsp;</strong><a href="https://nodejs.org/en/download/package-manager/"><strong>Node.js</strong></a><strong>&nbsp;and&nbsp;</strong><a href="https://dotnet.microsoft.com/download/dotnet-core/3.1"><strong>.NET Core SDK 3.1</strong></a><br>&nbsp;</p>
@@ -1346,11 +1303,11 @@ dateCreated: 2020-11-27T11:03:49.037Z
 <p>For Linux</p>
 <p>There is a bug on Linux where it creates threads but does not kill them. Confirmed on Debian based systems.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Unit Testing&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Unit Testing&nbsp;</h1>
+<p>&nbsp;</p>
+<h2>Overview</h2>
 <p>Here we look at how to perform both front and back-end test with examples. For more information please refer to the useful resources section on this page.</p>
-<h1>Backend Unit Tests</h1>
+<h2>Backend Unit Tests</h2>
 <p>For backend testing we use xUnit. Tests can be found within the bbwt3/test/BBWT.Services.Test folder.</p>
 <h2>Useful Resources</h2>
 <p>You can learn more about this tool with an example&nbsp;<a href="https://xunit.github.io/docs/getting-started-dotnet-core">here</a>.</p>
@@ -1378,8 +1335,8 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h1>There Are Two Ways of Running Back-End Tests</h1>
-<h2>Using Console</h2>
+<h2>There Are Two Ways of Running Back-End Tests</h2>
+<h3><strong>Using Console</strong></h3>
 <p>There is some additional requirements - it is necessary to modify the BBWT.Services.Test.csproj file and add a reference to dotnet-xunit CLI tool (according to xunit.gitlab reference above):</p>
 <figure class="table">
   <table>
@@ -1401,11 +1358,11 @@ dateCreated: 2020-11-27T11:03:49.037Z
     </tbody>
   </table>
 </figure>
-<h2>Using Visual Studio</h2>
+<h3><strong>Using Visual Studio</strong></h3>
 <p>Use the Tests &gt; Run &gt; All tests main menu item or press Ctrl+R, A to run all tests.</p>
 <figure class="image"><img src="attachments/85493035/85493036.png"></figure>
-<h1>Frontend Unit Tests - Jasmine/Karma</h1>
-<h2>Writing Frontend Tests</h2>
+<h2>Frontend Unit Tests - Jasmine/Karma</h2>
+<h3>Writing Frontend Tests</h3>
 <p>Please locate your test nearby components/services being covered with it and use *.spec.ts suffix as follows:</p>
 <figure class="image"><img src="attachments/85493035/85493037.png"></figure>
 <p>&nbsp;</p>
@@ -1471,11 +1428,3 @@ dateCreated: 2020-11-27T11:03:49.037Z
 </figure>
 <p>At the end of the process we can see in CMD the result of the tests.</p>
 <figure class="image"><img src="attachments/85493035/85493038.png"></figure>
-<p>&nbsp;</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493035/85493036.png">vs2017-testing.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493035/85493037.png">spec-file-correct-location.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493035/85493038.png">image2017-6-9_20-18-24.png</a> (image/png)&nbsp;</p>
