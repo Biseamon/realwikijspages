@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-04T08:44:58.825Z
+date: 2020-12-04T12:12:44.312Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -181,7 +181,7 @@ In our case, we are connection to another Ring Group but this can change to othe
 
 ![screenshot_2020-07-27_at_16.55.34.png](/screenshot_2020-07-27_at_16.55.34.png)
 
-## **BB consult phone system**
+## **BB Consult phone system**
 **Consult Ringaround**
 Once we are in Consult Ringaround you should be seeing something like this. In here we can edit time duration of how long does the phone ring in this group. In our case, it is ringing for 15 seconds total.
 
