@@ -2,7 +2,7 @@
 title: Getting Started
 description: 
 published: true
-date: 2020-12-04T07:39:00.304Z
+date: 2020-12-04T07:40:33.791Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T11:59:56.547Z
@@ -22,7 +22,7 @@ Please review each of these.
 
 [PTS Overview](/Getting_Started/PTS_Overview)
 
-[Who To Contact](Getting_Started/who_to_contact)
+[Who To Contact](/Getting_Started/who_to_contact)
 
 [Version Control](/Getting_Started.Version_Control)
 
