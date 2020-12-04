@@ -2,7 +2,7 @@
 title: Getting Started
 description: 
 published: true
-date: 2020-12-03T15:21:20.734Z
+date: 2020-12-04T07:39:00.304Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T11:59:56.547Z
@@ -21,6 +21,8 @@ Please review each of these.
 [Local Environment Setup](/Getting_Started/Local_Environment_Setup)
 
 [PTS Overview](/Getting_Started/PTS_Overview)
+
+[Who To Contact](Getting_Started/who_to_contact)
 
 [Version Control](/Getting_Started.Version_Control)
 
