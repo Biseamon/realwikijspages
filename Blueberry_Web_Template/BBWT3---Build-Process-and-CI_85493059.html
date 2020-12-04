@@ -1,8 +1,8 @@
 <!--
-title: Blueberry Group : BBWT3 - Build Process and CI 
+title: BBWT3 - Build Process and CI 
 description: 
 published: true
-date: 2020-12-02T16:06:11.256Z
+date: 2020-12-04T15:43:37.768Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-11-27T11:03:02.155Z
@@ -45,16 +45,15 @@ dateCreated: 2020-11-27T11:03:02.155Z
 <figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
 <p><a href="attachments/85493067/85493068.png">image2019-1-14_16-45-52.png</a> (image/png)&nbsp;</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Anonymisation&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Anonymisation&nbsp;</h1>
+<h2>Overview</h2>
 <p>With GDPR, there is often a requirement to generate an anonymised version of a live system for testing purposes. Blueberry makes use of a tool called Anonimatron to assist with this, see&nbsp;<a href="https://realrolfje.github.io/anonimatron/">here</a>&nbsp;for more information. Anonymisation is currently being integrated into BBWT3. Currently the implementation that BBWT3 uses is extracting the data through the DB Browser with certain rules and then sending it through the Anonimatron tool.&nbsp;In future, we’ll have the option to do this as part of our build systems, so every time we release a new version to live, we can automatically copy an anonymised backup to the test system.</p>
 <ul>
   <li>Runs on Java.</li>
   <li>Can automatically generate fake; email addresses, Roman names, UUID's.</li>
   <li>Customisable: allows you to set rules for different columns within a data set.</li>
 </ul>
-<h1>Test Case</h1>
+<h2>Test Case</h2>
 <ol>
   <li>A web application is set to be rolled out soon.</li>
   <li>There needs to have been rigorous testing with real data on staging server.</li>
@@ -63,7 +62,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>Specific data fields are randomly renamed, data is still intact but is now anonymised.</li>
   <li>Testers can continue to work on staging server with real world scenario's.</li>
 </ol>
-<h1>For Testers</h1>
+<h2>For Testers</h2>
 <ol>
   <li>From the BBWT3 main menu, click on "Technical Admin".</li>
   <li>Go down to and click on "Database Types".</li>
@@ -78,7 +77,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>Open the XML File in a text editor and fill in the database settings.</li>
   <li>Run Anonimatron with the configured XML file.</li>
 </ol>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>We are working to integrate this tool into BBWT3.</li>
   <li>The database explorer module includes support for labelling fields with a “type” – e.g. email, DOB, Name. This type is used to specify the anonymization rules that should apply to the field.</li>
@@ -87,14 +86,13 @@ dateCreated: 2020-11-27T11:03:02.155Z
 </ul>
 <p>Will be used in applicable projects rather than implemented by default. Grabs data anonymises it and puts on test or staging server enabling tester to test, while being GDPR friendly.</p>
 <p>DB browser has options on how to export anonymously. CURRENTLY: Generate XML file, download, enter in DB details then throw it through Anonimatron to receive anonymised data (31-01-19).</p>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>GDPR compliant.</li>
   <li>When rolling out often as part of the test processes a database is needed, your users data is protected as it is anonymised before it is extracted and placed on a staging server.</li>
 </ul>
-<h1>Blueberry Group : BBWT3 - Deployment and Environment Variables&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Deployment and Environment Variables&nbsp;</h1>
+<h2>Overview</h2>
 <p>In ASP.NET core you can have multiple configuration providers which take configuration from different sources including json files and environment variables. The primary json file that it takes base configuration data from is the&nbsp;<strong>appsettings.json</strong>&nbsp;file located in: ./src/BBWT3.Web. It doesn’t matter what values are defined in there but what does matter is the order of loading.</p>
 <p>During start-up, BBWT3 will look for specific files in a specific order. The first is&nbsp;<strong>appsettings.json</strong>&nbsp;in the application root. Then it will concatenate the current environment name with&nbsp;<strong>appsettings.json&nbsp;</strong>in the form&nbsp;<strong>appsettings.$Environment.json</strong>. The settings defined in this file will take priority over those defined in&nbsp;<strong>appsettings.json</strong>.</p>
 <p>ASP.NET core recognises three values for environment names:</p>
@@ -106,7 +104,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
 <p>These can be referenced as symbols in your code, see&nbsp;<a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname?view=aspnetcore-2.2">IHostingEnvironment</a>.</p>
 <p>When running locally, developers will want to create a copy of&nbsp;<strong>appsettings.Development.template.json&nbsp;</strong>as&nbsp;<strong>appsettings.Development.json</strong>.</p>
 <p>BBWT3 currently has three common ways of deployment which we will now look at.</p>
-<h1>Stand-alone Server Deployment</h1>
+<h2>Stand-alone Server Deployment</h2>
 <p>In production we would set it to production, or test1 or whatever were using at the time for that project. Then if we needed to we would create on the server a file with database settings etc. which is only accessible on that server. Depending on what the set up is we may update that file with different methods:</p>
 <p>We could remote connect to it and update the file manually.</p>
 <p>We could update it through Amazon SSM.</p>
@@ -147,11 +145,10 @@ dateCreated: 2020-11-27T11:03:02.155Z
 <p>The load balancer is optional so the main benefit from this is the deployment strategy - you can upload a zip file, and it goes and deploys it. Which for Windows servers is a better alternative than having GitLab go and open ssh to drop the files off. It handles the Windows server use case very well.</p>
 <p>The work around for single server without using Elastic Beanstalk was that GitLab creates a zip file ssh connection to the server uploads the zip file, and write our own deployment scripts to replace the IIS folder. Using this method you would not be able to do a soft deployment (updating the code without taking the system down) as can be done with Elastic Beanstalk.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Gitlab&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>BBWT3 - Gitlab&nbsp;</h1>
+<h2>Overview</h2>
 <p>GitLab is a service that gives access to git repositories. It allows for centralisation of source code and helps to manage the software development life cycle. It allows multiple developers to work on different aspects of the code, create and edit new projects and then merge it into existing ones. There are multiple hosting options, Blueberry consultants uses the free self-hosting community edition; to access you can click&nbsp;<a href="https://gitlab.bbconsult.co.uk/users/sign_in">here</a>.</p>
-<h1>Advantages</h1>
+<h2>Advantages</h2>
 <ul>
   <li>Free and open source.</li>
   <li>Different hosting options.</li>
@@ -162,7 +159,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>Issue tracking.</li>
   <li>Work in progress labelling - letting other developers know that the code isn't completed, so that it doesn't end up getting merged into a branch.</li>
 </ul>
-<h1>Getting Started with GitLab</h1>
+<h2>Getting Started with GitLab</h2>
 <ol>
   <li>First go&nbsp;<a href="https://gitlab.bbconsult.co.uk/users/sign_in">here</a>&nbsp;to access the GitLab login page.</li>
   <li>Login using your LDAP credentials (this will usually be your initials along with your standard blueberry password) Note: if you are unable to login make sure you have been added to a GitLab project - contact a sysadmin in this instance.</li>
@@ -173,7 +170,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>Enable two-factor authentication following the on screen instructions and using the Google "Authenticator" app (or similar).</li>
   <li>You should now be ready to set up your<a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=65077466">&nbsp;Development Environment</a>&nbsp;and begin contributing.</li>
 </ol>
-<h1>How It Is Used in BBWT3</h1>
+<h2>How It Is Used in BBWT3</h2>
 <p>For BBWT3, we're using GitLab – an open-source version of GitHub which includes a strong auto-build / auto-deploy solution.</p>
 <p>Ideally, long-running BBWT2 projects should also move to GitLab too. We can’t easily move BBWT2 code to BBWT3, but we can take advantage&nbsp;<br>of the new auto-build and auto-deploy - and save time managing Jenkins.</p>
 <p>There’s a method to import SVN into GitLab source control. But we need to have an auto-build in place first so we can build/deploy</p>
@@ -247,13 +244,13 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>Aurora is only available for MySQL and PostgreSQL, not Linux. It has much better backup and redundancy support than stand-alone MySQL, and is probably faster. For stand-alone scenarios<br>above, I'm suggesting we keep local MySQL, but this could be changed. Local MySQL is a bit cheaper though, if web-server isn't loaded. Note that Aurora works in unit of a DB instance with&nbsp;<br>multiple DBs, and the unit of backup is the whole instance. This MAY make it less useful to share Aurora DB instances between projects.</li>
   <li>We should have Terraform scripts for each of these, which can be used to create a new server as required.</li>
 </ol>
-<h1>Sending commit data to PTS</h1>
+<h2>Sending commit data to PTS</h2>
 <p>Repository event data can be sent back to PTS using a webhook. For now, we're just sending back push events. To set this up for your Web Template 3 project, navigate to&nbsp;<strong>Settings&nbsp;→ Integrations</strong>&nbsp;in the project, and add a new webhook with the following values:</p>
 <ul>
   <li>URL:&nbsp;<a href="https://ptsb.bbconsult.co.uk/api/git/push">https://ptsb.bbconsult.co.uk/api/git/push</a></li>
   <li>Trigger: Push events</li>
 </ul>
-<h1>Sending Data Back to GitLab</h1>
+<h2>Sending Data Back to GitLab</h2>
 <h2>Introduction</h2>
 <p>One of the visions for BBWT3 is to enable customers or PMs / Testers&nbsp;to make changes to a number of areas of the website without having to go back to developers to update the code.&nbsp; In general, these changes will be made by the customer during the testing phase of development and so need to find themselves back into source control for when the site goes live.&nbsp; The changes will be submitted to GitLab as a merge request which a PM will need to accept.</p>
 <p>An example of where this would be required is for the tool-tip functionality.&nbsp; We want users to be able to edit the tool-tips themselves and for those changes to be updated in the source control.</p>
@@ -352,16 +349,16 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>On the fly linting plug-in for IDE's.</li>
   <li>Detailed GUI.</li>
 </ul>
-<h1>Blueberry Login</h1>
+<h2>Blueberry Login</h2>
 <p><a href="https://sonar.bbconsult.co.uk/projects">https://sonar.bbconsult.co.uk/projects</a></p>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>Find bugs in code before deployment with SonarQubes powerful tool set.</li>
   <li>Track where new bugs emerged.</li>
   <li>Ability to ensure code is as best as it can be.</li>
   <li>Automatically detects bugs and security vulnerabilities.</li>
 </ul>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>BBWT3 is checked via SonarQube, a code analysis tool which helps to reduce the amount of bugs and security vulnerabilities.</li>
   <li>Code merged into the main repository is checked to be clean.</li>
@@ -369,7 +366,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
 </ul>
 <h1>BBWT3 - Version Numbering&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Hard-coded version number</h1>
+<h2>Hard-coded version number</h2>
 <p>Main version number presents a release of the BB Web Template. It is hard-coded and placed into the main CI script (<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/blob/develop/.gitlab-ci.yml#L3">here</a>&nbsp;in GitLab).</p>
 <p>For example:&nbsp;<br><strong>.gitlab-ci.yml</strong></p>
 <figure class="table">
@@ -416,7 +413,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
 <p>This page describes how Webpack and caching are used in BBWT3 along with useful links to find out more.</p>
 <p>Webpack no longer used</p>
 <p>Webpack has been superseded by&nbsp;<a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?pageId=68354084">Angular CLI</a></p>
-<h1>Webpack</h1>
+<h2>Webpack</h2>
 <p>Webpack is a build tool as well as code manager. Usually ordering within files is important to run properly - otherwise you could end up with errors such as not having a defined variable, if code is called out of order. Webpack takes care of this for you by scanning files for imports, and the imports of those imports ad infinitum. It will then merge the files into a single bundle. It has the ability to "minify" files by effectively removing white space. This makes files smaller and thus quicker for the end user to download via their browser.</p>
 <ul>
   <li>Webpack combines multiple server-side files into a single file for delivery to the client.</li>
@@ -424,7 +421,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>Browsers consider this part of the file name.&nbsp; So, if the content of an archive changes, it gets a new name and is treated as a new file for caching purposes.</li>
   <li>Effectively Webpack makes server-side archives immutable - they can't change, because they become a new file to the browser.&nbsp; This turns off a large part of the caching strategy - there's no point asking the server if the file is changed - if the name is the same, it hasn't.</li>
 </ul>
-<h1>Caching</h1>
+<h2>Caching</h2>
 <ul>
   <li>Webpack effectively defeats a large part of browser caching - if it is used correctly, the browser only sees files that don't change on the server.</li>
   <li>At the ASP.NET Core Server, we don't have files that correspond to application pages.&nbsp; Instead the application provides a handler function which returns HTML.&nbsp; The server will serve the web-pack files referenced by the main URL too.</li>
