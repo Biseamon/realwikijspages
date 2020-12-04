@@ -2,7 +2,7 @@
 title: Getting Started
 description: 
 published: true
-date: 2020-12-04T07:43:30.575Z
+date: 2020-12-04T08:24:02.075Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T11:59:56.547Z
@@ -30,4 +30,4 @@ Please review each of these.
 
 [Useful Staff Information](/Getting_Started/Staff_Information)
 
-[Information for Remote Working](\Getting_Started/Information_For_Remote_Working)
+[Information for Remote Working](/Getting_Started/Information_For_Remote_Working)
