@@ -2,7 +2,7 @@
 title: Getting Started
 description: 
 published: true
-date: 2020-12-04T07:40:33.791Z
+date: 2020-12-04T07:42:02.269Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T11:59:56.547Z
@@ -28,5 +28,6 @@ Please review each of these.
 
 [Coding Guidance](/Getting_Started/Coding_Guidance)
 
+[Useful Staff Information](/Getting_Started/Staff_Information)
 
 
