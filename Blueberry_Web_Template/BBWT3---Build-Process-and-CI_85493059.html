@@ -2,7 +2,7 @@
 title: BBWT3 - Build Process and CI 
 description: 
 published: true
-date: 2020-12-04T15:43:37.768Z
+date: 2020-12-04T15:45:31.141Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-11-27T11:03:02.155Z
@@ -10,12 +10,12 @@ dateCreated: 2020-11-27T11:03:02.155Z
 
 <h1>BBWT3 - Angular Budgets&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Overview</h1>
+<h2>Overview</h2>
 <p>Angular CLI can be configured to warn and/or fail the build process if specific files or bundles within the application grow too large.</p>
 <p>This feature can be used to control the potential amount of resources clients need to download to use the Angular application. It can also be used to prevent developers from accidentally importing entire libraries into the project and bloating the output.</p>
-<h1>Configuring Budgets</h1>
+<h2>Configuring Budgets</h2>
 <p>Angular documentation has up-to-date information on&nbsp;<a href="https://angular.io/guide/build#configure-size-budgets">configuring budgets</a>.</p>
-<h1>Diagnosing Budget Errors</h1>
+<h2>Diagnosing Budget Errors</h2>
 <p>The&nbsp;<a href="https://www.npmjs.com/package/webpack-bundle-analyzer">webpack-bundle-analyzer</a>&nbsp;tool can be used to inspect the bundles and their contents in the Angular build output.</p>
 <p>Firstly, build the project in production mode and collect the statistics to be used by webpack-bundle-analyzer later:</p>
 <figure class="table">
@@ -41,10 +41,6 @@ dateCreated: 2020-11-27T11:03:02.155Z
 <p>This should start up a local webserver and open the URL in your browser. You can now inspect the packages in the Angular output. At the time of writing, the graph looks like this:</p>
 <figure class="image"><img src="attachments/85493067/85493068.png"></figure>
 <p>You are looking for any sections that look large compared to the others. For example, here&nbsp;<i>feedbacks.umd.min.js&nbsp;</i>and&nbsp;<i>quill.js&nbsp;</i>are quite large in comparison to other packages, however they are known to be good and thus there are no issues with package sizes here.</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493067/85493068.png">image2019-1-14_16-45-52.png</a> (image/png)&nbsp;</p>
-<p>&nbsp;</p>
 <h1>BBWT3 - Anonymisation&nbsp;</h1>
 <h2>Overview</h2>
 <p>With GDPR, there is often a requirement to generate an anonymised version of a live system for testing purposes. Blueberry makes use of a tool called Anonimatron to assist with this, see&nbsp;<a href="https://realrolfje.github.io/anonimatron/">here</a>&nbsp;for more information. Anonymisation is currently being integrated into BBWT3. Currently the implementation that BBWT3 uses is extracting the data through the DB Browser with certain rules and then sending it through the Anonimatron tool.&nbsp;In future, we’ll have the option to do this as part of our build systems, so every time we release a new version to live, we can automatically copy an anonymised backup to the test system.</p>
@@ -134,12 +130,12 @@ dateCreated: 2020-11-27T11:03:02.155Z
 <p>The proper way is to use the Amazon parameter store and then having the application read in through Amazon’s API’s from parameter store which is Amazon's solution for it. So we could write a middleware wrapping around the parameter store and then we give a prefix for each application deployment – e.g. BBWT3-test1/key which would allow us to partition the parameter store for each application and gives a fully tracked managed way of doing it with revision history for each parameter.</p>
 <p>It is possible to make that as familiar as possible to the user by including it within BBWT3 itself, however you would need to make it able to write back to the correct application. If we push the configuration back into the Amazon parameter store, and we use the API’s of the Amazon parameter store, we can save them in there and it will be central and will work for every Amazon deployment that we do. However like this it will not work on Azure. It could be made to work on Azure however it would entail writing a middleware that talks to both. Which probably is the best way to do this.</p>
 <p>Currently we don’t have a mechanism for connecting the GitLab variables to the parameter store, we would need a separate application to sync those.</p>
-<h1>Elastic Container Service Deployment</h1>
+<h2>Elastic Container Service Deployment</h2>
 <p>Elastic container service is a proprietary Amazon service which is their way of doing container scheduling, with its own way of managing its secrets and environment variables. Its main advantage is that it gives improved security.</p>
 <p>The way it works is you have a container, ie. BBWT3 Then you create a task for that container, which specifies how it should run, how many resources It should take and more importantly the configuration/environment variables which should be attached to that container.</p>
 <p>You create a new task version every time you wish to update the container software with variables, then you push that out to a service running on your cluster. The way it was done in VME was you had a 1 to 1 relationship without multiple services, you had the 1 service on the 1 cluster with the 1 task. But it can be mixed up as much as needed but that's how it was done for simplicity.</p>
 <p>It is another user interface where you define environment variables, and those environment variables are made available to the process as environment variables without any middleware. It is injected correctly, unlike with Elastic Beanstalk.</p>
-<h1>The Preferred Method</h1>
+<h2>The Preferred Method</h2>
 <p>The preferred method is to use the Amazon Parameter Store which will work across every case.</p>
 <p>Alternatively we can use Elastic Beanstalk.<br>Elastic beanstalk is now available for use on single servers,&nbsp; we could integrate Cloud Machine Manager (CMM) and this would give us an easier route for deployment.</p>
 <p>The load balancer is optional so the main benefit from this is the deployment strategy - you can upload a zip file, and it goes and deploys it. Which for Windows servers is a better alternative than having GitLab go and open ssh to drop the files off. It handles the Windows server use case very well.</p>
