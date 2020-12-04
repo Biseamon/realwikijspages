@@ -2,7 +2,7 @@
 title: Version Control
 description: 
 published: true
-date: 2020-12-04T15:18:06.252Z
+date: 2020-12-04T15:19:34.332Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-03T15:00:13.999Z
@@ -93,7 +93,7 @@ Press enter when prompted for the save path. If this isn't your first key, make 
 You will be prompted to enter a passphrase with which to encrypt your private key against.
 
 > Your keystrokes will not be shown in the terminal.
-{.is-danger}
+{.is-warning}
 
 
 
@@ -105,7 +105,7 @@ You will be prompted to enter a passphrase with which to encrypt your private ke
 
 
 > Leaving the passphrase empty allows anybody to use your SSH key. If your storage is not otherwise encrypted, make sure to enter a passphrase.
-{.is-danger}
+{.is-warning}
 
 Your SSH key pair should now be present in %USERPROFILE%\.ssh\ on Windows, and ~/.ssh/ on macOS/Linux. It is safe to transmit the public component over plaintext, although you should stick to secure transport (i.e. Wire) methods as a matter of course.
 
@@ -447,7 +447,7 @@ Please avoid using '#no_task' as it helps nobody – changes become untraceable 
 # SVN
 > VERY IMPORTANT
 > You should be checking code into SVN on a daily basis. You should never leave code on your development machine that has not been checked in to SVN for >48 hours. Imagine your development machine broke down or was stolen, we could lose days’ worth of work.
->{.is-danger}
+>{.is-warning}
 
 The only rule for checking code in to SVN is that it must compile. It does not have to be ‘finished’ or completely fix an issue or task. The risk of losing code is much greater than the risk of someone building incomplete code.
 
