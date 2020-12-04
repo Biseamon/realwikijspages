@@ -2,7 +2,7 @@
 title: Who to Contact
 description: 
 published: true
-date: 2020-12-03T15:17:34.150Z
+date: 2020-12-04T14:28:43.976Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-02T07:55:17.617Z
@@ -22,8 +22,8 @@ On this page you will see a list of common queries and who the best person to sp
 
 ## Purchasing
 [Purchasing](mailto:purchasing@bbconsult.co.uk)
-[Personal Assistant to Martin Green](mailto:emma.neale@bbconsult.co.uk)
-[Personal Assistant to David Lee](mailto:lynn.roome@blueberrysystems.co.uk)
+[Personal Assistant to Martin Green - Emma Neale](mailto:emma.neale@bbconsult.co.uk)
+[Personal Assistant to David Lee - Lynn Roome](mailto:lynn.roome@blueberrysystems.co.uk)
 [Gareth Casey](mailto:gareth.casey@bbconsult.co.uk)
 
 ## Flashback Support
