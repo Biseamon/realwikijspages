@@ -2,9 +2,9 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-02T11:53:42.524Z
+date: 2020-12-04T08:44:58.825Z
 tags: 
-editor: undefined
+editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
 ---
 
@@ -52,17 +52,6 @@ If an account does not belong to any of these groups, that account will not have
 # Blueberry Organisation Chart
 
 ![bb_org_chart_-_june_2020.png](/bb_org_chart_-_june_2020.png)
-
-# Company Policies
-
-## Business Policies
-## HR Policies
-## Security Policies
-## Server Policies
-
-# Company Procedures
-
-# Company Processes
 
 # 3CX Phone System
 
