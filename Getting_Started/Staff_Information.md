@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-07T09:27:20.633Z
+date: 2020-12-07T09:37:56.049Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -74,6 +74,10 @@ This note is an aide-memoire for the essential tasks that must be adhered to in 
 **CUSTOMER COMMS** Send an e-mail with a Burndown to the Customer twice a week. Generally, keep in close touch with your Customer using their preferred method (expressed in the PSD).
 
 **CHANGE REQUESTS** The Customer must request a change using the Portal. The PM should assess the Change and relay any Time/Cost via the Portal (can ALSO be by e-mail). An Enquiry should be created. If the Customer approves the change (which must be via the Portal) the Enquiry should be converted to a Won Ad Hoc. TESTING Testing should be done in parallel with a Sprint, either by the PM or an APM/Tester. Software should never be given to a Customer without being fully tested. TOOLS • PTS must be used. • Sonarqube should be used for code quality testing. • Acunetix should be used for vulnerability scanning.
+
+## Bluesprints 'House' Rules
+
+![houserulesa2.png](/houserulesa2.png)
 
 ## Bluesprints FAQ's
 
