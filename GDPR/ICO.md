@@ -2,7 +2,7 @@
 title: ICO
 description: 
 published: true
-date: 2020-12-07T10:15:18.806Z
+date: 2020-12-07T10:34:53.903Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-07T10:15:18.806Z
@@ -44,7 +44,9 @@ To change or cancel our entry we can follow the instructions at: https://ico.org
 >  - accounts or records (ie invoices and payments);
 >  - advertising, marketing and public relations (in connection with your own business activity). 
 > 
+> {.is-info}
 {.is-info}
+
 
 
 
