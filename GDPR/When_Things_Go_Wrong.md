@@ -2,13 +2,13 @@
 title: When Things Go Wrong
 description: 
 published: true
-date: 2020-12-07T12:47:38.342Z
+date: 2020-12-07T12:47:56.047Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-07T12:47:38.342Z
 ---
 
-# GDPR - When things go wrong
+# When things go wrong
 
 ## Personal data breach
 
