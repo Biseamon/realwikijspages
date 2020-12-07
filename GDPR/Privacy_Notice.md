@@ -2,7 +2,7 @@
 title: Privacy Notice
 description: 
 published: true
-date: 2020-12-07T10:55:03.973Z
+date: 2020-12-07T11:00:28.078Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-07T10:55:03.973Z
@@ -59,7 +59,10 @@ What must it contain?
 > - Demographic data
 > - Medical and health
 > - Physical characteristics
-> {.is-warning}
+>
+>
+> {.is-success}
+{.is-success}
 
 
 
