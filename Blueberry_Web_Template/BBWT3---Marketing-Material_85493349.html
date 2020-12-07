@@ -2,7 +2,7 @@
 title: BBWT3 - Marketing Material
 description: 
 published: true
-date: 2020-12-07T17:01:38.187Z
+date: 2020-12-07T17:11:36.113Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-11-27T11:05:24.255Z
@@ -10,44 +10,36 @@ dateCreated: 2020-11-27T11:05:24.255Z
 
 <h1>Marketing Material&nbsp;</h1>
 <p><strong>This applies to BBWT3 V1.1 (07-01-19)</strong></p>
-<h2>What is BBWT3?</h2>
+<h1>What is BBWT3?</h1>
 <p>Blueberry Web Template 3 (BBWT3) is Blueberry Consultants 3rd iteration of a Web Application development framework.</p>
-<h2>What Technologies Is BBWT3 Built On?</h2>
+<h1>What Technologies Is BBWT3 Built On?</h1>
 <p>We use an array of modern technologies to build our web applications. Meaning that if you decide to have other work done on your web application that isn't by us, you are not locked in; as we use popular languages and tools, including but not limited to the following:</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p><strong>TypeScript and Angular 7</strong></p>
+<h2><strong>TypeScript and Angular 7</strong></h2>
 <p>Angular is written in TypeScript, which is a language that complies with JavaScript but it is designed to eliminate common mistakes while typing code. TypeScript has a lot of documentation around this technology.</p>
 <p>Angular itself has a component based architecture which allows for building a UI with many "moving parts". It enables developers to be able to re-use components across the app. Angular CLI allows us to quickly generate new pages and components with the required "boiler plates", saving our developers time.</p>
 <p>It was designed with mobile devices in mind.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p><strong>PrimeNG</strong></p>
+<h2><strong>PrimeNG</strong></h2>
 <p>PrimeNG is built for Angular, it is a user interface suit. It is free and open source, and published under the MIT license. Meaning that it can be modified as well as be included in projects and sold as a package without needing to pay royalties. This allows our developers to save time, and your money, by spending our resources elsewhere instead of re-inventing the wheel.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p><strong>ASP.NET Core (C#)</strong></p>
+<h2><strong>ASP.NET Core (C#)</strong></h2>
 <p>A popular open source web framework that can run across all platforms. It is the foundation that enables us to create dynamic web sites and services for you and your clients.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p><strong>Databases</strong></p>
+<h2><strong>Databases</strong></h2>
 <p>BBWT3 can be used in conjunction with the following databases:</p>
 <ul>
   <li>MS SQL: Microsoft's SQL database suite, which runs as a service on a Windows server.</li>
   <li>MySQL: A free (without support) SQL database, which can run on both Windows and Linux.</li>
   <li>Aurora: Amazon's database software that was built with the cloud in mind, it is both MySQL and PostgreSQL compatible.</li>
 </ul>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p><strong>Cloud Support</strong></p>
+<h2><strong>Cloud Support</strong></h2>
 <p>BBWT3 has support for both Amazon RDS and Microsoft Azure deployments.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p><strong>Hangfire</strong></p>
+<h2><strong>Hangfire</strong></h2>
 <p>Hangfire is an open-source framework for running background operations. With it in BBWT3 you can schedule jobs, or you can run them manually. It stores all jobs in a database that is searchable for upcoming, current and past jobs.</p>
-<h2>Our Customers Need to Know That Their Data Is Safe, What Security Steps Do You Take to Ensure Our Data Is Secured?</h2>
+<h1>Our Customers Need to Know That Their Data Is Safe, What Security Steps Do You Take to Ensure Our Data Is Secured?</h1>
 <p>Security is at the heart of BBWT3, it attempts to strengthen every point of failure:</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p>User Password Registration Checks</p>
+<h2>User Password Registration Checks</h2>
 <p>Before a user even completes registration, BBWT3 is ensuring the integrity of the account. By default it will check using the Low-Budget Password Strength Estimation library called “zxcvbn”. Unlike pronouncing the name, it’s easy to see how strong a password is. It compares the entered password against common passwords, words, names, patterns, and “l33t speak”. This in turn prevents users from having an account with a weak password. In addition to this, BBWT3 allows custom configuration of the more traditional Lowercase Uppercase Digit Symbol (LUDS) rules. When a user signs up, their SHA-1 hashed password is compared against the Have I Been Pwnd (HIBP) database, to see if it has ever been leaked in known public databases.</p>
 <h2>But What If That Hash Is Intercepted, Couldn't It Then Be Compromised?</h2>
 <p>You don’t have to worry about the password being intercepted or stored by HIBP, as they cleverly use k-anonymity. Basically this takes the first 5 hexadecimal characters of the hash, requests all entries beginning with this from the HIBP server, then on the client side compares the rest of the hash with the returned entries. Each entry has a counter of how many times it has been found in their database, and HIBP will report this figure back to the user in the event a match was found. If it has been found, then a warning will be given to the user advising them never to use that password again. Letting your users know that their “unique one size fits all” password isn’t just theirs...</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p><strong>Two Factor Authentication (2FA)</strong></p>
+<h2><strong>Two Factor Authentication (2FA)</strong></h2>
 <p>We have built the platform to enable users to be able to use Two Factor Authentication (2FA). 2FA is a modern security practice which utilises one time only passwords to enable a secure login. This used to be an uncommon practice, but has risen in popularity within companies over the years; and is now included in company policy for many large organisations.</p>
 <p>There is a good reason for this, and its quite simple; 2FA significantly improves security. It renders phishing attacks (where a user is sent to a malicious website which is designed to imitate a legitimate one in order to steal a users credentials) almost obsolete. This is because even though an attacker might have a users username and password, they will be unable to login without the 2FA.</p>
 <p>There are different methods of 2FA, one you may have come across, is with online banking. Your bank may have sent you an SMS with a code to login with along side your username and password. This is not inherently insecure, but it is not good practice, as SMS messages can be intercepted or redirected to an attacker. A better solution is through the use of tokens.</p>
@@ -56,35 +48,26 @@ dateCreated: 2020-11-27T11:05:24.255Z
 <p>Firstly the software solution is done through an app called an authenticator. Such an app you may have heard of is Google Authenticator (there do exist other similar apps but most people will probably end up using this one). With BBWT3 you simply login, navigate to your profile and within a few clicks will be presented with a QR code that you scan with your phone’s camera. This then generates a code on your authenticator app which you enter into BBWT3, and that’s it. 2FA has now been set up.</p>
 <h2>Hardware 2FA</h2>
 <p>The use of hardware tokens is just as simple to set up, and it works by plugging in a USB key, and pressing a button on the key when prompted. Hardware tokens such as the “Security Key” by Yubico are used with an open authentication standard called Universal Second Factor. Either method of 2FA takes mere seconds to use when logging in. This reduces complexity and hassle for users, but maintains a significant level of security and protection over them. A recent report found that only 10% of active Gmail users use 2FA. With the ease of set up and use that BBWT3 offers, there’s no reason not to have 2FA enabled for every user.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p><strong>Session Time Out</strong></p>
+<h2><strong>Session Time Out</strong></h2>
 <p>Leaving your computer unattended, even for a short amount of time allows an attacker to gain access. You should always lock your computer when you are not in direct line of sight of it. In this vein BBWT3 utilises a session time out measure. The default timeout is 5 minutes, however it can be altered by an admin to whichever desired time is required, in intervals of 1 minutes. This way even if a computer is left unlocked and the user walks away, the window of attack time is reduced. Thus improving security of the account, and the web application as a whole.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<h1>Secured Admin Pages</h1>
-<h2>Account Time Out</h2>
+<h2>Secured Admin Pages - Account Time Out</h2>
 <p>Securing admin pages should be taken seriously, we at Blueberry surely believe so. Inbuilt into the template is the automatic ability to time out accounts that have had too many failed attempts. Thus greatly reducing the ability of an attacker to use a brute-force method against an account.</p>
-<h2>Account Locking</h2>
+<h2>Secured Admin Pages -&nbsp;Account Locking</h2>
 <p>Furthermore BBWT3 offers the ability to lock an account that has had too many failed login attempts. Once an account is locked it requires an admin to manually unlock it, alerting them to a potential security problem so that they can investigate logs and determine what has happened.</p>
-<h2>IP Whitelist</h2>
+<h2>Secured Admin Pages -&nbsp;IP Whitelist</h2>
 <p>If required an Admin account can be set to only be granted access by an individual IP or IP range. This would be useful to make sure that no one outside of your business VPN can login to an admin account. Therefore greatly reducing the ability of an outside attacker gaining access.</p>
 <p>These settings can all be altered and customised by an admin based on your threat model.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
 <h2>Session Handling</h2>
 <p>Session handling is done in a novel way with our template. BBWT3 synchronises sessions across open tabs and windows, meaning that you can not be logged into more than one account at a time in one browser.</p>
 <p>This is a useful feature for 2 reasons, the first being security. In an environment where more than one person has access to a single computer, it is important to keep users with high permissions compartmentalised from general users. If an admin has left a tab open but logged out from another, the integrity of the web application is secured. This is because when a user logs out on one tab or window, they are logged out across all tabs and windows. Those tabs and windows will then be automatically refreshed to the login page. Also if a user with lower permissions attempts to login, any tabs or windows within the same browser logged in with another account are logged out.</p>
 <p>The second reason is reducing confusion. By this we mean that; if there is some diagnosis on a single machine going on when trying to troubleshoot your web application, they will not end up being confused by having multiple pages with varying user permissions. Enabling an admin to do what needs to be done, without having to keep track of specific windows or tabs.</p>
-<h2>That All Sounds Great, but What Happens If a User Forgets Their Password?</h2>
+<h1>That All Sounds Great, but What Happens If a User Forgets Their Password?</h1>
 <p>With these added layers of protection, resetting a password on an account remains easily done through the “Forgotten password” link of BBWT3.</p>
-<p>&nbsp;</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p><strong>Resetting a Password</strong></p>
+<h2><strong>Resetting a Password</strong></h2>
 <p>When a user requests a password reset, they are sent a link in a time sensitive email that they must follow before it expires. Furthermore if a user changes their email address, a confirmation email will be sent to the user, who will first have to click the link provided to authorise the change.</p>
 <p>These features are made to improve security by ensuring only the person with access to the email address can make changes to your web application. As long as 2FA is enabled, even if an attacker gains control of the target email account, sending and filling out a reset password form will still be of no use to them – because BBWT3 will still ask for the 2FA.</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
 <h1>So What Features Does BBWT3 Have?</h1>
-<p>&nbsp;</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
 <h2>Databases</h2>
 <h2>Importing</h2>
 <p>BBWT3 has a database import feature that supports Excel and CSV files. What our solution does differently, is that it checks the file before importing it. If it detects even one error within the database instead of importing the file and having an entry removed, it simply highlights the error(s) and gives you the file back. Unlike other solutions which would entail hunting through databases for who was removed, our template does it right. By giving the user back a file with the highlighted area’s that contain errors, the user is able to detect patterns if there are any, and correct them as necessary. A progress bar displays how far along the upload process is, allowing for visual confirmation that BBWT3 is still working in the background while the user waits.</p>
@@ -92,39 +75,39 @@ dateCreated: 2020-11-27T11:05:24.255Z
 <p>Once your database is imported, searching through your databases is easy with our search and filter components. It allows you to search in a multitude of ways to find (x); greater than, contains, ends with, length equals to, exact name. If you’ve ever misheard a name and then tried to search for it, you’ll be grateful of the “contains” search facility. Search options can be stacked, for example a name that ends with an “s” AND contains “Luc”.</p>
 <h2>Editing and Deleting</h2>
 <p>You are able to make edits, delete single entries or the whole dataset all without the use of 3rd party tools.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2><strong>Grid Rules</strong></h2>
 <p>The grid feature of BBWT3 allows for dynamic resizing of columns based on pixel width of display. This allows for your web application to be viewable on a multitude of devices, ranging from 4k desktop monitors all the way down to early smartphone screens.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2><strong>Filtering</strong></h2>
 <p>Having filters on a web application is useful, having them reset once you leave the page and return isn't. That annoyance will never happen with a web application built with BBWT3, instead we make filters persistent. It’s one example of what BBWT3 does right, this small attention to detail is what helps provide your users with the best possible user experience.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2><strong>Image Upload Tool and Gallery</strong></h2>
 <p>If you need to upload images, BBWT3 has you covered. Inbuilt into the template is a photo management tool that can resize images and compress them. This ends up with reducing server bandwidth and CPU usage because, like with alterations such as orientation of an image, it is all done client side.</p>
 <p>It also supports cloud storage - as would be expected from a modern web application template. Stored images can be viewed and deleted, all within the inbuilt gallery. No more messy and cumbersome ftp management or of the like. Everything is done straight from the browser.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2><strong>Menu Customisation</strong></h2>
 <p>Needing to re-arrange page order for usability reasons is common even once deployment has happened. Menu customisation is quick and easy with our template, simply drag and drop pages into their new position.</p>
 <p>Create new pages, delete or edit existing ones without needing to delve into the code. This can be done by admins with no coding experience, creating new footer links is just as simple; a demonstration of the powerful accessibility and customisation our template offers. Therefore no extra development cost is required, as BBWT3 gives your admins the ability to make these small, but ultimately useful changes.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2><strong>PDF Generation</strong></h2>
 <p><strong>PLACEHOLDER</strong></p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
-<p>Pushing Updates to Users / Cache Bypassing / overwriting the cache - which to use?</p>
+<p>&nbsp;</p>
+<h2>Pushing Updates to Users / Cache Bypassing / overwriting the cache - which to use?</h2>
 <p>Making small changes can confuse users because of cacheing. They expect to see something different but see the old item such as an image. BBWT3 deals with this by giving each uploaded file a unique name. In this manner when a change is made to say a logo, your user’s web browser sees the file as something new and thus downloads it.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2>Email Templates</h2>
 <p>Email templates are provided for you, making sending out notifications as simple as editing our stock text with your companies, and then saving it. The next time a user has; created an account, changed their email address, or requested a password reset, an email with your full company branding will be dispatched to them.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2>Impersonation</h2>
 <p>Admins get inundated with issues from users, from minor to major. If a group of users is suffering from the same issue, it can be advantageous to have an account made with the specific set of privileges of that group.</p>
 <p>The downfall to this of course, is that it can open you up to attack; with depreciated accounts that are not usually protected by strong passwords.</p>
 <p>BBWT3 on the other hand, has a feature that allows an admin to impersonate either a single user, or a group of users. In this way they are able to see first hand what the issue is. This can all be achieved within a few clicks, and exiting from impersonation is just as easy.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2>Customisable Tooltips</h2>
 <p>BBWT3 empowers your users by giving them helpful tooltips. We all know that users will rarely read a manual or a wiki, so having tooltips icons next to a feature educates them on what it does.</p>
 <p>Thus saving time for both user and admin – who would inevitably be the one to point them in the right direction. Admins can set up these tooltips with custom text so that they only ever need to respond to a users confusion once. Although based on experience, this might just be wishful thinking.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h1>Users, Groups and Companies</h1>
 <h2>User Management</h2>
 <p>User management is conducted through the use of users, groups and roles/permissions.</p>
@@ -132,7 +115,7 @@ dateCreated: 2020-11-27T11:05:24.255Z
 <p>Our template helps you to be GDPR compliant; delete any user quickly and easily in accordance with the right to erasure set out by the EU.</p>
 <h2>How is BBWT3 developed?</h2>
 <p>BBWT3 is built using Gitlab as its source repository which allows for multiple users to work on individual aspects of the project. The project can then be compiled and it is given a unique build number. This helps track changes such as ironing out bugs from old builds, or detecting new ones that have arisen from new changes.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h1>Version Information</h1>
 <h2>Version Numbering</h2>
 <p>BBWT3 displays clearly the build number in the bottom right hand corner of the window. This allows testers to track changes that have occurred and ensures that there is no confusion; for example, testing on an older build than the current one could lead to wasted time and in turn money. Having the version number there allows for everyone to known if it is the latest build available.</p>
@@ -141,7 +124,6 @@ dateCreated: 2020-11-27T11:05:24.255Z
 <h1>What Diagnostics Does BBWT3 Use?</h1>
 <p>A useful tool that is included in BBWT3 is the ability to display and log the page load time. This diagnostic feature means that admins can check that the web application is consistent, and that there are no problem pages. An admin can check if there is a page that is particularly slow to load. For example, having a large image size on a particular page. Something which could be reduced in size to speed up loading to an acceptable time.</p>
 <p>&nbsp;</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
 <h2>Logging</h2>
 <p>As alluded to earlier in the security section, yes there is logging, and its quite extensive. The template is able to log user’s login. This can be a valuable asset, if for example you would be able to detect unusual activity on an account – such as a login from a foreign IP. This could indicate that an account is compromised. Furthermore if an account is compromised you will have some form of forensics to go on.</p>
 <h2>Graylog</h2>
@@ -151,12 +133,12 @@ dateCreated: 2020-11-27T11:05:24.255Z
 <p>&nbsp;</p>
 <h1>What Quality Assurance Does BBWT3 Go Through?</h1>
 <p>We conduct QA at every stage of development to ensure that the final product you receive is fully tested, and free from as many bugs and vulnerabilities as possible. We test out how our web application performs on different environments, such as configurations on both Windows and Linux servers. We use a mixture of manual and automatic testing methodologies.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2>SonarQube</h2>
 <p>SonarQube is a static code analysis tool, which can check code even as it is being written in the interactive development environment (IDE). It supports multiple languages and importantly all the ones we use for BBWT3. With this tool we can make sure that as many code smells, duplicate code, bugs and security vulnerabilities are detected and corrected.</p>
 <p>It tracks which bugs originated from which build, and ensures that our code is compliant with best practices principles. Its detailed graphical dashboard tells us at a glance, how many issues and potential issues there are, and exactly where to find them. Meaning less time is spent hunting down where the missing syntax is and more time spent resolving the issue.</p>
 <p>During development before a branch is merged into the main repository it is checked to be as clean as possible, so the likelihood for it creating new issues is minimal.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2>Xunit</h2>
 <p>For testing the back-end of our web application we use a tool called Xunit, it tests our .NET languages. With scripts that our testers craft we attempt to find issues within the code using the AAA unit test pattern:</p>
 <ul>
@@ -164,10 +146,10 @@ dateCreated: 2020-11-27T11:05:24.255Z
   <li>Act: Invoke the code under test.</li>
   <li>Assert: Specify the pass criteria for the test, which fails it if not met.</li>
 </ul>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2>Karma</h2>
 <p>For testing Angular, our front end, we use a tool called Karma. With this tool we can either do manual or automatic testing and debug any issues.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2>Acunetix</h2>
 <p>Acunetix is a popular security vulnerability scanning and testing tool. It crawls through all pages of a web application to test for publicly known vulnerabilities. It also scans for potential attack vectors such as cross site script, SQL injection and server side request forgery vulnerabilities. Acunetix also allows for our testers to manually run vulnerability tests helping us to ensure that the final web application is as secure from security issues as possible.</p>
 <h2>We Need to Test That Our Database Will Work Without Any Problems on Your Web Application. However We Need to Act in Accordance to GDPR, Do You Have a Solution for This?</h2>
@@ -175,11 +157,11 @@ dateCreated: 2020-11-27T11:05:24.255Z
 <p>We use a tool called “Anonimatron”, which will randomly re-name key variables such as user ID, name, email,&nbsp;DOB&nbsp;etc. This way the data stays intact, but is now completely anonymised and cannot be used to identify individuals. Often&nbsp;prior to rolling out a web application it needs to be tested with real data on a staging server. This is done to ensure everything works as it should. For our clients that are GDPR sensitive using “Anonimatron” allows us to test thoroughly, but still keeps your users details private.</p>
 <h2>How Do We Get Feedback From Our Users?</h2>
 <p>BBWT3 gives your users two options to give feedback, the first is "Report a Problem" located in the footer. The alternative is to click on "Feedback" at the top of the web application next to their profile picture. The first is for describing basic issues, whilst the latter is for giving more detailed information.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2>Report a Problem</h2>
 <p>This form that BBWT3 generates, automatically fills in the users details. Thus improving the likely hood that a user will give feedback when necessary, lowering the barrier of entry by reducing the amount of effort a user has to put in.</p>
 <p>Less steps lead to a better user experience and user engagement. A really useful feature is that the person reporting the bug can select the severity of it. Allowing your admins to triage where necessary and prioritising more critical issues over others.</p>
-<figure class="image"><img src="images/icons/grey_arrow_down.png"></figure>
+<p>&nbsp;</p>
 <h2>Feedback</h2>
 <p>If the issue is more complex and a user wishes to give more detail, there is the “Feedback” feature.</p>
 <p>It allows a user to not only type what issue they are having, but also enables them to make a voice recording and submit screenshots. The voice recorder simply asks the user for permission to access the microphone and then begins recording. The recordings can be stopped and started allowing the user to compile their thoughts without generating multiple files.</p>
@@ -189,4 +171,3 @@ dateCreated: 2020-11-27T11:05:24.255Z
 <p>To conclude, we at Blueberry hope that by now you have a basic understanding of what BBWT3 can do. Our flexible but powerful tool for web development saves our time, and your money when tasked with a project.</p>
 <p>As has been noted at the start, we don’t sacrifice security for speed of deployment. Everything is coded in popular languages and well documented throughout. Meaning if you wish to have your web application later modified by someone else, they will be able to pick up the baton once we have finished our part.</p>
 <p>The end product of BBWT3 is simple to use and your customers will have a great and intuitive user experience with it. Its taken XXX years and 2 prior iterations to get BBWT3 to where it is now. We have learned a lot in that time, and the value of our experience in web application development, can now be passed on to you.</p>
-<p>&nbsp;</p>
