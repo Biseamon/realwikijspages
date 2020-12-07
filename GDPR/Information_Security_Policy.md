@@ -2,7 +2,7 @@
 title: Information Security Policy
 description: 
 published: true
-date: 2020-12-07T10:31:27.126Z
+date: 2020-12-07T10:33:58.712Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-07T10:31:27.126Z
@@ -116,3 +116,34 @@ Blueberry Group uses software countermeasures and management procedures to prote
 > 
 > Equipment in home offices should only be left unattended when doors and windows to the home are securely locked. Equipment should never be left unattended in a public location such as a café or a train. 
 > 
+
+
+# Details of Physical Security at Blueberry
+
+## Birmingham Office
+
+During office hours, there is a permanent presence on reception.  Security access codes are required to access other external doors, internal doors from the lift and stairwells, and the door to Blueberry's offices.
+
+When the offices are closed, external CCTV is in operation and monitored by an on-site resident or dedicated security staff provided by The Bond.  In addition, internal cameras trigger notification to a Blueberry team. The site gate and reception door can only be opened by use of a security fob; access control is provided by The Bond. All external doors are alarmed. Laser monitoring is provided along the less trafficked perimeter.
+
+Kensington cables are used to secure computers against unauthorised removal. An office safe is used by staff for IT equipment storage. 
+
+
+
+## Stonehouse Office
+
+Blueberry is the sole tenant of the building, there is no shared access. Security access codes are required to access external and internal doors. External doors and windows require a physical key.
+
+When the offices are closed, a fob-operated alarm system is activated. CCTV is being implemented within the first few weeks of moving into the office, this will be similar to Digbeth's in that it will use motion detection and when triggered will email attached images and a pre-formatted message to a mailing list.
+
+Kensington cables are used to secure computers against unauthorised removal. 
+
+> Duncan Forsyth
+> How are visitors supervised?
+> How do we dispose of any paper and electronic waste?
+> 
+> MG: Some shredding, some physical destruction of hard disks
+> DL: Sensitive paper waste is shredded. Hard disks dismantled.
+> Luba: Considering policy
+> It's unclear how thoroughly BitLocker is being used in the offices. Arguably, we should enforce a policy of only allowing personal data to be in a home office if the disk is BitLocker protected.
+{.is-info}
