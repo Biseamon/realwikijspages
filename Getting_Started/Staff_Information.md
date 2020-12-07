@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-04T12:12:44.312Z
+date: 2020-12-07T09:15:09.965Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -52,6 +52,130 @@ If an account does not belong to any of these groups, that account will not have
 # Blueberry Organisation Chart
 
 ![bb_org_chart_-_june_2020.png](/bb_org_chart_-_june_2020.png)
+
+# Bluesprints
+
+Bluesprints is the software development framework used by BB Systems to run projects. It is a blend of Agile and Scrum type software methodologies.
+
+## Bluesprints Essentials
+
+This note is an aide-memoire for the essential tasks that must be adhered to in each project to support the Bluesprints approach.
+
+**PROJECT ROLES** • The Project Roles are established in the PSD (see below). • The roles must include:- Project Manager for both sides. Commercial Owner for both sides (must have executive budgetary power). Product Owner on Customer side (may or may not be the same as Customer’s PM).
+
+**PROJECT STARTUP** • Fill in the Project Startup Document (PSD) and share with the Customer. • The PSD must be talked through with the Customer and signatures obtained. • Enable the Portal for the Customer and explain how it is used. • Set up a Test Server and provide access details to the Customer. • Set up the Skype group. Include David and Chris.
+
+**REQUIREMENTS GATHERING AND SIGN-OFF** Hold workshops/etc to document clear Level 1 requirements, expressed as “user stories”. Get them signed off by the Customer using the Portal.
+
+**MANAGING SPRINTS** Sprints should be set up in PTS. Each Sprint should be typically 2-3 weeks long, but may be shorter for smaller pieces of work. Every morning there must be comms with the developers to update estimates for Tasks/Issues currently being worked on. It is perfectly acceptable to have a short gap between Sprints e.g. 1-2 days to review the Sprint, plan the next one and complete any outstanding testing. Apart from support work and other very small (1-2 day) pieces of work, all work should be done in a Sprint. Use the Project/Sprint Planner.
+
+**CUSTOMER COMMS** Send an e-mail with a Burndown to the Customer twice a week. Generally, keep in close touch with your Customer using their preferred method (expressed in the PSD).
+
+**CHANGE REQUESTS** The Customer must request a change using the Portal. The PM should assess the Change and relay any Time/Cost via the Portal (can ALSO be by e-mail). An Enquiry should be created. If the Customer approves the change (which must be via the Portal) the Enquiry should be converted to a Won Ad Hoc. TESTING Testing should be done in parallel with a Sprint, either by the PM or an APM/Tester. Software should never be given to a Customer without being fully tested. TOOLS • PTS must be used. • Sonarqube should be used for code quality testing. • Acunetix should be used for vulnerability scanning.
+
+## Bluesprints FAQ's
+
+### Can you define clearly what L1, L2, L3 are?
+
+A Level 1 is a requirement expressed in customer language, ideally as a “user story”.
+ 
+A Level 2 is our design response to a Level 1 explaining HOW we will implement it, possibly including mock-ups.
+
+A Level 3 is a PTS Task for the developer.
+
+### Which of the L1, L2 and L3s are reviewed (and approved) by the customer?
+
+L1 and L2 but not L3
+
+Are they reviewed before initial estimates are created or afterwards?
+
+Estimates are only at L3 level so it doesn’t matter.
+
+### How does DCAT work?
+
+DCAT is items approved and waiting to be allocated to a Sprint
+
+### Do developers put estimates direct into PTS or communicate them to PMs?
+
+PMs have a discussion over Skype each morning with their devs and then the PM updates the estimate. It is for the PM not the devs to take responsibility for the estimates.
+
+### When are initial estimates done?
+
+All tasks should, ideally be estimated once the design is complete. In practice, it is often done only when a Sprint is defined.
+
+### Do you do any processing or modification on developer estimates, or use them as-is – If you do modify them how does that work with the burndown?
+
+The process should work as above so that the estimate that gets entered is the PM’s estimate and that’s the one that is used in the Burndown.
+
+### We have a problem with weak developers who perform less well – sometimes 2x less well than a good dev – how do you handle this scenario?
+
+Their known productivity should be taken into account into the estimates.
+
+### A dev has to be borrowed for another project – how do you handle this case?
+
+ If it results in Tasks falling behind on the original project, the Burndown will clearly show this. The customer is aware. The PM has to take some action.
+
+A PM is too busy and must spend time on a proposal, and doesn’t get the designs ready in time – how do you handle this?
+
+“Designs” are the L2s which should be done before development starts. Just have to manage the customer’s expectations.
+
+### Does the customer approve issues?
+
+They might do. For instance, it's possible that Sprints are all issues, in which case there will be a fortnightly sprint planning meeting with the Product Owner to plan which issues go into which Sprint AND which order we should tackle them in.
+
+### When does approval happen for a Sprint?
+
+Once the Sprint is planned, the contents of the Sprint is shared with the customer.
+
+### Can you distinguish between Customer issues and internal issues?
+
+Bluesprints promotes visibility and it would be a rare occurrence that a task and/or the work would need to be hidden. This could however be achieved within PTS by using [INTERNAL] or the private flag to demarcate/hide internal issues
+
+### Do you estimate issue time?
+
+Yes, you must give each item an estimate in order to create a burndown
+
+### What happens when the actual time of the task/issue is considerably different to the original estimate?
+
+Estimates on ACTIVE tasks are reviewed in the PM Dev conversation daily and burndown updates are sent bi weekly. This should be sufficient to alert the customer and prompt a discussion for action.
+
+### What happens to other tasks if an issue takes longer?
+
+This can be picked up with the customer off the back of the bi weekly burndown updates.
+
+### Do i need to link issues to their functional parent in PTS?
+
+You can do, but it is not essential.
+
+Is there a separate sprint / burndown / approval per project, regardless of whether there a multiple projects per customer.
+
+Yes, that's correct. Projects cannot be merged, the customer must select the project from the dropdown list in the customer portal.
+
+### How do i factor in Developer/Tester admin?
+
+Bluepsrints has a contingency factored in to allow for this, this can be defined in the sprint setup in PTS
+
+### Can PTS allow for more than one product owner to approve tasks?
+
+Bluesprints requires that there is only Product Owner per project and all requirements should be approved by this person. 
+
+
+### How does the Customer know there are items for approval?
+
+They will appear as WfCA and appear within the customer portal
+
+
+### How is the work arising from any urgent/unplanned items dealt with?
+
+The customer will be emailed and advised that this urgent work is being inserted into an existing sprint and the knock on effect of this on the remainder of the sprint is set out (i.e. the sprint cannot be overfilled)
+
+Bluesprints ensures that an audit of what is discussed and agreed is maintained. 
+
+
+### How do you deal with change requests?
+
+If an Issue is a change request, it should be created as a Level 1 task for cost estimation and approval and then added to a sprint.
+
 
 # 3CX Phone System
 
