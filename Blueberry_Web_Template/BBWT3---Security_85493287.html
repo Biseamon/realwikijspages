@@ -1,15 +1,15 @@
 <!--
-title: Blueberry Group : BBWT3 - Security
+title: BBWT3 - Security
 description: 
 published: true
-date: 2020-12-01T14:25:24.679Z
+date: 2020-12-07T16:13:49.730Z
 tags: 
-editor: undefined
+editor: ckeditor
 dateCreated: 2020-11-27T11:06:33.548Z
 -->
 
 <h1>Security&nbsp;</h1>
-<h1>Overview</h1>
+<h2>Overview</h2>
 <p><strong>Note</strong>: “Real” security is about API calls. The “appearance” of security is about (a) page accessibility, (b) menu item visibility. All three are required for a happy customer.</p>
 <p>In short, you can think of the "real" part of the BBWT3 security&nbsp;<i>rules</i>&nbsp;as:</p>
 <ul>
@@ -19,7 +19,7 @@ dateCreated: 2020-11-27T11:06:33.548Z
 </ul>
 <p>You will often choose to combine security elements such that you have a test “<i>Is the user in the role ‘Administrator’, failing that, is the user merely trying to access their own data</i>”.</p>
 <p>You can see the applied roles security when&nbsp;logged-in as admin at&nbsp;<a href="http://bbwt3-test-windows-aurora.blueberrytest.com/app/routes">http://bbwt3-test-windows-aurora.blueberrytest.com/app/routes</a>&nbsp;. This is achieved by reflection, i.e. the application is reading its own code to find out what roles security has been applied.&nbsp;It would be nice if we could also see the resource-based security there too (31-01-19&nbsp;<a href="https://pts.bbconsult.co.uk/taskEditor?id=158253">#158253</a>).</p>
-<h1>Terminology</h1>
+<h2>Terminology</h2>
 <ul>
   <li>Sessions – when a user logs in, they begin a session. A secure cookie is given to the browser that contains information about the user. When that cookie expires by time-out or is otherwise deleted (e.g. by logout), the user needs to log in again to start a new session. The cookie is sent to the server on every call, and the server trust its contents. This is useful because we enter “claims” about the user into the cookie. The cookie can be trusted because it is encrypted so that only the server can read its contents or write to it. If we didn't store the claims in the cookie, then the server would have to check the user's current privileges with the database on every call, which would be a significant performance hit. (Or in the server's memory, which would be faster but would be a break with the RESTful architecture)</li>
   <li>Claims – The database holds claims that are loaded into the cookie when a user logs in. These claims may be “I am an Administrator” or “I am part of the North West region” or “I am part of Gary’s team” or “I am an employee of Acme Ltd” or “I can run faster than 2,000 mph” – anything. Most claims are “I belong to a particular set of users”, most notably “I belong to the particular set of users that have ‘role’ X”, “I belong to the particular set of users that belong to ‘tenant’ Y”, “I belong to the particular set of users that belong to ‘group’ Z”.<ul>
@@ -36,7 +36,7 @@ dateCreated: 2020-11-27T11:06:33.548Z
 <ul>
   <li>Permissions – BBWT2 cared a lot about ‘permissions’, BBWT3 does not. BBWT2 Permissions were effectively an extra layer between a role and an API function that allowed you to say “with the ‘edit Car’ permission you may call APIs: UpdateCar, CreateCar, DeleteCar; and the roles ‘CarEditor’, 'SiteAdmin' have the ‘edit Car’ permission;&nbsp;”. BBWT3 instead says: “permission to call APIs: UpdateCar, CreateCar, DeleteCar is restricted to the roles ‘CarEditor’, 'SiteAdmin'".</li>
 </ul>
-<h1>Implementation Details</h1>
+<h2>Implementation Details</h2>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <ul>
@@ -45,9 +45,8 @@ dateCreated: 2020-11-27T11:06:33.548Z
   <li><a href="BBWT3---How-Security-Works_85493289.html">BBWT3 - How Security Works</a></li>
 </ul>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Acutenix Testing&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>Acutenix Testing&nbsp;</h1>
+<h2>Overview</h2>
 <p>Blueberry internally uses a popular web-security tool to scan both the core BBWT3 system and customer applications for vulnerabilities on a regular basis. In addition, a number of Blueberry customers have commissioned external penetration tests - the feedback from those tests is worked back into the BBWT3 Core, benefiting all customers using BBWT3.</p>
 <ul>
   <li>Automatically scans all webpages of web application.</li>
@@ -57,23 +56,23 @@ dateCreated: 2020-11-27T11:06:33.548Z
   <li>Works on Microsoft Windows, as well as Linux.</li>
   <li>Also available as an online tool.</li>
 </ul>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>All of BBWT3 is tester for against known vulnerabilities, as well as alerting developers to potential attack vectors.</li>
   <li>Tool autonomously searches for these vulnerabilities, but also has the option to test manually.</li>
   <li>Allows developers to make sure their web applicaitons are as secure as possible.</li>
 </ul>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>Blueberry ensures that all web applications made with BBWT3 are secure from all known vulnerabilities, as well as potential vulnerabilities.</li>
   <li>Tests for XSS, SQL injection, SSRF etc.</li>
   <li>Ensuring that your companies, and clients data remains secure.</li>
 </ul>
-<h1>Blueberry Group : BBWT3 - Discovered Vulnerabilities and Patch Progress&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>Discovered Vulnerabilities and Patch Progress&nbsp;</h1>
+<p>&nbsp;</p>
+<h2>Overview</h2>
 <p>This is a table of the recently discovered vulnerabilities found in BBWT2, and how they effect BBWT3</p>
-<h1>Vulnerabilities</h1>
+<h2>Vulnerabilities</h2>
 <figure class="table">
   <table>
     <thead>
@@ -156,8 +155,7 @@ dateCreated: 2020-11-27T11:06:33.548Z
   </table>
 </figure>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Security Items&nbsp;</h1>
-<p>Created by Jason Cozza, last modified on Sep 22, 2020</p>
+<h2>Security Items&nbsp;</h2>
 <p>The list of security items below is compiled from the 2017 OWASP Top 10 Application Security Risks.&nbsp;</p>
 <p>For each risk, a brief example of how the risk is mitigated on BBWT3 projects.</p>
 <p>This page is still a draft - more details will be added soon.</p>
@@ -310,9 +308,8 @@ dateCreated: 2020-11-27T11:06:33.548Z
   </table>
 </figure>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Use of hash of Entity ID&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>Use of hash of Entity ID&nbsp;</h1>
+<h2>Overview</h2>
 <p>Many pages pass a record ID within the URL - such as page&nbsp;&nbsp;/users.aspx?id=123 but this exposes the record ID and it is very easy for a hacker to substitute other record ID's here and possibly gain access to additional data.</p>
 <p>It has been agreed to encrypt the record ID with a hashing algorithm, The resulting parameter should be partly human readable to aid with debugging.</p>
 <p>Note: This is NOT a first line of protection. This feature has only been added as a fallback if the standard user level security checks fail.</p>
@@ -324,10 +321,8 @@ dateCreated: 2020-11-27T11:06:33.548Z
 <p>There will be some record types where the primary key is not a record ID but may be a GUID as in the case of user records.<br>In the case of a GUID, there will be no hashing done to the parameter.</p>
 <p>For full details see PTS task&nbsp;<a href="https://ptsa.bbconsult.co.uk/taskEditor?type=3&amp;id=146044">146044</a>&nbsp;(31-01-19)</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - How Security Works&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<p>Please read&nbsp;<a href="BBWT3---Security_85493287.html">BBWT3 - Security</a></p>
-<h1>Roles Security</h1>
+<h1>How Security Works&nbsp;</h1>
+<h2>Roles Security</h2>
 <p>Each controller route may be marked with an “Authorize” attribute.&nbsp;</p>
 <p>The code below protects GET api/users/{id}, a route which would return details for a user based on the user id argument passed.<br><strong>api/users/id</strong></p>
 <figure class="table">
@@ -351,7 +346,7 @@ dateCreated: 2020-11-27T11:06:33.548Z
   <li>Where two Authorize attributes apply then both tests must be passed. Slightly redundant in the example above: line 2 requires the user to be logged in, and line 6 requires&nbsp;<i>both</i>&nbsp;that the user is logged in&nbsp;<i>and</i>&nbsp;has a matching role claim.</li>
 </ul>
 <p>This attributing technology allows us to read the security by reflection and display it on the “View Route Access” page for the PM or QA to review. This is very helpful for security review.</p>
-<h1>Prefer Fewer Arguments</h1>
+<h2>Prefer Fewer Arguments</h2>
 <p>Consider the first version of the question. The client asks for the names of the groups belonging to the questions for its user. The client knows the questions, so it passes up the ids. This may seem innocuous. BUT, now you have a service that can be called directly, not just by the client code. An attacker that has a login can potentially learn the group names of any question.</p>
 <p>Admittedly, this particular example is probably low risk, but it could have been avoided. When this issue was noticed, the PM considered it a problem and asked for a fix. The developer responded that they would add validation. But this sort of failure to add validation is very common. And maintaining validation is troublesome.</p>
 <p>A better solution is to rely on the server to know what question groups need to be passed back. After all, the server already knows. Consider the second method interface below. No parameters - no need to remember validation.</p>
@@ -365,7 +360,7 @@ dateCreated: 2020-11-27T11:06:33.548Z
     </tbody>
   </table>
 </figure>
-<h1>Prefer Roles Security</h1>
+<h2>Prefer Roles Security</h2>
 <p>It is easier to be correctly confident about roles security than resource security. It's simpler to read, simpler to understand, and simpler to test.</p>
 <p>Often, you can nudge an API from resource security to role security. You can often do this whenever a user can only access a&nbsp;<i>single</i>&nbsp;item of that resource.</p>
 <p>For example: there may be a rule that anyone should be allowed to see their own user details, but Administrators are allowed to see everyone’s. Or&nbsp;a rule that anyone should be allowed to see their own company's contact details, and that each user belongs to just one company, but Administrators are allowed to see everyone’s company contact details.&nbsp;</p>
@@ -384,7 +379,7 @@ dateCreated: 2020-11-27T11:06:33.548Z
     </tbody>
   </table>
 </figure>
-<h1>Resource Security</h1>
+<h2>Resource Security</h2>
 <p>Not everything can be nudged into roles security. Resource security is used for more complex rules and differs from project to project.&nbsp;</p>
 <p>Because resource security needs to load the details about the requested resource, it has to&nbsp;occur within<i>&nbsp;</i>the controller's method body. But, we can typically inject that code into the method body.</p>
 <p>For resource security, you will need a custom “handler” for the controller.</p>
@@ -396,14 +391,14 @@ dateCreated: 2020-11-27T11:06:33.548Z
   <li>Overview:&nbsp;<a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased?tabs=aspnetcore2x">https://docs.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased?tabs=aspnetcore2x</a></li>
 </ul>
 <p>Authorization Handler:&nbsp;<a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies#security-authorization-policies-based-authorization-handler">https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies#security-authorization-policies-based-authorization-handler</a></p>
-<p>Example code in BBWT3 demo:&nbsp;</p>
+<h2>Example code in BBWT3 demo:&nbsp;</h2>
 <ul>
   <li>AccessibleToGroupAuthorizationHandler.cs</li>
   <li>AuthorizationExtensions.cs</li>
   <li>GroupsAuthorizationHandler.cs</li>
   <li>SecurityTestController.cs<br><br>&nbsp;</li>
 </ul>
-<p>Complex Example for Groups</p>
+<h2>Complex Example for Groups</h2>
 <p>For VME we have an “Orders” or “Job Request” Controller. For some of its Order API calls, we want to restrict the using roles to: Customer Financial Controller, Customer Vehicle Owner, Customer Dispatcher, VME Account Administrator, VME Account Manager, VME Network Manager, VME Operations Agent, VME Dispatcher, VME Customer Liaison. But not only do we require the right roles, we also require that the customers don’t access data belonging to other customers, or other departments, or other teams within the department.</p>
 <p>With api/orders/copy/{orderId} we can't nudge to role security - multiple orders belong to a customer user, not just one.</p>
 <p>We would write an AuthorizationHandler for Orders. Several Order API calls will make use of it. It:</p>
@@ -422,10 +417,10 @@ dateCreated: 2020-11-27T11:06:33.548Z
   </li>
 </ul>
 <p>&nbsp;</p>
-<p>Complex Example for Changing State</p>
+<h2>Complex Example for Changing State</h2>
 <p>If you want to tests such as “if entity Y&nbsp;<i><strong>currently</strong></i>&nbsp;passes a test with respect to the calling user Z”, then you’d also include that code in the Authorization Handler. VME’s existing capacity test is an example of such a test. If the current date is after the "On Hold Date" for the order but before the "Buy It Now Date", and the user is part of a supplier who “has similar jobs”, then they are permitted to see the order.</p>
 <p>It is preferable that the screens are designed so that such tests are not performed frequently, but this will not always be possible.</p>
-<h1>Resource Security and Lists<br>&nbsp;</h1>
+<h2>Resource Security and Lists&nbsp;</h2>
 <p>If we're preventing a user from seeing "api/documents/1" then we usually won't want document 1 to appear in the list "api/documents".</p>
 <p>We could rely on developers to remember to filter their lists, but the more complex the API, the more difficult it is to remember all the places where a list needs filtering. It is much safer to perform the filtering at a "lower" level. The DBContext is a great place to provide that filtering.</p>
 <p>The code below ensures that when a LINQ query references the model item “customer”, only those customers that have the same tenant id as the connection are returned.<br><strong>Example List Filtering</strong></p>
@@ -445,12 +440,12 @@ dateCreated: 2020-11-27T11:06:33.548Z
   <li>Technique:&nbsp;<a href="https://codeopinion.com/ef-core-multi-tenancy-query-filter/">https://codeopinion.com/ef-core-multi-tenancy-query-filter/</a></li>
   <li>Required package:&nbsp;<a href="https://github.com/zzzprojects/EntityFramework-Plus">https://github.com/zzzprojects/EntityFramework-Plus</a></li>
 </ul>
-<h1>Visibility at Client</h1>
+<h2>Visibility at Client</h2>
 <p>Above, we've spoken about how the APIs are secured. To hide pages and menu items, the client needs to know which pages and menu items it has access to. Use RoutesService.cs for this.&nbsp;</p>
 <p>It would be nice if this wasn't necessary. It be would be nice if we could infer what should be hidden from the API used at the page. E.g. the page uses POST api/orders which is restricted to the OrderCreators role implies&nbsp;the page should be hidden to everyone but OrderCreators. But this would require more research and development than we have time for currently. Potential solutions need to consider how we detect pages that call services only conditionally, e.g. the same page is shown to OrderViewers too, but with the creation controls hidden and hence POST api/orders won't be called.</p>
 <p>Sometimes we want to hide controls based on security.&nbsp;An example of what we do today is the use of CanImpersonate and the hiding of the Impersonate button depending on a rule. Login at&nbsp;<a href="https://bbwt3-test-1.blueberrycf.com/app/edituser/c20bfdd4-07f7-4f56-9df8-1643360b9cae">https://bbwt3-test-1.blueberrycf.com/app/edituser/c20bfdd4-07f7-4f56-9df8-1643360b9cae</a>&nbsp;as an admin to see the Impersonate button.&nbsp;It would be nice if we created a bit of architecture to allow for asking whether a call to a particular API would be rejected (for a given resource).&nbsp;</p>
-<h1>Security at Database</h1>
+<h2>Security at Database</h2>
 <p>Currently BBWT database security is typically limited to using one DB login only. With all users of the site effectively having equal access to the database, mitigated only by the Web API calls that they have permission to use.&nbsp;It would be nice if we created a bit of architecture to allow mapping of BBWT roles or users into the DB security, so that if a Web API call provides insufficient protection, the DB itself can reject a request. This would give additional protection against SQL injection attacks, or overly permissive user-reporting features.&nbsp;</p>
-<h1>Security of Site Admin Functionality</h1>
+<h2>Security of Site Admin Functionality</h2>
 <p>Currently BBWT systems allow access to site admin and configuration features from any IP address and at the same URL as the rest of the site.&nbsp; &nbsp;It would be nice if this access was narrowed down further, by e.g. insisting that site admin features only unlock upon access over a VPN, or with Two Factor Authentication.&nbsp;(31-01-19&nbsp;<a href="https://ptsa.bbconsult.co.uk/taskEditor?type=3&amp;id=146376&amp;returnUrl=https%3A%2F%2Fptsa.bbconsult.co.uk%2F%2Ftasks">#146376</a>).</p>
 <p>&nbsp;</p>
