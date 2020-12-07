@@ -2,7 +2,7 @@
 title: Lawful Basis of Activity
 description: 
 published: true
-date: 2020-12-07T11:08:27.686Z
+date: 2020-12-07T11:20:11.960Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-12-07T11:03:26.341Z
@@ -12,7 +12,7 @@ dateCreated: 2020-12-07T11:03:26.341Z
 <p>Information here is drawn from&nbsp;<a href="https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/">https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/</a></p>
 <p>For each processing activity entered into the register, we must identify the lawful bases that are being relied upon.&nbsp;<a href="https://wikijs.bbconsult.co.uk/en/GDPR/Privacy_Notice">Privacy notices</a> should also include the lawful bases. <strong>It's important to get the lawful bases right the first time.</strong> Changing the lawful bases afterwards is intended to require careful assessment, re-notifying data subjects with new privacy notices, and documenting that the change occurred. Multiple lawful bases are allowed but, pragmatically, identifying more than one adds additional burdens for no clear benefit.</p>
 <p>Unless otherwise noted, processing must be 'necessary' - the ICO interprets this as 'targeted and proportionate', not 'essential'. If the same purpose can reasonably be achieved without such processing, there's no lawful basis.&nbsp;</p>
-<p><strong>Controlling documentary burden</strong></p>
+<h2><strong>Controlling documentary burden</strong></h2>
 <p>For Blueberry's internal processing, the preferred bases are ranked as follows, from best at the top, to worst at the bottom:</p>
 <ul>
   <li>Legal obligation</li>
@@ -25,7 +25,7 @@ dateCreated: 2020-12-07T11:03:26.341Z
 <p>Note: Our marketing <strong>is</strong> covered by "legitimate interest" - though we still need to offer opt-outs.</p>
 <p>Options for lawful bases are:</p>
 <p>&nbsp;</p>
-<p>Options for lawful bases are:</p>
+<h2>Options for lawful bases are:</h2>
 <figure class="table" style="width:1780px;">
   <table style="background-color:rgb(255, 255, 255);">
     <thead>
@@ -143,7 +143,7 @@ dateCreated: 2020-12-07T11:03:26.341Z
   </table>
 </figure>
 <p>&nbsp;</p>
-<p><strong>Employment</strong></p>
+<h2><strong>Employment</strong></h2>
 <p>Some legal bases for holding data about employees:</p>
 <ul>
   <li>name - legal obligation (also legitimate interest, but it's counter-productive to add a second basis)</li>
@@ -152,3 +152,124 @@ dateCreated: 2020-12-07T11:03:26.341Z
   <li>rate, and working hours - <i>usually </i>legal obligation (due to HMRC's interest) (but also legitimate interest, and also contract - though it's counter-productive to add multiple bases)</li>
   <li>IP address - legitimate interest</li>
 </ul>
+<h1>Legitimate Interests Assessment</h1>
+<p>Information here drawn from&nbsp;<a href="https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/legitimate-interests/">https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/legitimate-interests/</a>&nbsp;. The opinions from page 23 onwards of <a href="http://www.dataprotection.ro/servlet/ViewDocument?id=1086">http://www.dataprotection.ro/servlet/ViewDocument?id=1086</a>&nbsp;may be useful if there's uncertainty.</p>
+<p>The Legitimate Interests Assessment (LIA) is required when the lawful basis listed for a processing activity is "legitimate interests". If the LIA indicates significant risks, then a Data Protection Impact Assessment (DPIA) will often be necessary.</p>
+<p>You must balance your interests against the individual’s interests. In particular, if they would not reasonably expect you to use data in that way, or it would cause them unwarranted harm, their interests are likely to override yours. However, your interests do not always have to align with the individual’s interests. If there is a conflict, your interests can still prevail as long as there is a clear justification for the impact on the individual.</p>
+<p>LIA outcomes must to be recorded. LIAs should be reviewed periodically.</p>
+<p>We are encouraged, but not mandated, to record the content of our LIA to demonstrate compliance with the GDPR.</p>
+<p>Below, you will find two sections: Duncan's recommended LIA and the ICO's LIA.</p>
+<h2><strong>Duncan's recommended LIA</strong></h2>
+<p>Beneficiary: Who is the beneficiary? What is the purpose of the processing? What would be the impact on the beneficiary of not processing?</p>
+<p>Subject: Who is the subject? Are we processing children or other vulnerable people's data? What's the impact on the data subject of the processing?</p>
+<p>Risks: What additional risks are present? (Data transfer, Data transfer outside subject's country)</p>
+<p>Mitigation: What safeguards are in place? (Encrypted storage, access controls, retention policy?, privacy notice*) Is there an opt-out?</p>
+<p>Alternative: Is there a less intrusive approach? What is it / are they? What would be the impact(s)?</p>
+<p>Outcome of balancing test: Favourable / unfavourable. Any tasks required to address a concern.</p>
+<p>&nbsp;</p>
+<h2><strong>Worked example using Duncan's LIA</strong></h2>
+<p>Example: Sysadmin-controlled Anti-virus</p>
+<p>Beneficiary:</p>
+<ul>
+  <li>Who: Blueberry Group</li>
+  <li>Purpose: IT Security</li>
+  <li>Impact of not processing: Greater risk of loss of commercial and personal data</li>
+</ul>
+<p>Subject:</p>
+<ul>
+  <li>Who: Employees of Blueberry Group</li>
+  <li>Subjects belong to a vulnerable class?: No</li>
+  <li>Impact of processing: Employees are strongly encouraged to install the Webroot application on their personal machines, through which hypothetically malicious applications could be installed by a rogue sysadmin or by WebRoot staff.</li>
+</ul>
+<p>Risks:</p>
+<ul>
+  <li>Data transfer: Yes - to <a href="http://www.webroot.com/">www.webroot.com</a></li>
+  <li>Data transfer outside subject's country: Yes</li>
+</ul>
+<p>Mitigation:</p>
+<ul>
+  <li>Encrypted storage: no</li>
+  <li>Access controls: yes - sysadmins only</li>
+  <li>Retention policy: no</li>
+  <li>Privacy notice: no, but opt-in</li>
+  <li>Opt-out: Yes</li>
+</ul>
+<p>Alternatives:</p>
+<ul>
+  <li>Less intrusive approach: Personal responsibility for company security</li>
+  <li>Impact: Security workload for sysadmins larger than resources available, consequently greater risk of data loss</li>
+</ul>
+<p>Outcome of balancing test: Favourable. Task: <mark class="pen-red">Investigate whether we should have a Processor-Controller contract with Webroot.</mark></p>
+<p>&nbsp;</p>
+<h2><strong>ICO recommended LIA</strong></h2>
+<p>First, identify the legitimate interest(s). Consider:</p>
+<ul>
+  <li>Why do you want to process the data – what are you trying to achieve?</li>
+  <li>Who benefits from the processing? In what way?</li>
+  <li>Are there any wider public benefits to the processing?</li>
+  <li>How important are those benefits?</li>
+  <li>What would the impact be if you couldn’t go ahead?</li>
+  <li>Would your use of the data be unethical or unlawful in any way?</li>
+</ul>
+<p>Second, apply the necessity test. Consider:</p>
+<ul>
+  <li>Does this processing actually help to further that interest?</li>
+  <li>Is it a reasonable way to go about it?</li>
+  <li>Is there another less intrusive way to achieve the same result?</li>
+</ul>
+<p>Third, do a balancing test. Consider the impact of your processing and whether this overrides the interest you have identified.&nbsp;There’s no foolproof formula for the outcome of the balancing test – but you must be confident that your legitimate interests are not overridden by the risks you have identified.</p>
+<ul>
+  <li>What is the nature of your relationship with the individual?</li>
+  <li>Is any of the data particularly sensitive or private?</li>
+  <li>Would people expect you to use their data in this way?</li>
+  <li>Are you happy to explain it to them?</li>
+  <li>Are some people likely to object or find it intrusive?</li>
+  <li>What is the possible impact on the individual?</li>
+  <li>How big an impact might it have on them?</li>
+  <li>Are you processing children’s data?</li>
+  <li>Are any of the individuals vulnerable in any other way?</li>
+  <li>Can you adopt any safeguards to minimise the impact?</li>
+  <li>Can you offer an opt-out?</li>
+</ul>
+<h1>Sensitive or Highly Personal Data</h1>
+<p>Information here is drawn from&nbsp;<a href="http://www.privacy-regulation.eu/en/article-9-processing-of-special-categories-of-personal-data-GDPR.htm">http://www.privacy-regulation.eu/en/article-9-processing-of-special-categories-of-personal-data-GDPR.htm</a>&nbsp;and&nbsp;<a href="http://www.privacy-regulation.eu/en/article-10-processing-of-personal-data-relating-to-criminal-convictions-and-offences-GDPR.htm">http://www.privacy-regulation.eu/en/article-10-processing-of-personal-data-relating-to-criminal-convictions-and-offences-GDPR.htm</a></p>
+<p>Items from the following two lists are prohibited - but there are many exemptions. See the tip below for some commonly useful exemptions.</p>
+<p>Special Category Data:</p>
+<ul>
+  <li>racial or ethnic origin</li>
+  <li>political opinions</li>
+  <li>religious or philosophical beliefs</li>
+  <li>trade union membership</li>
+  <li><i>when used to&nbsp;uniquely identify a natural person:&nbsp;</i>biometric or genetic data (including photographs)</li>
+  <li>health data <i>notably&nbsp;excepting where the purpose is&nbsp;assessment of the working capacity of an employee</i></li>
+  <li>sex life or sexual orientation</li>
+</ul>
+<p>Criminal Offence Data:</p>
+<ul>
+  <li>allegations</li>
+  <li>convictions</li>
+  <li>offences</li>
+  <li>related security matters</li>
+</ul>
+<p>&nbsp;</p>
+<h2><strong>Commonly useful exemptions</strong></h2>
+<p>Special category data processing is allowed if:</p>
+<ul>
+  <li>There is explicit consent from the data subject <strong>(but note well:&nbsp;<u>employees may not consent</u>)</strong></li>
+  <li>Processing is required for compliance with another legal requirement (e.g. employment law or regulations on retaining records on health interventions)</li>
+  <li>More rarely outside of the health sector - the processing is in the <i><u>vital</u></i>&nbsp;interest of the subject</li>
+</ul>
+<p>Note: Criminal offence data processing is not covered by those useful exemptions.</p>
+<h2><strong>Health data</strong></h2>
+<p>If you're handling health data for under the basis of Article 6(1)(e) – task in the public interest, and Article 9(2)(h) provision of health care, then you may be interested in <a href="https://digital.nhs.uk/binaries/content/assets/legacy/pdf/n/b/records-management-cop-hsc-2016.pdf">https://digital.nhs.uk/binaries/content/assets/legacy/pdf/n/b/records-management-cop-hsc-2016.pdf</a> .</p>
+<blockquote>
+  <p>Comments</p>
+  <p><a href="https://wiki.bbconsult.co.uk/display/~mgg">Martin Green</a></p>
+  <p>I don’t understand how a photograph can be stored that doesn’t uniquely identify the person?</p>
+  <p>I don’t understand how we can demonstrate that our staff do not have criminal records without storing this fact.</p>
+  <p>&nbsp;</p>
+  <h4><a href="https://wiki.bbconsult.co.uk/display/~dxf"><u>Duncan Forsyth</u></a></h4>
+  <p>Re: photographs - they don't seem to want to prevent a human looking at a photograph and saying "yes, you appear to be Fred Smith". They want to prevent a computer doing the same thing.</p>
+  <p>Re: criminal records - I've done some initial reading on this and it appears to be a new can of worms. if we wanted to screen for UK staff not having criminal records, it seems like we'd need to jump through some fairly significant hoops including: registry with authorities, writing of policies on ex-offenders, addition of information about the check in our recruitment adverts. Finding solid legal ground to enquire about the criminal records of offshore staff may be difficult. I am aware it was raised as a possibility as a reassurance factor for customers, but it's looking less and less feasible.</p>
+</blockquote>
+<p>&nbsp;</p>
