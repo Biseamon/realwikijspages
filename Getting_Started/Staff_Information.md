@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-07T09:15:09.965Z
+date: 2020-12-07T09:27:20.633Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -56,6 +56,8 @@ If an account does not belong to any of these groups, that account will not have
 # Bluesprints
 
 Bluesprints is the software development framework used by BB Systems to run projects. It is a blend of Agile and Scrum type software methodologies.
+
+![bluesprints.png](/bluesprints.png)
 
 ## Bluesprints Essentials
 
@@ -147,7 +149,7 @@ This can be picked up with the customer off the back of the bi weekly burndown u
 
 You can do, but it is not essential.
 
-Is there a separate sprint / burndown / approval per project, regardless of whether there a multiple projects per customer.
+### Is there a separate sprint / burndown / approval per project, regardless of whether there a multiple projects per customer?
 
 Yes, that's correct. Projects cannot be merged, the customer must select the project from the dropdown list in the customer portal.
 
