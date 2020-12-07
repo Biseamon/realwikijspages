@@ -2,13 +2,13 @@
 title: BBWT3 - Build Process and CI 
 description: 
 published: true
-date: 2020-12-04T15:46:58.663Z
+date: 2020-12-07T15:33:40.864Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-11-27T11:03:02.155Z
 -->
 
-<h1>BBWT3 - Angular Budgets&nbsp;</h1>
+<h1>Angular Budgets&nbsp;</h1>
 <p>&nbsp;</p>
 <h2>Overview</h2>
 <p>Angular CLI can be configured to warn and/or fail the build process if specific files or bundles within the application grow too large.</p>
@@ -41,7 +41,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
 <p>This should start up a local webserver and open the URL in your browser. You can now inspect the packages in the Angular output. At the time of writing, the graph looks like this:</p>
 <figure class="image"><img src="attachments/85493067/85493068.png"></figure>
 <p>You are looking for any sections that look large compared to the others. For example, here&nbsp;<i>feedbacks.umd.min.js&nbsp;</i>and&nbsp;<i>quill.js&nbsp;</i>are quite large in comparison to other packages, however they are known to be good and thus there are no issues with package sizes here.</p>
-<h1>BBWT3 - Anonymisation&nbsp;</h1>
+<h1>Anonymisation&nbsp;</h1>
 <h2>Overview</h2>
 <p>With GDPR, there is often a requirement to generate an anonymised version of a live system for testing purposes. Blueberry makes use of a tool called Anonimatron to assist with this, see&nbsp;<a href="https://realrolfje.github.io/anonimatron/">here</a>&nbsp;for more information. Anonymisation is currently being integrated into BBWT3. Currently the implementation that BBWT3 uses is extracting the data through the DB Browser with certain rules and then sending it through the Anonimatron tool.&nbsp;In future, we’ll have the option to do this as part of our build systems, so every time we release a new version to live, we can automatically copy an anonymised backup to the test system.</p>
 <ul>
@@ -87,7 +87,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>GDPR compliant.</li>
   <li>When rolling out often as part of the test processes a database is needed, your users data is protected as it is anonymised before it is extracted and placed on a staging server.</li>
 </ul>
-<h1>BBWT3 - Deployment and Environment Variables&nbsp;</h1>
+<h1>Deployment and Environment Variables&nbsp;</h1>
 <h2>Overview</h2>
 <p>In ASP.NET core you can have multiple configuration providers which take configuration from different sources including json files and environment variables. The primary json file that it takes base configuration data from is the&nbsp;<strong>appsettings.json</strong>&nbsp;file located in: ./src/BBWT3.Web. It doesn’t matter what values are defined in there but what does matter is the order of loading.</p>
 <p>During start-up, BBWT3 will look for specific files in a specific order. The first is&nbsp;<strong>appsettings.json</strong>&nbsp;in the application root. Then it will concatenate the current environment name with&nbsp;<strong>appsettings.json&nbsp;</strong>in the form&nbsp;<strong>appsettings.$Environment.json</strong>. The settings defined in this file will take priority over those defined in&nbsp;<strong>appsettings.json</strong>.</p>
@@ -141,7 +141,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
 <p>The load balancer is optional so the main benefit from this is the deployment strategy - you can upload a zip file, and it goes and deploys it. Which for Windows servers is a better alternative than having GitLab go and open ssh to drop the files off. It handles the Windows server use case very well.</p>
 <p>The work around for single server without using Elastic Beanstalk was that GitLab creates a zip file ssh connection to the server uploads the zip file, and write our own deployment scripts to replace the IIS folder. Using this method you would not be able to do a soft deployment (updating the code without taking the system down) as can be done with Elastic Beanstalk.</p>
 <p>&nbsp;</p>
-<h1>BBWT3 - Gitlab&nbsp;</h1>
+<h1>Gitlab&nbsp;</h1>
 <h2>Overview</h2>
 <p>GitLab is a service that gives access to git repositories. It allows for centralisation of source code and helps to manage the software development life cycle. It allows multiple developers to work on different aspects of the code, create and edit new projects and then merge it into existing ones. There are multiple hosting options, Blueberry consultants uses the free self-hosting community edition; to access you can click&nbsp;<a href="https://gitlab.bbconsult.co.uk/users/sign_in">here</a>.</p>
 <h2>Advantages</h2>
@@ -328,14 +328,14 @@ dateCreated: 2020-11-27T11:03:02.155Z
 </ul>
 <p>&nbsp;</p>
 <p>The code will need to validate the JSON object passed to it.&nbsp; It should ensure it does not contain HTML tags or Script tags.</p>
-<h1>BBWT3 - Modularisation&nbsp;</h1>
+<h1>Modularisation&nbsp;</h1>
 <p>&nbsp;</p>
 <h2>Overview</h2>
 <p>Currently no commercial solution for modularisation. However it is something we aim to achieve, this is difficult to do because the source code is in a complex organisation. There are two development tree's, front end and back end, with migrations in a third place.</p>
 <ul>
   <li>See also&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Scaffolding">Scaffolding</a>.</li>
 </ul>
-<h1>BBWT3 - SonarQube&nbsp;</h1>
+<h1>SonarQube&nbsp;</h1>
 <p>&nbsp;</p>
 <h2>Overview</h2>
 <p>SonarQube is a static code analysis tool which detects for; duplicate code, code smells, bugs, security vulnerabilities, and checks for best coding practices. It has support for multiple languages including; C#, CSS, Java, TypeScript as well as others.</p>
@@ -360,7 +360,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>Code merged into the main repository is checked to be clean.</li>
   <li>Detects sanitisation issues.</li>
 </ul>
-<h1>BBWT3 - Version Numbering&nbsp;</h1>
+<h1>Version Numbering&nbsp;</h1>
 <p>&nbsp;</p>
 <h2>Hard-coded version number</h2>
 <p>Main version number presents a release of the BB Web Template. It is hard-coded and placed into the main CI script (<a href="https://gitlab.bbconsult.co.uk/blueberry/bbwt3/-/blob/develop/.gitlab-ci.yml#L3">here</a>&nbsp;in GitLab).</p>
@@ -404,7 +404,7 @@ dateCreated: 2020-11-27T11:03:02.155Z
   <li>Save time by knowing whether the test build is the latest version for testing.</li>
 </ul>
 <p>&nbsp;</p>
-<h1>BBWT3 - Webpack and Caching&nbsp;</h1>
+<h1>Webpack and Caching&nbsp;</h1>
 <h2>Overview</h2>
 <p>This page describes how Webpack and caching are used in BBWT3 along with useful links to find out more.</p>
 <p>Webpack no longer used</p>
