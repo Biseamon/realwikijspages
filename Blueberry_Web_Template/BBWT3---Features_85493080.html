@@ -2,7 +2,7 @@
 title: BBWT3 - Features - Part 1
 description: 
 published: true
-date: 2020-12-07T14:45:34.794Z
+date: 2020-12-07T14:55:04.287Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-11-27T11:04:03.128Z
@@ -68,7 +68,7 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>l time communication when multiple users are on the same page thanks to websockets.</li>
 </ul>
 <h1>Useful Resources</h1>
-<p>Please consult the&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Feedbacks+Module">Feedbacks Module</a>&nbsp;page for more detailed information and how to include this module within projects.</p>
+<p>Please consult the&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Feedbacks+Module">Feedbacks Module</a>&nbsp;TODO page for more detailed information and how to include this module within projects.</p>
 <h2>Test Case</h2>
 <ol>
   <li>User has an issue with the web application.</li>
@@ -209,20 +209,19 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>Perform A/B tests.</li>
   <li>Fix bottlenecks by being aware of what is slowing down your service.</li>
 </ul>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>Having a more reliable app through better testing and diagnosis of issues.</li>
 </ul>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Real User Names&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>Real User Names&nbsp;</h1>
+<h2>Overview</h2>
 <p>When a tester or BB person logs into a BBWT3 test system, they often use a test account. For some future features, we need to know the real name / ID of the current user.</p>
 <ul>
   <li>Upon successful login with a test/demo account user will be prompted to input real info.</li>
 </ul>
-<p>This information will be called upon when&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Report+a+Problem">Reporting a Problem</a>.</p>
-<h1>Test Case</h1>
+<p>This information will be called upon when&nbsp;Reporting a Problem.</p>
+<h2>Test Case</h2>
 <ol>
   <li>A tester account can have the role “BBTester”:<br><br><br>&nbsp;</li>
 </ol>
@@ -238,7 +237,7 @@ dateCreated: 2020-11-27T11:04:03.128Z
 <ol>
   <li>The form is filled with real data. We can change this data in the user’s profile.</li>
 </ol>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>Be able to track down testers.</li>
   <li>When a single account is used by multiple testers trying to find the one who reported an issue could be complex.</li>
@@ -246,21 +245,13 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>However a tester must be made aware of the reasons behind this otherwise they may still fill out the details with unidentifiable information.</li>
   <li>Limitation: Does not check for validation when entering in information (such as checking email address is in valid format).</li>
 </ul>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>If you have test accounts for multiple users tracking down who reported what can be difficult - with BBWT3 when a new test users logs into the account they will be prompted to enter their real details, resolving this issue.</li>
 </ul>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493233/85493234.png">Screenshot_2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493233/85493235.jpg">form.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493233/85493236.png">Screenshot_3.png</a> (image/png)&nbsp;</p>
+<h1>Report a Problem&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Report a Problem&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h2>Overview</h2>
 <p>BBWT3 has an inbuilt Report a Problem feature, that can take the users logged on account details (such as username and email address) and fill them into the template form.</p>
 <ul>
   <li>Auto fills out user's details (however they still remain editable).</li>
@@ -270,14 +261,14 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>At request notifications can be setup to be sent via SMS.</li>
   <li>Automatically generates a report within PTS.</li>
 </ul>
-<h1>Test Case</h1>
+<h2>Test Case</h2>
 <ol>
   <li>User has an issue on the web application.</li>
   <li>User finds the "Report a Problem" page.</li>
   <li>Fills out form and sends to admin with severity.</li>
   <li>Admin is able to address the issue quickly so that other users do not face the same problem.</li>
 </ol>
-<h1>For Testers</h1>
+<h2>For Testers</h2>
 <ol>
   <li>Go to the very bottom of the page, in the footer click on "Report a Problem".</li>
   <li>The username and email of the logged in account should automatically be filled in, enter the title of issue.</li>
@@ -285,7 +276,7 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>Select the severity of the issue encountered.</li>
   <li>Click Submit.</li>
 </ol>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>Being able to have feedback on your web application can be useful for many reasons, but primarily for reporting back user issues.</li>
   <li>BBWT3 includes an easily identifiable Report a Problem feature, so if a user has an issue they can quickly report it.</li>
@@ -294,7 +285,7 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>If a test user is logged in, the details will be that which was entered when they entered their real details at session login. This way you can be sure to be able to contact the original tester if needed, instead of having to ask who was using the account at a specific time or day.</li>
   <li>There is the option to have a title and a description box to outlie the issue encountered, what is more useful to you will be the ability of the user to state the severity of the issue. Ranging from minor cosmetic issue such as formatting or spelling mistakes, all the way up to complete system failure for multiple users.</li>
 </ul>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>Decreases the amount of effort a user needs to employ to report back issues with the service - by decreasing the amount of steps to provide feedback, leading to a better experience for all users.</li>
   <li>Improved user engagement.</li>
@@ -308,56 +299,56 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>Filter search updates as you type.</li>
   <li>Filter search allows for refined results through multiple search constraints.</li>
 </ul>
-<h1>Test Case</h1>
+<h2>Test Case</h2>
 <ol>
   <li>Admin receives reports from users not being able to access a certain set of pages.</li>
-  <li>Admin can&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Impersonation">impersonate</a>&nbsp;a user to check.</li>
+  <li>Admin can&nbsp;impersonate a user to check.</li>
   <li>Admin sees that the user cannot access page due to lack of permissions.</li>
   <li>Admin can check via "View Route Access" and filter to the exact path.</li>
   <li>Admin can then make adjustments to page permissions to resolve issue.</li>
 </ol>
-<h1>For Testers</h1>
+<h2>For Testers</h2>
 <ol>
   <li>Go to BBWT3 menu and click on "Security Admin".</li>
   <li>From the drop down menu click on "Routes Access".</li>
 </ol>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>Be able to check prior to roll out which user groups have access to what.</li>
   <li>Help identify restricted pages that are open, allowing you to lock down the web application sufficiently.</li>
 </ul>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>Be able to check prior to roll out which user groups have access to what.</li>
   <li>Help identify restricted pages that are open, allowing you to lock down the web application sufficiently.</li>
 </ul>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Routes Review&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>Routes Review&nbsp;</h1>
+<p>&nbsp;</p>
+<h2>Overview</h2>
 <p>Displays which groups have access to which pages of the web application.</p>
 <ul>
-  <li>Is presented in&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/BB+Grid+Component">BB Grid Component</a>&nbsp;format.</li>
+  <li>Is presented in&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/BB+Grid+Component">BB Grid Component</a>&nbsp;TODO format.</li>
   <li>Header row.</li>
   <li>Alternating shaded rows.</li>
   <li>Ability to sort ascending/descending.</li>
   <li>Filter search updates as you type.</li>
   <li>Filter search allows for refined results through multiple search constraints.</li>
 </ul>
-<h1>Test Case</h1>
+<h2>Test Case</h2>
 <ol>
   <li>Admin receives reports from users not being able to access a certain set of pages.</li>
-  <li>Admin can&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Impersonation">impersonate</a>&nbsp;a user to check.</li>
+  <li>Admin can&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Impersonation">impersonate</a>&nbsp;TODO a user to check.</li>
   <li>Admin sees that the user cannot access page due to lack of permissions.</li>
   <li>Admin can check via "View Route Access" and filter to the exact path.</li>
   <li>Admin can then make adjustments to page permissions to resolve issue.</li>
 </ol>
-<h1>For Testers</h1>
+<h2>For Testers</h2>
 <ol>
   <li>Go to BBWT3 menu and click on "Security Admin".</li>
   <li>From the drop down menu click on "Routes Access".</li>
 </ol>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>Be able to check prior to roll out which user groups have access to what.</li>
   <li>Help identify restricted pages that are open, allowing you to lock down the web application sufficiently.</li>
