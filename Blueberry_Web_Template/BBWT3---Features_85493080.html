@@ -2,23 +2,23 @@
 title: BBWT3 - Features - Part 1
 description: 
 published: true
-date: 2020-12-04T16:24:36.350Z
+date: 2020-12-07T14:45:34.794Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-11-27T11:04:03.128Z
 -->
 
-<h1>Blueberry Group : BBWT3 - Company and Organisation&nbsp;</h1>
+<h1>BBWT3 - Features - Part 1&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Company Brand Management&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>Company Brand Management&nbsp;</h1>
+<p>&nbsp;</p>
+<h2>Overview</h2>
 <p>A logo for a company can be selected via the&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Company+Management">Company Management</a>&nbsp;page.</p>
 <p>For information on company branding guidelines and best practices, please refer to the articles on&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/BB+CSS+Styles">CSS Styles</a>&nbsp;and&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Themes">Themes</a>.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Company Management&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>Company Management&nbsp;</h1>
+<p>&nbsp;</p>
+<h2>Overview</h2>
 <p>The Companies feature provides an organisation structure for system users. Users are associated with a company which dictates what features, content and branding are displayed to the user. Security permissions are set via&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Role+Management">Role Management</a>&nbsp;however and not through Company Management.</p>
 <ul>
   <li>Company contains:<ul>
@@ -36,7 +36,7 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>Ability to add, edit and remove companies.</li>
   <li>Ability to add, edit and remove offices.</li>
 </ul>
-<h1>Test Case</h1>
+<h2>Test Case</h2>
 <ol>
   <li>Company "X" has opened a new office.</li>
   <li>Admin creates new office with relevant details.</li>
@@ -69,14 +69,14 @@ dateCreated: 2020-11-27T11:04:03.128Z
 </ul>
 <h1>Useful Resources</h1>
 <p>Please consult the&nbsp;<a href="https://wiki.bbconsult.co.uk/display/BLUEB/Feedbacks+Module">Feedbacks Module</a>&nbsp;page for more detailed information and how to include this module within projects.</p>
-<h1>Test Case</h1>
+<h2>Test Case</h2>
 <ol>
   <li>User has an issue with the web application.</li>
   <li>User is able to take a screenshot of the issue and upload it directly without any 3rd party software.</li>
   <li>User has the ability to use their voice and have it turned into text via an API instead of typing.</li>
   <li>Admin receives the message and is able to investigate and fix the issue quickly.</li>
 </ol>
-<h1>For Testers</h1>
+<h2>For Testers</h2>
 <p>1a. For full screen mode click on the talking bubble with the explanation mark in the centre.</p>
 <p>1b. For tablet/mobile mode click on the 3 horizontal bars and click on "Feedbacks".</p>
 <p>2. A new windows will open with automatically selected filters.</p>
@@ -84,14 +84,14 @@ dateCreated: 2020-11-27T11:04:03.128Z
 <p>4. On the main web application page enter in a title and description.</p>
 <p>5. If you wish you can accept the voice recording function and have your voice be the input.</p>
 <p>6. Click on "Save" to submit your issue.</p>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>Quick and easy method of reporting issues.</li>
   <li>Ability to describe the issue in detail due to the various media options available.</li>
   <li>Can demonstrate issue in real time.</li>
   <li>To be implemented: The version that is currently within BBWT3 is filled with bugs and is soon to be replaced (31-01-19).</li>
 </ul>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>Allows users to send issues to admin quickly.</li>
   <li>Able to upload a screenshot of the issue without the use of 3rd party software.</li>
@@ -99,9 +99,8 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>Real time communication of issue can be achieved if more than one party is on the same page as the issue is being made.</li>
 </ul>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Logging&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>Logging&nbsp;</h1>
+<h2>Overview</h2>
 <p>Logging system uses the 3rd party software called Graylog.</p>
 <ul>
   <li>Logs current user ID.</li>
@@ -109,27 +108,27 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>Logs any "real user name" defined on current user.</li>
 </ul>
 <p>There are 3 logging destinations available by BBWT3:</p>
+<p>Log error file.</p>
 <ul>
-  <li>Log error file.</li>
   <li>Greylog.</li>
   <li>Database.</li>
 </ul>
 <p>File logging should not typically be used in live or test environments, and should be considered for development machines only.&nbsp;BBWT3 principles discourage writing to files on the webserver, and discourage developers connecting to the webserver to read files.</p>
 <p>Greylog should be the preferred solution as it can accept application logging in addition to logging from other sources, e.g. database, OS, IIS.</p>
-<h1>Test Case</h1>
+<h2>Test Case</h2>
 <ol>
   <li>Web application is being actively tested by QA team.</li>
   <li>A tester causes an error.</li>
   <li>This error can be diagnosed due to the logging from Graylog.</li>
 </ol>
-<h1>Developer Notes</h1>
+<h2>Developer Notes</h2>
 <p>During development dbdoc should not need audit logging in addition to the repository. Any work that goes through the metadata table is already being tracked in the source code repository.<br>Within&nbsp;Serilog&nbsp;you are able to set the minimum level of logging per source.&nbsp;Within the configuration you need to have the section “Override” inside the “MinimumLevel”. For more information and an example see&nbsp;<a href="https://wiki.bbconsult.co.uk/pages/viewpage.action?spaceKey=BLUEB&amp;title=Configuration#Configuration-Serilog">here</a>.</p>
-<h1>For Testers</h1>
+<h2>For Testers</h2>
 <p>Go to&nbsp;<a href="https://graylog.bbconsult.co.uk/">https://graylog.bbconsult.co.uk</a>.</p>
 <ol>
   <li>Enter in LDAP username and password.</li>
 </ol>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>Able to quickly identify issues. Allowing you to respond to incidents quickly.</li>
   <li>Can set automatic reporting daily/weekly/monthly.</li>
@@ -137,19 +136,19 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>Automatic alerts in case of attack, can set firewalls to automatically block IP ranges.</li>
   <li>Cloud support for scalability and security.</li>
 </ul>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>Cloud support and integration - secure and cost effective.</li>
   <li>Automatic alerts in case of attack.</li>
   <li>Cost effective and in keeping with best practise policies in case of an audit.</li>
 </ul>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - Page Load Timer&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>Page Load Timer&nbsp;</h1>
+<p>&nbsp;</p>
+<h2>Overview</h2>
 <p>Page load timer is a feature that displays how long it took in seconds to load a particular page. It displays this value in the top right corner when enabled.</p>
 <p>When enabled displays stopwatch icon, with the load time in seconds for currently displayed page.</p>
-<h1>Test Case</h1>
+<h2>Test Case</h2>
 <ol>
   <li>Prior to deployment of web app an admin may wish to check for consistency across the site.</li>
   <li>Admin wishes for all pages to be responsive for the user.</li>
@@ -157,7 +156,7 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>Any pages with longer load times can be tracked down and investigated.</li>
   <li>Admin can then make changes such as resizing images.</li>
 </ol>
-<h1>For Testers</h1>
+<h2>For Testers</h2>
 <ol>
   <li>On each loading in the app, there is an icon in the top bar with the loading time:<br><br><br>&nbsp;</li>
 </ol>
@@ -178,7 +177,7 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>If the user is a “tester”, he can deactivate this feature in menu when he does a right click on the top bar:<br>&nbsp;</li>
 </ol>
 <figure class="image"><img src="attachments/85493224/85493229.jpg"></figure>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>Having page loading times easily accessible gives a quantifiable value of site responsiveness.</li>
   <li>You will be able to identify any problem pages, and then be able to attempt to fix issues, to make the user experience more responsive.</li>
@@ -187,35 +186,24 @@ dateCreated: 2020-11-27T11:04:03.128Z
   <li>Limitation: Only provides basic search and filtering capability (31-01-19).</li>
   <li>Limitation: Does not update the load time when filtering search or sorting tables (31-01-19).</li>
 </ul>
-<h1>For Marketing</h1>
+<h2>For Marketing</h2>
 <ul>
   <li>Able to search for problem pages prior to roll out - enabling a smooth user experience throughout the site.</li>
   <li>Able to identify through logs with who and where an issue occurred.</li>
 </ul>
 <p>&nbsp;</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493224/85493225.jpg">record.JPG</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493224/85493226.jpg">menu.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493224/85493227.jpg">grid.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493224/85493228.jpg">settings.jpg</a> (image/jpeg)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493224/85493229.jpg">menutester.jpg</a> (image/jpeg)&nbsp;</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BBWT3 - RayGun&nbsp;</h1>
-<p>Created by Jason Cozza on Sep 21, 2020</p>
-<h1>Overview</h1>
+<h1>RayGun&nbsp;</h1>
+<p>&nbsp;</p>
+<h2>Overview</h2>
 <p>&nbsp;Raygun is a front end (browser side) diagnostics library for errors.</p>
-<h1>Test Case</h1>
+<h2>Test Case</h2>
 <ol>
   <li>Dev team is working on a web application.</li>
   <li>Testers discover an issue and report back to Dev team.</li>
   <li>Dev team check Raygun and are able to identify from which build the issue began to appear through the use of "Deployment tracking".</li>
 </ol>
-<h1>For Project Managers</h1>
+<h2>For Project Managers</h2>
 <ul>
   <li>With breadcrumbs feature, replicate issues by retracing users exact actions.</li>
   <li>Perform A/B tests.</li>
