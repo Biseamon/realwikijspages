@@ -2,7 +2,7 @@
 title: Short Risk Assessment
 description: 
 published: true
-date: 2020-12-07T12:35:32.493Z
+date: 2020-12-07T12:37:36.596Z
 tags: 
 editor: markdown
 dateCreated: 2020-12-07T12:35:32.493Z
@@ -91,3 +91,25 @@ Below, you will find two sections: Duncan's recommended criteria and the Working
 >{.is-info}
 {.is-info}
 
+# Data Protection Impact Assessment
+
+Every identified activity in the information asset register needs a short risk assessment, and a documented decision on whether the activity is high risk or not.
+
+Only if the risk assessment says there is a "high risk" should we perform and document a Data Protection Impact Assessment (DPIA). The DPIA is intended to manage the risks to data subjects' rights and their fundamental EU freedoms. The DPIA will probably not be needed for internal Blueberry processing. But, our customers may need one, and they will need our advice on DPIAs. The ICO has advice on the content of a DPIA. 
+
+The DPIA is costly because it requires a record of consultation with stakeholders - or a very compelling explanation as to why this wasn't appropriate.
+
+
+- The DPIA bills itself as a tool for risk management. From a more commercially-focussed perspective you might consider it:
+	- Primarily, an important marketing tool to reassure business partners
+	- Secondly, an important tool for demonstrating GDPR compliance should the ICO take interest in the project.
+- The customer will need to fill in a data processing register, and a data asset register, and a short risk assessment, to cover the project’s processing. This is relatively easy – and a requirement even without the DPIA. This will likely be a half-day or a day’s work for them if we assist them with a helpful form. 
+- The customer will need to fill a risk management register, listing risks and options for handling them. Potentially, we could provide a document that will effectively kick-start that process. 
+	- **Note well**: some of those risks listed will essentially be legal compliance risks and many of our customers will likely need to put it on the record that they’ve made a business decision to temporarily accept the risk of not checking compliance with a specialist lawyer.
+- The expensive one: The customer will need to record the outcome of a consultation with stakeholders. This will likely mean something akin to inviting data subjects and systems users to a meeting, telling them in exacting detail how the system works, and having someone take notes on the stakeholders’ thoughts. 
+	- For the purposes of risk management, you may find it useful to include a representative from other business partners, and someone representing development. Ideally we'd have a compliance manager present too, but this will usually be outside the budget of our customers.
+	- The customer may find it necessary to update the registers as a result of the consultation. But they will need a first version of the registers initially so as to help guide the conversation.
+- The customer will need to sign-off on the DPIA and they should include their reasons for why they’re happy with the solutions chosen. They should briefly write about the processes they will follow to ensure the solutions are implemented. The document should be filed. If the project is large-scale this sign-off should be performed by the customer's senior management.
+- It is heavily encouraged that the result of a DPIA should become a report published in full, or in summary, to the stakeholders.
+	- It is not mandated that the report be published. But where a DPIA is indicated it's quite likely there will be a commercial pressure to do so.
+	- The content is not mandated, but the expectation is that the report will, in some way, cover the data collected above. The customer might reasonably be able to embellish the report with marketing material. The report should avoid deception, including deception by omission.
