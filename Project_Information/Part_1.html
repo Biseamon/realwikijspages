@@ -2,7 +2,7 @@
 title: Project Information - Part 1
 description: 
 published: true
-date: 2020-12-08T14:03:07.696Z
+date: 2020-12-08T14:08:21.212Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-12-02T12:05:23.174Z
@@ -1088,13 +1088,11 @@ dateCreated: 2020-12-02T12:05:23.174Z
     </tbody>
   </table>
 </figure>
-<h1>Screenshots</h1>
+<h2>Screenshots</h2>
 <figure class="image"><img src="attachments/85493682/85493683.png"></figure>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493682/85493683.png">LogSys.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<h1>Blueberry Group : Photo Tools&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h2><br>&nbsp;</h2>
+<h1>Photo Tools&nbsp;</h1>
+<p>&nbsp;</p>
 <h2>Task:</h2>
 <p>Copy photos to a sorted folder by date. Ex: 2016\2016-12-31\...</p>
 <h2>Location:</h2>
@@ -1109,8 +1107,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <h2>Result:</h2>
 <p>Photo are move to either the result folder or error folder if an error occurred or if the photo already exists.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Python script which cleans-up directories&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Python script which cleans-up directories&nbsp;</h1>
+<p>&nbsp;</p>
 <p>by Nethmin S, 19 Jul 2018&nbsp;</p>
 <p>When I came here for work experience Martin gave some tasks to complete during the time I was here, one of which was to write a python script which cleans-up directories.</p>
 <p>I finished it half-way through my second week here. This is the script, imporvements are always welcome.</p>
@@ -1123,8 +1121,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p>#This is a python script written in order to clean up directories by deleting files with specific extensions, 0 KB files, renaming files with the same double extension<br>#It also deletes files which are three years or older (this is done by looking at the last time of moification and last time of access).</p>
 <p><br><br><br>from os import path<br>import click<br>import datetime<br>import os<br>import sys<br>CleanUp = input("Would you like to run an automatic clean up?, This deletes 0 KB files, renames files with the same double extension to only have one extension, deletes files with a modification date or last access date of over 3 years and deletes files with the *.tmp extensino, a for automatic, c for custom, or n for nothing to be done")<br><br>if CleanUp == "a":<br>d = path("C:\\Users\\Lewis\\Documents\\Nethmin_Seneviratne\\ProjectsWork\\Projects\\Test_Folder")<br>filess = d.walkfiles("*.tmp")&nbsp;<br><br>def delfiles():&nbsp;<br>for file in filess:&nbsp;<br>file.remove()<br><br>def DelBySize():<br>d = path("C:\\Users\\Lewis\\Documents\\Nethmin_Seneviratne\\ProjectsWork\\Projects\\Test_Folder") # &lt;-- Enter Directory name here&nbsp;<br>del_size = 0&nbsp;<br>for i in d.walk():<br>if i.isfile() and i.size == del_size:<br>i.remove()<br>delBySize()<br>print("successfully deleted all 0 KB files")<br>delfiles()&nbsp;<br>print("Successfully deleted all .tmp files")&nbsp;<br>@click.command()<br>@click.option(<br>"--directory", "-d", "directory_name", required=True, type=click.Path(exists=True), help="Directory to scan"<br>)<br>def main(directory_name) -&gt; None:<br>"""Entry point."""<br>directory_name = Path("C:\\Users\\Lewis\\Documents\\Nethmin_Seneviratne\\ProjectsWork\\Projects\\Test_Folder").resolve()<br>print(f"Path specified: {directory_name}")<br>for i in directory_name.iterdir():<br>if i.suffixes and len(i.suffixes) &gt; 1 and all(i.suffixes):<br>click.secho(f"{i}: {i.suffixes}", fg="red")<br>new_name = f"{<a href="http://i.name">i.name</a>.rstrip(i.suffix)}{i.suffix}"<br>target = Path(directory_name / new_name)<br>i.rename(target)<br>click.secho(f"Renamed: {<a href="http://i.name">i.name</a>} -&gt; {new_name}", fg="green")<br>if __name__ == "__main__" :<br>main("C:\\Users\\Lewis\\Documents\\Nethmin_Seneviratne\\ProjectsWork\\Projects\\Test_Folder")<br>print("files with souble extensions were successfully renamed")<br>DAYS = 1095<br>time_in_secs = time.time() - (DAYS * 24 * 60 * 60)<br>DelByTime()<br><br>def DelByTime ():<br>for i in d.walk():<br>if i.isfile():<br>if i.mtime &lt;= time_in_secs:<br>i.remove()<br>DAYS = 1095<br>time_in_secs = time.time() - (DAYS * 24 * 60 * 60)<br>DelByTime2()<br><br>def DelByTime2 ():<br>for i in d.walk():<br>if i.isfile():<br>if i.atime &lt;= time_in_secs:<br>i.remove()<br>elif CleanUp == "c":<br>print("Custom mode enabled")<br>elif Cleanup == "n":<br>sys.exit()<br>else:<br>print("Invalid Input")<br>#Creates a path for the directory we're using<br>d = path("C:\\Users\\Lewis\\Documents\\Nethmin_Seneviratne\\ProjectsWork\\Projects\\Test_Folder")<br>#Asks the usr whether they want to delete a files with a specific extension,<br>#If the user says yes, then the program asks for the extension&nbsp;<br>delfile = input("Do you want to delete files with a specific extension?, reply with y or n")<br>if delfile == "y":<br>ext = input("Which files do you want to delete by extension?, *.")<br>delfiles()&nbsp;<br><br>files = d.walkfiles("*.",ext)<br>def delfiles():<br>for file in files:<br>print (file)<br>dele = input("Do you want to delete these files, reply with y or n ")<br>if dele == "y":<br>file.remove()<br>elif dele == "n":<br>print ("Removed {} file".format(file))<br>else:<br>print("invalid input or no file found")<br>#prints the files with the desired extension, then asks if the user wants them deleted<br>#if the user wants them to be deleted they are deketed, if not nothing happens<br><br>def DelBySize():<br>d = path() # &lt;-- Enter Directory name here<br>del_size = 0<br>for i in d.walk():<br>if i.isfile() and i.size == del_size:<br>print (i)<br>deleteZero = input("Do you want to delete these files?, y or n")<br>if deleteZero == "y" and i.size == del_size:<br>i.remove()<br>elif deleteZero == "n":<br>print("Lets move on then")<br>else:<br>print("Invalid Input")<br># This functions walks through all the files in the directory, and looks for 0 KB files<br># The function then prints these files and asks the user weather he wants them deleted.<br># If the user input is yes, then they are deleted, if not then the program moves on to the next part of the clean-up process<br>sizeDel = input("Do you want to delete 0 KB files? y or n")<br>if sizeDel == "y":<br>DelBySize()<br>elif sizeDel == "n":<br>print("On to the next procedure")<br>else:<br>print("Invalid Input")<br><br><br>@click.command()<br>@click.option(<br>"--directory", "-d", "directory_name", required=True, type=click.Path(exists=True), help="Directory to scan"<br>)<br>def main(directory_name) -&gt; None:<br>"""Entry point."""<br>directory_name = Path(directory_name).resolve()<br>print(f"Path specified: {directory_name}")<br>for i in directory_name.iterdir():<br>if i.suffixes and len(i.suffixes) &gt; 1 and all(i.suffixes):<br>click.secho(f"{i}: {i.suffixes}", fg="red")<br>new_name = f"{<a href="http://i.name">i.name</a>.rstrip(i.suffix)}{i.suffix}"<br>target = Path(directory_name / new_name)<br>i.rename(target)<br>click.secho(f"Renamed: {<a href="http://i.name">i.name</a>} -&gt; {new_name}", fg="green")<br>#This part of the code just reanames files with the same double extension to have one extension<br>ren = input("Do you want to rename files with double extensions of the same extension? y or no")<br>if __name__ == "__main__" and ren == "y":&nbsp;<br>main()<br>elif ren == "no":<br>print("Time to move on")<br>else:<br>print("Invalid Input")<br><br>from path import path<br>from datetime import time<br><br>removed = 0<br>d = path("C:\\Users\\Lewis\\Documents\\Nethmin_Seneviratne\\ProjectsWork\\Projects\\Test_Folder" )<br>DelTime9 = input("Do you want to delete files by last time of modification?, y or n")<br>if DelTime9 == "y":<br>Timee = iput("What's the last time of modification, in days?")<br>DAYS = Timee<br>time_in_secs = time.time() - (DAYS * 24 * 60 * 60)<br>DelByTime3()<br>elif DelTime9 == "n":<br>print("On to the next procedure")<br>else:<br>print("Invalid Input")<br>def DelByTime3 ():<br>for i in d.walk():<br>if i.isfile():<br>if i.mtime &lt;= time_in_secs:<br>print (i)<br>inp = input("Do you want to delete these files? y or n")<br>if i.mtime &lt;= time_in_secs and inp == "y":<br>i.remove()<br>removed += 1<br><br>print (removed,"files were removed")<br><br>DelTime8 = input("Would you like to delete files by last time of access, y or n")<br>if DelTime8 == "y":<br>Timee = iput("What's the last time of access, in days?")<br>DAYS = Timee<br>time_in_secs = time.time() - (DAYS * 24 * 60 * 60)<br>DelByTime4()<br>elif DelTime8 == "n":<br>print("On to the next procedure")<br>else:<br>print("Invalid Input")<br>def DelByTime4 ():<br>for i in d.walk():<br>if i.isfile():<br>if i.atime &lt;= time_in_secs:<br>print (i)<br>inp = input("Do you want to delete these files? y or n")<br>if i.atime &lt;= time_in_secs and inp == "y":&nbsp;<br>i.remove()<br>removed += 1<br><br>print (removed,"files were removed")<br>main("C:\\Users\\Lewis\\Documents\\Nethmin_Seneviratne\\ProjectsWork\\Projects\\Test_Folder")</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Screenshot System&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Screenshot System&nbsp;</h1>
+<p>&nbsp;</p>
 <p>The tool allows a user to capture screenshots and create an interactive demo (a number of HTML files containing the images) as well as to export it to wiki. Shift+PrtScr is used to take screenshots. You can then change the order of the captured screens and add buttons to move to other screenshots. To be able to export to Wiki, you need to change settings in the settings.json file from the application directory,</p>
 <figure class="table">
   <table>
@@ -1168,13 +1166,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
     </tbody>
   </table>
 </figure>
-<h1>Screenshots</h1>
-<figure class="image"><img src="attachments/85493686/85493687.png"></figure>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493686/85493687.png">Screenshot_system.png</a> (image/png)&nbsp;</p>
-<p>&nbsp;</p>
-<h1>Blueberry Group : Sensor Tag&nbsp;</h1>
+<h1>Sensor Tag&nbsp;</h1>
 <p>Created by Jason Cozza on Nov 24, 2020</p>
 <h2>Task:</h2>
 <p>Make a reminder to keep a leg elevated using a sensor tag as well as a Raspberry PI.</p>
@@ -1286,11 +1278,11 @@ dateCreated: 2020-12-02T12:05:23.174Z
     </tbody>
   </table>
 </figure>
-<h1>Screenshots</h1>
+<h2>Screenshots</h2>
 <p>Need to take in the office where it works.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Twilio&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Twilio&nbsp;</h1>
+<p>&nbsp;</p>
 <h2>Task:</h2>
 <p>Make an application that will start ringing another group of phone if the initial group hasn’t picked up. But once the second group starts ringing the first one shouldn’t stop.</p>
 <h2>Location:</h2>
