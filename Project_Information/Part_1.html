@@ -2,7 +2,7 @@
 title: Project Information - Part 1
 description: 
 published: true
-date: 2020-12-08T15:11:48.719Z
+date: 2020-12-08T15:21:27.316Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-12-02T12:05:23.174Z
@@ -107,13 +107,13 @@ dateCreated: 2020-12-02T12:05:23.174Z
 </blockquote>
 <p>&nbsp;</p>
 <h2>Change Demo User Priv&nbsp;</h2>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>&nbsp;</p>
 <blockquote>
   <p>Use PayFlex<br>declare @userId uniqueidentifier<br>declare @roleId uniqueidentifier<br><br>select @userId = UserId from aspnet_Users<br>where UserName = 'demo'<br><br>select @roleId = RoleId from aspnet_Roles<br>where RoleName = 'administrator'<br><br>DELETE FROM [aspnet_UsersInRoles]<br>WHERE UserId = @userId<br><br>INSERT INTO [dbo].[aspnet_UsersInRoles] ([UserId], [RoleId])<br>VALUES (@userId, @roleId)</p>
 </blockquote>
 <p>&nbsp;</p>
 <h2>Discount all users from MS SQL Server DB&nbsp;</h2>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>&nbsp;</p>
 <blockquote>
   <p>Use Master<br>Go<br><br>Declare @dbname sysname<br><br>Set @dbname = 'databaseName'<br><br>Declare @spid int<br>Select @spid = min(spid) from master.dbo.sysprocesses<br>where dbid = db_id(@dbname)<br>While @spid Is Not Null<br>Begin<br>Execute ('Kill ' + @spid)<br>Select @spid = min(spid) from master.dbo.sysprocesses<br>where dbid = db_id(@dbname) and spid &gt; @spid<br>End</p>
 </blockquote>
@@ -645,10 +645,10 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <figure class="image"><img src="attachments/85493629/85493631.png"></figure>
 <h3>2 - A popup message that appears if an email has not been answered within a preset delay</h3>
 <figure class="image"><img src="attachments/85493629/85493630.png"></figure>
-<h2>&nbsp;</h2>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <h1>Blueberry Outlook&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>&nbsp;</p>
 <p style="text-align:justify;"><i>Blueberry Outlook</i>&nbsp;is an Outlook plugin designed to help Blueberry's communication&nbsp;being more efficient.</p>
 <p style="text-align:justify;">It is a simple extension developed in C# including these different features :&nbsp;</p>
 <ul>
@@ -837,8 +837,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <h2>Result:</h2>
 <p>Working example can be found here: <a href="https://jsfiddle.net/NicolasC/wvre6uzt/">https://jsfiddle.net/NicolasC/wvre6uzt/</a></p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Database Maintainer&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Database Maintainer&nbsp;</h1>
+<p>&nbsp;</p>
 <p>A database synchronisation tool which organises all changes made to databases to make sure they are implemented in the correct order and not repeated.</p>
 <p>&nbsp;</p>
 <figure class="table">
@@ -1167,7 +1167,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
   </table>
 </figure>
 <h1>Sensor Tag&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>&nbsp;</p>
 <h2>Task:</h2>
 <p>Make a reminder to keep a leg elevated using a sensor tag as well as a Raspberry PI.</p>
 <h2>Location:</h2>
@@ -1185,8 +1185,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <h2>Problem encounter:</h2>
 <p>The gyro values were ignored because even while not moving it reported some movement. And a calibration could not be properly made because this “noise” varies too much to be taken into account and subtracted from the final result.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : SimpleTV&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>SimpleTV&nbsp;</h1>
+<p>&nbsp;</p>
 <p>A program that allows a person to use an internet connected PC as a TV via remote control.</p>
 <figure class="table">
   <table>
@@ -1230,11 +1230,11 @@ dateCreated: 2020-12-02T12:05:23.174Z
     </tbody>
   </table>
 </figure>
-<h1>Screenshots</h1>
+<h2>Screenshots</h2>
 <p>Unable to obtain any at the moment</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Telephone Number Checker&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Telephone Number Checker&nbsp;</h1>
+<p>&nbsp;</p>
 <p>A script that will send an email to the person that answered an incoming call once he hanged up asking him if the incoming call was a spam or not.</p>
 <figure class="table">
   <table>
@@ -1927,7 +1927,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p><strong>Also, please note that AWS run with Linux so some package installed on windows might be missing stuff to run on Linux environment like it’s the case with ‘pymssql’ so it’s best to add package installed from a Linux environment.</strong></p>
 <p>&nbsp;</p>
 <h2>Cognito&nbsp;</h2>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>&nbsp;</p>
 <h3>How it’s set up:</h3>
 <h4>Attributes</h4>
 <p>Once a Cognito user poll has been created you cannot change the required attributes from the list of proposed attributes. Nor can you delete a custom attribute once created.</p>
@@ -2040,7 +2040,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <h2>Shape GB&nbsp;</h2>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>&nbsp;</p>
 <h3>Contact</h3>
 <figure class="table">
   <table>
