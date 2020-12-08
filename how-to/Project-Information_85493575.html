@@ -2,23 +2,16 @@
 title: Project-Information_85493575
 description: 
 published: true
-date: 2020-12-02T17:29:37.123Z
+date: 2020-12-08T10:14:47.985Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-12-02T12:05:23.174Z
 -->
 
-<h1>Blueberry Group : Project Information&nbsp;</h1>
-<p>Created by Jason Cozza, last modified on Nov 24, 2020</p>
+<h1>Project Information&nbsp;</h1>
 <p>&nbsp;</p>
-<p>Collapse all</p>
-<p><a href="#">Expand all</a>&nbsp;&nbsp; <a href="#">Collapse all</a></p>
+<h1>Hudson&nbsp;</h1>
 <p>&nbsp;</p>
-<p><strong>Error rendering macro 'spaces'</strong></p>
-<p>null</p>
-<p>&nbsp;</p>
-<h1>Blueberry Group : Hudson&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
 <p>&nbsp;</p>
 <p>The root page BLUEB:@self could not be found in space Blueberry Group.&nbsp;</p>
 <p>&nbsp;</p>
@@ -3331,8 +3324,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
   <li>2: "Verbose" logging with script start/stop/total execution time shown</li>
 </ul>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Parser&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Parser&nbsp;</h1>
+<p>&nbsp;</p>
 <p><strong>Parser Global System Variables</strong></p>
 <p>Demo Site -&nbsp;<a href="https://vrouter-dev.bbconsult.co.uk/">https://vrouter-dev.bbconsult.co.uk/</a></p>
 <p>server_email = 'support@<a href="http://q8-vr.bbconsult.co.uk">q8-vr.bbconsult.co.uk</a>'<br>mailing_list = ['ivr-support@<a href="http://bbconsult.co.uk">bbconsult.co.uk</a>']<br>email_host_address = "localhost"<br>mySQLHost = "localhost"<br>mySQLUser =&nbsp;***IN LAST PASS***<br>mySQLPassword =&nbsp;***IN LAST PASS***<br>mySQLDatabase = "Q8_Database"<br>network_name = "eth0:"</p>
@@ -3365,7 +3358,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
 </ol>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><strong>Debugging</strong></h2>
+<h3><strong>Debugging</strong></h3>
 <p>Various levels of debugging can be enabled via passing an argument to the email monitoring Bash script. By default, if no argument is passed, debugging will assume that errors should be logged and support emails should be sent when errors are detected. The following codes are arguments which can be passed to enable different debugging levels than the standard - only log errors - debugging level:</p>
 <ul>
   <li>0 : Completely disable logging</li>
@@ -3373,19 +3366,15 @@ dateCreated: 2020-12-02T12:05:23.174Z
   <li>2 : Comprehensive logging, with additional logs to measure how long certain parts of the script take to ru</li>
 </ul>
 <p>&nbsp;</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493789/85493790.png">code.png</a> (image/png)&nbsp;</p>
+<h2>Parser - Specific email format tweaks&nbsp;</h2>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Parser - Specific email format tweaks&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
-<h2>Sterling Petromani Emails</h2>
+<h3>Sterling Petromani Emails</h3>
 <p>Emails from Sterling Petromani do not have the Content-Transfer-Encoding specified in the header of the email, therefore the parser must look in the email body for this:<br><br>&nbsp;</p>
 <p>if "Content-Transfer-Encoding: base64" in body_text:<br>&nbsp; &nbsp; &nbsp; &nbsp; body_text = base64.decodestring(body_text.split("Content-Transfer-Encoding: base64", 1)[-1])<br><br>&nbsp;</p>
 <p>in order to correctly decode it, the parser must remove the part of the email body, before and up to the "Content-Transfer-Encoding" line.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Unit Testing&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h2>Unit Testing&nbsp;</h2>
+<p>&nbsp;</p>
 <p>There are two different scripts used for unit testing - "unit_test.py" and "bulk_unit_test.py" on the virtual router, they should always be located in the "/home/ubuntu/scripts/" directory. These unit tests ensure that the system performs all of it's necessary functions, i.e. updating the database to reflect the status of terminals given in emails, putting relevant IP addresses online or offline and creating system logs; they also ensure that errors are identified correctly. Any time a change is made to the "parser.py" script, these unit test files should be run to ensure that previous functionality was not affected by the changes. Both unit test scripts send emails, which contain reserved IP addresses, so that these tests do not interfere with any real TIDs; generally speaking, the "unit_test.py" script sends emails with only a few terminal ID numbers, in order to test the core functionality of the system; whereas many of the tests in the "bulk_unit_test.py" script use between 10 and 20 TIDs in their testing emails.&nbsp;<br><br>The process for enabling the unit tests is as follows:</p>
 <ol>
   <li>Ensure that the "Unit Test Code" region of the "parser.py" script is uncommented, i.e. at the top and bottom of the code block, there are three single quotation marks - these need to be removed in order to allow the unit test scripts to function correctly.</li>
@@ -3400,13 +3389,12 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p>&nbsp;</p>
 <p>If no number is specified when running the script, it will default to sending the emails as plain text.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Updating the Database&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h2>Updating the Database&nbsp;</h2>
+<p>&nbsp;</p>
 <p>There is a simple script to update the database using a CSV file in the "/home/ubuntu/scripts/" directory, called "update_database.py". This can be run with the following command:</p>
 <p>"<i>sudo python update_database.py&nbsp;[name of your csv file]</i>"&nbsp;e.g. "sudo python update_database.py vrouter_table.csv".<br><br>The script will display an error message if it is run without a CSV file specified as an argument.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Uploading New File Versions&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h2>Uploading New File Versions&nbsp;</h2>
 <p>&nbsp;</p>
 <p>In order to upload new files to the Q8 live server, you'll need to sign into the Q8 network and then connect to the server via PuTTY (<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Latest PuTTY release</a>) and PSFTP (Included in the PuTTY installer). Connecting via PuTTY is straightforward as it has a GUI which should look like:</p>
 <figure class="image"><img src="attachments/85493794/85493798.png"></figure>
@@ -3426,20 +3414,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
 </ul>
 <p>The database password can be found in the Q8 IVR SSH note in LastPass.</p>
 <p>&nbsp;</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493795.png">image2017-7-12_16-48-16.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493796.png">image2017-7-12_16-47-33.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493797.png">image2017-7-12_16-46-0.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493798.png">image2017-7-12_16-35-18.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493799.png">image2017-7-12_16-34-43.png</a> (image/png)&nbsp;</p>
-<p>&nbsp;</p>
-<h1>Blueberry Group : Uploading New File Versions&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>Uploading New File Versions&nbsp;</p>
 <p>&nbsp;</p>
 <p>In order to upload new files to the Q8 live server, you'll need to sign into the Q8 network and then connect to the server via PuTTY (<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Latest PuTTY release</a>) and PSFTP (Included in the PuTTY installer). Connecting via PuTTY is straightforward as it has a GUI which should look like:</p>
 <figure class="image"><img src="attachments/85493794/85493798.png"></figure>
@@ -3459,20 +3434,9 @@ dateCreated: 2020-12-02T12:05:23.174Z
 </ul>
 <p>The database password can be found in the Q8 IVR SSH note in LastPass.</p>
 <p>&nbsp;</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493795.png">image2017-7-12_16-48-16.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493796.png">image2017-7-12_16-47-33.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493797.png">image2017-7-12_16-46-0.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493798.png">image2017-7-12_16-35-18.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493794/85493799.png">image2017-7-12_16-34-43.png</a> (image/png)&nbsp;<br>&nbsp;</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Websites Account Details&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h2>Websites Account Details&nbsp;</h2>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>Test:</p>
 <figure class="table">
@@ -3504,16 +3468,11 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p>&nbsp;</p>
 <p>Live:</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Engineius (VME)&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Oobeedoo&nbsp;</h1>
 <p>&nbsp;</p>
-<p>The root page BLUEB:@self could not be found in space Blueberry Group.&nbsp;</p>
-<p>&nbsp;</p>
-<h1>Blueberry Group : Oobeedoo&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
-<h1>GitLab:</h1>
+<h2>GitLab:</h2>
 <p><a href="https://gitlab.bbconsult.co.uk/blueberry/oobeedoo/-/tree/master">https://gitlab.bbconsult.co.uk/blueberry/oobeedoo/-/tree/master</a></p>
-<h1>Device Hardware</h1>
+<h2>Device Hardware</h2>
 <ul>
   <li>PI 3a+</li>
   <li>32gb micro SD card</li>
@@ -3522,7 +3481,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
   <li>PTM button</li>
 </ul>
 <p>&nbsp;</p>
-<h1>Setup Instructions</h1>
+<h2>Setup Instructions</h2>
 <p>Use case – initial setup</p>
 <ol>
   <li>Create an account on the Oobeedoo mobile application</li>
@@ -3556,7 +3515,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
   <li>Music will need to be added to default playlist on the webpage to work</li>
   <li>Device will play music<br><br>&nbsp;</li>
 </ol>
-<h1>BUG NOTICE:</h1>
+<h2>BUG NOTICE:</h2>
 <p>If device reboots after step 5.e. and indicates through audio that no user has been found a second reboot by holding the button for &gt; 10 seconds will often fix this issue.</p>
 <p>If you hold the button for under 10 seconds it will remove the user settings and a setup will have to take place again.</p>
 <h2>Use case – setting up with a different account</h2>
@@ -3565,42 +3524,37 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p>If the device has been fully setup, day to day use will be powering up the device, device will log in to users account and Spotify and a click of the button will play/stop the music that has been pre-set in the default playlist on the oobeedoo dashboard.</p>
 <p>If the device cannot connect to the WIFI it will alert the user through and audio warning.</p>
 <p>&nbsp;</p>
-<h1>Button Controls</h1>
+<h2>Button Controls</h2>
 <p>Single button press – will play/stop music if logged in if not will give audio instructions to sign in.</p>
 <p>Button hold for 5 seconds – Device will go into setup mode, step (5.a.).</p>
 <p>Button hold for more than 10 seconds – Device will soft reboot.</p>
 <p>&nbsp;</p>
-<h1>Code and Issues</h1>
-<h2>Main Current Issue:</h2>
+<h2>Code and Issues</h2>
+<h3>Main Current Issue:</h3>
 <p>Once a device has been connected and gone through the setup process it will not retain the user credentials. Although this is somewhat not true as the device will often still connect to the local Wi-Fi correctly,</p>
 <p>therefore the device is holding at least the Wi-Fi information but the program is not recognising this on reboot (step 5.e. + 6.).</p>
 <p>On occasion this can be subverted by holding the device button for more than 10 seconds calling a soft reboot (sudo shutdown -r now). Once the device has rebooted it will then recognise the account and sign in.</p>
-<h2>Possible Causes:</h2>
+<h3>Possible Causes:</h3>
 <ol>
   <li>The device on boot could be passing the code of signing in before the device has had time to connect to the internet therefore not being able to verify the account it will assert no details recognised.</li>
   <li>A previous bug caused the resin Wi-Fi connect (step 5.c.) to never close, this meant that after a user signed in the instructions and next process (step 5.c.iv) would never happen.&nbsp;<br>It was concluded from looking at the PI’s running processes that this was holding the device in a lock therefore killing the process after the details has been taken fixed this. But this may have caused this to be unstable.&nbsp;<br>Tests at the developers WFH location on 3 different Wi-Fi networks passed, yet this may be causing the issue for the speaker manufacture. Could be killing the process before the details have been stored.<br>Location on device ‘/oobeedoo/src/oobeedoo_player.py’. Code Lines ~258 – 262.<br>&nbsp;</li>
 </ol>
 <figure class="image"><img src="attachments/85493802/85493803.png"></figure>
-<ol>
-  <li>User details are wrong and the code only asserts details not found through audio instructions.</li>
-</ol>
-<h1>Connection</h1>
+<p>3. User details are wrong and the code only asserts details not found through audio instructions.</p>
+<h2>Connection</h2>
 <p>Device will display its IP address on screen upon boot.</p>
 <p>From Terminal:</p>
 <p>SSH pi@IPAddress</p>
 <p>&nbsp;</p>
-<h1>Passwords</h1>
+<h2>Passwords</h2>
 <p>The main Password for the device is contained within the company Bit-Warden.</p>
 <p>&nbsp;</p>
-<h1>Things to note</h1>
+<h2>Things to note</h2>
 <p><i>Display</i> - Pi may not display on older screens due to the HDMI configs, plugging into a tv often works.</p>
 <p><i>Volume</i> – Volume of the device is not constant/consistent, although this is set during the setup in the main python code to be 80% and the firebase values are set to around this it reverts to a much lower volume inconsitantly.</p>
 <p><i>Audio</i> – Audio often contains artefacts on start-up.</p>
 <p><i>IMG</i> – IMG for the software is bloated, it sits at 32GB but this is mainly empty space it can be taken down to around 4GB by deleting the empty space.</p>
 <p><i>Website</i> – The website will only allow one playlist for music, will also create an additional device every time the oobeedoo is set up on the account it will not replace duplicate devices.</p>
 <p>Therefore when on each time setting the device up you will have to find the newest device and connect that to the Spotify.</p>
-<p>Note: Change the name of each device you add to a number so you can see the new device which will always be named Oobeedoo.</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493802/85493803.png">image2020-8-10_10-52-45.png</a> (image/png)&nbsp;<br>&nbsp;</p>
+<p>Note: Change the name of each device you add to a number so you can see the new device which will always be named Oobeedoo.&nbsp;</p>
 <p>&nbsp;</p>
