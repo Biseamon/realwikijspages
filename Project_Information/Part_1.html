@@ -2,7 +2,7 @@
 title: Project Information - Part 1
 description: 
 published: true
-date: 2020-12-08T11:56:16.296Z
+date: 2020-12-08T13:38:04.490Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-12-02T12:05:23.174Z
@@ -118,8 +118,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
   <p>Use Master<br>Go<br><br>Declare @dbname sysname<br><br>Set @dbname = 'databaseName'<br><br>Declare @spid int<br>Select @spid = min(spid) from master.dbo.sysprocesses<br>where dbid = db_id(@dbname)<br>While @spid Is Not Null<br>Begin<br>Execute ('Kill ' + @spid)<br>Select @spid = min(spid) from master.dbo.sysprocesses<br>where dbid = db_id(@dbname) and spid &gt; @spid<br>End</p>
 </blockquote>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Hudson BACS/FP Lock Deletes&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Hudson BACS/FP Lock Deletes&nbsp;</h1>
+<p>&nbsp;</p>
 <h2>Delete Locking(BACS/FP Lock Deletes)</h2>
 <hr>
 <blockquote>
@@ -131,12 +131,12 @@ dateCreated: 2020-12-02T12:05:23.174Z
   <p>use PayFlex<br><br>Select c.Name, COUNT(c.Name) as Total from Subcontractors S<br>left join<br>SubcontractorClientMap M<br>on S.ID = M.SubcontractorID<br>left join<br>Clients C<br>on c.ID = m.ClientID<br>group by c.Name<br>order by Total desc</p>
 </blockquote>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Payment Instruction Marking Issue [Solved]&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Payment Instruction Marking Issue [Solved]&nbsp;</h1>
+<p>&nbsp;</p>
 <p>MS-SQL Server query: alter authorization on database::payflex to [sa]<br><br>comments: payflex is the name of the database</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Shell&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Shell&nbsp;</h1>
+<p>&nbsp;</p>
 <h2>SVN repository</h2>
 <p>Latest version published is "2016 v2", stored within SVN at:</p>
 <p><a href="https://svn.bbconsult.co.uk/repository/shell_proposa">https://svn.bbconsult.co.uk/repository/shell_proposa</a>l</p>
@@ -228,8 +228,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
 <p><a href="attachments/85493583/85493584.png">Shell-DB.png</a> (image/png)&nbsp;</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Student / trial / background projects&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Student / trial / background projects&nbsp;</h1>
 <p>A summary of projects developed by students and trialists as well as the background projects.</p>
 <figure class="table" style="width:49.3478%;">
   <table>
@@ -345,72 +344,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
     </tbody>
   </table>
 </figure>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493586.ps1">GrantSqlPermission.ps1</a> (application/octet-stream)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493587.ps1">CallDefragSp.ps1</a> (application/octet-stream)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493588.ps1">Call_Sp_QueryChecker.ps1</a> (application/octet-stream)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493589.ps1">Call_sp_GetDbaStatistics.ps1</a> (application/octet-stream)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493590.ps1">Call_Sp_CatchDynamicSqlParam.ps1</a> (application/octet-stream)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493591.ps1">Call_Sp_AnalyzeSlowQueryStats.ps1</a> (application/octet-stream)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493592.mp4">DB_Documenter_demo1.mp4</a> (video/mp4)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493593.png">image2016-5-11 10-26-34.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493594.png">2016-05-31_11h27_52.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493595.png">image2016-6-21 16:27:20.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493596.png">image2016-6-21 16:25:33.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493597.png">image2016-6-21 16:24:2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493598.png">image2016-6-21 16:23:19.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493599.png">Screenshot_system.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493600.doc">LogSys Documentation for the Developer.doc</a> (application/msword)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493601.doc">LogSys Documentation for the Support Team.doc</a> (application/msword)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493602.doc">LogSys Documentation for the End-User.doc</a> (application/msword)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493603.png">LogSys.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493604.txt">HowToUse_DB_Maintainer.txt</a> (text/plain)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493605.png">DBMaintainer.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493606.png">BBOLTools4.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493607.png">BBOLTools3.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493608.png">BBOLTools2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493609.png">BBOLTools1.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493610.docx">BB Outlook Tools - Product Help.docx</a> (application/vnd.openxmlformats-officedocument.wordprocessingml.document)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493611.png">AutoDeploy3.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493612.png">AutoDeploy2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493613.png">AutoDeploy1.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493614.png">Outlook_hours.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493615.png">Contact_sync2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493585/85493616.png">Contact_sync.png</a> (image/png)&nbsp;</p>
-<p>&nbsp;</p>
-<h1>Blueberry Group : AutoDeploy&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h2>&nbsp;</h2>
+<h1>AutoDeploy&nbsp;</h1>
 <p>A Windows application connected to PTS and Amazon S3 and can automatically install a new website version on a server. Once it detects a new web site version committed to PTS (and added to Amazon), the service receives a notification that a new version was released, downloads it from Amazon and installs/updates the current machine. If necessary, it also updates the database.</p>
 <figure class="table">
   <table>
@@ -467,16 +402,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <h3>3 - AutoDeploy Script Running on Client Machine to Check for New Updates</h3>
 <figure class="image"><img src="attachments/85493617/85493618.png"></figure>
 <p><br>&nbsp;</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493617/85493618.png">AutoDeploy3.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493617/85493619.png">AutoDeploy2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493617/85493620.png">AutoDeploy1.png</a> (image/png)&nbsp;</p>
+<h2>BB Outlook Hours Plugin&nbsp;</h2>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BB Outlook Hours Plugin&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
 <p>An Outlook plugin which advises who are members of a group and who of your addressees is off (e.g. on vacation) when you compose a message. Martin has mentioned it also should advise when they will be back. Need to check.</p>
 <p>Uses information from PTS which Oliver managed.</p>
 <figure class="table">
@@ -524,12 +451,10 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <h1>Screenshots</h1>
 <h3>1 - Members of a group listed in the message.</h3>
 <figure class="image"><img src="attachments/85493621/85493622.png"></figure>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493621/85493622.png">Outlook_hours.png</a> (image/png)&nbsp;</p>
+<h2>&nbsp;</h2>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BB Outlook Tools&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>BB Outlook Tools&nbsp;</h1>
+<p>&nbsp;</p>
 <p>An add-in for Outlook 2010/2013.Provides the following features:<br>&nbsp;</p>
 <ul>
   <li><i>Reply with Attachments</i> (creates a reply with the original attachments still present)</li>
@@ -600,15 +525,7 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <figure class="image"><img src="attachments/85493623/85493625.png"></figure>
 <h3>4 - Mailing List Preview</h3>
 <figure class="image"><img src="attachments/85493623/85493624.png"></figure>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493623/85493624.png">BBOLTools4.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493623/85493625.png">BBOLTools3.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493623/85493626.png">BBOLTools2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493623/85493627.png">BBOLTools1.png</a> (image/png)&nbsp;</p>
+<h2>&nbsp;</h2>
 <p>&nbsp;</p>
 <h1>BB SQL Scripts&nbsp;</h1>
 <p>Scripts&nbsp;which automatically check&nbsp;SQL&nbsp;databases and report errors or even fix them:&nbsp;<br>&nbsp;</p>
@@ -673,8 +590,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <h1>Screenshots</h1>
 <p>N/A</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : BB Support Plugin (Blueberry Outloot)&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>BB Support Plugin (Blueberry Outloot)&nbsp;</h1>
+<p>&nbsp;</p>
 <p>An Outlook plugin designed to help Blueberry's&nbsp;communication&nbsp;being more efficient. It includes the following features:<br>&nbsp;</p>
 <ul>
   <li><a href="https://wiki.bbconsult.co.uk/display/SW/PTS+Helper"><i>PTS Helper</i></a>&nbsp;to help you creating tickets in the PTS based on a customer email.</li>
@@ -728,13 +645,11 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <figure class="image"><img src="attachments/85493629/85493631.png"></figure>
 <h3>2 - A popup message that appears if an email has not been answered within a preset delay</h3>
 <figure class="image"><img src="attachments/85493629/85493630.png"></figure>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493629/85493630.png">image2016-5-11 10-26-34.png</a> (image/png)&nbsp;</p>
+<h2>&nbsp;</h2>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Blueberry Outloot&nbsp;</h1>
+<h1>Blueberry Outlook&nbsp;</h1>
 <p>Created by Jason Cozza on Nov 24, 2020</p>
-<p style="text-align:justify;"><i>Blueberry Outloot</i>&nbsp;is an Outlook plugin designed to help Blueberry's communication&nbsp;being more efficient.</p>
+<p style="text-align:justify;"><i>Blueberry Outlook</i>&nbsp;is an Outlook plugin designed to help Blueberry's communication&nbsp;being more efficient.</p>
 <p style="text-align:justify;">It is a simple extension developed in C# including these different features :&nbsp;</p>
 <ul>
   <li style="text-align:justify;"><a href="PTS-Helper_85493637.html"><i>PTS Helper</i></a>&nbsp;to help you logging any issue in the PTS based on a customer email.</li>
@@ -744,18 +659,10 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p style="text-align:justify;">If you want to know more about these different features, please have a look to the related articles.</p>
 <p style="text-align:justify;"><br><strong>How to install :</strong></p>
 <p style="text-align:justify;">The installation of this add-in is very simple. To know more about this, please have a look at the related article :&nbsp;<a href="Outloot-Installation-Steps_85493658.html">Outloot Installation Steps</a>.</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493632/85493633.png">image2016-5-11 10:26:34.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493632/85493634.png">2016-05-03_12h54_08.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493632/85493635.png">2016-05-03_12h59_03.png</a> (image/png)<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493629/85493631.png">2016-05-31_11h27_52.png</a> (image/png)&nbsp;</p>
+<h2>&nbsp;</h2>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Outloot Features&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Outloot Features&nbsp;</h1>
+<p>&nbsp;</p>
 <p>Information</p>
 <p>This project is not finished yet.</p>
 <p>&nbsp;</p>
@@ -770,26 +677,23 @@ dateCreated: 2020-12-02T12:05:23.174Z
   <li><a href="Watchdog---Settings-Screen_85493651.html">Watchdog - Settings Screen</a></li>
 </ul>
 <p>&nbsp;</p>
-<h1>Blueberry Group : PTS Helper&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>PTS Helper&nbsp;</h1>
+<p>&nbsp;</p>
 <p>Information</p>
 <p>This project is still being debugged.</p>
 <p>&nbsp;</p>
 <h3><a href="Create-Ticket_85493638.html">Create Ticket</a></h3>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Newsletter Template&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Newsletter Template&nbsp;</h1>
+<p>&nbsp;</p>
 <p>Information</p>
 <p>This project is not implemented yet.</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Watchdog&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Watchdog&nbsp;</h1>
 <p>&nbsp;</p>
-<h3><a href="85493648.html">A Watchdog - What is that ?</a></h3>
-<h3><a href="Watchdog---Settings-Screen_85493651.html">Watchdog - Settings Screen</a></h3>
 <p>&nbsp;</p>
-<h1>Blueberry Group : A Watchdog - What is that?&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h2>A Watchdog - What is that?&nbsp;</h2>
+<p>&nbsp;</p>
 <p style="text-align:justify;">It is a simple feature that checks that certain emails are answered within a preset delay. If not, a notification (As a MessageBox) pops and warns you about any unanswered email.<br>&nbsp;</p>
 <figure class="image"><img src="attachments/85493648/85493650.png"></figure>
 <p style="text-align:justify;"><i>Here's a screenshot of a popup generated by Blueberry Outloot.</i><br><i>&nbsp;</i></p>
@@ -805,15 +709,10 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p style="text-align:justify;">The add-in looks through all the emails received within the delay you specified.<br>In these last emails, it checks that they are not blacklisted (Or that they are white-listed depending on your settings). Once done, it checks that the&nbsp;<i>To</i>&nbsp;or&nbsp;<i>CC</i>&nbsp;field contains at least one string specified in your settings.<br>If all those steps are validated then a timer starts and if it comes to the end, the MessageBox pops.<br>All along these steps, the add-in checks if the watched emails have been answered. As in Blueberry we always&nbsp;<i>reply to all</i>, the address that was contacted will also receive the answer and so the timer of the email will be stopped as soon as the add-in has detected the answer.</p>
 <p style="text-align:justify;">NB: You understand that an email is considered answered when any email that you receive is more recent and the former sender is now in To or CC field.<br>&nbsp; &nbsp; &nbsp; &nbsp;There is no check about the purpose of the email.</p>
 <p style="text-align:justify;"><br><strong>How to manage the Settings :</strong></p>
-<p style="text-align:justify;">If you want to know more about the Settings, please follow the link to the related article : <a href="Watchdog---Settings-Screen_85493651.html">Watchdog - Settings Screen</a>.</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493648/85493649.png">2016-05-03_12h59_03.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493648/85493650.png">image2016-5-11 10:26:34.png</a> (image/png)&nbsp;</p>
+<p style="text-align:justify;">If you want to know more about the Settings, please see below</p>
+<h2>&nbsp;</h2>
+<h2>Settings Screen&nbsp;</h2>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Watchdog - Settings Screen&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
 <p>This is what the Watchdog's Settings screen looks like :</p>
 <figure class="image"><img src="attachments/85493651/85493657.png"></figure>
 <p><br><i>Blueberry Outloot - Watchdog Settings Screen</i></p>
@@ -858,22 +757,10 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p>Once you have entered your desired settings, you can either click the "Cancel" button to quit without saving anything or click "OK" to save it all.<br>A verification of the different impossible cases is made before saving, for example, your max popup delay can not be less or equal to the popup delay.<br>The Settings Screen let you type any&nbsp;nonsense&nbsp;thing but will catch you up before saving.</p>
 <p>There you can either read the error message and correct your mistake(s) or just click "Cancel" to leave without saving.&nbsp;</p>
 <p>Once the settings saved (After clicking "Ok") the watchdog cleans every former watched emails and immediately restarts one (if Enabled). Therefore you may directly have some popups after saving and do not forget the first scan will be based on the max delay in this case.</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493651/85493652.png">2016-05-11_11h21_05.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493651/85493653.png">2016-05-11_11h17_27.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493651/85493654.png">2016-05-11_11h17_14.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493651/85493655.png">2016-05-11_11h17_01.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493651/85493656.png">2016-05-11_11h16_45.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493651/85493657.png">2016-05-11_11h12_48.png</a> (image/png)&nbsp;</p>
+<h2>&nbsp;</h2>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Outloot Installation Steps&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Outloot Installation Steps&nbsp;</h1>
+<p>&nbsp;</p>
 <p style="text-align:justify;">First, download the installer by clicking the following link : &lt;NoLinkYet&gt;</p>
 <p style="text-align:justify;">Your folder should contain this :</p>
 <figure class="image"><img src="attachments/85493658/85493661.png"></figure>
@@ -887,26 +774,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p style="text-align:justify;"><i>The new tab created by the add-in.</i></p>
 <p style="text-align:justify;"><br>NB: If you think the add-in may not be running, here is how to check its current state :<br>&nbsp;</p>
 <p style="text-align:justify;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Go to File &gt; Options &gt; Customize Ribbon and tick "Developer" in the right list.<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Click the new tab "DEVELOPER" that appeared on your homepage.<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Click "COM Add-Ins"<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Check that "BlueberryOutloot" is ticked in the list.</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493658/85493659.png">2016-05-31_11h27_52.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493658/85493660.png">2016-05-11_12h31_01.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493658/85493661.png">2016-05-11_12h30_50.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493658/85493662.png">2016-05-11_11h02_39.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493658/85493663.png">2016-05-03_15h49_09.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493658/85493664.png">2016-05-03_15h38_28.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493658/85493665.png">2016-05-03_15h36_07.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493658/85493666.png">2016-05-03_12h38_39.png</a> (image/png)&nbsp;</p>
+<h1>Contact Sync&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Contact Sync&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
 <p>The application helps organizing contacts between several Google accounts: remove dupes, group, edit contacts etc.</p>
 <figure class="table">
   <table>
@@ -950,21 +819,13 @@ dateCreated: 2020-12-02T12:05:23.174Z
     </tbody>
   </table>
 </figure>
-<h1>Screenshots</h1>
+<h2>Screenshots</h2>
 <h3>1 - Generic Screen</h3>
 <figure class="image"><img src="attachments/85493667/85493670.png"></figure>
 <h3>2 - Contacts grouped by full name</h3>
 <figure class="image"><img src="attachments/85493667/85493669.png"></figure>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493667/85493668.docx">Contacts_organiser.docx</a> (application/vnd.openxmlformats-officedocument.wordprocessingml.document)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493667/85493669.png">Contact_sync2.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493667/85493670.png">Contact_sync.png</a> (image/png)&nbsp;</p>
+<h1>D3 Graph&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Blueberry Group : D3 Graph&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
 <h2>Task:</h2>
 <p>Make a graph with a custom cursor, multiple Y axis and displace the coordinates next to the Axis using JavaScript.</p>
 <h2>Location:</h2>
@@ -1030,12 +891,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
 </figure>
 <h1>Screenshots</h1>
 <figure class="image"><img src="attachments/85493672/85493673.png"></figure>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/85493672/85493673.png">DBMaintainer.png</a> (image/png)&nbsp;</p>
+<h1>DB Documenter&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Blueberry Group : DB Documenter&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
 <p>A tool which automatically creates wiki pages in Confluence which help to document an SQL Database.</p>
 <figure class="table">
   <table>
@@ -1085,11 +942,11 @@ dateCreated: 2020-12-02T12:05:23.174Z
     </tbody>
   </table>
 </figure>
-<h1>Screenshots</h1>
+<h2>Screenshots</h2>
 <p>N/A</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Google Drive Cleaner&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Google Drive Cleaner&nbsp;</h1>
+<p>&nbsp;</p>
 <h2>Task:</h2>
 <p>&nbsp;</p>
 <h2>Location:</h2>
@@ -1099,10 +956,10 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p>Package: requirement file can be found on SVN.</p>
 <p>Credential: See setup_Credential.txt in SVN</p>
 <h2>Result:</h2>
-<p>The root page BLUEB:@self could not be found in space Blueberry Group.&nbsp;</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : GDManager&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<p>&nbsp;</p>
+<h1>GDManager&nbsp;</h1>
+<p>&nbsp;</p>
 <p>The google drive manager is the core object which contains all of the file and folder information.</p>
 <h2>Instruction:</h2>
 <p>Once the environment is set up call the connect function in function.py which will return the service (the client_secret.json need to be in the same folder as function.py).</p>
@@ -1111,8 +968,8 @@ dateCreated: 2020-12-02T12:05:23.174Z
 <p>Once GDManager has finish initialising you can call its sort method to have it sort all the files and folder in different dictionaries.</p>
 <p>The Dictionaries are written as so: {“file/folder ID”: file/folder Object}</p>
 <p>&nbsp;</p>
-<h1>Blueberry Group : Google Sync Checker&nbsp;</h1>
-<p>Created by Jason Cozza on Nov 24, 2020</p>
+<h1>Google Sync Checker&nbsp;</h1>
+<p>&nbsp;</p>
 <p>The application checks if files on the local Google drive folder were correctly synchronised with their cloud copies by Google docs sync.</p>
 <figure class="table">
   <table>
