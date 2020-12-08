@@ -2,17 +2,16 @@
 title: DevOps Information
 description: 
 published: true
-date: 2020-12-03T15:12:01.098Z
+date: 2020-12-08T15:05:14.779Z
 tags: 
 editor: ckeditor
 dateCreated: 2020-12-03T14:58:00.187Z
 -->
 
-<h1>Blueberry : DevOps Information&nbsp;</h1>
-<p>Created by Gareth Casey, last modified by Unknown User (ahk) on Aug 21, 2017</p>
+<h1>DevOps Information</h1>
 <p>&nbsp;</p>
-<h1>Blueberry : Application's Environment Configuration&nbsp;</h1>
-<p>Created by Duncan Forsyth, last modified on Jul 24, 2017</p>
+<h1>Application's Environment Configuration&nbsp;</h1>
+<p>&nbsp;</p>
 <p>When the application runs, it needs to know:</p>
 <ul>
   <li>Which database to connect to</li>
@@ -55,16 +54,8 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <h2>Known 'gotchas'</h2>
 <p>Visual Studio creates a file with a couple of profiles for running your application either via IIS Express or directly as a console application.</p>
 <p>Please ensure you don’t have a specific override in Properties/launchSettings.json file for your profile.</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/38175045/38175046.png">OS.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/38175045/38175047.png">Visual Studio.png</a> (image/png)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/38175045/38175048.png">VSCODE.png</a> (image/png)</p>
 <p>&nbsp;</p>
-<h1>Blueberry : Configuring CI for your project&nbsp;</h1>
-<p>Created by Unknown User (ahk), last modified on Oct 16, 2018</p>
+<h1>Configuring CI for your project</h1>
 <p>This article assumes that you have a basic understanding of Git and GitLab.</p>
 <p>You've set your project up on GitLab, and you now want to enable continuous building and continuous delivery of your project. The first thing to consider is where the building and deploying will occur. You may have already set up a project-specific runner which is designed to build the project, in which case skip ahead to the final sections of this article.</p>
 <p>GitLab uses a .gitlab-ci.yml file in the root of a repository to define the CI/CD pipelines for a project. It's recommended that you refer to the&nbsp;<a href="https://docs.gitlab.com/ce/ci/variables/">GitLab CI Variables</a> article while reading this article.</p>
@@ -109,8 +100,8 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <p>Sometimes it's useful to have a project-specific runner as the configuration to build the project is quite unique or exotic i.e. a legacy .NET Framework project with third party dependencies which can't be satisfied with NuGet.</p>
 <p>If using a Windows runner, note that environment variables are expanded like %EXAMPLE% instead of ${EXAMPLE}</p>
 <p>&nbsp;</p>
-<h1>Blueberry : Docker&nbsp;</h1>
-<p>Created by Duncan Forsyth, last modified on Jul 14, 2017</p>
+<h1>Docker&nbsp;</h1>
+<p>&nbsp;</p>
 <p><strong>What is Docker?</strong></p>
 <p>It’s a platform for packaging an application or service plus “all” the dependencies.</p>
 <p><strong>What Are We Using Docker for Today?</strong></p>
@@ -148,8 +139,8 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <p>Before running a Windows container, you will need to execute: '"C:\Program Files\Docker\Docker\DockerCli.exe" -SwitchDaemon'. It would appear at first glance that Docker for Windows doesn't support running a mix of containers. The first time that you run that executable you will be prompted to enable more Docker features and restart your machine.</p>
 <p>Then 'docker run -i -t microsoft/windowsservercore cmd' will allow you to run an interactive Windows container.&nbsp;Do note - it's a 5 Gb download to build the container for that particular image.</p>
 <p>&nbsp;</p>
-<h1>Blueberry : GitLab and DevOps&nbsp;</h1>
-<p>Created by Duncan Forsyth, last modified by Unknown User (ahk) on Aug 21, 2017</p>
+<h1>GitLab and DevOps&nbsp;</h1>
+<p>&nbsp;</p>
 <p>Projects should be set up as follows.</p>
 <figure class="table" style="width:94.1854%;">
   <table>
@@ -269,17 +260,10 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <p>Currently BBWT3 pre-deployment tests can be executed cross-platform. Even if other things change, it would remain very useful to keep that feature intact.</p>
 <p>Currently BBWT3 and VME are on Windows/SQL Server. <i>BBWT3 will soon be targetting Linux/Aurora.</i></p>
 <p>&nbsp;</p>
-<h1>Blueberry : Tutos&nbsp;</h1>
-<p>Created by Veronica Chatworth on Jul 28, 2017</p>
+<h1>Tutos&nbsp;</h1>
 <p>&nbsp;</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/38175636/38175638.pdf">GitLab_Tutorial.pdf</a> (application/pdf)&nbsp;<br>&nbsp;</p>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/38175636/38175639.pdf">Introduction to Git.pdf</a> (application/pdf)&nbsp;</p>
+<h1>GitLab CI&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Blueberry : GitLab CI&nbsp;</h1>
-<p>Created by Unknown User (ahk), last modified by Alex Putnam on Aug 31, 2020</p>
 <p>GitLab CI is a tool in GitLab which allows users to continuously build and deploy new revisions of their applications. Our GitLab is configured to use Docker for builds, allowing build pristine build environments. Blueberry uses GitLab CI with Web Template 3.</p>
 <p>For a list of GitLab CI variables, refer to&nbsp;<a href="https://docs.gitlab.com/ce/ci/variables/">this documentation.</a>&nbsp;These variables can be used anywhere within the file.</p>
 <p>For a comprehensive breakdown of the CI language, see <a href="https://docs.gitlab.com/ce/ci/yaml/">this page.</a></p>
@@ -378,8 +362,8 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <p>Elastic Beanstalk issues</p>
 <p>If you need to re-run a deployment within CI, Elastic Beanstalk might complain about an already existing application version. In this case, delete the application version from within the Elastic Beanstalk console.</p>
 <p>&nbsp;</p>
-<h1>Blueberry : Rollbar and RayGun GitLab Integrations&nbsp;</h1>
-<p>Created by Unknown User (ahk), last modified by Alex Putnam on Aug 30, 2020</p>
+<h1>Rollbar and RayGun GitLab Integrations&nbsp;</h1>
+<p>&nbsp;</p>
 <p>Blueberry use both Rollbar and RayGun to track user experience metrics and crashes. These tools can also be integrated with GitLab to upload source maps or notify the services when a new deployment occurs.</p>
 <h1>Rollbar</h1>
 <p>Blueberry has been using Rollbar with Blueberry Web Template 3. So far, we have only used the front-end error tracking, and not the code integration, as the former was the only tool available when BBWT3 was being bootstrapped.</p>
@@ -483,8 +467,8 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <p>"RaygunSettings": { &nbsp;"ApiKey": "API_KEY" &nbsp;"ApplicatonVersion": "APP_VERSION" }</p>
 <p>Substitute API_KEY for the project's api key, and APP_VERSION for an application version identifier, e.g. the commit hash. For an example of these variables being substituted during CI, see <a href="https://gitlab.bbconsult.co.uk/hudson/freepay/blob/test/.gitlab-ci.yml#L287">here</a>.</p>
 <p>&nbsp;</p>
-<h1>Blueberry : SonarQube Plan&nbsp;</h1>
-<p>Created by Duncan Forsyth, last modified on Jun 26, 2017</p>
+<h1>SonarQube Plan&nbsp;</h1>
+<p>&nbsp;</p>
 <h1><strong><u>What benefits can we hope for with SonarQube</u></strong></h1>
 <p>&nbsp;SonarQube is a tool which, amongst other things:</p>
 <ul>
@@ -544,7 +528,6 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <p>You will likely find many of the bugs are reported due to failures in CSS compatibility with older browser versions.</p>
 <figure class="image"><img src="attachments/36144001/36144016.png"></figure>
 <p><br>&nbsp;</p>
-<p>&nbsp;</p>
 <h1><strong><u>SonarQube Priority Ratings</u></strong></h1>
 <p>From time to time I try and re-jig SonarQube’s reporting priorities. If you see something that looks out of place, do let <a href="mailto:duncan.forsyth@bbconsult.co.uk">duncan.forsyth@bbconsult.co.uk</a>&nbsp;know. Here’s what I aim for:</p>
 <ul>
@@ -559,12 +542,8 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <p>Isn't reporting faults in test code a little much? Yes. There's a way to stop that. Duncan to arrange a demonstration of that.</p>
 <p>Standard reports try and report differences between versions of the work, but we're always telling SonarQube the same version number. Duncan to investigate.</p>
 <p>&nbsp;</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/36144001/36144016.png">Bugs.png</a> (image/png)&nbsp;</p>
+<h1>SonarQube Plan&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Blueberry : SonarQube Plan&nbsp;</h1>
-<p>Created by Duncan Forsyth, last modified on Jun 26, 2017</p>
 <h1><strong><u>What benefits can we hope for with SonarQube</u></strong></h1>
 <p>&nbsp;SonarQube is a tool which, amongst other things:</p>
 <ul>
@@ -623,7 +602,6 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <p>Clicking on the blue-circled link below will take you to the measures feature, which isn’t very helpful. &nbsp;</p>
 <p>You will likely find many of the bugs are reported due to failures in CSS compatibility with older browser versions.</p>
 <figure class="image"><img src="attachments/36144001/36144016.png"></figure>
-<p><br>&nbsp;</p>
 <p>&nbsp;</p>
 <h1><strong><u>SonarQube Priority Ratings</u></strong></h1>
 <p>From time to time I try and re-jig SonarQube’s reporting priorities. If you see something that looks out of place, do let <a href="mailto:duncan.forsyth@bbconsult.co.uk">duncan.forsyth@bbconsult.co.uk</a>&nbsp;know. Here’s what I aim for:</p>
@@ -639,12 +617,8 @@ dateCreated: 2020-12-03T14:58:00.187Z
 <p>Isn't reporting faults in test code a little much? Yes. There's a way to stop that. Duncan to arrange a demonstration of that.</p>
 <p>Standard reports try and report differences between versions of the work, but we're always telling SonarQube the same version number. Duncan to investigate.</p>
 <p>&nbsp;</p>
-<h2>Attachments:</h2>
-<figure class="image"><img src="images/icons/bullet_blue.gif" alt=""></figure>
-<p><a href="attachments/36144001/36144016.png">Bugs.png</a> (image/png)&nbsp;</p>
+<h1>Standardizing BB Servers&nbsp;</h1>
 <p>&nbsp;</p>
-<h1>Blueberry : Standardizing BB Servers&nbsp;</h1>
-<p>Created by Martin Green on Jul 21, 2020</p>
 <h1>Overall Goals</h1>
 <p>We need to standardize our processes for working with servers to<br><br>&nbsp;</p>
 <ul>
@@ -803,8 +777,8 @@ dateCreated: 2020-12-03T14:58:00.187Z
   <li>Mounting S3 as a drive to move storage off the server without changing cod.</li>
 </ul>
 <p>&nbsp;</p>
-<h1>Blueberry : Using GitLab Registry&nbsp;</h1>
-<p>Created by Unknown User (ahk), last modified on Sep 04, 2018</p>
+<h1>Using GitLab Registry&nbsp;</h1>
+<p>&nbsp;</p>
 <p>GitLab has a feature where you can upload Docker images to be used by projects within GitLab.</p>
 <h1>Using the registry from your local machine</h1>
 <p>First, ensure that you have a <a href="https://gitlab.bbconsult.co.uk/profile/personal_access_tokens">personal access token</a> created.</p>
