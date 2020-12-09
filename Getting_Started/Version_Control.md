@@ -2,9 +2,9 @@
 title: Version Control
 description: 
 published: true
-date: 2020-12-04T15:19:34.332Z
+date: 2020-12-04T15:19:38.235Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-12-03T15:00:13.999Z
 ---
 

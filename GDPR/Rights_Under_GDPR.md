@@ -2,9 +2,9 @@
 title: Rights under GDPR
 description: 
 published: true
-date: 2020-12-07T11:35:56.236Z
+date: 2020-12-07T11:35:58.621Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-12-07T11:35:56.236Z
 ---
 

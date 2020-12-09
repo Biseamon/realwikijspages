@@ -2,9 +2,9 @@
 title: Information Security Policy
 description: 
 published: true
-date: 2020-12-07T10:33:58.712Z
+date: 2020-12-07T10:34:01.003Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-12-07T10:31:27.126Z
 ---
 

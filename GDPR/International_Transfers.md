@@ -2,9 +2,9 @@
 title: International Transfers
 description: 
 published: true
-date: 2020-12-07T10:42:41.183Z
+date: 2020-12-07T10:42:43.308Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-12-07T10:42:41.183Z
 ---
 

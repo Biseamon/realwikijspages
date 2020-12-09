@@ -2,9 +2,9 @@
 title: Coding Guidance
 description: 
 published: true
-date: 2020-12-03T15:24:54.601Z
+date: 2020-12-03T15:24:56.737Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-12-03T15:21:05.553Z
 ---
 

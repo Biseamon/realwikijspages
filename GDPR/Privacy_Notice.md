@@ -2,9 +2,9 @@
 title: Privacy Notice
 description: 
 published: true
-date: 2020-12-07T11:00:28.078Z
+date: 2020-12-07T11:00:30.217Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-12-07T10:55:03.973Z
 ---
 

@@ -2,9 +2,9 @@
 title: When Things Go Wrong
 description: 
 published: true
-date: 2020-12-07T12:47:56.047Z
+date: 2020-12-07T12:47:58.300Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-12-07T12:47:38.342Z
 ---
 

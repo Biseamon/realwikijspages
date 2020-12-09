@@ -2,9 +2,9 @@
 title: ICO
 description: 
 published: true
-date: 2020-12-07T10:34:53.903Z
+date: 2020-12-07T10:34:56.003Z
 tags: 
-editor: markdown
+editor: undefined
 dateCreated: 2020-12-07T10:15:18.806Z
 ---
 
