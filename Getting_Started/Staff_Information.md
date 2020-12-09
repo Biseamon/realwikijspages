@@ -2,7 +2,7 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-09T15:20:37.678Z
+date: 2020-12-09T15:21:05.564Z
 tags: 
 editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
@@ -336,7 +336,7 @@ In this group (Ringaround 2nd), others have been added.
 
 ![2nd_group_ringaround.png](/2nd_group_ringaround.png) 
 
-If none can answer a phone call from this group as well, they get transferred to voicemail. As noted, voicemail is sent to people in Consult Ringaraound via email. Please note that voicemail might be in your spam folder.
+If no-one can answer a phone call from this group as well, they get transferred to voicemail. As noted, voicemail is sent to people in Consult Ringaraound via email. Please note that voicemail might be in your spam folder.
 
 **Flow of the call**
 1)    User Calls from Twilio
