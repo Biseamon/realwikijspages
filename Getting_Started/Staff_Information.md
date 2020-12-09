@@ -2,9 +2,9 @@
 title: Useful Staff Information
 description: 
 published: true
-date: 2020-12-07T09:38:00.075Z
+date: 2020-12-09T15:20:37.678Z
 tags: 
-editor: undefined
+editor: markdown
 dateCreated: 2020-11-26T12:15:46.742Z
 ---
 
@@ -313,14 +313,14 @@ In our case, we are connection to another Ring Group but this can change to othe
 
 ## **BB Consult phone system**
 **Consult Ringaround**
-Once we are in Consult Ringaround you should be seeing something like this. In here we can edit time duration of how long does the phone ring in this group. In our case, it is ringing for 15 seconds total.
+Once we are in Consult Ringaround you should be seeing something like this. In here we can edit time duration of how long does the phone ring in this group. In our case, it is ringing for 5 seconds total.
 
 People that are in this group can pick up the phone. You can add or remove people under Group Members.
 
 ![screenshot_2020-07-27_at_16.56.24.png](/screenshot_2020-07-27_at_16.56.24.png)
 
  
-Destination if none answers is used for what to do if people do no answer phone calls. This group is designed to connect to Consult Ringaround 2nd after 15 seconds.
+Destination if none answers is used for what to do if people do no answer phone calls. This group is designed to connect to Consult Ringaround 2nd after 5 seconds.
 
 ![screenshot_2020-07-27_at_16.55.34_(1).png](/screenshot_2020-07-27_at_16.55.34_(1).png)
 
@@ -341,16 +341,18 @@ If none can answer a phone call from this group as well, they get transferred to
 **Flow of the call**
 1)    User Calls from Twilio
 
-2)    Call gets redirected to 3CX, or if it is a direct call, it gets connected here
+2)    A holding message 'We are connecting your call, please hold the line' is played as the calll gets redirected to 3CX, or if it is a direct call, it gets connected here
 
-3)    Consult Ringaround has 15 seconds to pick up the phone
+3)    Consult Ringaround has 5 seconds to pick up the phone
 
 - Call gets answered
 - None has answered, call gets transferred
+
 4)    Consult Ringaraound 2nd has 15 seconds to answer the phone
 
 - Call gets answered
 - None answered, call goes to the voicemail.
+
 
 ## How to Pick Up a Ringing Extension
 If you hear a particular extension ringing, and you know that the owner of that extension is not able to take the call, you can take the call by using the “Call Pickup” feature.
